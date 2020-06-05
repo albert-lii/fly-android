@@ -1,0 +1,3 @@
+rootProject.name='fly'
+include ':app'
+include ':lib_fly'

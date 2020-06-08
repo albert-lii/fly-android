@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 自定义标题栏 -->
+    <declare-styleable name="TitleBar">
+        <!-- 标题栏文字描述 -->
+        <attr name="title" format="string" />
+        <!-- 标题栏文字大小 -->
+        <attr name="titleSize" format="dimension" />
+        <!-- 标题栏文字颜色 -->
+        <attr name="titleColor" format="color" />
+        <!-- 左侧Padding-->
+        <attr name="leftPadding" format="dimension" />
+        <!-- 左侧ICON -->
+        <attr name="leftIcon" format="reference" />
+        <!-- 左侧ICON高度-->
+        <attr name="leftIconHight" format="dimension" />
+        <!-- 是否显示左侧ICON-->
+        <attr name="showLeftIcon" format="boolean" />
+        <!-- 左侧文字描述 -->
+        <attr name="leftText" format="string" />
+        <!-- 左侧文字大小 -->
+        <attr name="leftTextSize" format="dimension" />
+        <!-- 左侧文字颜色 -->
+        <attr name="leftTextColor" format="color" />
+        <!-- 左侧ICON距离文字的间距-->
+        <attr name="leftTextLeftMargin" format="dimension" />
+        <!-- 是否显示左侧文字-->
+        <attr name="showLeftText" format="boolean" />
+        <!-- 右侧Padding-->
+        <attr name="rightPadding" format="dimension" />
+        <!-- 右侧ICON-->
+        <attr name="rightIcon" format="reference" />
+        <!-- 右侧ICON高度-->
+        <attr name="rightIconHight" format="dimension" />
+        <!-- 是否显示右侧ICON-->
+        <attr name="showRightIcon" format="boolean" />
+        <!-- 右侧文字描述 -->
+        <attr name="rightText" format="string" />
+        <!-- 右侧文字大小 -->
+        <attr name="rightTextSize" format="dimension" />
+        <!-- 右侧文字颜色 -->
+        <attr name="rightTextColor" format="color" />
+        <!-- 右侧ICON距离文字的间距-->
+        <attr name="rightTextLeftMargin" format="dimension" />
+        <!-- 是否显示右侧文字-->
+        <attr name="showRightText" format="boolean" />
+        <!-- 是否显示右侧区域-->
+        <attr name="showRightFunc" format="boolean" />
+        <!-- 底部分割线的高度 -->
+        <attr name="dividerHeight" format="dimension" />
+        <!-- 底部分割线的颜色 -->
+        <attr name="dividerColor" format="color" />
+        <!-- 是否显示底部分割线-->
+        <attr name="showDivider" format="boolean" />
+    </declare-styleable>
+
+    <!-- SwitchView -->
+    <declare-styleable name="SwitchView">
+        <attr name="hasShadow" format="boolean" />
+        <attr name="primaryColor" format="color" />
+        <attr name="primaryColorDark" format="color" />
+        <attr name="offColor" format="color" />
+        <attr name="offColorDark" format="color" />
+        <attr name="barColor" format="color" />
+        <attr name="bgColor" format="color" />
+        <attr name="shadowColor" format="color" />
+        <attr name="ratioAspect" format="float" />
+        <attr name="isOpened" format="boolean" />
+    </declare-styleable>
+</resources>

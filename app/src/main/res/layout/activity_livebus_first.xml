@@ -1,62 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:padding="30dp">
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_post"
+    <org.we.fly.widget.TitleBar
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Post一个消息"
-        android:textAllCaps="false" />
+        android:layout_height="45dp"
+        android:background="#FFF"
+        app:leftIcon="@drawable/back_arrow"
+        app:title="LiveBusFirst"
+        app:titleSize="18dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp">
 
-        <TextView
-            android:id="@+id/tv_receive_created"
+        <Button
+            android:id="@+id/btn_post"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Post一个消息"
+            android:textAllCaps="false" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CREATED状态：收到来自Second页面的Post次数：0次" />
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_receive_started"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="STARTED状态：收到来自Second页面的Post次数：0次" />
+            <TextView
+                android:id="@+id/tv_receive_created"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CREATED状态：收到来自Second页面的Post次数：0次" />
+
+            <TextView
+                android:id="@+id/tv_receive_started"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="STARTED状态：收到来自Second页面的Post次数：0次" />
 
 
-        <TextView
-            android:id="@+id/tv_observe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="普通订阅：没有收到订阅消息" />
+            <TextView
+                android:id="@+id/tv_observe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="普通订阅：没有收到订阅消息" />
 
-        <TextView
-            android:id="@+id/tv_observe_sticky"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Sticky订阅：没有收到订阅消息" />
+            <TextView
+                android:id="@+id/tv_observe_sticky"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Sticky订阅：没有收到订阅消息" />
 
-        <TextView
-            android:id="@+id/tv_observe_forever"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Forever订阅：没有收到订阅消息" />
+            <TextView
+                android:id="@+id/tv_observe_forever"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Forever订阅：没有收到订阅消息" />
 
-        <TextView
-            android:id="@+id/tv_observe_sticky_forever"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="StickyForever订阅：没有收到订阅消息" />
+            <TextView
+                android:id="@+id/tv_observe_sticky_forever"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="StickyForever订阅：没有收到订阅消息" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

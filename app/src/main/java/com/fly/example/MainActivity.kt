@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.fly.example.livebustest.LiveBusFirstActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.we.fly.extensions.singleClick
 
 /**
  * @author: Albert Li
@@ -22,7 +23,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addListener() {
-        btn_livebus.setOnClickListener { jumpToActivity(LiveBusFirstActivity::class.java) }
+        btn_livebus.singleClick {
+            jumpToActivity(LiveBusFirstActivity::class.java)
+        }
     }
 
     private fun <T> jumpToActivity(cls: Class<T>) {

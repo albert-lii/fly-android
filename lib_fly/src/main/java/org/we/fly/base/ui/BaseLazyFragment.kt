@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
  * @description: 懒加载的Fragment
  * @since: 1.0.0
  */
-abstract class BaseFlyLazyFragment : Fragment() {
+abstract class BaseLazyFragment : Fragment() {
 
     /**
      * 是否执行懒加载

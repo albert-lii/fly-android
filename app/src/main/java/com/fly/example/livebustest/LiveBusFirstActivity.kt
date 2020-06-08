@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import com.fly.example.Constants
 import com.fly.example.R
 import kotlinx.android.synthetic.main.activity_livebus_first.*
+import org.we.fly.extensions.singleClick
 import org.we.fly.utils.livebus.LiveBus
 
 
@@ -31,7 +32,7 @@ class LiveBusFirstActivity : AppCompatActivity() {
     }
 
     private fun addListener() {
-        btn_post.setOnClickListener {
+        btn_post.singleClick {
             recevieCountOnCREATED = 0
             recevieCountOnSTARTED = 0
             changeReceiveCountUI()

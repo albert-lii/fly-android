@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.fly.example.Constants
 import com.fly.example.R
 import kotlinx.android.synthetic.main.activity_livebus_second.*
+import org.we.fly.extensions.singleClick
 import org.we.fly.utils.livebus.LiveBus
 
 
@@ -28,13 +29,13 @@ class LiveBusSecondActivity : AppCompatActivity() {
     }
 
     private fun addListener() {
-        btn_post_lifecycle.setOnClickListener {
+        btn_post_lifecycle.singleClick {
             LiveBus.get(Constants.BK_SECOND_POST_CREATED_TEST)
                 .post(null)
             LiveBus.get(Constants.BK_SECOND_POST_STARTED_TEST)
                 .post(null)
         }
-        btn_post_end.setOnClickListener {
+        btn_post_end.singleClick {
             LiveBus.get(Constants.BK_SECOND_POST_TEST).post("SecondActivity的Post测试 END")
             finish()
         }

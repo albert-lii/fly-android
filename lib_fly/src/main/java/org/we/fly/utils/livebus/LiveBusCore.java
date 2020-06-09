@@ -285,7 +285,7 @@ public class LiveBusCore {
         }
 
         @Override
-        public void onChanged(@Nullable T t) {
+        public void onChanged(T t) {
             if (isRejectEvent) {
                 isRejectEvent = false;
                 return;

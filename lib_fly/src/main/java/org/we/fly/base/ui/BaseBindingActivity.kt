@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import java.lang.reflect.ParameterizedType
+import org.we.fly.extensions.observeNonNullSimply
 
 /**
  * @author: Albert Li
@@ -15,10 +15,11 @@ import java.lang.reflect.ParameterizedType
  * @description: 基于MVVM模式的Activity的基类
  * @since: 1.0.0
  */
-abstract class BaseBindingActivity<VM : BaseViewModel, B : ViewDataBinding> : AppCompatActivity(),
-    DataBindingBehavior {
-    protected lateinit var viewModel: VM
+abstract class BaseBindingActivity<B : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity(),
+    DataBindingBehavior, ViewBehavior {
+
     protected lateinit var binding: B
+    protected lateinit var viewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +27,9 @@ abstract class BaseBindingActivity<VM : BaseViewModel, B : ViewDataBinding> : Ap
         injectDataBinding()
         initView()
         addListener()
+        addDefaultObserver()
         addObserver()
         loadData()
-    }
-
-    override fun getViewModelVariableId(): Int {
-        return DataBindingBehavior.NO_VIEW_MODEL
     }
 
     protected fun injectViewModel() {
@@ -49,16 +47,37 @@ abstract class BaseBindingActivity<VM : BaseViewModel, B : ViewDataBinding> : Ap
         }
     }
 
+    override fun getViewModelVariableId(): Int {
+        return DataBindingBehavior.NO_VIEW_MODEL
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         binding.unbind()
         lifecycle.removeObserver(viewModel)
     }
 
-    protected abstract fun createViewModel(): VM;
+    protected fun addDefaultObserver() {
+        viewModel._loadingEvent.observeNonNullSimply(this, {
+            showLoadingUI(it)
+        })
+        viewModel._emptyPageEvent.observeNonNullSimply(this, {
+            showEmptyUI(it)
+        })
+    }
+
+    override fun showLoadingUI(isShow: Boolean) {
+
+    }
+
+    override fun showEmptyUI(isShow: Boolean) {
+
+    }
 
     @LayoutRes
     protected abstract fun getLayoutId(): Int
+
+    protected abstract fun createViewModel(): VM;
 
     /**
      *  初始化UI

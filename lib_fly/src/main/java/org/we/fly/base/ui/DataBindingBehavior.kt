@@ -18,6 +18,6 @@ interface DataBindingBehavior {
 
         @IntDef(NO_VIEW_MODEL)
         @Retention(AnnotationRetention.SOURCE)
-        annotation class ModelVariableId
+        annotation class ViewModelVariableId
     }
 }

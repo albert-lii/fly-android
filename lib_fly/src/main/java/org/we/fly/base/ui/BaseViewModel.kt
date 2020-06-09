@@ -1,9 +1,6 @@
 package org.we.fly.base.ui
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 
 /**
  * @author: Albert Li
@@ -12,8 +9,13 @@ import androidx.lifecycle.ViewModelProvider
  * @description: ViewModel的基类
  * @since: 1.0.0
  */
-abstract class BaseViewModel : ViewModel(), ILifecycle {
-    lateinit var lifcycleOwner: LifecycleOwner
+abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
+    // 是否显示loading视图
+    var _loadingEvent = MutableLiveData<Boolean>()
+    // 是否显示空白视图
+    var _emptyPageEvent = MutableLiveData<Boolean>()
+
+    private lateinit var lifcycleOwner: LifecycleOwner
 
     override fun onAny(owner: LifecycleOwner, event: Lifecycle.Event) {
         this.lifcycleOwner = owner
@@ -41,6 +43,14 @@ abstract class BaseViewModel : ViewModel(), ILifecycle {
 
     override fun onDestroy() {
 
+    }
+
+    override fun showLoadingUI(isShow: Boolean) {
+        _loadingEvent.postValue(isShow)
+    }
+
+    override fun showEmptyUI(isShow: Boolean) {
+        _emptyPageEvent.postValue(isShow)
     }
 
     companion object {

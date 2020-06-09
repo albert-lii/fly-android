@@ -17,27 +17,28 @@ import androidx.lifecycle.ViewModelProvider
  * @description: 基于MVVM模式的Fragment的基类
  * @since: 1.0.0
  */
-abstract class BaseBindingFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment(),
+abstract class BaseBindingFragment<B : ViewDataBinding, VM : BaseViewModel> : Fragment(),
     DataBindingBehavior {
-    protected lateinit var viewModel: VM
     protected lateinit var binding: B
+    protected lateinit var viewModel: VM
+
+    // 缓存视图，如果视图已经创建，则不再初始化视图
+    protected var viewHolder: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        injectViewModel()
-        injectDataBinding(inflater, container)
-        initView()
-        addListener()
-        addObserver()
-        loadData()
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
-    override fun getViewModelVariableId(): Int {
-        return DataBindingBehavior.NO_VIEW_MODEL
+        if (viewHolder == null) {
+            injectViewModel()
+            injectDataBinding(inflater, container)
+            initView()
+            addListener()
+            addObserver()
+            loadData()
+        }
+        return binding.root
     }
 
     protected fun injectViewModel() {
@@ -53,6 +54,11 @@ abstract class BaseBindingFragment<VM : BaseViewModel, B : ViewDataBinding> : Fr
         if (getViewModelVariableId() != DataBindingBehavior.NO_VIEW_MODEL) {
             binding.setVariable(getViewModelVariableId(), viewModel)
         }
+        viewHolder = binding.root
+    }
+
+    override fun getViewModelVariableId(): Int {
+        return DataBindingBehavior.NO_VIEW_MODEL
     }
 
     protected abstract fun createViewModel(): VM;

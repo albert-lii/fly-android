@@ -1,7 +1,6 @@
-package org.we.fly.base.ui.recyclerview
+package org.we.fly.base.mvvm.recyclerview
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
@@ -40,8 +39,8 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder>() {
         return items?.size ?: 0
     }
 
-    @LayoutRes
-    abstract fun getLayoutId(viewType: Int): Int
+    abstract @LayoutRes
+    fun getLayoutId(viewType: Int): Int
 
     abstract fun onBindItem(holder: BaseViewHolder, item: T, position: Int)
 

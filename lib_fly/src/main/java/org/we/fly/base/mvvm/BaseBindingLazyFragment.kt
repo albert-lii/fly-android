@@ -1,16 +1,20 @@
-package org.we.fly.base.ui
+package org.we.fly.base.mvvm
 
-import androidx.fragment.app.Fragment
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.ViewDataBinding
 
 /**
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2020/5/30 6:34 PM
- * @description: 懒加载的Fragment
+ * @description: 基于MVVM模式的懒加载的Fragment
  * @since: 1.0.0
  */
-abstract class BaseLazyFragment : Fragment() {
-
+abstract class BaseBindingLazyFragment<B : ViewDataBinding> : BaseBindingFragment<B>(),
+    DataBindingBehavior, ViewBehavior {
     /**
      * 是否执行懒加载
      */
@@ -34,6 +38,17 @@ abstract class BaseLazyFragment : Fragment() {
      * 所以需要这个变量来判断是否已经执行了onResume方法。
      */
     private var isCallResume = false
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        if (viewHolder == null) {
+            injectDataBinding(inflater, container)
+        }
+        return binding.root
+    }
 
     private fun judgeLazyInit() {
         if (!isLoaded && isVisibleToUser && isCallResume) {
@@ -69,5 +84,8 @@ abstract class BaseLazyFragment : Fragment() {
         isCallResume = false
     }
 
+    /**
+     * 惰性初始化
+     */
     abstract fun lazyInit()
 }

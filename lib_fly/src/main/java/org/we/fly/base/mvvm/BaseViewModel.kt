@@ -1,5 +1,6 @@
-package org.we.fly.base.ui
+package org.we.fly.base.mvvm
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.*
 
 /**
@@ -10,10 +11,33 @@ import androidx.lifecycle.*
  * @since: 1.0.0
  */
 abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
-    // 是否显示loading视图
+    // loading视图显示Event
     var _loadingEvent = MutableLiveData<Boolean>()
-    // 是否显示空白视图
+        private set
+
+    // 无数据视图显示Event
     var _emptyPageEvent = MutableLiveData<Boolean>()
+        private set
+
+    // 输入字符串，弹出toast提示Event
+    var _toastStrEvent = MutableLiveData<Array<Any>>()
+        private set
+
+    // 输入字符串ResId，弹出toast提示Event
+    var _toastStrIdEvent = MutableLiveData<Array<Int>>()
+        private set
+
+    // 不带参数的页面跳转Event
+    var _pageNavigationEvent = MutableLiveData<Any>()
+        private set
+
+    // 点击系统返回键Event
+    var _backPressEvent = MutableLiveData<Any?>()
+        private set
+
+    // 关闭页面Event
+    var _finishPageEvent = MutableLiveData<Any?>()
+        private set
 
     private lateinit var lifcycleOwner: LifecycleOwner
 
@@ -51,6 +75,26 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
 
     override fun showEmptyUI(isShow: Boolean) {
         _emptyPageEvent.postValue(isShow)
+    }
+
+    override fun showToast(str: String, duration: Int) {
+        _toastStrEvent.postValue(arrayOf(str, duration))
+    }
+
+    override fun showToast(@StringRes strId: Int, duration: Int) {
+        _toastStrIdEvent.postValue(arrayOf(strId, duration))
+    }
+
+    override fun navigateTo(page: Any) {
+        _pageNavigationEvent.postValue(page)
+    }
+
+    override fun backPress(arg: Any?) {
+        _backPressEvent.postValue(arg)
+    }
+
+    override fun finishPage(arg: Any?) {
+        _finishPageEvent.postValue(null)
     }
 
     companion object {

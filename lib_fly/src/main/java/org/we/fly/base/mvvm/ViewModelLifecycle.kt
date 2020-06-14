@@ -1,4 +1,4 @@
-package org.we.fly.base.ui
+package org.we.fly.base.mvvm
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

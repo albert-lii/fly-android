@@ -40,7 +40,7 @@ fun <T : View> T.singleClick(interval: Long, block: (T) -> Unit) {
 
 abstract class SingleClickListener : View.OnClickListener {
     private var lastClickTime: Long = 0
-    private var timeInterval = 1000L
+    private var timeInterval = 500L
 
     constructor() {}
 

@@ -1,56 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:padding="30dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:id="@+id/btn_post_lifecycle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Post一个消息测试接收消息的生命周期"
-        android:textAllCaps="false" />
+    <data>
 
-    <Button
-        android:id="@+id/btn_post_end"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Post一个消息并关闭页面"
-        android:textAllCaps="false" />
+        <variable
+            name="viewModel"
+            type="com.fly.example.viewmodel.LiveBusSecondViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_observe"
+        <org.we.fly.widget.TitleBar
+            android:id="@+id/titlebar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="普通订阅：没有收到订阅消息" />
+            android:layout_height="45dp"
+            android:background="#FFF"
+            app:leftIcon="@drawable/back_arrow"
+            app:title="LiveBusSecond"
+            app:titleSize="18dp" />
 
-        <TextView
-            android:id="@+id/tv_observe_sticky"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Sticky订阅：没有收到订阅消息" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp">
 
-        <TextView
-            android:id="@+id/tv_observe_forever"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Forever订阅：没有收到订阅消息" />
+            <Button
+                android:id="@+id/btn_post_lifecycle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Post一个消息测试接收消息的生命周期"
+                android:textAllCaps="false" />
 
-        <TextView
-            android:id="@+id/tv_observe_sticky_forever"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="StickyForever订阅：没有收到订阅消息" />
+            <Button
+                android:id="@+id/btn_post_end"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Post一个消息并关闭页面"
+                android:textAllCaps="false" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_observe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.normalObserveData}" />
+
+                <TextView
+                    android:id="@+id/tv_observe_sticky"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{viewModel.stickyObserveData}" />
+
+                <TextView
+                    android:id="@+id/tv_observe_forever"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{viewModel.foreverObserveData}" />
+
+                <TextView
+                    android:id="@+id/tv_observe_sticky_forever"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{viewModel.stickyForeverObserveData}" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>

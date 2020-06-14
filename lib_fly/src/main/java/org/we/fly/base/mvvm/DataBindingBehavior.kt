@@ -1,6 +1,4 @@
-package org.we.fly.base.ui
-
-import androidx.annotation.IntDef
+package org.we.fly.base.mvvm
 
 /**
  * @author: Albert Li
@@ -15,9 +13,5 @@ interface DataBindingBehavior {
 
     companion object {
         const val NO_VIEW_MODEL = -1
-
-        @IntDef(NO_VIEW_MODEL)
-        @Retention(AnnotationRetention.SOURCE)
-        annotation class ViewModelVariableId
     }
 }

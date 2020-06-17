@@ -2,6 +2,7 @@ package org.we.fly.base.mvvm
 
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
+import org.we.fly.base.BaseConstants
 
 /**
  * @author: Albert Li
@@ -17,6 +18,9 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
 
     // 无数据视图显示Event
     var _emptyPageEvent = MutableLiveData<Boolean>()
+        private set
+
+    var _toastEvent = MutableLiveData<Map<String, *>>()
         private set
 
     // 输入字符串，弹出toast提示Event
@@ -79,6 +83,9 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
 
     override fun showToast(str: String, duration: Int) {
         _toastStrEvent.postValue(arrayOf(str, duration))
+        val map = HashMap<String, Any>()
+        map[BaseConstants.TOAST_KEY_CONTENT] = str
+        map[BaseConstants.TOAST_KEY_DURATION] = duration
     }
 
     override fun showToast(@StringRes strId: Int, duration: Int) {
@@ -94,7 +101,19 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     }
 
     override fun finishPage(arg: Any?) {
-        _finishPageEvent.postValue(null)
+        _finishPageEvent.postValue(arg)
+    }
+
+    protected fun showToast(map: Map<String, *>) {
+        _toastEvent.postValue(map)
+    }
+
+    protected fun backPress() {
+        backPress(null)
+    }
+
+    protected fun finishPage() {
+        finishPage(null)
     }
 
     companion object {

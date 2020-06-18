@@ -1,9 +1,6 @@
 package org.we.fly.base.mvvm
 
 import android.os.Bundle
-import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import org.we.fly.extensions.observeNonNull
@@ -16,19 +13,10 @@ import org.we.fly.extensions.observeNullable
  * @description: 基于MVVM模式的Activity的基类
  * @since: 1.0.0
  */
-abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity(),
-    DataBindingBehavior, ViewBehavior {
+abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBindingActivity<B>(),
+    ViewBehavior {
 
-    protected lateinit var binding: B
     protected lateinit var viewModel: VM
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        injectViewModel()
-        injectDataBinding()
-        initInternalObserver()
-        initialize(savedInstanceState)
-    }
 
     protected fun injectViewModel() {
         val vm = createViewModel()
@@ -37,18 +25,14 @@ abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : AppCom
         lifecycle.addObserver(viewModel)
     }
 
-
-    protected fun injectDataBinding() {
-        binding = DataBindingUtil.setContentView(this, getLayoutId())
-        binding.lifecycleOwner = this
-        if (getViewModelVariableId() != DataBindingBehavior.NO_VIEW_MODEL) {
-            binding.setVariable(getViewModelVariableId(), viewModel)
-            binding.executePendingBindings()
-        }
+    override fun init(savedInstanceState: Bundle?) {
+        injectViewModel()
+        initialize(savedInstanceState)
+        initInternalObserver()
     }
 
-    override fun getViewModelVariableId(): Int {
-        return DataBindingBehavior.NO_VIEW_MODEL
+    fun getActivityViewModel(): VM {
+        return viewModel
     }
 
     override fun onDestroy() {
@@ -80,9 +64,6 @@ abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : AppCom
             finishPage(it)
         })
     }
-
-    protected abstract @LayoutRes
-    fun getLayoutId(): Int
 
     protected abstract fun createViewModel(): VM
 

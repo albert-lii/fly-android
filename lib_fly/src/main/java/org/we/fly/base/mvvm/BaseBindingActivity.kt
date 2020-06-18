@@ -21,7 +21,7 @@ abstract class BaseBindingActivity<B : ViewDataBinding> : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         injectDataBinding()
-        initialize(savedInstanceState)
+        init(savedInstanceState)
     }
 
     protected open fun injectDataBinding() {
@@ -40,5 +40,5 @@ abstract class BaseBindingActivity<B : ViewDataBinding> : AppCompatActivity(),
     /**
      *  初始化操作
      */
-    protected abstract fun initialize(savedInstanceState: Bundle?)
+    protected abstract fun init(savedInstanceState: Bundle?)
 }

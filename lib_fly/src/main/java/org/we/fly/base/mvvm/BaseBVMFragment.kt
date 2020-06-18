@@ -16,7 +16,7 @@ import org.we.fly.extensions.observeNonNull
  * @since: 1.0.0
  */
 abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBindingFragment<B>(),
-    DataBindingBehavior, ViewBehavior {
+    ViewBehavior {
 
     protected lateinit var viewModel: VM
 
@@ -26,10 +26,10 @@ abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
         savedInstanceState: Bundle?
     ): View? {
         if (viewHolder == null) {
-            injectViewModel()
             injectDataBinding(inflater, container)
-            initInternalObserver()
+            injectViewModel()
             initialize()
+            initInternalObserver()
         }
         return binding.root
     }
@@ -39,17 +39,6 @@ abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
         viewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(vm))
             .get(vm::class.java)
         lifecycle.addObserver(viewModel)
-    }
-
-    override fun injectDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
-        super.injectDataBinding(inflater, container)
-        if (getViewModelVariableId() != DataBindingBehavior.NO_VIEW_MODEL) {
-            binding.setVariable(getViewModelVariableId(), viewModel)
-        }
-    }
-
-    override fun getViewModelVariableId(): Int {
-        return DataBindingBehavior.NO_VIEW_MODEL
     }
 
     protected fun initInternalObserver() {

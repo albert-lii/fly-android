@@ -1,4 +1,4 @@
-package org.we.fly.base.mvvm
+package org.we.fly.base.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,12 +11,12 @@ import org.we.fly.extensions.observeNonNull
 /**
  * @author: Albert Li
  * @contact: albertlii@163.com
- * @time: 2020/6/12 7:19 PM
- * @description: 基于MVVM模式的懒加载的Fragment
+ * @time: 2020/6/8 4:17 PM
+ * @description: 基于MVVM模式的Fragment的基类
  * @since: 1.0.0
  */
-abstract class BaseBVMLazyFragmet<B : ViewDataBinding, VM : BaseViewModel> : BaseBindingLazyFragment<B>(),
-    DataBindingBehavior, ViewBehavior {
+abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBindingFragment<B>(),
+    ViewBehavior {
 
     protected lateinit var viewModel: VM
 
@@ -25,12 +25,16 @@ abstract class BaseBVMLazyFragmet<B : ViewDataBinding, VM : BaseViewModel> : Bas
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (viewHolder == null) {
-            injectViewModel()
-            injectDataBinding(inflater, container)
-            initInternalObserver()
+        setCurrentState(ILazyLoad.ON_CREATE_VIEW)
+        if (getRootView() != null) {
+            return getRootView()
         }
-        return binding.root
+        injectDataBinding(inflater, container)
+        injectViewModel()
+        initialize(savedInstanceState)
+        initInternalObserver()
+        doLazyLoad(false)
+        return getRootView()
     }
 
     protected fun injectViewModel() {
@@ -40,17 +44,6 @@ abstract class BaseBVMLazyFragmet<B : ViewDataBinding, VM : BaseViewModel> : Bas
         lifecycle.addObserver(viewModel)
     }
 
-    override fun injectDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
-        super.injectDataBinding(inflater, container)
-        if (getViewModelVariableId() != DataBindingBehavior.NO_VIEW_MODEL) {
-            binding.setVariable(getViewModelVariableId(), viewModel)
-        }
-    }
-
-    override fun getViewModelVariableId(): Int {
-        return DataBindingBehavior.NO_VIEW_MODEL
-    }
-
     protected fun initInternalObserver() {
         viewModel._loadingEvent.observeNonNull(this, {
             showLoadingUI(it)
@@ -58,11 +51,8 @@ abstract class BaseBVMLazyFragmet<B : ViewDataBinding, VM : BaseViewModel> : Bas
         viewModel._emptyPageEvent.observeNonNull(this, {
             showEmptyUI(it)
         })
-        viewModel._toastStrEvent.observeNonNull(this, {
-            showToast(it[0] as String, it[1] as Int)
-        })
-        viewModel._toastStrIdEvent.observeNonNull(this, {
-            showToast(it[0], it[1])
+        viewModel._toastEvent.observeNonNull(this, {
+            showToast(it)
         })
         viewModel._pageNavigationEvent.observeNonNull(this, {
             navigateTo(it)

@@ -1,4 +1,4 @@
-package org.we.fly.base.mvvm
+package org.we.fly.base.ui
 
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
@@ -48,11 +48,8 @@ abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
         viewModel._emptyPageEvent.observeNonNull(this, {
             showEmptyUI(it)
         })
-        viewModel._toastStrEvent.observeNonNull(this, {
-            showToast(it[0] as String, it[1] as Int)
-        })
-        viewModel._toastStrIdEvent.observeNonNull(this, {
-            showToast(it[0], it[1])
+        viewModel._toastEvent.observeNonNull(this, {
+            showToast(it)
         })
         viewModel._pageNavigationEvent.observeNonNull(this, {
             navigateTo(it)

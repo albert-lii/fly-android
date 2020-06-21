@@ -1,6 +1,6 @@
 package com.fly.example.base
 
-import org.we.fly.base.mvvm.BaseViewModel
+import org.we.fly.base.ui.BaseViewModel
 
 /**
  * @author: Albert Li
@@ -10,11 +10,5 @@ import org.we.fly.base.mvvm.BaseViewModel
  * @since: 1.0.0
  */
 abstract class BaseAppViewModel : BaseViewModel() {
-    fun backPress() {
-        backPress(null)
-    }
 
-    fun finishPage() {
-        finishPage(null)
-    }
 }

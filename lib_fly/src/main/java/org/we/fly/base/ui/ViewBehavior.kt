@@ -1,4 +1,4 @@
-package org.we.fly.base.mvvm
+package org.we.fly.base.ui
 
 import androidx.annotation.StringRes
 
@@ -23,12 +23,7 @@ interface ViewBehavior {
     /**
      * 弹出Toast提示
      */
-    fun showToast(str: String, duration: Int)
-
-    /**
-     * 弹出Toast提示
-     */
-    fun showToast(@StringRes strId: Int, duration: Int)
+    fun showToast(map: Map<String, *>)
 
     /**
      * 不带参数的页面跳转

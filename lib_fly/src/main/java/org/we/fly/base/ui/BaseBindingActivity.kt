@@ -1,4 +1,4 @@
-package org.we.fly.base.mvvm
+package org.we.fly.base.ui
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes

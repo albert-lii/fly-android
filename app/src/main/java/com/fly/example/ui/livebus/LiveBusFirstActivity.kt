@@ -18,7 +18,7 @@ import org.we.fly.utils.livebus.LiveBus
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2020/6/3 2:29 PM
- * @description: --
+ * @description: LiveBus测试页面1
  * @since: 1.0.0
  */
 class LiveBusFirstActivity :
@@ -32,11 +32,8 @@ class LiveBusFirstActivity :
         return LiveBusFirstViewModel()
     }
 
-    override fun getViewModelVariableId(): Int {
-        return BR.viewModel
-    }
-
     override fun initialize(savedInstanceState: Bundle?) {
+        binding.viewModel = viewModel
         binding.titlebar.leftClick(View.OnClickListener {
             finish()
         })

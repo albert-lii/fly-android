@@ -1,8 +1,8 @@
-package org.we.fly.base.mvvm
+package org.we.fly.base.ui
 
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
-import org.we.fly.base.BaseConstants
+import org.we.fly.base.FlyBaseConstants
 
 /**
  * @author: Albert Li
@@ -20,15 +20,8 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     var _emptyPageEvent = MutableLiveData<Boolean>()
         private set
 
+    // toast提示Event
     var _toastEvent = MutableLiveData<Map<String, *>>()
-        private set
-
-    // 输入字符串，弹出toast提示Event
-    var _toastStrEvent = MutableLiveData<Array<Any>>()
-        private set
-
-    // 输入字符串ResId，弹出toast提示Event
-    var _toastStrIdEvent = MutableLiveData<Array<Int>>()
         private set
 
     // 不带参数的页面跳转Event
@@ -81,15 +74,8 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         _emptyPageEvent.postValue(isShow)
     }
 
-    override fun showToast(str: String, duration: Int) {
-        _toastStrEvent.postValue(arrayOf(str, duration))
-        val map = HashMap<String, Any>()
-        map[BaseConstants.TOAST_KEY_CONTENT] = str
-        map[BaseConstants.TOAST_KEY_DURATION] = duration
-    }
-
-    override fun showToast(@StringRes strId: Int, duration: Int) {
-        _toastStrIdEvent.postValue(arrayOf(strId, duration))
+    override fun showToast(map: Map<String, *>) {
+        _toastEvent.postValue(map)
     }
 
     override fun navigateTo(page: Any) {
@@ -104,8 +90,40 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         _finishPageEvent.postValue(arg)
     }
 
-    protected fun showToast(map: Map<String, *>) {
-        _toastEvent.postValue(map)
+    protected fun showToast(str: String) {
+        showToast(str, null)
+    }
+
+    protected fun showToast(str: String, duration: Int?) {
+        val map = HashMap<String, Any>().apply {
+            put(
+                FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
+                FlyBaseConstants.FLY_TOAST_CONTENT_TYPE_STR
+            )
+            put(FlyBaseConstants.FLY_TOAST_KEY_CONTENT, str)
+            if (duration != null) {
+                put(FlyBaseConstants.FLY_TOAST_KEY_DURATION, duration)
+            }
+        }
+        showToast(map)
+    }
+
+    protected fun showToast(@StringRes resId: Int) {
+        showToast(resId, null)
+    }
+
+    protected fun showToast(@StringRes resId: Int, duration: Int?) {
+        val map = HashMap<String, Any>().apply {
+            put(
+                FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
+                FlyBaseConstants.FLY_TOAST_CONTENT_TYPE_RESID
+            )
+            put(FlyBaseConstants.FLY_TOAST_KEY_CONTENT, resId)
+            if (duration != null) {
+                put(FlyBaseConstants.FLY_TOAST_KEY_DURATION, duration)
+            }
+        }
+        showToast(map)
     }
 
     protected fun backPress() {

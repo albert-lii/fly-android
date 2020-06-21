@@ -1,4 +1,4 @@
-package org.we.fly.base.mvvm.recyclerview
+package org.we.fly.base.ui.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import androidx.databinding.ViewDataBinding
  * @since: 1.0.0
  */
 abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
-    private var itemClickListener: OnItemClickListener<T, B>? = null
+    private var bindItemClickListener: OnBindItemClickListener<B, T>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val binding: B = DataBindingUtil.inflate(
@@ -29,9 +29,9 @@ abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
         val binding: B = DataBindingUtil.getBinding(holder.itemView)!!
         onBindItem(binding, getItems()!![position], position)
         binding!!.executePendingBindings()
-        if (itemClickListener != null) {
+        if (bindItemClickListener != null) {
             holder.itemView.setOnClickListener {
-                itemClickListener!!.onItemClick(
+                bindItemClickListener!!.onItemClick(
                     binding,
                     getItems()!![position],
                     position
@@ -46,11 +46,11 @@ abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
 
     abstract fun onBindItem(binding: B?, item: T, position: Int)
 
-    fun setOnItemClickListener(listener: OnItemClickListener<T, B>?) {
-        this.itemClickListener = listener
+    fun setOnBindItemClickListener(listener: OnBindItemClickListener<B, T>?) {
+        this.bindItemClickListener = listener
     }
 
-    interface OnItemClickListener<T, B> {
+    interface OnBindItemClickListener<B, T> {
         fun onItemClick(binding: B, item: T, position: Int)
     }
 }

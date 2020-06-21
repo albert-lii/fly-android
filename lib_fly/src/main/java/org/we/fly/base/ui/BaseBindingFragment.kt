@@ -1,13 +1,11 @@
-package org.we.fly.base.mvvm
+package org.we.fly.base.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 
 /**
  * @author: Albert Li
@@ -16,36 +14,27 @@ import androidx.fragment.app.Fragment
  * @description: 基于MVVM模式的Fragment的基类
  * @since: 1.0.0
  */
-abstract class BaseBindingFragment<B : ViewDataBinding> : Fragment() {
-
+abstract class BaseBindingFragment<B : ViewDataBinding> : BaseFragment() {
     protected lateinit var binding: B
-
-    // 缓存视图，如果视图已经创建，则不再初始化视图
-    protected var viewHolder: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (viewHolder == null) {
-            injectDataBinding(inflater, container)
-            initialize()
+        setCurrentState(ILazyLoad.ON_CREATE_VIEW)
+        if (getRootView() != null) {
+            return getRootView()
         }
-        return binding.root
+        injectDataBinding(inflater, container)
+        initialize(savedInstanceState)
+        doLazyLoad(false)
+        return getRootView()
     }
 
     protected open fun injectDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
         binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         binding.lifecycleOwner = this
-        viewHolder = binding.root
+        setRootView(binding.root)
     }
-
-    protected abstract @LayoutRes
-    fun getLayoutId(): Int
-
-    /**
-     *  初始化操作
-     */
-    protected abstract fun initialize()
 }

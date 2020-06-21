@@ -5,18 +5,16 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.databinding.ViewDataBinding
 import org.we.fly.base.FlyBaseConstants
-import org.we.fly.base.ui.BaseBVMActivity
-import org.we.fly.base.ui.BaseViewModel
+import org.we.fly.base.ui.BaseBindingActivity
 
 /**
  * @author: Albert Li
  * @contact: albertlii@163.com
- * @time: 2020/6/11 7:47 PM
+ * @time: 2020/6/12 7:37 PM
  * @description: --
  * @since: 1.0.0
  */
-abstract class BaseAppBVMActivity<B : ViewDataBinding, VM : BaseViewModel> :
-    BaseBVMActivity<B, VM>() {
+abstract class BaseAppBindingActivity<B : ViewDataBinding> : BaseBindingActivity<B>() {
 
     override fun showLoadingUI(isShow: Boolean) {
 
@@ -24,6 +22,11 @@ abstract class BaseAppBVMActivity<B : ViewDataBinding, VM : BaseViewModel> :
 
     override fun showEmptyUI(isShow: Boolean) {
 
+    }
+
+
+    override fun navigateTo(page: Any) {
+        startActivity(Intent(this, page as Class<*>))
     }
 
     override fun showToast(map: Map<String, *>) {
@@ -92,11 +95,6 @@ abstract class BaseAppBVMActivity<B : ViewDataBinding, VM : BaseViewModel> :
             }
         }
         showToast(map)
-    }
-
-
-    override fun navigateTo(page: Any) {
-        startActivity(Intent(this, page as Class<*>))
     }
 
     override fun backPress(arg: Any?) {

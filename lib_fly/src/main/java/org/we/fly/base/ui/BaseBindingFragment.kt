@@ -37,4 +37,9 @@ abstract class BaseBindingFragment<B : ViewDataBinding> : BaseFragment() {
         binding.lifecycleOwner = this
         setRootView(binding.root)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.unbind()
+    }
 }

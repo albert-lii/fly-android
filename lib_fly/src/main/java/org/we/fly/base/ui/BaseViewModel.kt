@@ -1,5 +1,6 @@
 package org.we.fly.base.ui
 
+import android.app.Application
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
 import org.we.fly.base.FlyBaseConstants
@@ -35,6 +36,8 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     // 关闭页面Event
     var _finishPageEvent = MutableLiveData<Any?>()
         private set
+
+    lateinit var application: Application
 
     private lateinit var lifcycleOwner: LifecycleOwner
 

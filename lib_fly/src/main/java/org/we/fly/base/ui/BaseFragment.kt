@@ -24,7 +24,7 @@ abstract class BaseFragment : Fragment(), ILazyLoad {
     /**
      * 是否开启懒加载，默认开启
      */
-    private var enableLazyLoad = true
+    private var lazyLoadEnable = true
 
     /**
      * 当前的状态
@@ -51,7 +51,7 @@ abstract class BaseFragment : Fragment(), ILazyLoad {
      * 是否开启懒加载，调用此方法建议在getLazyInitState()所返回的状态之前
      */
     protected fun enableLazyLoad(enable: Boolean) {
-        this.enableLazyLoad = enable
+        this.lazyLoadEnable = enable
     }
 
     /**
@@ -70,7 +70,7 @@ abstract class BaseFragment : Fragment(), ILazyLoad {
         if (!callInUserVisibleHint) {
             if (!isCallUserVisibleHint) isVisibleToUser = !isHidden
         }
-        if (enableLazyLoad && !hasLazyLoad && isVisibleToUser && currentState >= getLazyLoadtState()) {
+        if (lazyLoadEnable && !hasLazyLoad && isVisibleToUser && currentState >= getLazyLoadtState()) {
             hasLazyLoad = true
             lazyLoad()
         }

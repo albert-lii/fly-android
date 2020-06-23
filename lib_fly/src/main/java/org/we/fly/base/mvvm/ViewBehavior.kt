@@ -1,6 +1,4 @@
-package org.we.fly.base.ui
-
-import androidx.annotation.StringRes
+package org.we.fly.base.mvvm
 
 /**
  * @author: Albert Li

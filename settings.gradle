@@ -1,3 +1,4 @@
 rootProject.name='fly'
 include ':app'
 include ':lib_fly'
+include ':lib_fly_dimenmaker'

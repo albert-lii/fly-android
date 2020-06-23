@@ -5,8 +5,8 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.databinding.ViewDataBinding
 import org.we.fly.base.FlyBaseConstants
-import org.we.fly.base.ui.BaseBVMActivity
-import org.we.fly.base.ui.BaseViewModel
+import org.we.fly.base.mvvm.BaseBVMActivity
+import org.we.fly.base.mvvm.BaseViewModel
 
 /**
  * @author: Albert Li

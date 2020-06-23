@@ -1,4 +1,4 @@
-package org.we.fly.base.ui
+package org.we.fly.base.mvvm
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.databinding.ViewDataBinding
 import org.we.fly.base.FlyBaseConstants
-import org.we.fly.base.ui.BaseBindingActivity
+import org.we.fly.base.mvvm.BaseBindingActivity
 
 /**
  * @author: Albert Li

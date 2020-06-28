@@ -1,4 +1,4 @@
-package org.we.fly.base.mvvm.recyclerview
+package org.we.fly.base.ui.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

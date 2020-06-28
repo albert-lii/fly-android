@@ -1,4 +1,4 @@
-package org.we.fly.base.mvvm.recyclerview
+package org.we.fly.base.ui.recyclerview
 
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer

@@ -6,19 +6,26 @@ import android.view.LayoutInflater
 import android.widget.PopupWindow
 import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 
 /**
  * @author: Albert Li
  * @contact: albertlii@163.com
- * @time: 2020/6/28 2:03 PM
- * @description: PopupWindow的基类
+ * @time: 2020/6/29 10:21 AM
+ * @description: 带有DataBinding的PopupWindow基类
  * @since: 1.0.0
  */
-abstract class BasePopupWindow(protected val context: Context) : PopupWindow(context) {
+abstract class BaseBindingPopupWindow<B : ViewDataBinding>(protected val context: Context) :
+    PopupWindow(context) {
+    protected lateinit var binding: B
 
     init {
-        val rootView = LayoutInflater.from(context).inflate(getLayoutId(), null)
-        contentView = rootView
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(context),
+            getLayoutId(), null, false
+        )
+        contentView = binding.root
         initialize()
     }
 
@@ -27,7 +34,7 @@ abstract class BasePopupWindow(protected val context: Context) : PopupWindow(con
      */
     fun addBackgroundDrawable(@ColorInt color: Int = 0x10000000) {
         // 实例化一个ColorDrawable
-        val dw = ColorDrawable(0x10000000)
+        val dw = ColorDrawable(color)
         // 设置弹出窗体的背景
         setBackgroundDrawable(dw)
     }

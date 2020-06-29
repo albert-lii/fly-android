@@ -1,12 +1,15 @@
 package com.fly.example.base
 
 import android.content.Intent
+import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.databinding.ViewDataBinding
+import com.blankj.utilcode.util.BarUtils
 import org.we.fly.base.FlyBaseConstants
 import org.we.fly.base.mvvm.BaseBVMActivity
 import org.we.fly.base.mvvm.BaseViewModel
+
 
 /**
  * @author: Albert Li
@@ -17,6 +20,11 @@ import org.we.fly.base.mvvm.BaseViewModel
  */
 abstract class BaseAppBVMActivity<B : ViewDataBinding, VM : BaseViewModel> :
     BaseBVMActivity<B, VM>() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        BarUtils.transparentStatusBar(this)
+    }
 
     override fun showLoadingUI(isShow: Boolean) {
 

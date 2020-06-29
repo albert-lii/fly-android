@@ -3,6 +3,7 @@ package com.fly.example.ui.livebus
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import com.blankj.utilcode.util.BarUtils
 import com.fly.example.BR
 import com.fly.example.Constants
 import com.fly.example.R

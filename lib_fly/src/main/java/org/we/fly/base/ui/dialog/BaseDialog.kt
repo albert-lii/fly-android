@@ -6,6 +6,7 @@ import android.view.WindowManager
 import androidx.annotation.FloatRange
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatDialog
+import androidx.databinding.ViewDataBinding
 
 
 /**

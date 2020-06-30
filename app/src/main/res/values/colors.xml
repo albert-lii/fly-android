@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="theme_color">#F0B90B</color>
+    <color name="page_bg_color">#F3F4F5</color>
     <color name="bg_statusbar">#FFFFFF</color>
     <color name="bg_titlebar">#FFFFFF</color>
     <color name="textcolor_main_black">#212833</color>

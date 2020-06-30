@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/page_bg_color"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -64,36 +65,36 @@
                 android:id="@+id/tv_observe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:eilsText="@{viewModel.normalObserveData}"
                 android:textColor="@color/textcolor_main_black"
-                android:textSize="@dimen/textsize_m" />
+                android:textSize="@dimen/textsize_m"
+                app:eilsText="@{viewModel.normalObserveData}" />
 
             <org.we.fly.widget.eilstextview.EilsTextView
                 android:id="@+id/tv_observe_sticky"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_5"
-                app:eilsText="@{viewModel.stickyObserveData}"
                 android:textColor="@color/textcolor_main_black"
-                android:textSize="@dimen/textsize_m" />
+                android:textSize="@dimen/textsize_m"
+                app:eilsText="@{viewModel.stickyObserveData}" />
 
             <org.we.fly.widget.eilstextview.EilsTextView
                 android:id="@+id/tv_observe_forever"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_5"
-                app:eilsText="@{viewModel.foreverObserveData}"
                 android:textColor="@color/textcolor_main_black"
-                android:textSize="@dimen/textsize_m" />
+                android:textSize="@dimen/textsize_m"
+                app:eilsText="@{viewModel.foreverObserveData}" />
 
             <org.we.fly.widget.eilstextview.EilsTextView
                 android:id="@+id/tv_observe_sticky_forever"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_5"
-                app:eilsText="@{viewModel.stickyForeverObserveData}"
                 android:textColor="@color/textcolor_main_black"
-                android:textSize="@dimen/textsize_m" />
+                android:textSize="@dimen/textsize_m"
+                app:eilsText="@{viewModel.stickyForeverObserveData}" />
         </LinearLayout>
     </LinearLayout>
 </layout>

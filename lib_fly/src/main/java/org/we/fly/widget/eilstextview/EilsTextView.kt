@@ -11,7 +11,7 @@ import org.we.fly.R
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2020/6/26 11:32 PM
- * @description: 去除了自带行间距的TextView
+ * @description: 去除自带行间距的TextView
  * @since: 1.0.0
  */
 class EilsTextView : AppCompatTextView {

@@ -8,6 +8,7 @@ package org.we.fly.dimenmaker;
  * @since: 1.0.0
  */
 public enum DimenType {
+    DP_sw240(240),
     DP_sw300(300),
     DP_sw310(310),
     DP_sw320(320),

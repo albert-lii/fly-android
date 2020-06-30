@@ -7,6 +7,7 @@ import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.PermissionUtils
 
 /**
  * @author: Albert Li

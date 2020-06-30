@@ -19,8 +19,6 @@ public class MakeUtil {
     private static final String XML_RESOURCE_END = "</resources>\r\n";
     private static final String XML_DIMEN_TEMPLETE = "<dimen name=\"px_%2$d\">%3$.2fdp</dimen>\r\n";
 
-
-    private static final String XML_BASE_DPI = "<dimen name=\"base_dp\">%ddp</dimen>\r\n";
     private static final int MAX_SIZE = 2 * DimenMaker.SMALLEST_WIDTH;
 
     /**
@@ -48,9 +46,6 @@ public class MakeUtil {
         try {
             sb.append(XML_HEADER);
             sb.append(XML_RESOURCE_START);
-            // 备份生成的相关信息
-            temp = String.format(XML_BASE_DPI, type.getSwWidthDp());
-            sb.append(temp);
             for (int i = 0; i <= MAX_SIZE; i++) {
                 dpValue = px2dip((float) i, type.getSwWidthDp(), designWidth);
                 temp = String.format(XML_DIMEN_TEMPLETE, "", i, dpValue);

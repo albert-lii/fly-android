@@ -14,7 +14,7 @@ public class DimenMaker {
      * 设计稿的最小宽度，最小宽度是不区分方向的，宽度和高度哪一边小，哪一边就是最小宽度
      * px，dp，dpi 之间的转换公式：px = dp * (dpi / 160)
      */
-    public static final int SMALLEST_WIDTH = 360;
+    public static final int SMALLEST_WIDTH = 375;
 
     public static void main(String[] args) {
         int smallest = SMALLEST_WIDTH;

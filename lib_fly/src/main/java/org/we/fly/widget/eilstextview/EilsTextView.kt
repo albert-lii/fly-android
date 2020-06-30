@@ -40,6 +40,10 @@ class EilsTextView : AppCompatTextView {
         }
     }
 
+    override fun setText(text: CharSequence?, type: BufferType?) {
+        super.setText(text, type)
+    }
+
     /**
      * 去除每行文字间的自带行间距
      *

@@ -11,6 +11,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.blankj.utilcode.util.BarUtils
 import org.we.fly.R
 import org.we.fly.extensions.dpToPx
 
@@ -22,6 +23,7 @@ import org.we.fly.extensions.dpToPx
  * @since: 1.0.0
  */
 class TitleBar : LinearLayout {
+    private lateinit var containerGroup: FrameLayout
     private lateinit var leftFuncView: LeftFuncView
     private lateinit var rightFuncView: RightFuncView
     private lateinit var titleView: TextView
@@ -38,6 +40,7 @@ class TitleBar : LinearLayout {
     private val DEF_ICON_HEIGHT = 24.dpToPx
     private val DEF_DIVIDER_HEIGHT = 1.dpToPx
 
+    private var isAddStatusBarHeight = false
 
     constructor(context: Context) : super(context) {
         initView(context)
@@ -63,7 +66,7 @@ class TitleBar : LinearLayout {
     private fun initView(context: Context) {
         orientation = VERTICAL
 
-        val container = FrameLayout(context)
+        containerGroup = FrameLayout(context)
         titleView = TextView(context)
         leftFuncView = LeftFuncView(context)
         rightFuncView = RightFuncView(context)
@@ -72,22 +75,20 @@ class TitleBar : LinearLayout {
             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
         )
         titleLp.gravity = Gravity.CENTER
-        container.addView(titleView, titleLp)
+        containerGroup.addView(titleView, titleLp)
         val lfvLp = FrameLayout.LayoutParams(
             LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT
         )
         lfvLp.gravity = Gravity.LEFT
-        container.addView(leftFuncView, lfvLp)
+        containerGroup.addView(leftFuncView, lfvLp)
         val rfvLp = FrameLayout.LayoutParams(
             LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT
         )
         rfvLp.gravity = Gravity.RIGHT
-        container.addView(rightFuncView, rfvLp)
-        rightFuncView!!.visibility = View.GONE
-        val lp =
-            LayoutParams(LayoutParams.MATCH_PARENT, 0)
-        lp.weight = 1f
-        addView(container, lp)
+        containerGroup.addView(rightFuncView, rfvLp)
+        rightFuncView.visibility = View.GONE
+        val clp = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        addView(containerGroup, clp)
         val dividerLp = LayoutParams(
             LayoutParams.MATCH_PARENT, DEF_DIVIDER_HEIGHT.toInt()
         )
@@ -107,6 +108,11 @@ class TitleBar : LinearLayout {
 
             val titleColor = ta.getColor(R.styleable.TitleBar_titleColor, DEF_TITLE_COLOR)
             titleView.setTextColor(titleColor)
+
+            val titleBold = ta.getBoolean(R.styleable.TitleBar_titleBold, false)
+            if (titleBold) {
+                titleView.paint.isFakeBoldText = true
+            }
 
             val leftPadding =
                 ta.getDimension(R.styleable.TitleBar_leftPadding, DEF_LEFT_PADDING.toFloat())
@@ -190,6 +196,16 @@ class TitleBar : LinearLayout {
 
             val showDivider = ta.getBoolean(R.styleable.TitleBar_showDivider, false)
             showDivider(showDivider)
+
+            val barHeight = ta.getDimension(R.styleable.TitleBar_barHeight, -1f)
+            if (barHeight >= 0) {
+                containerGroup.layoutParams.height = barHeight.toInt()
+            }
+
+            isAddStatusBarHeight = ta.getBoolean(R.styleable.TitleBar_addStatusBarHeight, false)
+            if (isAddStatusBarHeight) {
+                setPadding(paddingLeft, BarUtils.getStatusBarHeight(), paddingRight, paddingBottom)
+            }
             ta.recycle()
         }
     }

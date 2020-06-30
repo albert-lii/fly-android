@@ -23,6 +23,7 @@ abstract class BaseAppBVMActivity<B : ViewDataBinding, VM : BaseViewModel> :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        BarUtils.setStatusBarLightMode(this, true)
         BarUtils.transparentStatusBar(this)
     }
 

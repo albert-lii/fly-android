@@ -8,6 +8,8 @@
         <attr name="titleSize" format="dimension" />
         <!-- 标题栏文字颜色 -->
         <attr name="titleColor" format="color" />
+        <!-- 标题栏文字是否加粗 -->
+        <attr name="titleBold" format="boolean" />
         <!-- 左侧Padding-->
         <attr name="leftPadding" format="dimension" />
         <!-- 左侧ICON -->
@@ -52,6 +54,10 @@
         <attr name="dividerColor" format="color" />
         <!-- 是否显示底部分割线-->
         <attr name="showDivider" format="boolean" />
+        <!-- 标题栏高度，不包含分割线和状态栏高度-->
+        <attr name="barHeight" format="dimension" />
+        <!-- 是否添加状态栏的高度-->
+        <attr name="addStatusBarHeight" format="boolean" />
     </declare-styleable>
 
     <!-- SwitchView -->

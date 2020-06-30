@@ -1,9 +1,11 @@
 package com.fly.example.base
 
 import android.content.Intent
+import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.databinding.ViewDataBinding
+import com.blankj.utilcode.util.BarUtils
 import org.we.fly.base.FlyBaseConstants
 import org.we.fly.base.mvvm.BaseBindingActivity
 
@@ -15,6 +17,12 @@ import org.we.fly.base.mvvm.BaseBindingActivity
  * @since: 1.0.0
  */
 abstract class BaseAppBindingActivity<B : ViewDataBinding> : BaseBindingActivity<B>() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        BarUtils.setStatusBarLightMode(this, true)
+        BarUtils.transparentStatusBar(this)
+    }
 
     override fun showLoadingUI(isShow: Boolean) {
 

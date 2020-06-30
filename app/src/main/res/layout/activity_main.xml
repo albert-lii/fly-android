@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <org.we.fly.widget.TitleBar
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/theme_color"
+            app:addStatusBarHeight="true"
+            app:barHeight="@dimen/titlebar_height"
+            app:title="Let's Fly"
+            app:titleBold="true"
+            app:titleColor="@color/textcolor_main_black"
+            app:titleSize="@dimen/px_20" />
 
         <Button
             android:id="@+id/btn_livebus"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_50"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/btn_base_bg"
             android:text="LiveBus测试"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_main_black" />
     </LinearLayout>
 </layout>

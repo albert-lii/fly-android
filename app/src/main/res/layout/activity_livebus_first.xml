@@ -12,76 +12,93 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <org.we.fly.widget.TitleBar
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="#FFF"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_titlebar"
+            app:addStatusBarHeight="true"
+            app:barHeight="@dimen/titlebar_height"
             app:leftIcon="@drawable/back_arrow"
-            app:title="LiveBusFirst"
-            app:titleSize="18dp" />
+            app:leftIconHight="@dimen/titlebar_lefticon_size"
+            app:title="FirstLiveBus"
+            app:titleSize="@dimen/titlebar_titlesize" />
+
+        <Button
+            android:id="@+id/btn_post"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_50"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/btn_base_bg"
+            android:text="Post一个消息"
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_main_black"
+            app:titleColor="@color/textcolor_main_black" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="30dp">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_15"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_post"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Post一个消息"
-                android:textAllCaps="false" />
-
-            <LinearLayout
+            <org.we.fly.widget.eilstextview.EilsTextView
+                android:id="@+id/tv_receive_created"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
+                android:textColor="@color/textcolor_main_black"
+                android:textSize="@dimen/textsize_m"
+                app:eilsText="@{viewModel.receiveCountOnCreatedData}" />
 
-                <TextView
-                    android:id="@+id/tv_receive_created"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.receiveCountOnCreatedData}" />
+            <org.we.fly.widget.eilstextview.EilsTextView
+                android:id="@+id/tv_receive_started"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textcolor_main_black"
+                android:textSize="@dimen/textsize_m"
+                app:eilsText="@{viewModel.receiveCountOnStartedData}" />
 
-                <TextView
-                    android:id="@+id/tv_receive_started"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.receiveCountOnStartedData}" />
+            <org.we.fly.widget.eilstextview.EilsTextView
+                android:id="@+id/tv_observe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_5"
+                android:textColor="@color/textcolor_main_black"
+                android:textSize="@dimen/textsize_m"
+                app:eilsText="@{viewModel.normalObserveData}" />
 
-                <TextView
-                    android:id="@+id/tv_observe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.normalObserveData}" />
+            <org.we.fly.widget.eilstextview.EilsTextView
+                android:id="@+id/tv_observe_sticky"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_5"
+                android:textColor="@color/textcolor_main_black"
+                android:textSize="@dimen/textsize_m"
+                app:eilsText="@{viewModel.stickyObserveData}" />
 
-                <TextView
-                    android:id="@+id/tv_observe_sticky"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@={viewModel.stickyObserveData}" />
+            <org.we.fly.widget.eilstextview.EilsTextView
+                android:id="@+id/tv_observe_forever"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_5"
+                android:textColor="@color/textcolor_main_black"
+                android:textSize="@dimen/textsize_m"
+                app:eilsText="@{viewModel.foreverObserveData}" />
 
-                <TextView
-                    android:id="@+id/tv_observe_forever"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@={viewModel.foreverObserveData}" />
-
-                <TextView
-                    android:id="@+id/tv_observe_sticky_forever"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@={viewModel.stickyForeverObserveData}" />
-            </LinearLayout>
+            <org.we.fly.widget.eilstextview.EilsTextView
+                android:id="@+id/tv_observe_sticky_forever"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_5"
+                android:textColor="@color/textcolor_main_black"
+                android:textSize="@dimen/textsize_m"
+                app:eilsText="@{viewModel.stickyForeverObserveData}" />
         </LinearLayout>
     </LinearLayout>
 </layout>

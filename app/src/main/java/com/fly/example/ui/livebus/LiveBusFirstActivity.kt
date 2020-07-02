@@ -51,7 +51,6 @@ class LiveBusFirstActivity :
 
     private fun initObserve() {
         LiveBus.get(Constants.BK_SECOND_POST_CREATED_TEST, String::class.java)
-            .observerAlwaysBeActive(true)
             .observe(this, object : Observer<String> {
                 override fun onChanged(t: String?) {
                     viewModel.recevieCountOnCREATED++;
@@ -59,7 +58,6 @@ class LiveBusFirstActivity :
                 }
             })
         LiveBus.get(Constants.BK_SECOND_POST_STARTED_TEST, String::class.java)
-            .observerAlwaysBeActive(false)
             .observe(this, object : Observer<String> {
                 override fun onChanged(t: String?) {
                     viewModel.recevieCountOnSTARTED++;

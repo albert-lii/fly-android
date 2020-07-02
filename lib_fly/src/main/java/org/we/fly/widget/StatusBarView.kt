@@ -13,7 +13,7 @@ import com.blankj.utilcode.util.PermissionUtils
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2020/6/29 1:58 PM
- * @description: --
+ * @description: 与状态栏高度一致的View
  * @since: 1.0.0
  */
 class StatusBarView : View {

@@ -1,5 +1,6 @@
 package org.we.fly.utils
 
+import android.widget.EditText
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -82,5 +83,36 @@ object MoneyUtils {
         symbols.decimalSeparator = '.'
         df.decimalFormatSymbols = symbols
         return df.format(moneyDouble)
+    }
+
+    /**
+     * 将EditText中输入的数字转为金额格式，此方法建议放在onTextChanged方法中
+     *
+     * @param et 输入框控件
+     * @param fractionDigits 金额的最大小数位
+     */
+    fun inputFormatToMoney(et: EditText, fractionDigits: Int = 2) {
+        val text = et.text.toString()
+        if (text.contains(".")) {
+            // 超过两位小数
+            if (text.length - text.indexOf(".") > (fractionDigits + 1)) {
+                val s = text.substring(0, text.indexOf(".") + (fractionDigits + 1))
+                et.setText(s)
+                et.setSelection(s.length)
+            }
+        }
+        // 输入的的一个字符是"."，自动补全
+        if (text.startsWith(".")) {
+            val s = "0" + text
+            et.setText(s)
+            et.setSelection(s.length)
+        }
+        // 起始字符是0，并且后面字符不是"."，则后续无法输入
+        if (text.trim().startsWith("0") && text.trim().length > 1) {
+            if (!text.substring(1, 2).equals(".")) {
+                et.setText(text.substring(0, 1))
+                et.setSelection(1)
+            }
+        }
     }
 }

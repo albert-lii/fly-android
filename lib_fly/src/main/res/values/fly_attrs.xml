@@ -60,7 +60,7 @@
         <attr name="addStatusBarHeight" format="boolean" />
     </declare-styleable>
 
-    <!-- SwitchView -->
+    <!-- 自带 -->
     <declare-styleable name="EilsTextView">
         <attr name="eilsText" format="string" />
     </declare-styleable>

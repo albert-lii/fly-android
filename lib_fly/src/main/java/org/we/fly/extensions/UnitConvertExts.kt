@@ -6,7 +6,7 @@ import android.content.res.Resources
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2020/6/7 5:13 PM
- * @description: dimension转换
+ * @description: 单位转换
  * @since: 1.0.0
  */
 

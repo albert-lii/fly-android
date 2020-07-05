@@ -3,6 +3,7 @@ package org.we.fly.extensions
 import android.content.Context
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 
@@ -28,4 +29,18 @@ fun @receiver:ColorRes Int.toColor(context: Context): Int {
  */
 fun @receiver:StringRes Int.toString(context: Context): String {
     return context.getString(this)
+}
+
+/**
+ * 将资源id转换为dimen
+ */
+fun @receiver:DimenRes Int.toDimen(context: Context): Float {
+    return context.resources.getDimension(this)
+}
+
+/**
+ * 将资源id转换为dimen，单位为px
+ */
+fun @receiver:DimenRes Int.toDimenPixel(context: Context): Int {
+    return context.resources.getDimensionPixelSize(this)
 }

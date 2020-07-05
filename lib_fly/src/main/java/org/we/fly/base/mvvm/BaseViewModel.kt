@@ -1,5 +1,6 @@
 package org.we.fly.base.mvvm
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
@@ -13,6 +14,7 @@ import org.we.fly.base.FlyBaseConstants
  * @since: 1.0.0
  */
 abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
+
     // loading视图显示Event
     var _loadingEvent = MutableLiveData<Boolean>()
         private set
@@ -37,6 +39,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     var _finishPageEvent = MutableLiveData<Any?>()
         private set
 
+    @SuppressLint("StaticFieldLeak")
     lateinit var application: Application
 
     private lateinit var lifcycleOwner: LifecycleOwner

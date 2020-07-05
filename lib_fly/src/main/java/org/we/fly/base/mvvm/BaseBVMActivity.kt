@@ -3,6 +3,7 @@ package org.we.fly.base.mvvm
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import org.we.fly.extensions.observeNonNull
 import org.we.fly.extensions.observeNullable
 

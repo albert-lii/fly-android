@@ -17,30 +17,30 @@ import androidx.core.content.ContextCompat
 
 
 /**
- * 将资源id转换为颜色
+ * 根据资源id获取颜色
  */
 @ColorInt
-fun @receiver:ColorRes Int.toColor(context: Context): Int {
+fun @receiver:ColorRes Int.getColor(context: Context): Int {
     return ContextCompat.getColor(context, this)
 }
 
 /**
- * 将资源id转换为字符串
+ * 根据资源id获取字符串
  */
-fun @receiver:StringRes Int.toString(context: Context): String {
+fun @receiver:StringRes Int.getString(context: Context): String {
     return context.getString(this)
 }
 
 /**
- * 将资源id转换为dimen
+ * 根据资源id获取dimen
  */
-fun @receiver:DimenRes Int.toDimen(context: Context): Float {
+fun @receiver:DimenRes Int.getDimen(context: Context): Float {
     return context.resources.getDimension(this)
 }
 
 /**
- * 将资源id转换为dimen，单位为px
+ * 根据资源id获取dimen，单位为px
  */
-fun @receiver:DimenRes Int.toDimenPixel(context: Context): Int {
+fun @receiver:DimenRes Int.getDimenPixel(context: Context): Int {
     return context.resources.getDimensionPixelSize(this)
 }

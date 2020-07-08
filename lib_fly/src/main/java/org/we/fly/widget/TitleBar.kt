@@ -99,110 +99,113 @@ class TitleBar : LinearLayout {
         if (attrs != null) {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.TitleBar)
 
-            val title = ta.getString(R.styleable.TitleBar_title)
+            val title = ta.getString(R.styleable.TitleBar_tb_title)
             titleView.setText(title)
 
             val titleSize =
-                ta.getDimension(R.styleable.TitleBar_titleSize, DEF_TITLE_SIZE.toFloat())
+                ta.getDimension(R.styleable.TitleBar_tb_titleSize, DEF_TITLE_SIZE.toFloat())
             titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
 
-            val titleColor = ta.getColor(R.styleable.TitleBar_titleColor, DEF_TITLE_COLOR)
+            val titleColor = ta.getColor(R.styleable.TitleBar_tb_titleColor, DEF_TITLE_COLOR)
             titleView.setTextColor(titleColor)
 
-            val titleBold = ta.getBoolean(R.styleable.TitleBar_titleBold, false)
+            val titleBold = ta.getBoolean(R.styleable.TitleBar_tb_titleBold, false)
             if (titleBold) {
                 titleView.paint.isFakeBoldText = true
             }
 
             val leftPadding =
-                ta.getDimension(R.styleable.TitleBar_leftPadding, DEF_LEFT_PADDING.toFloat())
+                ta.getDimension(R.styleable.TitleBar_tb_leftPadding, DEF_LEFT_PADDING.toFloat())
             leftFuncView.setPadding(leftPadding.toInt(), 0, 0, 0)
 
-            val leftIcon = ta.getDrawable(R.styleable.TitleBar_leftIcon)
+            val leftIcon = ta.getDrawable(R.styleable.TitleBar_tb_leftIcon)
             leftFuncView.setIcon(leftIcon)
 
             val leftIconHeight =
-                ta.getDimension(R.styleable.TitleBar_leftIconHight, DEF_ICON_HEIGHT.toFloat())
+                ta.getDimension(R.styleable.TitleBar_tb_leftIconHight, DEF_ICON_HEIGHT.toFloat())
             leftFuncView.setIconHeight(leftIconHeight)
 
-            val showLeftIcon = ta.getBoolean(R.styleable.TitleBar_showLeftIcon, true)
+            val showLeftIcon = ta.getBoolean(R.styleable.TitleBar_tb_showLeftIcon, true)
             leftFuncView.showIcon(showLeftIcon)
 
-            val leftText = ta.getString(R.styleable.TitleBar_leftText)
+            val leftText = ta.getString(R.styleable.TitleBar_tb_leftText)
             leftFuncView.setText(leftText)
 
             val leftTextSize =
-                ta.getDimension(R.styleable.TitleBar_leftTextSize, DEF_TEXT_SIZE.toFloat())
+                ta.getDimension(R.styleable.TitleBar_tb_leftTextSize, DEF_TEXT_SIZE.toFloat())
             leftFuncView.setTextSize(leftTextSize)
 
-            val leftTextColor = ta.getColor(R.styleable.TitleBar_leftTextColor, DEF_TEXT_COLOR)
+            val leftTextColor = ta.getColor(R.styleable.TitleBar_tb_leftTextColor, DEF_TEXT_COLOR)
             leftFuncView.setTextColor(leftTextColor)
 
             val leftTextLeftMargin =
                 ta.getDimension(
-                    R.styleable.TitleBar_leftTextLeftMargin,
+                    R.styleable.TitleBar_tb_leftTextLeftMargin,
                     DEF_TEXT_LEFT_MARGIN.toFloat()
                 )
             leftFuncView.setTextLeftMargin(leftTextLeftMargin)
 
-            val showLeftText = ta.getBoolean(R.styleable.TitleBar_showLeftText, false)
+            val showLeftText = ta.getBoolean(R.styleable.TitleBar_tb_showLeftText, false)
             leftFuncView.showText(showLeftText)
 
+            val showLeftFunc = ta.getBoolean(R.styleable.TitleBar_tb_showLeftFunc, true)
+            showLeftFunc(showLeftFunc)
+
             val rightPadding =
-                ta.getDimension(R.styleable.TitleBar_rightPadding, DEF_RIGHT_PADDING.toFloat())
+                ta.getDimension(R.styleable.TitleBar_tb_rightPadding, DEF_RIGHT_PADDING.toFloat())
             rightFuncView.setPadding(0, 0, rightPadding.toInt(), 0)
 
-            val rightIcon = ta.getDrawable(R.styleable.TitleBar_rightIcon)
+            val rightIcon = ta.getDrawable(R.styleable.TitleBar_tb_rightIcon)
             rightFuncView.setIcon(rightIcon)
 
             val rightIconHeight =
-                ta.getDimension(R.styleable.TitleBar_rightIconHight, DEF_ICON_HEIGHT.toFloat())
+                ta.getDimension(R.styleable.TitleBar_tb_rightIconHight, DEF_ICON_HEIGHT.toFloat())
             rightFuncView.setIconHeight(rightIconHeight)
 
-            val showRightIcon = ta.getBoolean(R.styleable.TitleBar_showRightIcon, false)
+            val showRightIcon = ta.getBoolean(R.styleable.TitleBar_tb_showRightIcon, false)
             rightFuncView.showIcon(showRightIcon)
 
-            val rightText = ta.getString(R.styleable.TitleBar_rightText)
+            val rightText = ta.getString(R.styleable.TitleBar_tb_rightText)
             rightFuncView.setText(rightText)
 
             val rightTextSize =
-                ta.getDimension(R.styleable.TitleBar_rightTextSize, DEF_TEXT_SIZE.toFloat())
+                ta.getDimension(R.styleable.TitleBar_tb_rightTextSize, DEF_TEXT_SIZE.toFloat())
             rightFuncView.setTextSize(rightTextSize)
 
-            val rightTextColor = ta.getColor(R.styleable.TitleBar_rightTextColor, DEF_TEXT_COLOR)
+            val rightTextColor = ta.getColor(R.styleable.TitleBar_tb_rightTextColor, DEF_TEXT_COLOR)
             rightFuncView.setTextColor(rightTextColor)
 
             val rightTextLeftMargin =
                 ta.getDimension(
-                    R.styleable.TitleBar_rightTextLeftMargin,
+                    R.styleable.TitleBar_tb_rightTextLeftMargin,
                     DEF_TEXT_LEFT_MARGIN.toFloat()
                 )
             rightFuncView.setTextLeftMargin(rightTextLeftMargin)
 
-            val showRightText = ta.getBoolean(R.styleable.TitleBar_showRightText, false)
+            val showRightText = ta.getBoolean(R.styleable.TitleBar_tb_showRightText, false)
             rightFuncView.showText(showRightText)
 
-            val showRightFunc = ta.getBoolean(R.styleable.TitleBar_showRightFunc, true)
+            val showRightFunc = ta.getBoolean(R.styleable.TitleBar_tb_showRightFunc, true)
             showRightFunc(showRightFunc)
 
             val dividerHeight =
-                ta.getDimension(R.styleable.TitleBar_dividerHeight, DEF_DIVIDER_HEIGHT.toFloat())
+                ta.getDimension(R.styleable.TitleBar_tb_dividerHeight, DEF_DIVIDER_HEIGHT.toFloat())
             val dividerLp = dividerView.layoutParams as LayoutParams
             dividerLp.height = dividerHeight.toInt()
             dividerView.layoutParams = dividerLp
 
-            val dividerColor = ta.getColor(R.styleable.TitleBar_dividerColor, DEF_DEVIDER_COLOR)
+            val dividerColor = ta.getColor(R.styleable.TitleBar_tb_dividerColor, DEF_DEVIDER_COLOR)
             dividerView.setBackgroundColor(dividerColor)
 
-            val showDivider = ta.getBoolean(R.styleable.TitleBar_showDivider, false)
+            val showDivider = ta.getBoolean(R.styleable.TitleBar_tb_showDivider, false)
             showDivider(showDivider)
 
-            val barHeight = ta.getDimension(R.styleable.TitleBar_barHeight, -1f)
+            val barHeight = ta.getDimension(R.styleable.TitleBar_tb_barHeight, -1f)
             if (barHeight >= 0) {
                 containerGroup.layoutParams.height = barHeight.toInt()
             }
 
-            isAddStatusBarHeight = ta.getBoolean(R.styleable.TitleBar_addStatusBarHeight, false)
+            isAddStatusBarHeight = ta.getBoolean(R.styleable.TitleBar_tb_addStatusBarHeight, false)
             if (isAddStatusBarHeight) {
                 setPadding(paddingLeft, BarUtils.getStatusBarHeight(), paddingRight, paddingBottom)
             }
@@ -210,12 +213,40 @@ class TitleBar : LinearLayout {
         }
     }
 
-    fun leftClick(listener: OnClickListener?) {
+    fun setTitle(title: String?) {
+        titleView.setText(title)
+    }
+
+    fun getTitle(): String {
+        return titleView.text.toString()
+    }
+
+    fun setLeftClick(listener: OnClickListener?) {
         leftFuncView.setOnClickListener(listener)
     }
 
-    fun rightClick(listener: OnClickListener?) {
+    fun setRightClick(listener: OnClickListener?) {
         rightFuncView.setOnClickListener(listener)
+    }
+
+    fun setLeftIcon(icon: Drawable?) {
+        leftFuncView.setIcon(icon)
+    }
+
+    fun setRightIcon(icon: Drawable?) {
+        rightFuncView.setIcon(icon)
+    }
+
+    fun setLeftText(text: String?) {
+        leftFuncView.setText(text)
+    }
+
+    fun setRightText(text: String?) {
+        rightFuncView.setText(text)
+    }
+
+    fun showLeftFunc(show: Boolean) {
+        leftFuncView.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     fun showRightFunc(show: Boolean) {

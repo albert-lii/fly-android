@@ -3,65 +3,82 @@
     <!-- 自定义标题栏 -->
     <declare-styleable name="TitleBar">
         <!-- 标题栏文字描述 -->
-        <attr name="title" format="string" />
+        <attr name="tb_title" format="string" />
         <!-- 标题栏文字大小 -->
-        <attr name="titleSize" format="dimension" />
+        <attr name="tb_titleSize" format="dimension" />
         <!-- 标题栏文字颜色 -->
-        <attr name="titleColor" format="color" />
+        <attr name="tb_titleColor" format="color|reference" />
         <!-- 标题栏文字是否加粗 -->
-        <attr name="titleBold" format="boolean" />
+        <attr name="tb_titleBold" format="boolean" />
         <!-- 左侧Padding-->
-        <attr name="leftPadding" format="dimension" />
+        <attr name="tb_leftPadding" format="dimension" />
         <!-- 左侧ICON -->
-        <attr name="leftIcon" format="reference" />
+        <attr name="tb_leftIcon" format="reference" />
         <!-- 左侧ICON高度-->
-        <attr name="leftIconHight" format="dimension" />
+        <attr name="tb_leftIconHight" format="dimension" />
         <!-- 是否显示左侧ICON-->
-        <attr name="showLeftIcon" format="boolean" />
+        <attr name="tb_showLeftIcon" format="boolean" />
         <!-- 左侧文字描述 -->
-        <attr name="leftText" format="string" />
+        <attr name="tb_leftText" format="string" />
         <!-- 左侧文字大小 -->
-        <attr name="leftTextSize" format="dimension" />
+        <attr name="tb_leftTextSize" format="dimension" />
         <!-- 左侧文字颜色 -->
-        <attr name="leftTextColor" format="color" />
+        <attr name="tb_leftTextColor" format="color|reference" />
         <!-- 左侧ICON距离文字的间距-->
-        <attr name="leftTextLeftMargin" format="dimension" />
+        <attr name="tb_leftTextLeftMargin" format="dimension" />
         <!-- 是否显示左侧文字-->
-        <attr name="showLeftText" format="boolean" />
+        <attr name="tb_showLeftText" format="boolean" />
+        <!-- 是否显示左侧功能区域-->
+        <attr name="tb_showLeftFunc" format="boolean" />
         <!-- 右侧Padding-->
-        <attr name="rightPadding" format="dimension" />
+        <attr name="tb_rightPadding" format="dimension" />
         <!-- 右侧ICON-->
-        <attr name="rightIcon" format="reference" />
+        <attr name="tb_rightIcon" format="reference" />
         <!-- 右侧ICON高度-->
-        <attr name="rightIconHight" format="dimension" />
+        <attr name="tb_rightIconHight" format="dimension" />
         <!-- 是否显示右侧ICON-->
-        <attr name="showRightIcon" format="boolean" />
+        <attr name="tb_showRightIcon" format="boolean" />
         <!-- 右侧文字描述 -->
-        <attr name="rightText" format="string" />
+        <attr name="tb_rightText" format="string" />
         <!-- 右侧文字大小 -->
-        <attr name="rightTextSize" format="dimension" />
+        <attr name="tb_rightTextSize" format="dimension" />
         <!-- 右侧文字颜色 -->
-        <attr name="rightTextColor" format="color" />
+        <attr name="tb_rightTextColor" format="color|reference" />
         <!-- 右侧ICON距离文字的间距-->
-        <attr name="rightTextLeftMargin" format="dimension" />
+        <attr name="tb_rightTextLeftMargin" format="dimension" />
         <!-- 是否显示右侧文字-->
-        <attr name="showRightText" format="boolean" />
-        <!-- 是否显示右侧区域-->
-        <attr name="showRightFunc" format="boolean" />
+        <attr name="tb_showRightText" format="boolean" />
+        <!-- 是否显示右侧功能区域-->
+        <attr name="tb_showRightFunc" format="boolean" />
         <!-- 底部分割线的高度 -->
-        <attr name="dividerHeight" format="dimension" />
+        <attr name="tb_dividerHeight" format="dimension" />
         <!-- 底部分割线的颜色 -->
-        <attr name="dividerColor" format="color" />
+        <attr name="tb_dividerColor" format="color|reference" />
         <!-- 是否显示底部分割线-->
-        <attr name="showDivider" format="boolean" />
+        <attr name="tb_showDivider" format="boolean" />
         <!-- 标题栏高度，不包含分割线和状态栏高度-->
-        <attr name="barHeight" format="dimension" />
+        <attr name="tb_barHeight" format="dimension" />
         <!-- 是否添加状态栏的高度-->
-        <attr name="addStatusBarHeight" format="boolean" />
+        <attr name="tb_addStatusBarHeight" format="boolean" />
     </declare-styleable>
 
-    <!-- 自带 -->
+    <!-- 去除文字内部Padding的TextView -->
     <declare-styleable name="EilsTextView">
-        <attr name="eilsText" format="string" />
+        <attr name="et_eilsText" format="string" />
+    </declare-styleable>
+
+    <!-- 去除文字内部Padding的TextView -->
+    <declare-styleable name="ProgressCellView">
+        <attr name="pc_totalCount" format="integer" />
+        <attr name="pc_accentCount" format="integer" />
+        <attr name="pc_primaryColor" format="color|reference" />
+        <attr name="pc_accentColor" format="color|reference" />
+        <attr name="pc_cellWidth" format="dimension" />
+        <attr name="pc_cellSpace" format="dimension" />
+        <attr name="pc_reverse" format="boolean" />
+        <attr name="pc_oritenation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
     </declare-styleable>
 </resources>

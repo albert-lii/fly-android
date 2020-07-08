@@ -3,8 +3,6 @@ package com.fly.example.ui.livebus
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import com.blankj.utilcode.util.BarUtils
-import com.fly.example.BR
 import com.fly.example.Constants
 import com.fly.example.R
 import com.fly.example.base.BaseAppBVMActivity
@@ -35,7 +33,7 @@ class LiveBusFirstActivity :
 
     override fun initialize(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
-        binding.titlebar.leftClick(View.OnClickListener {
+        binding.titlebar.setLeftClick(View.OnClickListener {
             finish()
         })
         addListener()

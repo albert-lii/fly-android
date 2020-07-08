@@ -34,7 +34,7 @@ class EilsTextView : AppCompatTextView {
     private fun init(attrs: AttributeSet?) {
         if (attrs != null) {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.EilsTextView)
-            val text = ta.getString(R.styleable.EilsTextView_eilsText)
+            val text = ta.getString(R.styleable.EilsTextView_tb_eilsText)
             setEilsText(text)
             ta.recycle()
         }

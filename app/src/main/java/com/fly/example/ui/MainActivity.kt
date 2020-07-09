@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.fly.example.R
 import com.fly.example.base.BaseAppBindingActivity
 import com.fly.example.databinding.ActivityMainBinding
-import com.fly.example.ui.livebus.LiveBusFirstActivity
+import com.fly.example.ui.livebustest.LiveBusFirstActivity
 import org.we.fly.extensions.singleClick
 
 /**
@@ -23,6 +23,9 @@ class MainActivity : BaseAppBindingActivity<ActivityMainBinding>() {
     override fun init(savedInstanceState: Bundle?) {
         binding.btnLivebus.singleClick {
             navigateTo(LiveBusFirstActivity::class.java)
+        }
+        binding.btnCustomWidgetTest.singleClick {
+            navigateTo(CustomWidgetTestActivity::class.java)
         }
     }
 }

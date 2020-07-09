@@ -13,12 +13,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/theme_color"
-            app:addStatusBarHeight="true"
-            app:barHeight="@dimen/titlebar_height"
-            app:title="Let's Fly"
-            app:titleBold="true"
-            app:titleColor="@color/textcolor_main_black"
-            app:titleSize="@dimen/px_20" />
+            app:tb_addStatusBarHeight="true"
+            app:tb_barHeight="@dimen/titlebar_height"
+            app:tb_title="Let's Fly"
+            app:tb_titleBold="true"
+            app:tb_titleColor="@color/textcolor_main_black"
+            app:tb_titleSize="@dimen/px_20" />
 
         <Button
             android:id="@+id/btn_livebus"
@@ -29,6 +29,18 @@
             android:layout_marginRight="@dimen/btn_space_lr"
             android:background="@drawable/btn_base_bg"
             android:text="LiveBus测试"
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_main_black" />
+
+        <Button
+            android:id="@+id/btn_custom_widget_test"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_12"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/btn_base_bg"
+            android:text="自定义控件测试"
             android:textAllCaps="false"
             android:textColor="@color/textcolor_main_black" />
     </LinearLayout>

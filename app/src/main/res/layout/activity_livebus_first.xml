@@ -21,12 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/bg_titlebar"
-            app:addStatusBarHeight="true"
-            app:barHeight="@dimen/titlebar_height"
-            app:leftIcon="@drawable/back_arrow"
-            app:leftIconHight="@dimen/titlebar_lefticon_size"
-            app:title="FirstLiveBus"
-            app:titleSize="@dimen/titlebar_titlesize" />
+            app:tb_addStatusBarHeight="true"
+            app:tb_barHeight="@dimen/titlebar_height"
+            app:tb_leftIcon="@drawable/back_arrow"
+            app:tb_leftIconHight="@dimen/titlebar_lefticon_size"
+            app:tb_title="FirstLiveBus"
+            app:tb_titleSize="@dimen/titlebar_titlesize" />
 
         <Button
             android:id="@+id/btn_post"
@@ -38,8 +38,7 @@
             android:background="@drawable/btn_base_bg"
             android:text="Post一个消息"
             android:textAllCaps="false"
-            android:textColor="@color/textcolor_main_black"
-            app:titleColor="@color/textcolor_main_black" />
+            android:textColor="@color/textcolor_main_black" />
 
         <LinearLayout
             android:layout_width="match_parent"

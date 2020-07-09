@@ -21,13 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/bg_titlebar"
-            app:addStatusBarHeight="true"
-            app:barHeight="@dimen/titlebar_height"
-            app:leftIcon="@drawable/back_arrow"
-            app:leftIconHight="@dimen/titlebar_lefticon_size"
-            app:title="SecondLiveBus"
-            app:titleColor="@color/textcolor_main_black"
-            app:titleSize="@dimen/titlebar_titlesize" />
+            app:tb_addStatusBarHeight="true"
+            app:tb_barHeight="@dimen/titlebar_height"
+            app:tb_leftIcon="@drawable/back_arrow"
+            app:tb_leftIconHight="@dimen/titlebar_lefticon_size"
+            app:tb_title="SecondLiveBus"
+            app:tb_titleColor="@color/textcolor_main_black"
+            app:tb_titleSize="@dimen/titlebar_titlesize" />
 
         <Button
             android:id="@+id/btn_post_lifecycle"

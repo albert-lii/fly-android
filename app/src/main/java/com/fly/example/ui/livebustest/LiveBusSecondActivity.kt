@@ -1,4 +1,4 @@
-package com.fly.example.ui.livebus
+package com.fly.example.ui.livebustest
 
 import android.os.Bundle
 import android.view.View

@@ -17,7 +17,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.fly.example.ui.livebus.LiveBusFirstActivity" />
-        <activity android:name="com.fly.example.ui.livebus.LiveBusSecondActivity" />
+
+        <activity
+            android:name="com.fly.example.ui.livebustest.LiveBusFirstActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.fly.example.ui.livebustest.LiveBusSecondActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.fly.example.ui.CustomWidgetTestActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

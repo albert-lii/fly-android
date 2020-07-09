@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.fly.example.Constants
 import com.fly.example.base.BaseAppViewModel
-import com.fly.example.ui.livebus.LiveBusSecondActivity
+import com.fly.example.ui.livebustest.LiveBusSecondActivity
 import org.we.fly.utils.livebus.LiveBus
 
 /**

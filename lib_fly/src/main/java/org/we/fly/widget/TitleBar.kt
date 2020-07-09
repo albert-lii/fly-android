@@ -24,8 +24,8 @@ import org.we.fly.extensions.dpToPx
  */
 class TitleBar : LinearLayout {
     private lateinit var containerGroup: FrameLayout
-    private lateinit var leftFuncView: LeftFuncView
-    private lateinit var rightFuncView: RightFuncView
+    private lateinit var leftFuncView: FuncView
+    private lateinit var rightFuncView: FuncView
     private lateinit var titleView: TextView
     private lateinit var dividerView: View
 
@@ -68,8 +68,8 @@ class TitleBar : LinearLayout {
 
         containerGroup = FrameLayout(context)
         titleView = TextView(context)
-        leftFuncView = LeftFuncView(context)
-        rightFuncView = RightFuncView(context)
+        leftFuncView = FuncView(context)
+        rightFuncView = FuncView(context)
         dividerView = View(context)
         val titleLp = FrameLayout.LayoutParams(
             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
@@ -221,6 +221,14 @@ class TitleBar : LinearLayout {
         return titleView.text.toString()
     }
 
+    fun setTitleSize(size: Float) {
+        titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size)
+    }
+
+    fun setTitleColor(color: Int) {
+        titleView.setTextColor(color)
+    }
+
     fun setLeftClick(listener: OnClickListener?) {
         leftFuncView.setOnClickListener(listener)
     }
@@ -245,6 +253,22 @@ class TitleBar : LinearLayout {
         rightFuncView.setText(text)
     }
 
+    fun setLeftTextColor(color: Int) {
+        leftFuncView.setTextColor(color)
+    }
+
+    fun setRightTextColor(color: Int) {
+        rightFuncView.setTextColor(color)
+    }
+
+    fun setLeftTextSize(size: Float) {
+        leftFuncView.setTextSize(size)
+    }
+
+    fun setRightTextSize(size: Float) {
+        rightFuncView.setTextSize(size)
+    }
+
     fun showLeftFunc(show: Boolean) {
         leftFuncView.visibility = if (show) View.VISIBLE else View.GONE
     }
@@ -258,9 +282,9 @@ class TitleBar : LinearLayout {
     }
 
     /**
-     * TitleBar左边的功能控件
+     * TitleBar的内部功能控件
      */
-    private open inner class LeftFuncView(context: Context?) :
+    private inner class FuncView(context: Context?) :
         LinearLayout(context) {
         protected var iconView: ImageView
         protected var textView: TextView
@@ -314,10 +338,4 @@ class TitleBar : LinearLayout {
             textView.visibility = if (show) View.VISIBLE else View.GONE
         }
     }
-
-    /**
-     * TitleBar右边的功能控件，使用继承方便以后扩展
-     */
-    private inner class RightFuncView(context: Context?) :
-        LeftFuncView(context)
 }

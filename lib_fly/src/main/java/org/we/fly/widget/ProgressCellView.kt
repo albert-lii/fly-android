@@ -62,6 +62,30 @@ class ProgressCellView : View {
         }
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        var w = MeasureSpec.getSize(widthMeasureSpec)
+        var h = MeasureSpec.getSize(heightMeasureSpec)
+        if (oritenation == 0) {
+            w = paddingLeft + paddingRight
+            for (i in 0 until totalCount) {
+                w += cellWidth
+                if (i < (totalCount - 1)) {
+                    w += cellSpace
+                }
+            }
+        } else {
+            h = paddingTop + paddingBottom
+            for (i in 0 until totalCount) {
+                h += cellWidth
+                if (i < (totalCount - 1)) {
+                    h += cellSpace
+                }
+            }
+        }
+        setMeasuredDimension(w, h)
+    }
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         if (oritenation == 0) {
@@ -84,9 +108,9 @@ class ProgressCellView : View {
             val left = paddingLeft + i * (cellWidth + cellSpace)
             val right = left + cellWidth
             if (i < boundary) {
-                paint.setColor(primaryColor)
-            } else {
                 paint.setColor(accentColor)
+            } else {
+                paint.setColor(primaryColor)
             }
             canvas.drawRect(left.toFloat(), paddingTop.toFloat(), right.toFloat(), bottom, paint)
         }
@@ -111,5 +135,40 @@ class ProgressCellView : View {
             }
             canvas.drawRect(paddingLeft.toFloat(), top.toFloat(), right, bottom.toFloat(), paint)
         }
+    }
+
+    fun setTotalCount(count: Int) {
+        this.totalCount = count
+        invalidate()
+    }
+
+    fun setAccentCount(count: Int) {
+        this.accentCount = count
+        invalidate()
+    }
+
+    fun setPrimaryColor(color: Int) {
+        this.primaryColor = color
+        invalidate()
+    }
+
+    fun setAccentColor(color: Int) {
+        this.accentCount = color
+        invalidate()
+    }
+
+    fun setCellWidth(width: Int) {
+        this.cellWidth = width
+        invalidate()
+    }
+
+    fun setCellSpace(space: Int) {
+        this.cellSpace = space
+        invalidate()
+    }
+
+    fun setReverse(reverse: Boolean) {
+        this.reverse = reverse
+        invalidate()
     }
 }

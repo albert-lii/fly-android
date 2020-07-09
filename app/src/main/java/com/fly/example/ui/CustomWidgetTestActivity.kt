@@ -25,6 +25,5 @@ class CustomWidgetTestActivity : BaseAppBindingActivity<ActivityCustomWidgetTest
         binding.titlebar.setLeftClick(View.OnClickListener {
             finish()
         })
-        binding.titlebar.setTitle(R.dimen.titlebar_height.getDimen(this).toString())
     }
 }

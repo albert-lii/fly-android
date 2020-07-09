@@ -8,12 +8,12 @@ import android.view.View
 /**
  * @author: Albert Li
  * @contact: albertlii@163.com
- * @time: 2020/6/29 1:58 PM
- * @description: 与状态栏高度一致的View
+ * @time: 2020/7/9 2:46 PM
+ * @description: 与底部导航栏高度一致的View
  * @since: 1.0.0
  */
-class StatusBarView : View {
-    private var statusBarHeight = 0
+class NavBarView : View {
+    private var navBarHeight = 0
 
     constructor(context: Context?) : super(context) {
         init()
@@ -32,17 +32,17 @@ class StatusBarView : View {
     }
 
     private fun init() {
-        statusBarHeight = getStatusBarHeight()
+        navBarHeight = getNavBarHeight()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), statusBarHeight);
+        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), navBarHeight);
     }
 
-    private fun getStatusBarHeight(): Int {
-        val resources = Resources.getSystem()
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        return resources.getDimensionPixelSize(resourceId)
+    private fun getNavBarHeight(): Int {
+        val res = Resources.getSystem()
+        val resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android")
+        return if (resourceId != 0) res.getDimensionPixelSize(resourceId) else 0
     }
 }

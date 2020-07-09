@@ -53,9 +53,11 @@ class ProgressCellView : View {
             totalCount = ta.getColor(R.styleable.ProgressCellView_pc_totalCount, totalCount)
             accentCount = ta.getInteger(R.styleable.ProgressCellView_pc_accentCount, accentCount)
             cellWidth =
-                ta.getDimensionPixelSize(R.styleable.ProgressCellView_pc_cellWidth, cellWidth)
+                ta.getDimension(R.styleable.ProgressCellView_pc_cellWidth, cellWidth.toFloat())
+                    .toInt()
             cellSpace =
-                ta.getDimensionPixelSize(R.styleable.ProgressCellView_pc_cellSpace, cellSpace)
+                ta.getDimension(R.styleable.ProgressCellView_pc_cellSpace, cellSpace.toFloat())
+                    .toInt()
             reverse = ta.getBoolean(R.styleable.ProgressCellView_pc_reverse, reverse)
             oritenation = ta.getInteger(R.styleable.ProgressCellView_pc_oritenation, oritenation)
             ta.recycle()
@@ -99,7 +101,7 @@ class ProgressCellView : View {
      * 横向绘制
      */
     private fun horizontalDraw(canvas: Canvas) {
-        val bottom = (height - paddingBottom).toFloat()
+        val bottom = height - paddingBottom
         var boundary = accentCount
         if (reverse) {
             boundary = totalCount - accentCount
@@ -112,7 +114,13 @@ class ProgressCellView : View {
             } else {
                 paint.setColor(primaryColor)
             }
-            canvas.drawRect(left.toFloat(), paddingTop.toFloat(), right.toFloat(), bottom, paint)
+            canvas.drawRect(
+                left.toFloat(),
+                paddingTop.toFloat(),
+                right.toFloat(),
+                bottom.toFloat(),
+                paint
+            )
         }
     }
 
@@ -120,7 +128,7 @@ class ProgressCellView : View {
      * 纵向绘制
      */
     private fun verticalDraw(canvas: Canvas) {
-        val right = (width - paddingRight).toFloat()
+        val right = width - paddingRight
         var boundary = totalCount - accentCount
         if (reverse) {
             boundary = accentCount
@@ -133,7 +141,13 @@ class ProgressCellView : View {
             } else {
                 paint.setColor(accentColor)
             }
-            canvas.drawRect(paddingLeft.toFloat(), top.toFloat(), right, bottom.toFloat(), paint)
+            canvas.drawRect(
+                paddingLeft.toFloat(),
+                top.toFloat(),
+                right.toFloat(),
+                bottom.toFloat(),
+                paint
+            )
         }
     }
 

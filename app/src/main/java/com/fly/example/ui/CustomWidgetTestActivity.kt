@@ -1,9 +1,12 @@
 package com.fly.example.ui
 
 import android.os.Bundle
+import android.view.View
 import com.fly.example.R
 import com.fly.example.base.BaseAppBindingActivity
 import com.fly.example.databinding.ActivityCustomWidgetTestBinding
+import org.we.fly.extensions.getDimen
+import org.we.fly.extensions.getDimenPixel
 
 /**
  * @author: Albert Li
@@ -19,6 +22,9 @@ class CustomWidgetTestActivity : BaseAppBindingActivity<ActivityCustomWidgetTest
     }
 
     override fun init(savedInstanceState: Bundle?) {
-
+        binding.titlebar.setLeftClick(View.OnClickListener {
+            finish()
+        })
+        binding.titlebar.setTitle(R.dimen.titlebar_height.getDimen(this).toString())
     }
 }

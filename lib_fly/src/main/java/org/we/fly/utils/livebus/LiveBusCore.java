@@ -2,12 +2,11 @@ package org.we.fly.utils.livebus;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.BusLiveData;
+import androidx.lifecycle.XLiveData;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
@@ -188,7 +187,7 @@ public class LiveBusCore {
         @MainThread
         private void observeInternal(@NonNull LifecycleOwner owner, @NonNull Observer<T> observer) {
             ObserverWrapper<T> observerWrapper = new ObserverWrapper<>(observer);
-            observerWrapper.isRejectEvent = liveData.getVersion() > BusLiveData.START_VERSION;
+            observerWrapper.isRejectEvent = liveData.getVersion() > XLiveData.START_VERSION;
             liveData.observe(owner, observerWrapper);
         }
 
@@ -201,7 +200,7 @@ public class LiveBusCore {
         @MainThread
         private void observeForeverInternal(@NonNull Observer<T> observer) {
             ObserverWrapper<T> observerWrapper = new ObserverWrapper<>(observer);
-            observerWrapper.isRejectEvent = liveData.getVersion() > BusLiveData.START_VERSION;
+            observerWrapper.isRejectEvent = liveData.getVersion() > XLiveData.START_VERSION;
             observerMap.put(observer, observerWrapper);
             liveData.observeForever(observerWrapper);
         }
@@ -224,7 +223,7 @@ public class LiveBusCore {
             liveData.removeObserver(realObserver);
         }
 
-        private class InternalLiveData<T> extends BusLiveData<T> {
+        private class InternalLiveData<T> extends XLiveData<T> {
             private boolean observerAlwaysBeActive = false;
             private boolean autoClear = true;
 

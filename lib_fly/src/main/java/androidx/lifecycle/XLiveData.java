@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import io.reactivex.internal.operators.single.SingleNever;
+
 import static androidx.lifecycle.Lifecycle.State.DESTROYED;
 import static androidx.lifecycle.Lifecycle.State.STARTED;
 
@@ -15,7 +17,7 @@ import static androidx.lifecycle.Lifecycle.State.STARTED;
  * @description: 修改LiveData的活跃状态标准，把默认的 STARTED 改为 CREATED
  * @since: 1.0.0
  */
-public class BusLiveData<T> extends MutableLiveData<T> {
+public class XLiveData<T> extends MutableLiveData<T> {
     public static final int START_VERSION = LiveData.START_VERSION;
 
     @Override
@@ -26,7 +28,7 @@ public class BusLiveData<T> extends MutableLiveData<T> {
             return;
         }
         try {
-            LifecycleBoundObserver wrapper = new BusLifecycleBoundObserver(owner, (Observer<T>) observer);
+            LifecycleBoundObserver wrapper = new XLifecycleBoundObserver(owner, (Observer<T>) observer);
             LifecycleBoundObserver existing = (LifecycleBoundObserver) callMethodPutIfAbsent(observer, wrapper);
             if (existing != null && !existing.isAttachedTo(owner)) {
                 throw new IllegalArgumentException("Cannot add the same observer"
@@ -76,9 +78,9 @@ public class BusLiveData<T> extends MutableLiveData<T> {
         return fieldObservers.get(this);
     }
 
-    class BusLifecycleBoundObserver extends LifecycleBoundObserver {
+    private class XLifecycleBoundObserver extends LifecycleBoundObserver {
 
-        BusLifecycleBoundObserver(@NonNull LifecycleOwner owner, Observer<T> observer) {
+        XLifecycleBoundObserver(@NonNull LifecycleOwner owner, Observer<T> observer) {
             super(owner, observer);
         }
 

@@ -1,6 +1,8 @@
 package org.we.fly.widget
 
+import android.app.Activity
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
@@ -11,9 +13,9 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.blankj.utilcode.util.BarUtils
 import org.we.fly.R
 import org.we.fly.extensions.dpToPx
+import org.we.fly.extensions.singleClick
 
 /**
  * @author: Albert Li
@@ -40,7 +42,7 @@ class TitleBar : LinearLayout {
     private val DEF_ICON_HEIGHT = 24.dpToPx
     private val DEF_DIVIDER_HEIGHT = 1.dpToPx
 
-    private var isAddStatusBarHeight = false
+    private var addStatusBarHeight = false
 
     constructor(context: Context) : super(context) {
         initView(context)
@@ -93,6 +95,11 @@ class TitleBar : LinearLayout {
             LayoutParams.MATCH_PARENT, DEF_DIVIDER_HEIGHT.toInt()
         )
         addView(dividerView, dividerLp)
+        leftFuncView.singleClick {
+            if (context is Activity) {
+                context.finish()
+            }
+        }
     }
 
     private fun initAttr(attrs: AttributeSet?) {
@@ -205,9 +212,9 @@ class TitleBar : LinearLayout {
                 containerGroup.layoutParams.height = barHeight.toInt()
             }
 
-            isAddStatusBarHeight = ta.getBoolean(R.styleable.TitleBar_tb_addStatusBarHeight, false)
-            if (isAddStatusBarHeight) {
-                setPadding(paddingLeft, BarUtils.getStatusBarHeight(), paddingRight, paddingBottom)
+            addStatusBarHeight = ta.getBoolean(R.styleable.TitleBar_tb_addStatusBarHeight, false)
+            if (addStatusBarHeight) {
+                setPadding(paddingLeft, getStatusBarHeight(), paddingRight, paddingBottom)
             }
             ta.recycle()
         }
@@ -337,5 +344,11 @@ class TitleBar : LinearLayout {
         fun showText(show: Boolean) {
             textView.visibility = if (show) View.VISIBLE else View.GONE
         }
+    }
+
+    private fun getStatusBarHeight(): Int {
+        val resources = Resources.getSystem()
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        return resources.getDimensionPixelSize(resourceId)
     }
 }

@@ -7,7 +7,7 @@ import androidx.annotation.StringRes
 import androidx.databinding.ViewDataBinding
 import com.blankj.utilcode.util.BarUtils
 import org.we.fly.base.FlyBaseConstants
-import org.we.fly.base.mvvm.BaseBindingActivity
+import org.we.fly.base.arch.BaseBindingActivity
 
 /**
  * @author: Albert Li

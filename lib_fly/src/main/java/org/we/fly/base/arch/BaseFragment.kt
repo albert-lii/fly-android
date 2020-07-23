@@ -1,4 +1,4 @@
-package org.we.fly.base.mvvm
+package org.we.fly.base.arch
 
 import android.content.Context
 import android.os.Bundle

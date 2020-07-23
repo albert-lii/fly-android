@@ -4,23 +4,23 @@ package org.we.fly.utils
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2020/6/28 6:42 PM
- * @description: 防止快速点击的工具类
+ * @description: 点击限制的工具类
  * @since: 1.0.0
  */
-class NoFastClickUtils private constructor() {
+class ClickLimitUtils private constructor() {
     private var lastClickTime: Long
 
     companion object {
         @JvmStatic
-        fun getInstance(): NoFastClickUtils {
+        fun getInstance(): ClickLimitUtils {
             return SingletonHolder.holder
         }
 
-        private const val INTERVAL = 500
+        private const val INTERVAL = 400L
     }
 
     private object SingletonHolder {
-        val holder = NoFastClickUtils()
+        val holder = ClickLimitUtils()
     }
 
     init {

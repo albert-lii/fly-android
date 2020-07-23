@@ -5,8 +5,6 @@ import android.view.View
 import com.fly.example.R
 import com.fly.example.base.BaseAppBindingActivity
 import com.fly.example.databinding.ActivityCustomWidgetTestBinding
-import org.we.fly.extensions.getDimen
-import org.we.fly.extensions.getDimenPixel
 
 /**
  * @author: Albert Li

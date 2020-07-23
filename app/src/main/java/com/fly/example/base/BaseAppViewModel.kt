@@ -1,6 +1,6 @@
 package com.fly.example.base
 
-import org.we.fly.base.mvvm.BaseViewModel
+import org.we.fly.base.arch.BaseViewModel
 
 /**
  * @author: Albert Li

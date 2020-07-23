@@ -7,8 +7,8 @@ import androidx.annotation.StringRes
 import androidx.databinding.ViewDataBinding
 import com.blankj.utilcode.util.BarUtils
 import org.we.fly.base.FlyBaseConstants
-import org.we.fly.base.mvvm.BaseBVMActivity
-import org.we.fly.base.mvvm.BaseViewModel
+import org.we.fly.base.arch.BaseBVMActivity
+import org.we.fly.base.arch.BaseViewModel
 
 
 /**

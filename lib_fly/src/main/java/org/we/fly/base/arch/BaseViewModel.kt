@@ -1,4 +1,4 @@
-package org.we.fly.base.mvvm
+package org.we.fly.base.arch
 
 import android.annotation.SuppressLint
 import android.app.Application

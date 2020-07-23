@@ -10,52 +10,33 @@ import android.view.View
  * @since: 1.0.0
  */
 
-fun <T : View> T.click(block: (T) -> Unit) {
+fun <T : View> T.click(action: (T) -> Unit) {
     setOnClickListener {
-        block(this)
+        action(this)
     }
 }
 
-/**
+/**d
  * 带有限制快速点击的点击事件
  */
-fun <T : View> T.singleClick(block: (T) -> Unit) {
-    setOnClickListener(object : SingleClickListener() {
-        override fun onSingleClick(view:View) {
-            block(view as T)
-        }
-    })
+fun <T : View> T.singleClick(interval: Long = 400L, action: ((T) -> Unit)?) {
+    setOnClickListener(SingleClickListener(interval, action))
 }
 
-/**
- * 带有限制快速点击的点击事件
- */
-fun <T : View> T.singleClick(interval: Long, block: (T) -> Unit) {
-    setOnClickListener(object : SingleClickListener(interval) {
-        override fun onSingleClick(view:View) {
-            block(view as T)
-        }
-    })
-}
-
-abstract class SingleClickListener : View.OnClickListener {
-    private var lastClickTime: Long = 0
-    private var timeInterval = 500L
-
-    constructor() {}
-
-    constructor(interval: Long) {
-        timeInterval = interval
-    }
+class SingleClickListener<T : View>(
+    private val interval: Long = 400L,
+    private var clickFunc: ((T) -> Unit)?
+) : View.OnClickListener {
+    private var lastClickTime = 0L
 
     override fun onClick(v: View) {
         val nowTime = System.currentTimeMillis()
-        if (nowTime - lastClickTime > timeInterval) {
+        if (nowTime - lastClickTime > interval) {
             // 单次点击事件
-            onSingleClick(v)
+            if (clickFunc != null) {
+                clickFunc!!(v as T)
+            }
             lastClickTime = nowTime
         }
     }
-
-    protected abstract fun onSingleClick(view:View)
 }

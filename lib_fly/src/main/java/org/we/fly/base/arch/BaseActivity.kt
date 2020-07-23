@@ -1,10 +1,8 @@
-package org.we.fly.base.mvvm
+package org.we.fly.base.arch
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.ScreenUtils
 
 /**
  * @author: Albert Li

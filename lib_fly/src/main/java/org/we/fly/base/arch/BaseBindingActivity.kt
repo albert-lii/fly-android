@@ -13,18 +13,16 @@ import androidx.databinding.ViewDataBinding
  * @description: 基于MVVM模式的Activity的基类
  * @since: 1.0.0
  */
-abstract class BaseBindingActivity<B : ViewDataBinding> : AppCompatActivity(),
+abstract class BaseBindingActivity<B : ViewDataBinding> : BaseActivity(),
     ViewBehavior {
 
     protected lateinit var binding: B
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initContentView() {
         injectDataBinding()
-        init(savedInstanceState)
     }
 
-    protected open fun injectDataBinding() {
+    protected fun injectDataBinding() {
         binding = DataBindingUtil.setContentView(this, getLayoutId())
         binding.lifecycleOwner = this
     }
@@ -33,12 +31,4 @@ abstract class BaseBindingActivity<B : ViewDataBinding> : AppCompatActivity(),
         super.onDestroy()
         binding.unbind()
     }
-
-    protected abstract @LayoutRes
-    fun getLayoutId(): Int
-
-    /**
-     *  初始化操作
-     */
-    protected abstract fun init(savedInstanceState: Bundle?)
 }

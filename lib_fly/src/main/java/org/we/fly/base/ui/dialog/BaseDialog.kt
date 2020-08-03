@@ -31,9 +31,13 @@ abstract class BaseDialog : AppCompatDialog {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
+        initContentView()
         initialize(savedInstanceState)
         refreshAttributes()
+    }
+
+    protected open fun initContentView() {
+        setContentView(getLayoutId())
     }
 
     /**

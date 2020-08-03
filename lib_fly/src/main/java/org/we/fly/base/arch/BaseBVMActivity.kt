@@ -1,6 +1,5 @@
 package org.we.fly.base.arch
 
-import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import org.we.fly.extensions.observeNonNull
@@ -18,22 +17,18 @@ abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
 
     protected lateinit var viewModel: VM
 
+    override fun initContentView() {
+        super.initContentView()
+        injectViewModel()
+        initInternalObserver()
+    }
+
     protected fun injectViewModel() {
         val vm = createViewModel()
         viewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(vm))
             .get(vm::class.java)
         viewModel.application = application
         lifecycle.addObserver(viewModel)
-    }
-
-    override fun init(savedInstanceState: Bundle?) {
-        injectViewModel()
-        initialize(savedInstanceState)
-        initInternalObserver()
-    }
-
-    fun getActivityViewModel(): VM {
-        return viewModel
     }
 
     override fun onDestroy() {
@@ -64,9 +59,4 @@ abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
     }
 
     protected abstract fun createViewModel(): VM
-
-    /**
-     *  初始化操作
-     */
-    protected abstract fun initialize(savedInstanceState: Bundle?)
 }

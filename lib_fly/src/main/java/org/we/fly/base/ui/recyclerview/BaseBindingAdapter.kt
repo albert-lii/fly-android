@@ -22,7 +22,7 @@ abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
             parent,
             false
         )
-        return BaseViewHolder(binding!!.root)
+        return BaseViewHolder(binding.root)
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {

@@ -19,7 +19,7 @@ class CustomWidgetTestActivity : BaseAppBindingActivity<ActivityCustomWidgetTest
         return R.layout.activity_custom_widget_test
     }
 
-    override fun init(savedInstanceState: Bundle?) {
+    override fun initialize(savedInstanceState: Bundle?) {
         binding.titlebar.setLeftClick(View.OnClickListener {
             finish()
         })

@@ -17,9 +17,13 @@ import androidx.annotation.LayoutRes
 abstract class BasePopupWindow(protected val context: Context) : PopupWindow(context) {
 
     init {
+        initContentView()
+        initialize()
+    }
+
+    protected open fun initContentView(){
         val rootView = LayoutInflater.from(context).inflate(getLayoutId(), null)
         contentView = rootView
-        initialize()
     }
 
     /**

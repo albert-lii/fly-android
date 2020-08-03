@@ -21,7 +21,7 @@ import org.we.fly.R
  * @since: 1.0.0
  */
 abstract class BaseDialogFragment : XDialogFragment() {
-    protected var rootView: View? = null
+    protected lateinit var rootView: View
 
     private var width: Int = ViewGroup.LayoutParams.MATCH_PARENT
     private var height: Int = ViewGroup.LayoutParams.WRAP_CONTENT

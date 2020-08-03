@@ -20,7 +20,7 @@ class MainActivity : BaseAppBindingActivity<ActivityMainBinding>() {
         return R.layout.activity_main
     }
 
-    override fun init(savedInstanceState: Bundle?) {
+    override fun initialize(savedInstanceState: Bundle?) {
         binding.btnLivebus.singleClick {
             navigateTo(LiveBusFirstActivity::class.java)
         }

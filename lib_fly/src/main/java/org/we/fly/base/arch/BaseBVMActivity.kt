@@ -2,6 +2,7 @@ package org.we.fly.base.arch
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import org.we.fly.BR
 import org.we.fly.extensions.observeNonNull
 import org.we.fly.extensions.observeNullable
 

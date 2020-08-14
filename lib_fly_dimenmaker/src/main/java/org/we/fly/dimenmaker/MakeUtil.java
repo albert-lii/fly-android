@@ -17,7 +17,8 @@ public class MakeUtil {
     private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n";
     private static final String XML_RESOURCE_START = "<resources>\r\n";
     private static final String XML_RESOURCE_END = "</resources>\r\n";
-    private static final String XML_DIMEN_TEMPLETE = "<dimen name=\"px_%2$d\">%3$.2fdp</dimen>\r\n";
+    private static final String XML_DIMEN_TEMPLETE = "<dimen name=\"px_%1$d\">%2$.2fdp</dimen>\r\n";
+    private static final String XML_NEGATIVE_DIMEN_TEMPLETE = "<dimen name=\"px_n%1$d\">%2$.2fdp</dimen>\r\n";
 
     private static final int MAX_SIZE = 2 * DimenMaker.SMALLEST_WIDTH;
 
@@ -29,8 +30,7 @@ public class MakeUtil {
     public static float px2dip(float pxValue, int sw, int designWidth) {
         float dpValue = (pxValue / (float) designWidth) * sw;
         BigDecimal bigDecimal = new BigDecimal(dpValue);
-        float finDp = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-        return finDp;
+        return bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
     }
 
     /**
@@ -46,9 +46,16 @@ public class MakeUtil {
         try {
             sb.append(XML_HEADER);
             sb.append(XML_RESOURCE_START);
+            // 正尺寸
             for (int i = 0; i <= MAX_SIZE; i++) {
                 dpValue = px2dip((float) i, type.getSwWidthDp(), designWidth);
-                temp = String.format(XML_DIMEN_TEMPLETE, "", i, dpValue);
+                temp = String.format(XML_DIMEN_TEMPLETE, i, dpValue);
+                sb.append(temp);
+            }
+            // 负尺寸
+            for (int i = 0; i <= MAX_SIZE; i++) {
+                dpValue = px2dip((float) i, type.getSwWidthDp(), designWidth);
+                temp = String.format(XML_NEGATIVE_DIMEN_TEMPLETE, i, dpValue * -1);
                 sb.append(temp);
             }
             sb.append(XML_RESOURCE_END);

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import org.we.fly.base.FlyBaseConstants
 
 /**
@@ -43,6 +45,8 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     lateinit var application: Application
 
     private lateinit var lifcycleOwner: LifecycleOwner
+
+    private val viewModelJob = SupervisorJob()
 
     override fun onAny(owner: LifecycleOwner, event: Lifecycle.Event) {
         this.lifcycleOwner = owner
@@ -96,11 +100,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         _finishPageEvent.postValue(arg)
     }
 
-    protected fun showToast(str: String) {
-        showToast(str, null)
-    }
-
-    protected fun showToast(str: String, duration: Int?) {
+    protected fun showToast(str: String, duration: Int? = null) {
         val map = HashMap<String, Any>().apply {
             put(
                 FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
@@ -114,11 +114,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         showToast(map)
     }
 
-    protected fun showToast(@StringRes resId: Int) {
-        showToast(resId, null)
-    }
-
-    protected fun showToast(@StringRes resId: Int, duration: Int?) {
+    protected fun showToast(@StringRes resId: Int, duration: Int? = null) {
         val map = HashMap<String, Any>().apply {
             put(
                 FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
@@ -141,7 +137,6 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     }
 
     companion object {
-
         @JvmStatic
         fun <T : BaseViewModel> createViewModelFactory(viewModel: T): ViewModelProvider.Factory {
             return ViewModelFactory(viewModel)

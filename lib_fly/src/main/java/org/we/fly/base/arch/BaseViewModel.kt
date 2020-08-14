@@ -4,8 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.we.fly.base.FlyBaseConstants
 
 /**
@@ -74,6 +73,44 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
 
     override fun onDestroy() {
 
+    }
+
+//    private suspend fun tryCatch(
+//        tryAction: suspend CoroutineScope.() -> Unit,
+//        catchAction: suspend CoroutineScope.(e: Throwable) -> Unit,
+//        finallyAction: suspend CoroutineScope.() -> Unit
+//    ) {
+//        try {
+//            tryAction()
+//        } catch (e: Throwable) {
+//            catchAction(e)
+//        } finally {
+//            finallyAction()
+//        }
+//    }
+
+    protected fun launchOnMain() {
+        viewModelScope.launch(Dispatchers.Main) {
+
+        }
+    }
+
+    protected fun launchOnIO() {
+        viewModelScope.launch(Dispatchers.IO) {
+
+        }
+    }
+
+    protected fun handleRequest(sendRequest: () -> Unit) {
+        viewModelScope.launch(Dispatchers.Main) {
+            try {
+                withContext(Dispatchers.IO) {
+                    sendRequest()
+                }
+            } catch (e: Exception) {
+
+            }
+        }
     }
 
     override fun showLoadingUI(isShow: Boolean) {

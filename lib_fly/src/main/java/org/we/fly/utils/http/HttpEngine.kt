@@ -8,7 +8,6 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.io.UnsupportedEncodingException
@@ -22,15 +21,26 @@ import java.util.concurrent.TimeUnit
  * @description: 网络请求工具
  * @since: 1.0.0
  */
-object HttpEngine {
-    private const val DEFAULT_CONNECT_TIME = 10L
-    private const val DEFAULT_WRITE_TIME = 30L
-    private const val DEFAULT_READ_TIME = 30L
-    private const val CACHE_SERVICE_COUNT = 100
-
+class HttpEngine private constructor() {
     private lateinit var defaultRetrofit: Retrofit
     private var defaultOkHttpClient: OkHttpClient
     private var serviceCache: LruCache<String, Any>
+
+    companion object {
+        private const val DEFAULT_CONNECT_TIME = 10L // 连接超时时间
+        private const val DEFAULT_WRITE_TIME = 30L // 设置写操作超时时间
+        private const val DEFAULT_READ_TIME = 30L // 设置读操作超时时间
+        private const val CACHE_SERVICE_COUNT = 100
+
+        @Volatile
+        private var instance: HttpEngine? = null
+
+        @JvmStatic
+        fun getInstance() =
+            instance ?: synchronized(this) {
+                instance ?: HttpEngine().also { instance = it }
+            }
+    }
 
     init {
         val loggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
@@ -59,12 +69,11 @@ object HttpEngine {
         serviceCache = LruCache(CACHE_SERVICE_COUNT)
     }
 
-    fun buildRetrofit(baseUrl: String) {
+    fun create(baseUrl: String) {
         defaultRetrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(defaultOkHttpClient)
             .addConverterFactory(GsonConverterFactory.create(Gson()))
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
         serviceCache.evictAll()
     }

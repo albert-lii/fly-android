@@ -5,7 +5,9 @@ import android.app.Application
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
 import kotlinx.coroutines.*
+import okhttp3.Dispatcher
 import org.we.fly.base.FlyBaseConstants
+import org.we.fly.utils.http.HttpHandler
 
 /**
  * @author: Albert Li
@@ -14,7 +16,7 @@ import org.we.fly.base.FlyBaseConstants
  * @description: ViewModel的基类
  * @since: 1.0.0
  */
-abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
+abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior, HttpHandler {
 
     // loading视图显示Event
     var _loadingEvent = MutableLiveData<Boolean>()
@@ -45,7 +47,19 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
 
     private lateinit var lifcycleOwner: LifecycleOwner
 
-    private val viewModelJob = SupervisorJob()
+    /**
+     * 在主线程中执行一个协程
+     */
+    protected fun launchOnMain(block: suspend () -> Unit) {
+        viewModelScope.launch(Dispatchers.Main) { block() }
+    }
+
+    /**
+     * 在IO线程中执行一个协程
+     */
+    protected fun launchOnIO(block: suspend () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) { block() }
+    }
 
     override fun onAny(owner: LifecycleOwner, event: Lifecycle.Event) {
         this.lifcycleOwner = owner
@@ -73,44 +87,6 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
 
     override fun onDestroy() {
 
-    }
-
-//    private suspend fun tryCatch(
-//        tryAction: suspend CoroutineScope.() -> Unit,
-//        catchAction: suspend CoroutineScope.(e: Throwable) -> Unit,
-//        finallyAction: suspend CoroutineScope.() -> Unit
-//    ) {
-//        try {
-//            tryAction()
-//        } catch (e: Throwable) {
-//            catchAction(e)
-//        } finally {
-//            finallyAction()
-//        }
-//    }
-
-    protected fun launchOnMain() {
-        viewModelScope.launch(Dispatchers.Main) {
-
-        }
-    }
-
-    protected fun launchOnIO() {
-        viewModelScope.launch(Dispatchers.IO) {
-
-        }
-    }
-
-    protected fun handleRequest(sendRequest: () -> Unit) {
-        viewModelScope.launch(Dispatchers.Main) {
-            try {
-                withContext(Dispatchers.IO) {
-                    sendRequest()
-                }
-            } catch (e: Exception) {
-
-            }
-        }
     }
 
     override fun showLoadingUI(isShow: Boolean) {

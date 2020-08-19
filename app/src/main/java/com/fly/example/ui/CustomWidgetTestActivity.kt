@@ -2,6 +2,8 @@ package com.fly.example.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.fly.example.R
 import com.fly.example.base.BaseAppBindingActivity
 import com.fly.example.databinding.ActivityCustomWidgetTestBinding

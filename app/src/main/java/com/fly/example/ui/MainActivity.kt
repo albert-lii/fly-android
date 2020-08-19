@@ -1,6 +1,8 @@
 package com.fly.example.ui
 
 import android.os.Bundle
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.fly.example.R
 import com.fly.example.base.BaseAppBindingActivity
 import com.fly.example.databinding.ActivityMainBinding
@@ -15,7 +17,6 @@ import org.we.fly.extensions.singleClick
  * @since: 1.0.0
  */
 class MainActivity : BaseAppBindingActivity<ActivityMainBinding>() {
-
     override fun getLayoutId(): Int {
         return R.layout.activity_main
     }

@@ -9,6 +9,6 @@ package org.we.fly.utils.http
  */
 data class HttpResponse<T>(
     val code: Int,
-    val msg: String,
+    val msg: String? = null,
     val data: T?
 )

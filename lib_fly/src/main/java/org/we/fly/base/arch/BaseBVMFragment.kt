@@ -41,7 +41,7 @@ abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
         val vm = createViewModel()
         viewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(vm))
             .get(vm::class.java)
-        viewModel.application=activity!!.application
+        viewModel.application = activity!!.application
         lifecycle.addObserver(viewModel)
     }
 
@@ -51,24 +51,24 @@ abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
     }
 
     protected fun initInternalObserver() {
-        viewModel._loadingEvent.observeNonNull(this, {
+        viewModel._loadingEvent.observeNonNull(this) {
             showLoadingUI(it)
-        })
-        viewModel._emptyPageEvent.observeNonNull(this, {
+        }
+        viewModel._emptyPageEvent.observeNonNull(this) {
             showEmptyUI(it)
-        })
-        viewModel._toastEvent.observeNonNull(this, {
+        }
+        viewModel._toastEvent.observeNonNull(this) {
             showToast(it)
-        })
-        viewModel._pageNavigationEvent.observeNonNull(this, {
+        }
+        viewModel._pageNavigationEvent.observeNonNull(this) {
             navigateTo(it)
-        })
-        viewModel._backPressEvent.observeNonNull(this, {
+        }
+        viewModel._backPressEvent.observeNonNull(this) {
             backPress(it)
-        })
-        viewModel._finishPageEvent.observeNonNull(this, {
+        }
+        viewModel._finishPageEvent.observeNonNull(this) {
             finishPage(it)
-        })
+        }
     }
 
     protected abstract fun createViewModel(): VM;

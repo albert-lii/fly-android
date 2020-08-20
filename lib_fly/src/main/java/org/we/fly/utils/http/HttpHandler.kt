@@ -1,7 +1,11 @@
 package org.we.fly.utils.http
 
 import android.net.ParseException
+import com.blankj.utilcode.util.GsonUtils
 import com.google.gson.JsonParseException
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONException
 import retrofit2.HttpException
 import java.io.InterruptedIOException
@@ -17,26 +21,44 @@ import java.net.UnknownHostException
  */
 interface HttpHandler {
 
-    suspend fun request(
-        doRequest: suspend () -> Unit,
-        doCatch: suspend (e: Throwable) -> Unit = {},
-        doEnd: suspend () -> Unit = {}
-    ) {
-        try {
-            doRequest()
-        } catch (e: Throwable) {
-            parseException(e)
-            doCatch(e)
-        } finally {
-            doEnd()
+    /**
+     * 将对象类转换为RequestBody
+     */
+    fun convertRequesBody(obj: Any): RequestBody {
+        return GsonUtils.toJson(obj).toRequestBody("application/json".toMediaTypeOrNull())
+    }
+
+    suspend fun <T : Any> request(call: suspend () -> HttpResponse<T>): HttpResponse<T> {
+        return call()
+    }
+
+    /**
+     * 建议调用此方法发送网络请求，因为协程中出现异常时，会直接抛出，所以使用try...catch方法捕获异常
+     */
+    suspend fun <T : Any> safeRequest(call: suspend () -> Result<T>): Result<T> {
+        return try {
+            call()
+        } catch (ex: Throwable) {
+            Result.ERROR(ex, parseException(ex))
+        }
+    }
+
+    /**
+     * 在请求完成后，处理网络请求返回的Response，并返回Result
+     */
+    suspend fun <T : Any> handleResponse(response: HttpResponse<T>): Result<T> {
+        return if (response.isSuccess()) {
+            Result.Success(response.data)
+        } else {
+            Result.Failure(response.code, response.msg)
         }
     }
 
     /**
      * 解析网络请求异常
      */
-    fun parseException(e: Throwable) {
-        when (e) {
+    fun parseException(e: Throwable): HttpError {
+        return when (e) {
             is HttpException -> HttpError.BAD_NETWORK
             is ConnectException, is UnknownHostException -> HttpError.CONNECT_ERROR
             is InterruptedIOException -> HttpError.CONNECT_TIMEOUT

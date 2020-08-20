@@ -4,10 +4,9 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
-import kotlinx.coroutines.*
-import okhttp3.Dispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.we.fly.base.FlyBaseConstants
-import org.we.fly.utils.http.HttpHandler
 
 /**
  * @author: Albert Li
@@ -16,7 +15,7 @@ import org.we.fly.utils.http.HttpHandler
  * @description: ViewModel的基类
  * @since: 1.0.0
  */
-abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior, HttpHandler {
+abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
 
     // loading视图显示Event
     var _loadingEvent = MutableLiveData<Boolean>()
@@ -41,6 +40,8 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior, Ht
     // 关闭页面Event
     var _finishPageEvent = MutableLiveData<Any?>()
         private set
+
+    val _uiEvent = MutableLiveData<UiEvent>()
 
     @SuppressLint("StaticFieldLeak")
     lateinit var application: Application

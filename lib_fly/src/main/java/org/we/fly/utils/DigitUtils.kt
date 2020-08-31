@@ -1,7 +1,8 @@
 package org.we.fly.utils
 
 import android.widget.EditText
-import androidx.core.widget.doOnTextChanged
+import java.math.BigDecimal
+import java.math.MathContext
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -20,18 +21,18 @@ object DigitUtils {
      * 将数字格式化为国际化数字格式
      *
      * @param digit 数字
-     * @param fractionDigits 有效小数位
+     * @param decimalPlaces 保留小数位
      * @param mode 数字截取格式，默认向下取整
      */
     fun formatToIN(
         digit: String,
-        fractionDigits: Int = 2,
+        decimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.DOWN
     ): String {
         return format(
             digit = digit,
-            maxFractionDigits = fractionDigits,
-            minFractionDigits = fractionDigits,
+            maxDecimalPlaces = decimalPlaces,
+            minDecimalPlaces = decimalPlaces,
             mode = mode
         )
     }
@@ -40,20 +41,20 @@ object DigitUtils {
      * 将数字格式化为国际化数字格式
      *
      * @param digit 数字
-     * @param maxFractionDigits 有效小数位
-     * @param minFractionDigits 最小的小数有效位
+     * @param maxDecimalPlaces 最大保留小数位
+     * @param minDecimalPlaces 最小保留小数位
      * @param mode 数字截取格式，默认向下取整
      */
     fun formatToIN(
         digit: String,
-        maxFractionDigits: Int = 2,
-        minFractionDigits: Int = 2,
+        maxDecimalPlaces: Int = 2,
+        minDecimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.DOWN
     ): String {
         return format(
             digit = digit,
-            maxFractionDigits = maxFractionDigits,
-            minFractionDigits = minFractionDigits,
+            maxDecimalPlaces = maxDecimalPlaces,
+            minDecimalPlaces = minDecimalPlaces,
             mode = mode
         )
     }
@@ -62,19 +63,19 @@ object DigitUtils {
      * 根据保留的小数位来处理数字
      *
      * @param digit 数字
-     * @param fractionDigits 有效小数位
+     * @param decimalPlaces 保留的小数位
      * @param mode 小数部分截取规则，默认四舍五入
      * @param minIntegerDigits 最少的有效整数位，默认整数位最少有1位数字
      */
-    fun formatByFractionDigits(
+    fun formatByDecimalPlaces(
         digit: String,
-        fractionDigits: Int = 2,
+        decimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.HALF_UP
     ): String {
         return format(
             digit = digit,
-            maxFractionDigits = fractionDigits,
-            minFractionDigits = fractionDigits,
+            maxDecimalPlaces = decimalPlaces,
+            minDecimalPlaces = decimalPlaces,
             mode = mode,
             integerFormat = "0"
         )
@@ -84,43 +85,42 @@ object DigitUtils {
      * 根据保留的小数位来处理数字
      *
      * @param digit 数字
-     * @param maxFractionDigits 有效小数位
-     * @param minFractionDigits 最小的小数有效位
+     * @param maxFractionDigits 最大保留的小数位
+     * @param minFractionDigits 最小保留的小数位
      * @param mode 小数部分截取规则，默认四舍五入
      * @param minIntegerDigits 最少的有效整数位，默认整数位最少有1位数字
      */
-    fun formatByFractionDigits(
+    fun formatByDecimalPlaces(
         digit: String,
-        maxFractionDigits: Int = 2,
-        minFractionDigits: Int = 2,
+        maxDecimalPlaces: Int = 2,
+        minDecimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.HALF_UP
     ): String {
         return format(
             digit = digit,
-            maxFractionDigits = maxFractionDigits,
-            minFractionDigits = minFractionDigits,
+            maxDecimalPlaces = maxDecimalPlaces,
+            minDecimalPlaces = minDecimalPlaces,
             mode = mode,
             integerFormat = "0"
         )
     }
 
-
     /**
      * 将数字格式化为指定的数字格式
      *
      * @param digit 数字
-     * @param maxFractionDigits 有效小数位
-     * @param minFractionDigits 最小的小数有效位
+     * @param maxDecimalPlaces 最大保留的小数位
+     * @param minDecimalPlaces 最小的保留的小数位
      * @param mode 数字截取模式
-     * @param minIntegerDigits 最少的有效整数位，默认整数位最少有1位数字
+     * @param minIntegerBits 最少的有效整数位，默认整数位最少有1位数字
      * @param integerPattern 整数部分规则
      */
     fun format(
         digit: String,
-        maxFractionDigits: Int = 2,
-        minFractionDigits: Int = 2,
+        maxDecimalPlaces: Int = 2,
+        minDecimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.HALF_UP,
-        minIntegerDigits: Int = 1,
+        minIntegerBits: Int = 1,
         integerFormat: String = ""
     ): String {
         var digitDouble = digit.toDoubleOrNull()
@@ -129,11 +129,11 @@ object DigitUtils {
         }
         // 小数部分的规则
         var fractionPattern = ""
-        var minFraction = minFractionDigits
-        if (minFractionDigits > maxFractionDigits) {
-            minFraction = maxFractionDigits
+        var minFraction = minDecimalPlaces
+        if (minDecimalPlaces > maxDecimalPlaces) {
+            minFraction = maxDecimalPlaces
         }
-        for (i in 0 until maxFractionDigits) {
+        for (i in 0 until maxDecimalPlaces) {
             if (i < minFraction) {
                 fractionPattern += "0"
             } else {
@@ -143,10 +143,10 @@ object DigitUtils {
         // 整数部分规则
         var integerPattern = integerFormat
         if (integerPattern.isEmpty()) {
-            if (minIntegerDigits == 0) {
+            if (minIntegerBits == 0) {
                 integerPattern = "#,###"
             } else {
-                for (i in 1..minIntegerDigits) {
+                for (i in 1..minIntegerBits) {
                     if (i / 4 == 1) {
                         integerPattern = "0," + integerPattern
                     } else {
@@ -208,5 +208,27 @@ object DigitUtils {
                 et.setSelection(1)
             }
         }
+    }
+
+    /**
+     * 保留指定的有效小数位
+     *
+     * @param digit 数字
+     * @param precision 有效小数位
+     * @param mode 有效小数位的舍入规则，默认四舍五入
+     */
+    fun formatByDecimalPercision(
+        digit: String?,
+        precision: Int,
+        precisionMode: RoundingMode = RoundingMode.HALF_UP
+    ): String {
+        val digitDouble = digit?.toDoubleOrNull()
+        if (digitDouble == null) {
+            return "0"
+        }
+        val number = BigDecimal(digit)
+        val divisor: BigDecimal = BigDecimal.ONE
+        val mc = MathContext(precision, precisionMode)
+        return number.divide(divisor, mc).toString()
     }
 }

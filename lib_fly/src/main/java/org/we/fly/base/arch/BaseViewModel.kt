@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.we.fly.base.FlyBaseConstants
 
 /**
@@ -39,10 +41,26 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     var _finishPageEvent = MutableLiveData<Any?>()
         private set
 
+    val _uiEvent = MutableLiveData<UiEvent>()
+
     @SuppressLint("StaticFieldLeak")
     lateinit var application: Application
 
     private lateinit var lifcycleOwner: LifecycleOwner
+
+    /**
+     * 在主线程中执行一个协程
+     */
+    protected fun launchOnMain(block: suspend () -> Unit) {
+        viewModelScope.launch(Dispatchers.Main) { block() }
+    }
+
+    /**
+     * 在IO线程中执行一个协程
+     */
+    protected fun launchOnIO(block: suspend () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) { block() }
+    }
 
     override fun onAny(owner: LifecycleOwner, event: Lifecycle.Event) {
         this.lifcycleOwner = owner
@@ -96,11 +114,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         _finishPageEvent.postValue(arg)
     }
 
-    protected fun showToast(str: String) {
-        showToast(str, null)
-    }
-
-    protected fun showToast(str: String, duration: Int?) {
+    protected fun showToast(str: String, duration: Int? = null) {
         val map = HashMap<String, Any>().apply {
             put(
                 FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
@@ -114,11 +128,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         showToast(map)
     }
 
-    protected fun showToast(@StringRes resId: Int) {
-        showToast(resId, null)
-    }
-
-    protected fun showToast(@StringRes resId: Int, duration: Int?) {
+    protected fun showToast(@StringRes resId: Int, duration: Int? = null) {
         val map = HashMap<String, Any>().apply {
             put(
                 FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
@@ -141,7 +151,6 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     }
 
     companion object {
-
         @JvmStatic
         fun <T : BaseViewModel> createViewModelFactory(viewModel: T): ViewModelProvider.Factory {
             return ViewModelFactory(viewModel)

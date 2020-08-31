@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="titlebar_height">@dimen/px_43</dimen>
+    <dimen name="titlebar_titlesize">@dimen/px_18</dimen>
+    <dimen name="titlebar_lefticon_size">@dimen/px_19</dimen>
+    <dimen name="page_space_lr">@dimen/px_12</dimen>
+    <dimen name="page_space_top">@dimen/px_8</dimen>
+    <dimen name="btn_height">@dimen/px_40</dimen>
+    <dimen name="btn_space_lr">@dimen/px_24</dimen>
+    <dimen name="textsize_l">@dimen/px_16</dimen>
+    <dimen name="textsize_m">@dimen/px_14</dimen>
+    <dimen name="textsize_s">@dimen/px_12</dimen>
+</resources>

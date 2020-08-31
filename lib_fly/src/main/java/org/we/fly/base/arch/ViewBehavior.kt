@@ -31,7 +31,7 @@ interface ViewBehavior {
     /**
      * 返回键点击
      */
-    fun backPress(arg: Any?);
+    fun backPress(arg: Any?)
 
     /**
      * 关闭页面

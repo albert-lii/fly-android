@@ -28,7 +28,7 @@ abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val binding: B = DataBindingUtil.getBinding(holder.itemView)!!
         onBindItem(binding, getItems()!![position], position)
-        binding!!.executePendingBindings()
+        binding.executePendingBindings()
         if (bindItemClickListener != null) {
             holder.itemView.setOnClickListener {
                 bindItemClickListener!!.onItemClick(

@@ -39,24 +39,24 @@ abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
     }
 
     protected fun initInternalObserver() {
-        viewModel._loadingEvent.observeNonNull(this, {
+        viewModel._loadingEvent.observeNonNull(this) {
             showLoadingUI(it)
-        })
-        viewModel._emptyPageEvent.observeNonNull(this, {
+        }
+        viewModel._emptyPageEvent.observeNonNull(this) {
             showEmptyUI(it)
-        })
-        viewModel._toastEvent.observeNonNull(this, {
+        }
+        viewModel._toastEvent.observeNonNull(this) {
             showToast(it)
-        })
-        viewModel._pageNavigationEvent.observeNonNull(this, {
+        }
+        viewModel._pageNavigationEvent.observeNonNull(this) {
             navigateTo(it)
-        })
-        viewModel._backPressEvent.observeNullable(this, {
+        }
+        viewModel._backPressEvent.observeNullable(this) {
             backPress(it)
-        })
-        viewModel._finishPageEvent.observeNullable(this, {
+        }
+        viewModel._finishPageEvent.observeNullable(this) {
             finishPage(it)
-        })
+        }
     }
 
     protected abstract fun createViewModel(): VM

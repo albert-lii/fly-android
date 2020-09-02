@@ -34,13 +34,13 @@ inline fun EditText.afterTextChanged(crossinline afterChanged: (s: Editable?) ->
     addTextChanged(afterChanged = afterChanged)
 }
 
-inline fun EditText.beforeChanged(
+inline fun EditText.beforeTextChanged(
     crossinline beforeChanged: (s: CharSequence?, start: Int, count: Int, after: Int) -> Unit = { _, _, _, _ -> }
 ) {
     addTextChanged(beforeChanged = beforeChanged)
 }
 
-inline fun EditText.onChanged(
+inline fun EditText.onTextChanged(
     crossinline onChanged: (s: CharSequence?, start: Int, before: Int, count: Int) -> Unit = { _, _, _, _ -> }
 ) {
     addTextChanged(onChanged = onChanged)

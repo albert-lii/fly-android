@@ -180,37 +180,6 @@ object DigitUtils {
     }
 
     /**
-     * 将EditText中输入的数字转为指定格式，此方法建议放在onTextChanged方法中
-     *
-     * @param et 输入框控件
-     * @param fractionDigits 数字的最大小数位
-     */
-    fun formatInput(et: EditText, fractionDigits: Int = 2) {
-        val text = et.text.toString()
-        if (text.contains(".")) {
-            // 超过最大小数位
-            if (text.length - text.indexOf(".") > (fractionDigits + 1)) {
-                val s = text.substring(0, text.indexOf(".") + (fractionDigits + 1))
-                et.setText(s)
-                et.setSelection(s.length)
-            }
-        }
-        // 输入的的一个字符是"."，自动补全
-        if (text.startsWith(".")) {
-            val s = "0" + text
-            et.setText(s)
-            et.setSelection(s.length)
-        }
-        // 起始字符是0，并且后面字符不是"."，则后续无法输入
-        if (text.trim().startsWith("0") && text.trim().length > 1) {
-            if (!text.substring(1, 2).equals(".")) {
-                et.setText(text.substring(0, 1))
-                et.setSelection(1)
-            }
-        }
-    }
-
-    /**
      * 保留指定的有效小数位
      *
      * @param digit 数字
@@ -230,5 +199,39 @@ object DigitUtils {
         val divisor: BigDecimal = BigDecimal.ONE
         val mc = MathContext(precision, precisionMode)
         return number.divide(divisor, mc).toString()
+    }
+
+    /**
+     * 将EditText中输入的数字转为指定格式，此方法建议放在onTextChanged方法中
+     *
+     * @param et 输入框控件
+     * @param decimalPlaces 数字的最大小数位
+     * @param noLimitDecimalPlaces 是否限制小数的位数
+     */
+    fun formatInput(et: EditText, decimalPlaces: Int = 2, noLimitDecimalPlaces: Boolean = false) {
+        val text = et.text.toString()
+        if (!noLimitDecimalPlaces) {
+            if (text.contains(".")) {
+                // 超过最大小数位
+                if (text.length - text.indexOf(".") > (decimalPlaces + 1)) {
+                    val s = text.substring(0, text.indexOf(".") + (decimalPlaces + 1))
+                    et.setText(s)
+                    et.setSelection(s.length)
+                }
+            }
+        }
+        // 输入的的一个字符是"."，自动补全
+        if (text.startsWith(".")) {
+            val s = "0" + text
+            et.setText(s)
+            et.setSelection(s.length)
+        }
+        // 起始字符是0，并且后面字符不是"."，则后续无法输入
+        if (text.trim().startsWith("0") && text.trim().length > 1) {
+            if (!text.substring(1, 2).equals(".")) {
+                et.setText(text.substring(0, 1))
+                et.setSelection(1)
+            }
+        }
     }
 }

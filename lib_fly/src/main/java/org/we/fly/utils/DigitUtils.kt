@@ -205,12 +205,12 @@ object DigitUtils {
      * 将EditText中输入的数字转为指定格式，此方法建议放在onTextChanged方法中
      *
      * @param et 输入框控件
-     * @param decimalPlaces 数字的最大小数位
-     * @param noLimitDecimalPlaces 是否限制小数的位数
+     * @param limitDecimalPlaces 是否限制小数的位数
+     * @param decimalPlaces 数字的最大小数位，仅当 limitDecimalPlaces=true 时有效
      */
-    fun formatInput(et: EditText, decimalPlaces: Int = 2, noLimitDecimalPlaces: Boolean = false) {
+    fun formatInput(et: EditText, limitDecimalPlaces: Boolean = false, decimalPlaces: Int = 2) {
         val text = et.text.toString()
-        if (!noLimitDecimalPlaces) {
+        if (!limitDecimalPlaces) {
             if (text.contains(".")) {
                 // 超过最大小数位
                 if (text.length - text.indexOf(".") > (decimalPlaces + 1)) {

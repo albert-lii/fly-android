@@ -210,7 +210,7 @@ object DigitUtils {
      */
     fun formatInput(et: EditText, limitDecimalPlaces: Boolean = false, decimalPlaces: Int = 2) {
         val text = et.text.toString()
-        if (!limitDecimalPlaces) {
+        if (limitDecimalPlaces) {
             if (text.contains(".")) {
                 // 超过最大小数位
                 if (text.length - text.indexOf(".") > (decimalPlaces + 1)) {

@@ -17,20 +17,13 @@ import java.util.*
  */
 object DigitUtils {
 
-    /**
-     * 将数字格式化为国际化数字格式
-     *
-     * @param digit 数字
-     * @param decimalPlaces 保留小数位
-     * @param mode 数字截取格式，默认向下取整
-     */
     fun formatToIN(
-        digit: String,
+        digit: String?,
         decimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.DOWN
     ): String {
-        return format(
-            digit = digit,
+        return formatToIN(
+            digit = digit?.toDoubleOrNull(),
             maxDecimalPlaces = decimalPlaces,
             minDecimalPlaces = decimalPlaces,
             mode = mode
@@ -46,7 +39,7 @@ object DigitUtils {
      * @param mode 数字截取格式，默认向下取整
      */
     fun formatToIN(
-        digit: String,
+        digit: Double?,
         maxDecimalPlaces: Int = 2,
         minDecimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.DOWN
@@ -55,6 +48,18 @@ object DigitUtils {
             digit = digit,
             maxDecimalPlaces = maxDecimalPlaces,
             minDecimalPlaces = minDecimalPlaces,
+            mode = mode
+        )
+    }
+
+    fun formatByDecimalPlaces(
+        digit: String?,
+        decimalPlaces: Int = 2,
+        mode: RoundingMode = RoundingMode.HALF_UP
+    ): String {
+        return formatByDecimalPlaces(
+            digit = digit?.toDoubleOrNull(),
+            decimalPlaces = decimalPlaces,
             mode = mode
         )
     }
@@ -68,7 +73,7 @@ object DigitUtils {
      * @param minIntegerDigits 最少的有效整数位，默认整数位最少有1位数字
      */
     fun formatByDecimalPlaces(
-        digit: String,
+        digit: Double?,
         decimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.HALF_UP
     ): String {
@@ -78,6 +83,20 @@ object DigitUtils {
             minDecimalPlaces = decimalPlaces,
             mode = mode,
             integerFormat = "0"
+        )
+    }
+
+    fun formatByDecimalPlaces(
+        digit: String?,
+        maxDecimalPlaces: Int = 2,
+        minDecimalPlaces: Int = 2,
+        mode: RoundingMode = RoundingMode.HALF_UP
+    ): String {
+        return formatByDecimalPlaces(
+            digit = digit?.toDoubleOrNull(),
+            maxDecimalPlaces = maxDecimalPlaces,
+            minDecimalPlaces = minDecimalPlaces,
+            mode = mode
         )
     }
 
@@ -91,7 +110,7 @@ object DigitUtils {
      * @param minIntegerDigits 最少的有效整数位，默认整数位最少有1位数字
      */
     fun formatByDecimalPlaces(
-        digit: String,
+        digit: Double?,
         maxDecimalPlaces: Int = 2,
         minDecimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.HALF_UP
@@ -116,17 +135,14 @@ object DigitUtils {
      * @param integerPattern 整数部分规则
      */
     fun format(
-        digit: String,
+        digit: Double?,
         maxDecimalPlaces: Int = 2,
         minDecimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.HALF_UP,
         minIntegerBits: Int = 1,
         integerFormat: String = ""
     ): String {
-        var digitDouble = digit.toDoubleOrNull()
-        if (digitDouble == null) {
-            digitDouble = 0.0
-        }
+        val digitDouble = digit ?: 0.0
         // 小数部分的规则
         var fractionPattern = ""
         var minFraction = minDecimalPlaces
@@ -179,6 +195,18 @@ object DigitUtils {
         return df.format(digitDouble)
     }
 
+    fun formatByDecimalPercision(
+        digit: String?,
+        precision: Int,
+        precisionMode: RoundingMode = RoundingMode.HALF_UP
+    ): String {
+        return formatByDecimalPercision(
+            digit = digit?.toDoubleOrNull(),
+            precision = precision,
+            precisionMode = precisionMode
+        )
+    }
+
     /**
      * 保留指定的有效小数位
      *
@@ -187,15 +215,12 @@ object DigitUtils {
      * @param mode 有效小数位的舍入规则，默认四舍五入
      */
     fun formatByDecimalPercision(
-        digit: String?,
+        digit: Double?,
         precision: Int,
         precisionMode: RoundingMode = RoundingMode.HALF_UP
     ): String {
-        val digitDouble = digit?.toDoubleOrNull()
-        if (digitDouble == null) {
-            return "0"
-        }
-        val number = BigDecimal(digit)
+        val digitDouble = digit ?: 0.0
+        val number = BigDecimal(digitDouble)
         val divisor: BigDecimal = BigDecimal.ONE
         val mc = MathContext(precision, precisionMode)
         return number.divide(divisor, mc).toString()

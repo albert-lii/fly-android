@@ -232,8 +232,14 @@ object DigitUtils {
      * @param et 输入框控件
      * @param limitDecimalPlaces 是否限制小数的位数
      * @param decimalPlaces 数字的最大小数位，仅当 limitDecimalPlaces=true 时有效
+     * @param negative 是否允许输入负数
      */
-    fun formatInput(et: EditText, limitDecimalPlaces: Boolean = false, decimalPlaces: Int = 2) {
+    fun formatInput(
+        et: EditText,
+        limitDecimalPlaces: Boolean = false,
+        decimalPlaces: Int = 2,
+        negative: Boolean = true
+    ) {
         val text = et.text.toString()
         if (limitDecimalPlaces) {
             if (text.contains(".")) {
@@ -256,6 +262,12 @@ object DigitUtils {
             if (!text.substring(1, 2).equals(".")) {
                 et.setText(text.substring(0, 1))
                 et.setSelection(1)
+            }
+        }
+        // 输入的的一个字符是"-"，则清空，后续无法输入
+        if (!negative) {
+            if (text.startsWith("-")) {
+                et.setText("")
             }
         }
     }

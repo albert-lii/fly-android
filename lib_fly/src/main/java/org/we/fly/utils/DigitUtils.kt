@@ -1,6 +1,7 @@
 package org.we.fly.utils
 
 import android.widget.EditText
+import java.lang.NumberFormatException
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode
@@ -270,5 +271,51 @@ object DigitUtils {
                 et.setText("")
             }
         }
+    }
+
+    /**
+     * 加法运算
+     */
+    fun sum(v1: String?, v2: String?): BigDecimal {
+        val t1 = if (v1.isNullOrEmpty()) "0" else v1
+        val t2 = if (v2.isNullOrEmpty()) "0" else v2
+        val b1 = BigDecimal(t1)
+        val b2 = BigDecimal(t2)
+        return b1.plus(b2)
+    }
+
+    /**
+     * 减法运算
+     */
+    fun imsub(v1: String?, v2: String?): BigDecimal {
+        val t1 = if (v1.isNullOrEmpty()) "0" else v1
+        val t2 = if (v2.isNullOrEmpty()) "0" else v2
+        val b1 = BigDecimal(t1)
+        val b2 = BigDecimal(t2)
+        return b1.minus(b2)
+    }
+
+    /**
+     * 乘法运算
+     */
+    fun product(v1: String?, v2: String?): BigDecimal {
+        if (v1.isNullOrEmpty() || v2.isNullOrEmpty()) {
+            return BigDecimal("0")
+        }
+        val b1 = BigDecimal(v1)
+        val b2 = BigDecimal(v2)
+        return b1.times(b2)
+    }
+
+    /**
+     * 除法运算
+     */
+    fun quotient(v1: String?, v2: String?): BigDecimal {
+        if (v1.isNullOrEmpty() || v2.isNullOrEmpty()) {
+            return BigDecimal("0")
+        }
+        val b1 = BigDecimal(v1)
+        val b2 = BigDecimal(v2)
+        return b1.div(b2)
     }
 }

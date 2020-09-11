@@ -198,18 +198,6 @@ object DigitUtils {
         return df.format(digitDouble)
     }
 
-    fun formatByDecimalPercision(
-        digit: String?,
-        precision: Int,
-        precisionMode: RoundingMode = RoundingMode.HALF_UP
-    ): String {
-        return formatByDecimalPercision(
-            digit = digit?.toDoubleOrNull(),
-            precision = precision,
-            precisionMode = precisionMode
-        )
-    }
-
     /**
      * 保留指定的有效小数位
      *
@@ -218,15 +206,15 @@ object DigitUtils {
      * @param mode 有效小数位的舍入规则，默认四舍五入
      */
     fun formatByDecimalPercision(
-        digit: Double?,
+        digit: String?,
         precision: Int,
         precisionMode: RoundingMode = RoundingMode.HALF_UP
-    ): String {
-        val digitDouble = digit ?: 0.0
-        val number = BigDecimal(digitDouble)
+    ): BigDecimal {
+        val d = digit ?: "0"
+        val number = BigDecimal(d)
         val divisor: BigDecimal = BigDecimal.ONE
         val mc = MathContext(precision, precisionMode)
-        return number.divide(divisor, mc).toString()
+        return number.divide(divisor, mc)
     }
 
     /**

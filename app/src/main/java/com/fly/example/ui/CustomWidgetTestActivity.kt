@@ -22,8 +22,6 @@ class CustomWidgetTestActivity : BaseAppBindingActivity<ActivityCustomWidgetTest
     }
 
     override fun initialize(savedInstanceState: Bundle?) {
-        binding.titlebar.setLeftClick(View.OnClickListener {
-            finish()
-        })
+
     }
 }

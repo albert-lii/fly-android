@@ -1,7 +1,5 @@
 package org.we.fly.utils.http
 
-import java.lang.Error
-
 /**
  * @author: Albert Li
  * @contact: albertlii@163.com
@@ -14,14 +12,15 @@ sealed class Result<out T : Any> {
     data class Success<out T : Any>(val data: T?) : Result<T>()
 
     /* 请求成功，返回失败响应 */
-    data class Failure(val code: Int, val msg: String) : Result<Nothing>()
+    data class Failure(val code: Int, var msg: String? = null) :
+        Result<Nothing>()
 
     /* 请求失败，抛出异常 */
     data class ERROR(val ex: Throwable, val error: HttpError) : Result<Nothing>()
 
     fun then(
         onSuccess: (data: T?) -> Unit,
-        onFailure: ((code: Int, msg: String) -> Unit)? = null,
+        onFailure: ((code: Int, msg: String?) -> Unit)? = null,
         onError: ((ex: Throwable, error: HttpError) -> Unit)? = null
     ) {
         when (this) {

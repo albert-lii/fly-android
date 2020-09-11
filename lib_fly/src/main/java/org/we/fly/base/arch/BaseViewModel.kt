@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.we.fly.base.FlyBaseConstants
 
@@ -51,15 +53,15 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     /**
      * 在主线程中执行一个协程
      */
-    protected fun launchOnMain(block: suspend () -> Unit) {
-        viewModelScope.launch(Dispatchers.Main) { block() }
+    protected fun launchOnUI(block: suspend CoroutineScope.() -> Unit): Job {
+        return viewModelScope.launch(Dispatchers.Main) { block() }
     }
 
     /**
      * 在IO线程中执行一个协程
      */
-    protected fun launchOnIO(block: suspend () -> Unit) {
-        viewModelScope.launch(Dispatchers.IO) { block() }
+    protected fun launchOnIO(block: suspend CoroutineScope.() -> Unit): Job {
+        return viewModelScope.launch(Dispatchers.IO) { block() }
     }
 
     override fun onAny(owner: LifecycleOwner, event: Lifecycle.Event) {

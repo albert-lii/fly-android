@@ -33,11 +33,8 @@ class LiveBusSecondActivity :
 
     override fun initialize(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
-        binding.titlebar.setLeftClick(View.OnClickListener{
-           finish()
-        })
         addListener()
-        initObserve()
+        addObserve()
     }
 
     private fun addListener() {
@@ -49,7 +46,7 @@ class LiveBusSecondActivity :
         }
     }
 
-    private fun initObserve() {
+    private fun addObserve() {
         LiveBus.get(Constants.BK_FIRST_POST_TEST, String::class.java)
             .observe(this, object : Observer<String> {
                 override fun onChanged(t: String?) {

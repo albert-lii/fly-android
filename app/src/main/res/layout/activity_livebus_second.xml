@@ -36,7 +36,7 @@
             android:layout_marginLeft="@dimen/btn_space_lr"
             android:layout_marginTop="@dimen/px_50"
             android:layout_marginRight="@dimen/btn_space_lr"
-            android:background="@drawable/btn_base_bg"
+            android:background="@drawable/base_btn_bg"
             android:text="Post一个消息测试接收消息的生命周期"
             android:textAllCaps="false"
             android:textColor="@color/textcolor_main_black" />
@@ -48,7 +48,7 @@
             android:layout_marginLeft="@dimen/btn_space_lr"
             android:layout_marginTop="@dimen/px_10"
             android:layout_marginRight="@dimen/btn_space_lr"
-            android:background="@drawable/btn_base_bg"
+            android:background="@drawable/base_btn_bg"
             android:text="Post一个消息并关闭页面"
             android:textAllCaps="false"
             android:textColor="@color/textcolor_main_black" />

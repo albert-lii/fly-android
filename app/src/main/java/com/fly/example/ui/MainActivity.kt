@@ -28,5 +28,8 @@ class MainActivity : BaseAppBindingActivity<ActivityMainBinding>() {
         binding.btnCustomWidgetTest.singleClick {
             navigateTo(CustomWidgetTestActivity::class.java)
         }
+        binding.btnCoroutineTest.singleClick {
+            navigateTo(CoroutineTestActivity::class.java)
+        }
     }
 }

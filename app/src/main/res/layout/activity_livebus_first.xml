@@ -35,7 +35,7 @@
             android:layout_marginLeft="@dimen/btn_space_lr"
             android:layout_marginTop="@dimen/px_50"
             android:layout_marginRight="@dimen/btn_space_lr"
-            android:background="@drawable/btn_base_bg"
+            android:background="@drawable/base_btn_bg"
             android:text="Post一个消息"
             android:textAllCaps="false"
             android:textColor="@color/textcolor_main_black" />

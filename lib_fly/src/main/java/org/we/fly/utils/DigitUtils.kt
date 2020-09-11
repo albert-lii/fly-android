@@ -189,9 +189,11 @@ object DigitUtils {
         val df = DecimalFormat(pattern)
         df.currency = Currency.getInstance(Locale.CHINA)
         df.roundingMode = mode
-        // 防止因为语言环境切换，导致小数点变成其他符号
-        val symbols = DecimalFormatSymbols()
-        symbols.decimalSeparator = '.'
+        val symbols = DecimalFormatSymbols(Locale.ENGLISH)
+        // 防止因为语言环境切换，导致小数点变成其他符号，例如印尼、葡萄牙等语言环境下，小数点会变成逗号
+        // 但是如果数字的小数位还有千分位，则此方法也会无效
+        // 所以此处推荐使用Locale来固定数字的显示为英文环境下的显示
+//        symbols.decimalSeparator = '.'
         df.decimalFormatSymbols = symbols
         return df.format(digitDouble)
     }

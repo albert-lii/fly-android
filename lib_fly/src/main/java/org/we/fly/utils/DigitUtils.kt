@@ -221,44 +221,48 @@ object DigitUtils {
      * 将EditText中输入的数字转为指定格式，此方法建议放在onTextChanged方法中
      *
      * @param et 输入框控件
-     * @param limitDecimalPlaces 是否限制小数的位数
-     * @param decimalPlaces 数字的最大小数位，仅当 limitDecimalPlaces=true 时有效
+     * @param decimalPlaces 数字的最大小数位
      * @param negative 是否允许输入负数
      */
     fun formatInput(
         et: EditText,
-        limitDecimalPlaces: Boolean = false,
-        decimalPlaces: Int = 2,
+        decimalPlaces: Int? = null,
         negative: Boolean = true
     ) {
         val text = et.text.toString()
-        if (limitDecimalPlaces) {
-            if (text.contains(".")) {
-                // 超过最大小数位
-                if (text.length - text.indexOf(".") > (decimalPlaces + 1)) {
-                    val s = text.substring(0, text.indexOf(".") + (decimalPlaces + 1))
-                    et.setText(s)
-                    et.setSelection(s.length)
-                }
-            }
-        }
-        // 输入的的一个字符是"."，自动补全
         if (text.startsWith(".")) {
-            val s = "0" + text
+            // 输入的的一个字符是"."，自动补全
+            val s = if (decimalPlaces == 0) {
+                "0"
+            } else {
+                "0" + text
+            }
             et.setText(s)
             et.setSelection(s.length)
-        }
-        // 起始字符是0，并且后面字符不是"."，则后续无法输入
-        if (text.trim().startsWith("0") && text.trim().length > 1) {
+        } else if (text.trim().startsWith("0") && text.trim().length > 1) {
+            // 起始字符是0，并且后面字符不是"."，则后续无法输入
             if (!text.substring(1, 2).equals(".")) {
                 et.setText(text.substring(0, 1))
                 et.setSelection(1)
             }
-        }
-        // 输入的的一个字符是"-"，则清空，后续无法输入
-        if (!negative) {
-            if (text.startsWith("-")) {
+        } else if (text.startsWith("-")) {
+            if (!negative) {
+                // 不允许输入负数
                 et.setText("")
+            }
+        }
+        if (decimalPlaces != null) {
+            if (text.contains(".")) {
+                // 超过最大小数位
+                if (decimalPlaces <= 0) {
+                    val s = text.substring(0, text.indexOf("."))
+                    et.setText(s)
+                    et.setSelection(s.length)
+                } else if (text.length - text.indexOf(".") > (decimalPlaces + 1)) {
+                    val s = text.substring(0, text.indexOf(".") + (decimalPlaces + 1))
+                    et.setText(s)
+                    et.setSelection(s.length)
+                }
             }
         }
     }

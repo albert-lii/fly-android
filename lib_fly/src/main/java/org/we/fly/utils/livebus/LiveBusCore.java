@@ -168,7 +168,7 @@ public class LiveBusCore {
         }
 
         @Override
-        public BusObservable<T> observerAlwaysBeActive(boolean alwaysBeActive) {
+        public BusObservable<T> alwaysBeActive(boolean alwaysBeActive) {
             liveData.observerAlwaysBeActive = alwaysBeActive;
             return this;
         }

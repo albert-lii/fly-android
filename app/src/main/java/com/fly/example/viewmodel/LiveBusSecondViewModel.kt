@@ -33,10 +33,10 @@ class LiveBusSecondViewModel : BaseAppViewModel() {
 
     fun postTestLifecycleMsg() {
         LiveBus.get(Constants.BK_SECOND_POST_CREATED_TEST)
-            .observerAlwaysBeActive(true)
+            .alwaysBeActive(true)
             .post(null)
         LiveBus.get(Constants.BK_SECOND_POST_STARTED_TEST)
-            .observerAlwaysBeActive(false)
+            .alwaysBeActive(false)
             .post(null)
     }
 

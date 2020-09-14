@@ -92,7 +92,7 @@ public interface BusObservable<T> {
      * @param alwaysBeActive {@code true}-Observer可以在Activity的onCreate到onStop之间的生命周期状态接收消息
      *                       {@code false}-Observer可以在Activity的onStart到onPause之间的生命周期状态接收消息
      */
-    BusObservable<T> observerAlwaysBeActive(final boolean alwaysBeActive);
+    BusObservable<T> alwaysBeActive(final boolean alwaysBeActive);
 
     /**
      * 当BusObservable的所有的Observer都被移除时，BusObservable对应的Event是否从事件总线中移除

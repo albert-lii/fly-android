@@ -27,4 +27,12 @@ abstract class BaseBindingDialogFragment<B : ViewDataBinding> : BaseDialogFragme
         return rootView
 //        return super.onCreateView(inflater, container, savedInstanceState)
     }
+
+    override fun getDialogStyle(): Int? {
+        return null
+    }
+
+    override fun getDialogTheme(): Int? {
+        return null
+    }
 }

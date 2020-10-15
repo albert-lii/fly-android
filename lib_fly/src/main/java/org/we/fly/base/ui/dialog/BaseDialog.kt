@@ -8,6 +8,10 @@ import android.view.WindowManager
 import androidx.annotation.FloatRange
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatDialog
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 
 
 /**
@@ -24,6 +28,8 @@ abstract class BaseDialog : AppCompatDialog {
     private var animRes: Int = -1
     private var dimAmount: Float = 0.5f
     private var alpha: Float = 1f
+
+    protected var uiScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     constructor(context: Context) : super(context)
 
@@ -98,6 +104,11 @@ abstract class BaseDialog : AppCompatDialog {
             params.windowAnimations = animRes
             it.setAttributes(params)
         }
+    }
+
+    override fun dismiss() {
+        uiScope.cancel()
+        super.dismiss()
     }
 
     protected abstract @LayoutRes

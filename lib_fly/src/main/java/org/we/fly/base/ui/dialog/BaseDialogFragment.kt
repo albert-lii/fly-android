@@ -10,6 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.XDialogFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import org.we.fly.R
 
 
@@ -20,7 +23,7 @@ import org.we.fly.R
  * @description: DialogFragment的基类
  * @since: 1.0.0
  */
-abstract class BaseDialogFragment : XDialogFragment() {
+abstract class BaseDialogFragment : XDialogFragment(), CoroutineScope by MainScope() {
     protected lateinit var rootView: View
 
     private var width: Int = ViewGroup.LayoutParams.MATCH_PARENT
@@ -162,5 +165,10 @@ abstract class BaseDialogFragment : XDialogFragment() {
         if (isShow()) {
             dismissAllowingStateLoss()
         }
+    }
+
+    override fun onDestroy() {
+        cancel()
+        super.onDestroy()
     }
 }

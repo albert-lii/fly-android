@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.widget.PopupWindow
 import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 
 /**
  * @author: Albert Li
@@ -15,10 +19,10 @@ import androidx.annotation.LayoutRes
  * @since: 1.0.0
  */
 abstract class BasePopupWindow(protected val context: Context) : PopupWindow(context) {
+    protected var uiScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     init {
         initContentView()
-        initialize()
     }
 
     protected open fun initContentView(){
@@ -36,8 +40,11 @@ abstract class BasePopupWindow(protected val context: Context) : PopupWindow(con
         setBackgroundDrawable(dw)
     }
 
+    override fun dismiss() {
+        uiScope.cancel()
+        super.dismiss()
+    }
+
     protected abstract @LayoutRes
     fun getLayoutId(): Int
-
-    protected abstract fun initialize()
 }

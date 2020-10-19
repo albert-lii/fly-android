@@ -114,5 +114,7 @@ abstract class BaseDialog : AppCompatDialog {
     protected abstract @LayoutRes
     fun getLayoutId(): Int
 
-    protected abstract fun initialize(savedInstanceState: Bundle?)
+    protected open fun initialize(savedInstanceState: Bundle?) {
+
+    }
 }

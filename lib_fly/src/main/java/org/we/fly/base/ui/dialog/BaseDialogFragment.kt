@@ -161,7 +161,7 @@ abstract class BaseDialogFragment : XDialogFragment(), CoroutineScope by MainSco
         }
     }
 
-    fun closeAsl() {
+    fun closeAllowingStateLoss() {
         if (isShow()) {
             dismissAllowingStateLoss()
         }

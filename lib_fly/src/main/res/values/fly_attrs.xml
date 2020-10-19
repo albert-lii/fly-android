@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 自定义标题栏 -->
-    <declare-styleable name="TitleBar">
+    <declare-styleable name="fly_TitleBar">
         <!-- 标题栏文字描述 -->
         <attr name="tb_title" format="string" />
         <!-- 标题栏文字大小 -->
@@ -63,12 +63,12 @@
     </declare-styleable>
 
     <!-- 去除文字内部Padding的TextView -->
-    <declare-styleable name="EilsTextView">
+    <declare-styleable name="fly_EilsTextView">
         <attr name="et_eilsText" format="string" />
     </declare-styleable>
 
     <!-- 去除文字内部Padding的TextView -->
-    <declare-styleable name="ProgressCellView">
+    <declare-styleable name="fly_ProgressCellView">
         <attr name="pc_totalCount" format="integer" />
         <attr name="pc_accentCount" format="integer" />
         <attr name="pc_primaryColor" format="color|reference" />
@@ -80,5 +80,14 @@
             <enum name="horizontal" value="0" />
             <enum name="vertical" value="1" />
         </attr>
+    </declare-styleable>
+
+    <!-- 带阴影的Layout-->
+    <declare-styleable name="fly_ShadowLayout">
+        <attr name="sl_cornerRadius" format="dimension" />
+        <attr name="sl_shadowRadius" format="dimension" />
+        <attr name="sl_shadowColor" format="color" />
+        <attr name="sl_dx" format="dimension" />
+        <attr name="sl_dy" format="dimension" />
     </declare-styleable>
 </resources>

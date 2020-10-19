@@ -47,19 +47,19 @@ class ProgressCellView : View {
         paint.isAntiAlias = true
         paint.style = Paint.Style.FILL
         if (attrs != null) {
-            val ta = context.obtainStyledAttributes(attrs, R.styleable.ProgressCellView)
-            primaryColor = ta.getColor(R.styleable.ProgressCellView_pc_primaryColor, primaryColor)
-            accentColor = ta.getInteger(R.styleable.ProgressCellView_pc_accentColor, accentColor)
-            totalCount = ta.getColor(R.styleable.ProgressCellView_pc_totalCount, totalCount)
-            accentCount = ta.getInteger(R.styleable.ProgressCellView_pc_accentCount, accentCount)
+            val ta = context.obtainStyledAttributes(attrs, R.styleable.fly_ProgressCellView)
+            primaryColor = ta.getColor(R.styleable.fly_ProgressCellView_pc_primaryColor, primaryColor)
+            accentColor = ta.getInteger(R.styleable.fly_ProgressCellView_pc_accentColor, accentColor)
+            totalCount = ta.getColor(R.styleable.fly_ProgressCellView_pc_totalCount, totalCount)
+            accentCount = ta.getInteger(R.styleable.fly_ProgressCellView_pc_accentCount, accentCount)
             cellWidth =
-                ta.getDimension(R.styleable.ProgressCellView_pc_cellWidth, cellWidth.toFloat())
+                ta.getDimension(R.styleable.fly_ProgressCellView_pc_cellWidth, cellWidth.toFloat())
                     .toInt()
             cellSpace =
-                ta.getDimension(R.styleable.ProgressCellView_pc_cellSpace, cellSpace.toFloat())
+                ta.getDimension(R.styleable.fly_ProgressCellView_pc_cellSpace, cellSpace.toFloat())
                     .toInt()
-            reverse = ta.getBoolean(R.styleable.ProgressCellView_pc_reverse, reverse)
-            oritenation = ta.getInteger(R.styleable.ProgressCellView_pc_oritenation, oritenation)
+            reverse = ta.getBoolean(R.styleable.fly_ProgressCellView_pc_reverse, reverse)
+            oritenation = ta.getInteger(R.styleable.fly_ProgressCellView_pc_oritenation, oritenation)
             ta.recycle()
         }
     }

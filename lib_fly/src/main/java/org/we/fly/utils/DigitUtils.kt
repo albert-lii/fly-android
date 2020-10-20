@@ -312,7 +312,7 @@ object DigitUtils {
     fun divide(
         v1: String?,
         v2: String?,
-        precision: Int = 2, // 小数精度
+        precision: Int? = null, // 小数精度
         mode: Int = BigDecimal.ROUND_HALF_EVEN // 小数舍入模式
     ): BigDecimal {
         if (v1.isNullOrEmpty() || v2.isNullOrEmpty()) {
@@ -320,6 +320,10 @@ object DigitUtils {
         }
         val b1 = BigDecimal(v1)
         val b2 = BigDecimal(v2)
-        return b1.divide(b2, precision, mode)
+        if (precision == null) {
+            return b1.divide(b2)
+        } else {
+            return b1.divide(b2, precision, mode)
+        }
     }
 }

@@ -1,6 +1,5 @@
 package org.we.fly.extensions
 
-import android.view.View
 import org.we.fly.utils.DigitUtils
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -40,7 +39,7 @@ fun BigDecimal.multiply(
 fun BigDecimal.divide(
     v: String?,
     precision: Int? = null,
-    mode: RoundingMode = RoundingMode.FLOOR
+    mode: RoundingMode = RoundingMode.HALF_EVEN
 ): BigDecimal {
     return DigitUtils.divide(this.toString(), v, precision, mode)
 }

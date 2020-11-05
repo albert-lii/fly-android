@@ -19,6 +19,7 @@ abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
     ViewBehavior {
 
     protected lateinit var viewModel: VM
+        private set
 
     override fun onCreateView(
         inflater: LayoutInflater,

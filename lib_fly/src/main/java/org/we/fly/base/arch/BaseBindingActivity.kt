@@ -17,6 +17,7 @@ abstract class BaseBindingActivity<B : ViewDataBinding> : BaseActivity(),
     ViewBehavior {
 
     protected lateinit var binding: B
+        private set
 
     override fun initContentView() {
         injectDataBinding()
@@ -28,7 +29,7 @@ abstract class BaseBindingActivity<B : ViewDataBinding> : BaseActivity(),
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         binding.unbind()
+        super.onDestroy()
     }
 }

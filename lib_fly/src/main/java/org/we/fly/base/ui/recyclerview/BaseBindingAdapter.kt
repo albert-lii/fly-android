@@ -13,7 +13,6 @@ import androidx.databinding.ViewDataBinding
  * @since: 1.0.0
  */
 abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
-    private var bindItemClickListener: OnBindItemClickListener<B, T>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val binding: B = DataBindingUtil.inflate(
@@ -29,14 +28,17 @@ abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
         val binding: B = DataBindingUtil.getBinding(holder.itemView)!!
         onBindItem(binding, getItems()!![position], position)
         binding.executePendingBindings()
-        if (bindItemClickListener != null) {
+        getItemClickListener()?.let { listener ->
             holder.itemView.setOnClickListener {
-                bindItemClickListener!!.onItemClick(
+                listener.onItemClick(
                     binding,
                     getItems()!![position],
                     position
                 )
             }
+        }
+        if (getItemClickListener() != null) {
+
         }
     }
 
@@ -45,12 +47,4 @@ abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
     }
 
     abstract fun onBindItem(binding: B?, item: T, position: Int)
-
-    fun setOnBindItemClickListener(listener: OnBindItemClickListener<B, T>?) {
-        this.bindItemClickListener = listener
-    }
-
-    interface OnBindItemClickListener<B, T> {
-        fun onItemClick(binding: B, item: T, position: Int)
-    }
 }

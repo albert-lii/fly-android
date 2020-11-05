@@ -16,6 +16,7 @@ import androidx.databinding.ViewDataBinding
  */
 abstract class BaseBindingFragment<B : ViewDataBinding> : BaseFragment() {
     protected lateinit var binding: B
+        private set
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +40,7 @@ abstract class BaseBindingFragment<B : ViewDataBinding> : BaseFragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         binding.unbind()
+        super.onDestroyView()
     }
 }

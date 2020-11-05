@@ -17,6 +17,7 @@ abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
     ViewBehavior {
 
     protected lateinit var viewModel: VM
+        private set
 
     override fun initContentView() {
         super.initContentView()
@@ -33,9 +34,9 @@ abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         binding.unbind()
         lifecycle.removeObserver(viewModel)
+        super.onDestroy()
     }
 
     protected fun initInternalObserver() {

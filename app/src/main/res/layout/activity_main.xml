@@ -55,5 +55,17 @@
             android:text="协程测试"
             android:textAllCaps="false"
             android:textColor="@color/textcolor_main_black" />
+
+        <Button
+            android:id="@+id/btn_itemdecoration_test"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_12"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="ItemDecoration测试"
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_main_black" />
     </LinearLayout>
 </layout>

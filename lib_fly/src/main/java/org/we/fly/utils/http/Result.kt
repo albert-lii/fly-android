@@ -25,8 +25,8 @@ sealed class Result<out T : Any> {
     ) {
         when (this) {
             is Success<T> -> onSuccess(data)
-            is Failure -> onFailure?.let { it(code, msg) }
-            is ERROR -> onError?.let { it(ex, error) }
+            is Failure -> onFailure?.invoke(code, msg)
+            is ERROR -> onError?.invoke(ex, error)
         }
     }
 }

@@ -21,9 +21,57 @@
             app:tb_title="ItemDecoration测试"
             app:tb_titleSize="@dimen/titlebar_titlesize" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_list"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Linear"
+                    android:textColor="@color/textcolor_main_black"
+                    android:textSize="@dimen/px_24" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#333333" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Grid"
+                    android:textColor="@color/textcolor_main_black"
+                    android:textSize="@dimen/px_24" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#333333" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Stagger"
+                    android:textColor="@color/textcolor_main_black"
+                    android:textSize="@dimen/px_24" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_stagger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#333333" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </layout>

@@ -31,5 +31,8 @@ class MainActivity : BaseAppBindingActivity<ActivityMainBinding>() {
         binding.btnCoroutineTest.singleClick {
             navigateTo(CoroutineTestActivity::class.java)
         }
+        binding.btnItemdecorationTest.singleClick {
+            navigateTo(ItemDecorationTestActivity::class.java)
+        }
     }
 }

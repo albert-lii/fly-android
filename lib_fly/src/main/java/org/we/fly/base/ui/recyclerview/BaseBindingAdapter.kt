@@ -25,6 +25,10 @@ abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+        onBindItem(holder, getItems()!![position], position)
+    }
+
+    override fun onBindItem(holder: BaseViewHolder, item: T, position: Int) {
         val binding: B = DataBindingUtil.getBinding(holder.itemView)!!
         onBindItem(binding, getItems()!![position], position)
         binding.executePendingBindings()
@@ -37,13 +41,6 @@ abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
                 )
             }
         }
-        if (getItemClickListener() != null) {
-
-        }
-    }
-
-    override fun onBindItem(holder: BaseViewHolder, item: T, position: Int) {
-
     }
 
     abstract fun onBindItem(binding: B?, item: T, position: Int)

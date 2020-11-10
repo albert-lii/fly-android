@@ -43,8 +43,6 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     var _finishPageEvent = MutableLiveData<Any?>()
         private set
 
-    val _uiEvent = MutableLiveData<UiEvent>()
-
     @SuppressLint("StaticFieldLeak")
     lateinit var application: Application
 

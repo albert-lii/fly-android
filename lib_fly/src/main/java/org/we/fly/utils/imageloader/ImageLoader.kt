@@ -21,7 +21,6 @@ object ImageLoader {
      * 加载图片
      */
     @JvmStatic
-    @JvmOverloads
     fun load(
         context: Context,
         imageView: ImageView,
@@ -39,7 +38,6 @@ object ImageLoader {
      * 加载圆形图
      */
     @JvmStatic
-    @JvmOverloads
     fun loadCircle(
         context: Context,
         imageView: ImageView,
@@ -59,7 +57,6 @@ object ImageLoader {
      * 加载圆角图
      */
     @JvmStatic
-    @JvmOverloads
     fun loadCorners(
         context: Context, imageView: ImageView, url: String,
         radius: Int,
@@ -79,7 +76,6 @@ object ImageLoader {
      * 加载圆角图
      */
     @JvmStatic
-    @JvmOverloads
     fun loadCorner(
         context: Context, imageView: ImageView, url: String,
         radius: Float,

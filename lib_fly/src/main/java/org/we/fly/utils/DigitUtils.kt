@@ -17,6 +17,7 @@ import java.util.*
  */
 object DigitUtils {
 
+    @JvmStatic
     fun formatToIN(
         digit: Double?,
         maxDecimalPlaces: Int = 2,
@@ -43,6 +44,7 @@ object DigitUtils {
      * @param minDecimalPlaces 最小保留小数位
      * @param mode 数字截取格式，默认向下取整
      */
+    @JvmStatic
     fun formatToIN(
         digit: String?,
         maxDecimalPlaces: Int = 2,
@@ -61,6 +63,7 @@ object DigitUtils {
         )
     }
 
+    @JvmStatic
     fun formatByDecimalPlaces(
         digit: Double?,
         maxDecimalPlaces: Int = 2,
@@ -88,6 +91,7 @@ object DigitUtils {
      * @param mode 小数部分截取规则，默认四舍五入
      * @param minIntegerDigits 最少的有效整数位，默认整数位最少有1位数字
      */
+    @JvmStatic
     fun formatByDecimalPlaces(
         digit: String?,
         maxDecimalPlaces: Int = 2,
@@ -113,6 +117,7 @@ object DigitUtils {
      * @param minIntegerBits 最少的有效整数位，默认整数位最少有1位数字
      * @param integerPattern 整数部分规则
      */
+    @JvmStatic
     fun format(
         digit: String?,
         maxDecimalPlaces: Int = 2,
@@ -188,6 +193,7 @@ object DigitUtils {
      * @param precision 有效小数位
      * @param mode 有效小数位的舍入规则，默认四舍五入
      */
+    @JvmStatic
     fun formatByValidDecimalPlaces(
         digit: String?,
         precision: Int,
@@ -207,6 +213,7 @@ object DigitUtils {
      * @param decimalPlaces 数字的最大小数位
      * @param negative 是否允许输入负数
      */
+    @JvmStatic
     fun formatInput(
         et: EditText,
         decimalPlaces: Int? = null,
@@ -258,6 +265,7 @@ object DigitUtils {
     /**
      * 加法运算
      */
+    @JvmStatic
     fun plus(
         v1: String?,
         v2: String?,
@@ -278,6 +286,7 @@ object DigitUtils {
     /**
      * 减法运算
      */
+    @JvmStatic
     fun minus(
         v1: String?,
         v2: String?,
@@ -298,6 +307,7 @@ object DigitUtils {
     /**
      * 乘法运算
      */
+    @JvmStatic
     fun multiply(
         v1: String?,
         v2: String?,
@@ -319,6 +329,7 @@ object DigitUtils {
     /**
      * 除法运算
      */
+    @JvmStatic
     fun divide(
         v1: String?,
         v2: String?,

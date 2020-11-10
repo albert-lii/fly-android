@@ -5,7 +5,6 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import org.we.fly.R
 
 /**
  * @author: Albert Li
@@ -14,13 +13,13 @@ import org.we.fly.R
  * @description: 去除自带行间距的TextView
  * @since: 1.0.0
  */
-class EilsTextView : AppCompatTextView {
+class ExInnerLineSpaceTextView : AppCompatTextView {
     constructor(context: Context?) : super(context!!) {
-        init(null)
+
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context!!, attrs) {
-        init(attrs)
+
     }
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
@@ -28,20 +27,11 @@ class EilsTextView : AppCompatTextView {
         attrs,
         defStyleAttr
     ) {
-        init(attrs)
-    }
 
-    private fun init(attrs: AttributeSet?) {
-        if (attrs != null) {
-            val ta = context.obtainStyledAttributes(attrs, R.styleable.fly_EilsTextView)
-            val text = ta.getString(R.styleable.fly_EilsTextView_et_eilsText)
-            setEilsText(text)
-            ta.recycle()
-        }
     }
 
     override fun setText(text: CharSequence?, type: BufferType?) {
-        super.setText(text, type)
+        super.setText(getEilsText(text), type)
     }
 
     /**
@@ -49,9 +39,9 @@ class EilsTextView : AppCompatTextView {
      *
      * @param text
      */
-    fun setEilsText(text: CharSequence?) {
+    private fun getEilsText(text: CharSequence?): SpannableStringBuilder? {
         if (text == null) {
-            return
+            return null
         }
         // 获得视觉定义的每行文字的行高
         val lineHeight = textSize.toInt()
@@ -60,7 +50,7 @@ class EilsTextView : AppCompatTextView {
             ssb = text
             // 设置LineHeightSpan
             ssb.setSpan(
-                ExcludeInnerLineSpacepan(lineHeight),
+                ExInnerLineSpaceSpan(lineHeight),
                 0,
                 text.length,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -69,13 +59,12 @@ class EilsTextView : AppCompatTextView {
             ssb = SpannableStringBuilder(text)
             // 设置LineHeightSpan
             ssb.setSpan(
-                ExcludeInnerLineSpacepan(lineHeight),
+                ExInnerLineSpaceSpan(lineHeight),
                 0,
                 text.length,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
-        // 调用系统setText()方法
-        setText(ssb)
+        return ssb
     }
 }

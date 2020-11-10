@@ -10,7 +10,7 @@ import android.text.style.LineHeightSpan
  * @description: 去除TextView的自带行间距的类
  * @since: 1.0.0
  */
-class ExcludeInnerLineSpacepan(private val height: Int) : LineHeightSpan {
+class ExInnerLineSpaceSpan(private val height: Int) : LineHeightSpan {
 
     override fun chooseHeight(
         text: CharSequence,

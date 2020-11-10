@@ -63,11 +63,6 @@
     </declare-styleable>
 
     <!-- 去除文字内部Padding的TextView -->
-    <declare-styleable name="fly_EilsTextView">
-        <attr name="et_eilsText" format="string" />
-    </declare-styleable>
-
-    <!-- 去除文字内部Padding的TextView -->
     <declare-styleable name="fly_ProgressCellView">
         <attr name="pc_totalCount" format="integer" />
         <attr name="pc_accentCount" format="integer" />

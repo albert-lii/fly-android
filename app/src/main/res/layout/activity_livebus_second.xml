@@ -61,7 +61,7 @@
             android:layout_marginRight="@dimen/btn_space_lr"
             android:orientation="vertical">
 
-            <org.we.fly.widget.eilstextview.EilsTextView
+            <org.we.fly.widget.eilstextview.ExInnerLineSpaceTextView
                 android:id="@+id/tv_observe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 android:textSize="@dimen/textsize_m"
                 app:eilsText="@{viewModel.normalObserveData}" />
 
-            <org.we.fly.widget.eilstextview.EilsTextView
+            <org.we.fly.widget.eilstextview.ExInnerLineSpaceTextView
                 android:id="@+id/tv_observe_sticky"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                 android:textSize="@dimen/textsize_m"
                 app:eilsText="@{viewModel.stickyObserveData}" />
 
-            <org.we.fly.widget.eilstextview.EilsTextView
+            <org.we.fly.widget.eilstextview.ExInnerLineSpaceTextView
                 android:id="@+id/tv_observe_forever"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                 android:textSize="@dimen/textsize_m"
                 app:eilsText="@{viewModel.foreverObserveData}" />
 
-            <org.we.fly.widget.eilstextview.EilsTextView
+            <org.we.fly.widget.eilstextview.ExInnerLineSpaceTextView
                 android:id="@+id/tv_observe_sticky_forever"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

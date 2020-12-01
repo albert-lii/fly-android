@@ -52,9 +52,9 @@
                 android:id="@+id/tv_receive_created"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@{viewModel.receiveCountOnCreatedData}"
                 android:textColor="@color/textcolor_main_black"
-                android:textSize="@dimen/textsize_m"
-                app:eilsText="@{viewModel.receiveCountOnCreatedData}" />
+                android:textSize="@dimen/textsize_m" />
 
             <org.we.fly.widget.eilstextview.ExInnerLineSpaceTextView
                 android:id="@+id/tv_receive_started"
@@ -62,43 +62,43 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/textcolor_main_black"
                 android:textSize="@dimen/textsize_m"
-                app:eilsText="@{viewModel.receiveCountOnStartedData}" />
+                android:text="@{viewModel.receiveCountOnStartedData}" />
 
             <org.we.fly.widget.eilstextview.ExInnerLineSpaceTextView
                 android:id="@+id/tv_observe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_5"
+                android:text="@{viewModel.normalObserveData}"
                 android:textColor="@color/textcolor_main_black"
-                android:textSize="@dimen/textsize_m"
-                app:eilsText="@{viewModel.normalObserveData}" />
+                android:textSize="@dimen/textsize_m" />
 
             <org.we.fly.widget.eilstextview.ExInnerLineSpaceTextView
                 android:id="@+id/tv_observe_sticky"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_5"
+                android:text="@{viewModel.stickyObserveData}"
                 android:textColor="@color/textcolor_main_black"
-                android:textSize="@dimen/textsize_m"
-                app:eilsText="@{viewModel.stickyObserveData}" />
+                android:textSize="@dimen/textsize_m" />
 
             <org.we.fly.widget.eilstextview.ExInnerLineSpaceTextView
                 android:id="@+id/tv_observe_forever"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_5"
+                android:text="@{viewModel.foreverObserveData}"
                 android:textColor="@color/textcolor_main_black"
-                android:textSize="@dimen/textsize_m"
-                app:eilsText="@{viewModel.foreverObserveData}" />
+                android:textSize="@dimen/textsize_m" />
 
             <org.we.fly.widget.eilstextview.ExInnerLineSpaceTextView
                 android:id="@+id/tv_observe_sticky_forever"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_5"
+                android:text="@{viewModel.stickyForeverObserveData}"
                 android:textColor="@color/textcolor_main_black"
-                android:textSize="@dimen/textsize_m"
-                app:eilsText="@{viewModel.stickyForeverObserveData}" />
+                android:textSize="@dimen/textsize_m" />
         </LinearLayout>
     </LinearLayout>
 </layout>

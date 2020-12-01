@@ -1,7 +1,6 @@
 package com.fly.example.ui.livebustest
 
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
 import com.fly.example.Constants
 import com.fly.example.R

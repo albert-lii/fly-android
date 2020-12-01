@@ -30,7 +30,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api rootProject.ext.dependencies["kolin-stdlib-jdk8"]
+    api rootProject.ext.dependencies["kotlin-stdlib-jdk8"]
     api rootProject.ext.dependencies["core-ktx"]
     api rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["multidex"]

@@ -20,22 +20,41 @@
 
         <activity
             android:name="com.fly.example.ui.livebustest.LiveBusFirstActivity"
-            android:screenOrientation="portrait" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
 
         <activity
             android:name="com.fly.example.ui.livebustest.LiveBusSecondActivity"
-            android:screenOrientation="portrait" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+
 
         <activity
             android:name="com.fly.example.ui.CustomWidgetTestActivity"
-            android:screenOrientation="portrait" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
 
         <activity
             android:name="com.fly.example.ui.CoroutineTestActivity"
-            android:screenOrientation="portrait" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+
 
         <activity
             android:name="com.fly.example.ui.ItemDecorationTestActivity"
-            android:screenOrientation="portrait" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+
+        <activity
+            android:name="com.fly.example.ui.ChartActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+
     </application>
 </manifest>

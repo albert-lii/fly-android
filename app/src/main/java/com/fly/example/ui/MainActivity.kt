@@ -34,5 +34,8 @@ class MainActivity : BaseAppBindingActivity<ActivityMainBinding>() {
         binding.btnItemdecorationTest.singleClick {
             navigateTo(ItemDecorationTestActivity::class.java)
         }
+        binding.btnChart.singleClick {
+            navigateTo(ChartActivity::class.java)
+        }
     }
 }

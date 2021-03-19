@@ -13,9 +13,14 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/lib_fly" />
             <option value="$PROJECT_DIR$/lib_fly_dimenmaker" />
+            <option value="$PROJECT_DIR$/mod_app_main" />
+            <option value="$PROJECT_DIR$/mod_app_simpletest" />
+            <option value="$PROJECT_DIR$/mod_lib_common" />
+            <option value="$PROJECT_DIR$/mod_lib_resource" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>

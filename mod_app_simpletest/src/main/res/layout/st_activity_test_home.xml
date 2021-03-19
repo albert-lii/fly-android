@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/page_bg_color"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <org.we.fly.widget.TitleBar
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/titlebar_bg_color"
+            app:tb_addStatusBarHeight="true"
+            app:tb_barHeight="@dimen/titlebar_height"
+            app:tb_leftIcon="@drawable/back_arrow"
+            app:tb_leftIconHight="@dimen/titlebar_lefticon_size"
+            app:tb_title="Lib测试"
+            android:layout_marginBottom="@dimen/btn_space_lr"
+            app:tb_titleColor="@color/textcolor_black"
+            app:tb_titleSize="@dimen/titlebar_title_size" />
+
+        <Button
+            android:id="@+id/btn_livebus"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="LiveBus测试"
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_black" />
+
+        <Button
+            android:id="@+id/btn_coroutine_test"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_12"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="协程测试"
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_black" />
+
+        <Button
+            android:id="@+id/btn_chart_test"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_12"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="自定义图表测试"
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_black" />
+
+        <Button
+            android:id="@+id/btn_itemdecoration_test"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_12"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="RecyclerView分割线"
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_black" />
+    </LinearLayout>
+</layout>

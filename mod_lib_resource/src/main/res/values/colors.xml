@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--主题色-->
+    <color name="theme_color">#3989F7</color>
+    <!--页面背景色-->
+    <color name="page_bg_color">#F3F4F5</color>
+    <!--状态栏背景色-->
+    <color name="statusbar_bg_color">#FFFFFF</color>
+    <!--标题栏背景色-->
+    <color name="titlebar_bg_color">#FFFFFF</color>
+    <!--标题栏标题颜色-->
+    <color name="titlebar_title_color">#222222</color>
+    <!--分割线颜色-->
+    <color name="divider_color">#EAECEF</color>
+
+    <!--文字颜色-->
+    <color name="textcolor_black">#222222</color>
+    <color name="textcolor_grey">#848E9C</color>
+    <color name="textcolor_white">#FEFEFE</color>
+</resources>

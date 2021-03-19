@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/page_bg_color"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <org.we.fly.widget.TitleBar
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/titlebar_bg_color"
+            app:tb_addStatusBarHeight="true"
+            app:tb_barHeight="@dimen/titlebar_height"
+            app:tb_leftIcon="@drawable/back_arrow"
+            app:tb_leftIconHight="@dimen/titlebar_lefticon_size"
+            app:tb_title="图表测试"
+            app:tb_titleSize="@dimen/titlebar_title_size" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/btn_space_lr"
+                android:layout_marginRight="@dimen/btn_space_lr"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/btn_height"
+                android:paddingBottom="@dimen/btn_height">
+
+                <Button
+                    android:id="@+id/btn_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:background="@drawable/base_btn_bg"
+                    android:text="曲线图测试"
+                    android:textAllCaps="false"
+                    android:textColor="@color/base_text_color"
+                    android:textSize="@dimen/textsize_btn" />
+
+                <Button
+                    android:id="@+id/btn_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:background="@drawable/base_btn_bg"
+                    android:text="进度格测试"
+                    android:textAllCaps="false"
+                    android:textColor="@color/base_text_color"
+                    android:textSize="@dimen/textsize_btn" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

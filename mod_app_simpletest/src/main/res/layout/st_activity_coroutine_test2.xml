@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="fly.mod.app.simpletest.coroutine.viewmodel.CoroutineTest2ViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/page_bg_color"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <org.we.fly.widget.TitleBar
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/titlebar_bg_color"
+            app:tb_addStatusBarHeight="true"
+            app:tb_barHeight="@dimen/titlebar_height"
+            app:tb_leftIcon="@drawable/back_arrow"
+            app:tb_leftIconHight="@dimen/titlebar_lefticon_size"
+            app:tb_title="协程简单测试（二）"
+            app:tb_titleSize="@dimen/titlebar_title_size" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/btn_space_lr"
+                android:layout_marginRight="@dimen/btn_space_lr"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/px_20">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:layout_marginBottom="@dimen/px_10"
+                    android:text="测试内容：父协程取消，async中的代码块是否会继续执行?"
+                    android:textColor="@color/textcolor_black"
+                    android:textSize="@dimen/textsize_l"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:text="1. 父协程不取消，async的执行流程"
+                    android:textColor="@color/textcolor_black"
+                    android:textSize="@dimen/textsize_m" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/px_10"
+                    android:text="@{viewModel.test1Result}"
+                    android:textColor="@color/textcolor_grey"
+                    android:textSize="@dimen/textsize_s" />
+
+                <Button
+                    android:id="@+id/btn_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:background="@drawable/base_btn_bg"
+                    android:text="测试"
+                    android:textAllCaps="false"
+                    android:textColor="@color/base_text_color"
+                    android:textSize="@dimen/textsize_btn" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:text="2. 父协程取消，async的执行流程"
+                    android:textColor="@color/textcolor_black"
+                    android:textSize="@dimen/textsize_m" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/px_10"
+                    android:text="@{viewModel.test2Result}"
+                    android:textColor="@color/textcolor_grey"
+                    android:textSize="@dimen/textsize_s" />
+
+                <Button
+                    android:id="@+id/btn_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:background="@drawable/base_btn_bg"
+                    android:text="测试"
+                    android:textAllCaps="false"
+                    android:textColor="@color/base_text_color"
+                    android:textSize="@dimen/textsize_btn" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:text="3. 在async2中不取消async1，整个执行流程"
+                    android:textColor="@color/textcolor_black"
+                    android:textSize="@dimen/textsize_m" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/px_10"
+                    android:text="@{viewModel.test3Result}"
+                    android:textColor="@color/textcolor_grey"
+                    android:textSize="@dimen/textsize_s" />
+
+                <Button
+                    android:id="@+id/btn_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:background="@drawable/base_btn_bg"
+                    android:text="测试"
+                    android:textAllCaps="false"
+                    android:textColor="@color/base_text_color"
+                    android:textSize="@dimen/textsize_btn" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:text="4. 在async2中取消async1，async2是否会继续执行"
+                    android:textColor="@color/textcolor_black"
+                    android:textSize="@dimen/textsize_m" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/px_10"
+                    android:text="@{viewModel.test4Result}"
+                    android:textColor="@color/textcolor_grey"
+                    android:textSize="@dimen/textsize_s" />
+
+                <Button
+                    android:id="@+id/btn_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:background="@drawable/base_btn_bg"
+                    android:text="测试"
+                    android:textAllCaps="false"
+                    android:textColor="@color/base_text_color"
+                    android:textSize="@dimen/textsize_btn" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

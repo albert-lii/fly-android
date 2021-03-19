@@ -2,3 +2,9 @@ rootProject.name='fly'
 include ':app'
 include ':lib_fly'
 include ':lib_fly_dimenmaker'
+include ':mod_lib_resource'
+include ':mod_lib_common'
+include ':mod_app_main'
+include ':mod_app_simpletest'
+
+

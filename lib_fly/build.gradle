@@ -30,8 +30,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api rootProject.ext.dependencies["kotlin-stdlib-jdk8"]
+    api rootProject.ext.dependencies["kotlin-stdlib"]
     api rootProject.ext.dependencies["core-ktx"]
+    api rootProject.ext.dependencies["kotlinx-coroutines-core"]
+    api rootProject.ext.dependencies["kotlinx-coroutines-android"]
     api rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["multidex"]
     api rootProject.ext.dependencies["recyclerview"]
@@ -39,8 +41,6 @@ dependencies {
     api rootProject.ext.dependencies["flexbox"]
     api rootProject.ext.dependencies["lifecycle-extensions"]
     api rootProject.ext.dependencies["lifecycle-viewmodel-ktx"]
-    api rootProject.ext.dependencies["kotlinx-coroutines-core"]
-    api rootProject.ext.dependencies["kotlinx-coroutines-android"]
     api rootProject.ext.dependencies["retrofit"]
     api rootProject.ext.dependencies["retrofit-converter-gson"]
     api rootProject.ext.dependencies["retrofit-adapter-rxjava"]

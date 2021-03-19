@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--标题栏高度-->
+    <dimen name="titlebar_height">@dimen/px_44</dimen>
+    <!--标题栏标题大小-->
+    <dimen name="titlebar_title_size">@dimen/px_18</dimen>
+    <!--标题栏左侧icon大小-->
+    <dimen name="titlebar_lefticon_size">@dimen/px_19</dimen>
+
+    <!--页面左/右间距-->
+    <dimen name="page_space_lr">@dimen/px_12</dimen>
+    <!--页面上间距-->
+    <dimen name="page_space_top">@dimen/px_8</dimen>
+
+    <!--按钮高度-->
+    <dimen name="btn_height">@dimen/px_40</dimen>
+    <!--按钮左/右间距-->
+    <dimen name="btn_space_lr">@dimen/px_24</dimen>
+
+    <!--文字大小-->
+    <dimen name="textsize_btn">@dimen/px_15</dimen>
+    <dimen name="textsize_xl">@dimen/px_18</dimen>
+    <dimen name="textsize_l">@dimen/px_16</dimen>
+    <dimen name="textsize_m">@dimen/px_14</dimen>
+    <dimen name="textsize_s">@dimen/px_13</dimen>
+    <dimen name="textsize_xs">@dimen/px_12</dimen>
+</resources>

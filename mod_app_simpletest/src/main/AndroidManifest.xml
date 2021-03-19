@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="fly.mod.app.simpletest">
+
+    <application>
+        <activity
+            android:name=".blend.ui.TestHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name=".livebus.ui.LiveBusTest1Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name=".livebus.ui.LiveBusTest2Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name=".coroutine.ui.CoroutineActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name=".coroutine.ui.CoroutineTest1Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name=".coroutine.ui.CoroutineTest2Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name=".chart.ui.ChartActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name=".chart.ui.CurveActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name=".chart.ui.ProgressCellActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name=".recyclerview.ui.RecyclerViewDecorationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+    </application>
+</manifest>

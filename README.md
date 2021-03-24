@@ -11,7 +11,9 @@
 
 ## 微信公众号
 有兴趣的同学可以关注微信公众号「**Code满满**」或者笔者的个人博客[「**李益的小站**」](https://www.liyisite.com/)
+<div>
 <img src="wxgzh-qrcode.jpg" width="20%">
+</div>
 
 ## 其他平台
 - **简书**：[李益99](https://www.jianshu.com/u/fe3e28b3a55d)

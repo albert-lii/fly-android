@@ -6,6 +6,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import com.google.gson.Gson
 import com.google.gson.JsonParseException
+import kotlinx.coroutines.CancellationException
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -131,7 +132,8 @@ abstract class BaseHttpClient {
             is ConnectException, is UnknownHostException -> HttpError.CONNECT_ERROR
             is InterruptedIOException -> HttpError.CONNECT_TIMEOUT
             is JsonParseException, is JSONException, is ParseException, is ClassCastException -> HttpError.PARSE_ERROR
-            else -> HttpError.UNKNOWN_ERROR
+            is CancellationException -> HttpError.CANCEL_REQUEST
+            else -> HttpError.UNKNOWN
         }
     }
 

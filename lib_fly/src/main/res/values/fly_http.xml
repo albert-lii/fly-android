@@ -5,4 +5,5 @@
     <string name="fly_http_error_connect_timeout" translatable="false">网络请求超时</string>
     <string name="fly_http_error_bad_network" translatable="false">网络请求出错</string>
     <string name="fly_http_error_parse" translatable="false">解析错误</string>
+    <string name="fly_http_cancel_request" translatable="false"></string>
 </resources>

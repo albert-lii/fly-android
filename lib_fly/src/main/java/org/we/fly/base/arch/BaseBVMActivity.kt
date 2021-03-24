@@ -2,7 +2,6 @@ package org.we.fly.base.arch
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import org.we.fly.BR
 import org.we.fly.extensions.observeNonNull
 import org.we.fly.extensions.observeNullable
 
@@ -50,7 +49,7 @@ abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
             showToast(it)
         }
         viewModel._pageNavigationEvent.observeNonNull(this) {
-            navigateTo(it)
+            navigate(it)
         }
         viewModel._backPressEvent.observeNullable(this) {
             backPress(it)

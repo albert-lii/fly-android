@@ -1,6 +1,7 @@
 package fly.mod.lib.common.base
 
 import org.we.fly.base.arch.BaseViewModel
+import org.we.fly.http.HttpHelper
 
 /**
  * @author: Albert Li
@@ -9,6 +10,6 @@ import org.we.fly.base.arch.BaseViewModel
  * @description: --
  * @since: 1.0.0
  */
-abstract class BaseAppViewModel : BaseViewModel() {
+abstract class BaseAppViewModel : BaseViewModel(),HttpHelper {
 
 }

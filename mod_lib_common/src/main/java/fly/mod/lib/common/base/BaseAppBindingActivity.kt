@@ -33,7 +33,7 @@ abstract class BaseAppBindingActivity<B : ViewDataBinding> : BaseBindingActivity
     }
 
 
-    override fun navigateTo(page: Any) {
+    override fun navigate(page: Any) {
         startActivity(Intent(this, page as Class<*>))
     }
 

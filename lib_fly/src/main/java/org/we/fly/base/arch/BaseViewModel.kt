@@ -102,7 +102,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         _toastEvent.postValue(map)
     }
 
-    override fun navigateTo(page: Any) {
+    override fun navigate(page: Any) {
         _pageNavigationEvent.postValue(page)
     }
 
@@ -114,13 +114,13 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         _finishPageEvent.postValue(arg)
     }
 
-    protected fun showToast(str: String, duration: Int? = null) {
+    protected fun showToast(msg: String, duration: Int? = null) {
         val map = HashMap<String, Any>().apply {
             put(
                 FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
                 FlyBaseConstants.FLY_TOAST_CONTENT_TYPE_STR
             )
-            put(FlyBaseConstants.FLY_TOAST_KEY_CONTENT, str)
+            put(FlyBaseConstants.FLY_TOAST_KEY_CONTENT, msg)
             if (duration != null) {
                 put(FlyBaseConstants.FLY_TOAST_KEY_DURATION, duration)
             }

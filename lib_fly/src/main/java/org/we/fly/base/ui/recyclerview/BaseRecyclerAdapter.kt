@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
  * @description: RecyclerView Adapter封装
  * @since: 1.0.0
  */
-abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder>() {
+abstract class BaseRecyclerAdapter<T> : RecyclerView.Adapter<BaseViewHolder>() {
     private var items: MutableList<T>? = null
     private var itemClickListener: OnItemClickListener<T>? = null
 

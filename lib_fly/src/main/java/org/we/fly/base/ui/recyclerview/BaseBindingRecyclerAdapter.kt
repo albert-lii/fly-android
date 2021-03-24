@@ -12,7 +12,7 @@ import androidx.databinding.ViewDataBinding
  * @description: 基于DataBinding的RecyclerView Adapter封装
  * @since: 1.0.0
  */
-abstract class BaseBindingAdapter<B : ViewDataBinding, T> : BaseAdapter<T>() {
+abstract class BaseBindingRecyclerAdapter<B : ViewDataBinding, T> : BaseRecyclerAdapter<T>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val binding: B = DataBindingUtil.inflate(

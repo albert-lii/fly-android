@@ -11,6 +11,9 @@ object RouteConstants {
     // 首页
     const val PAGE_M_MAIN: String = "/app/main"
 
+    // 文章列表页
+    const val PAGE_M_ARTICLE_LIST: String = "/app/articleList"
+
     // 测试首页
     const val PAGE_ST_TEST_HOME: String = "/simpleTest/testHome"
 

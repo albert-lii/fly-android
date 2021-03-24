@@ -1,4 +1,4 @@
-package org.we.fly.utils.http
+package org.we.fly.http
 
 /**
  * @author: Albert Li
@@ -7,7 +7,7 @@ package org.we.fly.utils.http
  * @description: 网络请求返回基础模型
  * @since: 1.0.0
  */
-abstract class HttpResponse<out T>(val code: Int, val msg: String, val data: T?) {
+abstract class HttpResponse<T>(val code: Int, val msg: String, val data: T?) {
     abstract fun isSuccess(): Boolean
 }
 

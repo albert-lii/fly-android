@@ -13,8 +13,8 @@ import androidx.databinding.ViewDataBinding
  * @description: 使用databinding的动态添加item的网格适配器
  * @since: 1.0.0
  */
-abstract class BaseBindingAddGridAdapter<VB_ADD : ViewDataBinding, VB_ITEM : ViewDataBinding, T> :
-    BaseAddGridAdapter<T>() {
+abstract class BaseBindingAddGridRecyAdapter<VB_ADD : ViewDataBinding, VB_ITEM : ViewDataBinding, T> :
+    BaseAddGridRecyAdapter<T>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val itemView: View

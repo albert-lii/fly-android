@@ -10,7 +10,7 @@ import fly.mod.app.simpletest.databinding.StActivityRecyclerviewDecorationBindin
 import fly.mod.app.simpletest.databinding.StRecyclerItemItemdecorationBinding
 import fly.mod.lib.common.base.BaseAppBindingActivity
 import fly.mod.lib.common.router.RouteConstants
-import org.we.fly.base.ui.recyclerview.BaseBindingAdapter
+import org.we.fly.base.ui.recyclerview.BaseBindingRecyclerAdapter
 import org.we.fly.widget.recyclerview.SpaceItemDecoration
 
 /**
@@ -62,7 +62,7 @@ class RecyclerViewDecorationActivity : BaseAppBindingActivity<StActivityRecycler
     }
 
     private inner class MyAdapter :
-        BaseBindingAdapter<StRecyclerItemItemdecorationBinding, String?>() {
+        BaseBindingRecyclerAdapter<StRecyclerItemItemdecorationBinding, String?>() {
 
         override fun getLayoutId(viewType: Int): Int {
             return R.layout.st_recycler_item_itemdecoration

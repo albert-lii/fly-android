@@ -62,7 +62,7 @@ abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
             showToast(it)
         }
         viewModel._pageNavigationEvent.observeNonNull(this) {
-            navigateTo(it)
+            navigate(it)
         }
         viewModel._backPressEvent.observeNonNull(this) {
             backPress(it)

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--白色-->
+    <color name="main_white">#FFFFFF</color>
+
     <!--主题色-->
     <color name="theme_color">#3989F7</color>
     <!--页面背景色-->

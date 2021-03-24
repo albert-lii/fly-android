@@ -29,7 +29,6 @@
             android:layout_marginTop="@dimen/px_50"
             android:layout_marginRight="@dimen/btn_space_lr"
             android:background="@drawable/base_btn_bg"
-            android:enabled="false"
             android:text="微应用"
             android:textAllCaps="false"
             android:textColor="@color/textcolor_black" />

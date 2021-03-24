@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
  * @description: 动态添加item的网格适配器
  * @since: 1.0.0
  */
-abstract class BaseAddGridAdapter<T> : RecyclerView.Adapter<BaseViewHolder>() {
+abstract class BaseAddGridRecyAdapter<T> : RecyclerView.Adapter<BaseViewHolder>() {
     val VIEW_TYPE_ADD = 1
     val VIEW_TYPE_ITEM = 2
 

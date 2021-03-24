@@ -104,7 +104,7 @@ abstract class BaseAppBVMActivity<B : ViewDataBinding, VM : BaseViewModel> :
     }
 
 
-    override fun navigateTo(page: Any) {
+    override fun navigate(page: Any) {
         startActivity(Intent(this, page as Class<*>))
     }
 

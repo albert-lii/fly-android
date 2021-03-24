@@ -1,4 +1,4 @@
-package org.we.fly.utils.http
+package org.we.fly.http
 
 import androidx.annotation.StringRes
 import org.we.fly.R

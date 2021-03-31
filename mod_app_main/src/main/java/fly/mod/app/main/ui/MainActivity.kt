@@ -2,6 +2,10 @@ package fly.mod.app.main.ui
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import fly.mod.app.main.R
 import fly.mod.app.main.databinding.MActivityMainBinding
 import fly.mod.app.main.viewmodel.ArticleListViewModel
@@ -19,6 +23,7 @@ import org.we.fly.extensions.singleClick
  */
 @Route(path = RouteConstants.PAGE_M_MAIN)
 class MainActivity : BaseAppBVMActivity<MActivityMainBinding, ArticleListViewModel>() {
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun getLayoutId(): Int {
         return R.layout.m_activity_main
@@ -29,11 +34,16 @@ class MainActivity : BaseAppBVMActivity<MActivityMainBinding, ArticleListViewMod
     }
 
     override fun initialize(savedInstanceState: Bundle?) {
+        firebaseAnalytics = Firebase.analytics
         addListener()
     }
 
     private fun addListener() {
         binding.btnMicroApp.singleClick {
+            val bundle = Bundle()
+            bundle.putString(FirebaseAnalytics.Param.METHOD, "btnMicroApp")
+            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
+
             RouterUtils.getInstance()
                 .navigateBySingleTask(this@MainActivity, RouteConstants.PAGE_M_ARTICLE_LIST)
         }

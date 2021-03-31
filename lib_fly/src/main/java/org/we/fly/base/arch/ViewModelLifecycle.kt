@@ -12,7 +12,7 @@ import androidx.lifecycle.OnLifecycleEvent
  * @description: ViewModel感知生命周期接口
  * @since: 1.0.0
  */
-interface ViewModelLifecycle:LifecycleObserver {
+interface ViewModelLifecycle : LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
     fun onAny(owner: LifecycleOwner, event: Lifecycle.Event)

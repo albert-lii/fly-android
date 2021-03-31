@@ -16,7 +16,7 @@ import org.we.fly.utils.PermissionUtils
  * @description: Fragment的基类
  * @since: 1.0.0
  */
-abstract class BaseFragment : Fragment(), ILazyLoad,PermissionUtils.PermissionCallbacks {
+abstract class BaseFragment : Fragment(), ILazyLoad, PermissionUtils.PermissionCallbacks {
     /**
      * 缓存视图，如果视图已经创建，则不再初始化视图
      */

@@ -31,7 +31,6 @@ class MainActivity : BaseAppBindingActivity<MActivityMainBinding>() {
     override fun initialize(savedInstanceState: Bundle?) {
         firebaseAnalytics = Firebase.analytics
         addListener()
-        MainScope()
     }
 
     private fun addListener() {

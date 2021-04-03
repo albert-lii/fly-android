@@ -1,13 +1,10 @@
 package fly.mod.app.main.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.LogUtils
 import fly.mod.app.main.api.FlyInterface
 import fly.mod.app.main.data.Article
 import fly.mod.lib.common.api.ApiClient
 import fly.mod.lib.common.base.BaseAppViewModel
-import kotlinx.coroutines.*
 
 
 /**

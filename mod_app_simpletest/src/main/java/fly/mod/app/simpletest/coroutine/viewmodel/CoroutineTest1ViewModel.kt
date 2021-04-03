@@ -71,14 +71,18 @@ class CoroutineTest1ViewModel : BaseAppViewModel() {
                 test3Result.value = test3Result.value + "\nasync1 --> delay(1000)"
                 delay(1000)
             }
-            test3Result.value = test3Result.value + "\nasync2 --> delay(1000)"
-            val a2 = async { delay(1000) }
+            val a2 = async {
+                test3Result.value = test3Result.value + "\nasync2 --> delay(1000)"
+                delay(1000)
+            }
             test3Result.value = test3Result.value + "\nawait1 --> 开始执行"
             a1.await()
             test3Result.value = test3Result.value + "\nawait2 --> 开始执行"
             a2.await()
-            test3Result.value = test3Result.value + "\nasync3 --> delay(1000)"
-            val a3 = async { delay(1000) }
+            val a3 = async {
+                test3Result.value = test3Result.value + "\nasync3 --> delay(1000)"
+                delay(1000)
+            }
             test3Result.value = test3Result.value + "\nawait3 --> 开始执行"
             a3.await()
             val totalTime = System.currentTimeMillis() - startTime

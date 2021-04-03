@@ -4,14 +4,13 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
 import fly.mod.app.main.R
 import fly.mod.app.main.databinding.MActivityMainBinding
-import fly.mod.app.main.viewmodel.ArticleListViewModel
-import fly.mod.lib.common.base.BaseAppBVMActivity
+import fly.mod.lib.common.base.BaseAppBindingActivity
 import fly.mod.lib.common.router.RouteConstants
 import fly.mod.lib.common.router.RouterUtils
+import kotlinx.coroutines.MainScope
 import org.we.fly.extensions.singleClick
 
 /**
@@ -22,20 +21,17 @@ import org.we.fly.extensions.singleClick
  * @since: 1.0.0
  */
 @Route(path = RouteConstants.PAGE_M_MAIN)
-class MainActivity : BaseAppBVMActivity<MActivityMainBinding, ArticleListViewModel>() {
+class MainActivity : BaseAppBindingActivity<MActivityMainBinding>() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun getLayoutId(): Int {
         return R.layout.m_activity_main
     }
 
-    override fun createViewModel(): ArticleListViewModel {
-        return ArticleListViewModel()
-    }
-
     override fun initialize(savedInstanceState: Bundle?) {
         firebaseAnalytics = Firebase.analytics
         addListener()
+        MainScope()
     }
 
     private fun addListener() {

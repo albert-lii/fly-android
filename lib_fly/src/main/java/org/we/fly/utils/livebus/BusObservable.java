@@ -87,7 +87,7 @@ public interface BusObservable<T> {
     void removeObserver(@NonNull final Observer<T> observer);
 
     /**
-     * 订阅了本BusObservable的所有Observer的生命周期状态是否一直处于活跃状态
+     * 订阅了此BusObservable的Observer所在页面的生命周期状态是否一直处于活跃状态
      *
      * @param alwaysBeActive {@code true}-Observer可以在Activity的onCreate到onStop之间的生命周期状态接收消息
      *                       {@code false}-Observer可以在Activity的onStart到onPause之间的生命周期状态接收消息

@@ -3,9 +3,9 @@ package fly.mod.app.simpletest.livebus.ui
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
-import fly.mod.app.simpletest.livebus.Constants
 import fly.mod.app.simpletest.R
 import fly.mod.app.simpletest.databinding.StActivityLivebusTest1Binding
+import fly.mod.app.simpletest.livebus.Constants
 import fly.mod.app.simpletest.livebus.viewmodel.LiveBusTest1ViewModel
 import fly.mod.lib.common.base.BaseAppBVMActivity
 import fly.mod.lib.common.router.RouteConstants

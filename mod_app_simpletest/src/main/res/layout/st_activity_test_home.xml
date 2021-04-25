@@ -12,13 +12,13 @@
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/btn_space_lr"
             android:background="@color/titlebar_bg_color"
             app:tb_addStatusBarHeight="true"
             app:tb_barHeight="@dimen/titlebar_height"
             app:tb_leftIcon="@drawable/back_arrow"
             app:tb_leftIconHight="@dimen/titlebar_lefticon_size"
             app:tb_title="Lib测试"
-            android:layout_marginBottom="@dimen/btn_space_lr"
             app:tb_titleColor="@color/textcolor_black"
             app:tb_titleSize="@dimen/titlebar_title_size" />
 
@@ -66,6 +66,18 @@
             android:layout_marginRight="@dimen/btn_space_lr"
             android:background="@drawable/base_btn_bg"
             android:text="RecyclerView分割线"
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_black" />
+
+        <Button
+            android:id="@+id/btn_multiedittext_test"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_12"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="多功能输入框"
             android:textAllCaps="false"
             android:textColor="@color/textcolor_black" />
     </LinearLayout>

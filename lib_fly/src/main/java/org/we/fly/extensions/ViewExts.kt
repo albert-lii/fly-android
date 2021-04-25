@@ -19,12 +19,12 @@ fun <T : View> T.click(action: (T) -> Unit) {
 /**d
  * 带有限制快速点击的点击事件
  */
-fun <T : View> T.singleClick(interval: Long = 400L, action: ((T) -> Unit)?) {
+fun <T : View> T.singleClick(interval: Long = 500L, action: ((T) -> Unit)?) {
     setOnClickListener(SingleClickListener(interval, action))
 }
 
 class SingleClickListener<T : View>(
-    private val interval: Long = 400L,
+    private val interval: Long = 500L,
     private var clickFunc: ((T) -> Unit)?
 ) : View.OnClickListener {
     private var lastClickTime = 0L

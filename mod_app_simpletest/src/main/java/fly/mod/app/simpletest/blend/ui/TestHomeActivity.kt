@@ -46,5 +46,12 @@ class TestHomeActivity : BaseAppBindingActivity<StActivityTestHomeBinding>() {
                     RouteConstants.PAGE_ST_RECYCLERVIEW_ITEM_DECORATION
                 )
         }
+        binding.btnMultiedittextTest.singleClick {
+            RouterUtils.getInstance()
+                .navigate(
+                    this@TestHomeActivity,
+                    RouteConstants.PAGE_ST_MULTIEDITTEXT
+                )
+        }
     }
 }

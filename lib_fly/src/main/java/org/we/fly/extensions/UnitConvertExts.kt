@@ -13,57 +13,57 @@ import android.content.res.Resources
 /**
  * dp 转 px
  */
-val Float.dpToPx: Int
+val Float.dpToPx: Float
     get() = android.util.TypedValue.applyDimension(
         android.util.TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics
-    ).toInt()
+    )
 
 /**
  * dp 转 px
  */
-val Int.dpToPx: Int
+val Int.dpToPx: Float
     get() = this.toFloat().dpToPx
 
 /**
  * sp 转 px
  */
-val Float.spToPx: Int
+val Float.spToPx: Float
     get() = android.util.TypedValue.applyDimension(
         android.util.TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics
-    ).toInt()
+    )
 
 /**
  * sp 转 px
  */
-val Int.spToPx: Int
+val Int.spToPx: Float
     get() = this.toFloat().spToPx
 
 /**
  * px 转 dp
  */
-val Float.pxToDp: Int
+val Float.pxToDp: Float
     get() = this.let {
         val scale = Resources.getSystem().displayMetrics.density
-        (it / scale + 0.5f).toInt()
+        (it / scale + 0.5f)
     }
 
 /**
  * px 转 dp
  */
-val Int.pxToDp: Int
+val Int.pxToDp: Float
     get() = this.toFloat().pxToDp
 
 /**
  * px 转 sp
  */
-val Float.pxToSp: Int
+val Float.pxToSp: Float
     get() = this.let {
         val scale = Resources.getSystem().displayMetrics.scaledDensity
-        (it / scale + 0.5f).toInt()
+        (it / scale + 0.5f)
     }
 
 /**
  * px 转 sp
  */
-val Int.pxToSp: Int
+val Int.pxToSp: Float
     get() = this.toFloat().pxToSp

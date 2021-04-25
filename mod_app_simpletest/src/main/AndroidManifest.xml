@@ -53,5 +53,10 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:taskAffinity="" />
+        <activity
+            android:name=".blend.ui.MultiEditTextActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
     </application>
 </manifest>

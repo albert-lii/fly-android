@@ -44,4 +44,7 @@ object RouteConstants {
     // recyclerview分割线测试
     const val PAGE_ST_RECYCLERVIEW_ITEM_DECORATION: String =
         "/simpleTest/recyclerview/itemDecoration"
+
+    // MultiEditText测试
+    const val PAGE_ST_MULTIEDITTEXT: String = "/simpleTest/multiEditText"
 }

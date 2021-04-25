@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import org.we.fly.R
+import org.we.fly.extensions.dpToPx
 
 /**
  * @author: Albert Li
@@ -20,8 +21,8 @@ class ProgressCellView : View {
     private var accentColor = Color.RED // 进度格点亮后的颜色
     private var accentCount = 0  // 被点亮的进度格数
     private var totalCount = 4 // 进度格总数
-    private var cellSpace = 8 // 进度格之间的间隔距离
-    private var cellWidth = 10 // 进度格的宽度
+    private var cellSpace = 8.dpToPx // 进度格之间的间隔距离
+    private var cellWidth = 10.dpToPx // 进度格的宽度
     private var reverse = false // 是否反向绘制
     private var oritenation: Int = 0 // 0-横向 1-纵向
 
@@ -48,18 +49,20 @@ class ProgressCellView : View {
         paint.style = Paint.Style.FILL
         if (attrs != null) {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.fly_ProgressCellView)
-            primaryColor = ta.getColor(R.styleable.fly_ProgressCellView_pc_primaryColor, primaryColor)
-            accentColor = ta.getInteger(R.styleable.fly_ProgressCellView_pc_accentColor, accentColor)
+            primaryColor =
+                ta.getColor(R.styleable.fly_ProgressCellView_pc_primaryColor, primaryColor)
+            accentColor =
+                ta.getInteger(R.styleable.fly_ProgressCellView_pc_accentColor, accentColor)
             totalCount = ta.getColor(R.styleable.fly_ProgressCellView_pc_totalCount, totalCount)
-            accentCount = ta.getInteger(R.styleable.fly_ProgressCellView_pc_accentCount, accentCount)
+            accentCount =
+                ta.getInteger(R.styleable.fly_ProgressCellView_pc_accentCount, accentCount)
             cellWidth =
                 ta.getDimension(R.styleable.fly_ProgressCellView_pc_cellWidth, cellWidth.toFloat())
-                    .toInt()
             cellSpace =
                 ta.getDimension(R.styleable.fly_ProgressCellView_pc_cellSpace, cellSpace.toFloat())
-                    .toInt()
             reverse = ta.getBoolean(R.styleable.fly_ProgressCellView_pc_reverse, reverse)
-            oritenation = ta.getInteger(R.styleable.fly_ProgressCellView_pc_oritenation, oritenation)
+            oritenation =
+                ta.getInteger(R.styleable.fly_ProgressCellView_pc_oritenation, oritenation)
             ta.recycle()
         }
     }
@@ -71,17 +74,17 @@ class ProgressCellView : View {
         if (oritenation == 0) {
             w = paddingLeft + paddingRight
             for (i in 0 until totalCount) {
-                w += cellWidth
+                w += cellWidth.toInt()
                 if (i < (totalCount - 1)) {
-                    w += cellSpace
+                    w += cellSpace.toInt()
                 }
             }
         } else {
             h = paddingTop + paddingBottom
             for (i in 0 until totalCount) {
-                h += cellWidth
+                h += cellWidth.toInt()
                 if (i < (totalCount - 1)) {
-                    h += cellSpace
+                    h += cellSpace.toInt()
                 }
             }
         }
@@ -171,12 +174,12 @@ class ProgressCellView : View {
         invalidate()
     }
 
-    fun setCellWidth(width: Int) {
+    fun setCellWidth(width: Float) {
         this.cellWidth = width
         invalidate()
     }
 
-    fun setCellSpace(space: Int) {
+    fun setCellSpace(space: Float) {
         this.cellSpace = space
         invalidate()
     }

@@ -133,4 +133,139 @@
         <!--曲线的颜色-->
         <attr name="cc_curveColor" format="color|reference" />
     </declare-styleable>
+
+    <!--多功能输入框-->
+    <declare-styleable name="fly_MultiEditText">
+        <!--是否显示标题-->
+        <attr name="met_show_title" format="boolean" />
+        <!--标题-->
+        <attr name="met_title" format="string|reference" />
+        <!--标题文字颜色-->
+        <attr name="met_title_textColor" format="color|reference" />
+        <!--标题文字大小-->
+        <attr name="met_title_textSize" format="dimension" />
+        <!--标题是否加粗-->
+        <attr name="met_title_bold" format="boolean" />
+        <!--标题与输入框之间的间距-->
+        <attr name="met_title_marginBottom" format="dimension" />
+        <!--输入框获取焦点时，标题的文字颜色-->
+        <attr name="met_title_focusTextColor" format="color|reference" />
+        <!--输入框的内容-->
+        <attr name="met_input" format="string|reference" />
+        <!--输入内容的长度-->
+        <attr name="met_input_maxLength" format="integer" />
+        <!--输入框内容最多显示几行，当 met_input_type=textMultiLine 有效-->
+        <attr name="met_input_maxLines" format="integer" />
+        <!--输入框的提示内容-->
+        <attr name="met_input_hint" format="string|reference" />
+        <!--输入框的提示文字颜色-->
+        <attr name="met_input_hintColor" format="color|reference" />
+        <!--输入框文字颜色-->
+        <attr name="met_input_textColor" format="color|reference" />
+        <!--输入框文字大小-->
+        <attr name="met_input_textSize" format="dimension" />
+        <!--输入框左内边距-->
+        <attr name="met_input_paddingLeft" format="dimension" />
+        <!--输入框右内边距-->
+        <attr name="met_input_paddingRight" format="dimension" />
+        <!--输入框上内边距-->
+        <attr name="met_input_paddingTop" format="dimension" />
+        <!--输入框下内边距-->
+        <attr name="met_input_paddingBottom" format="dimension" />
+        <!--输入框的右外边距-->
+        <attr name="met_input_marginRight" format="dimension" />
+        <!--输入框的高度-->
+        <attr name="met_input_height" format="dimension" />
+        <!--输入框的背景-->
+        <attr name="met_input_bg" format="color|reference" />
+        <!--输入框所在行的容器背景-->
+        <attr name="met_input_rowBg" format="color|reference" />
+        <!--输入框的输入类型-->
+        <attr name="met_input_type" format="string">
+            <!--文本输入-->
+            <enum name="text" value="1" />
+            <!--文本密码-->
+            <enum name="textPassword" value="2" />
+            <!--数字输入-->
+            <enum name="number" value="3" />
+            <!--带小数点的数字-->
+            <enum name="numberDecimal" value="4" />
+            <!--数字密码-->
+            <enum name="numberPassword" value="5" />
+            <!--在开头带正号或者负号的数字输入-->
+            <enum name="numberSigned" value="6" />
+            <!--多行输入-->
+            <enum name="textMultiLine" value="7" />
+        </attr>
+        <!--是否显示密码可见icon-->
+        <attr name="met_show_eye" format="boolean" />
+        <!--密码可见icon-->
+        <attr name="met_eye_open_icon" format="reference" />
+        <!--密码不可见icon-->
+        <attr name="met_eye_close_icon" format="reference" />
+        <!--密码可见icon的宽度-->
+        <attr name="met_eye_width" format="dimension" />
+        <!--密码可见icon的高度-->
+        <attr name="met_eye_height" format="dimension" />
+        <!--密码是否可见-->
+        <attr name="met_password_visible" format="boolean" />
+        <!--是否显示文本清除icon-->
+        <attr name="met_show_clear" format="boolean" />
+        <!--文本清除icon-->
+        <attr name="met_clear_icon" format="reference" />
+        <!--文本清除icon的宽度-->
+        <attr name="met_clear_width" format="dimension" />
+        <!--文本清除icon的高度-->
+        <attr name="met_clear_height" format="dimension" />
+        <!--是否显示左侧icon-->
+        <attr name="met_show_leftIcon" format="boolean" />
+        <!--左侧icon-->
+        <attr name="met_leftIcon" format="reference" />
+        <!--左侧icon宽度-->
+        <attr name="met_leftIcon_width" format="dimension" />
+        <!--左侧icon高度-->
+        <attr name="met_leftIcon_height" format="dimension" />
+        <!--左侧icon的右外间距-->
+        <attr name="met_leftIcon_marginRight" format="dimension" />
+        <!--是否显示右侧按钮-->
+        <attr name="met_show_rBtn" format="boolean" />
+        <!--右侧按钮宽度-->
+        <attr name="met_rBtn_width" format="dimension" />
+        <!--右侧按钮高度-->
+        <attr name="met_rBtn_height" format="dimension" />
+        <!--右侧按钮文字-->
+        <attr name="met_rBtn_text" format="string|reference" />
+        <!--右侧按钮文字颜色-->
+        <attr name="met_rBtn_textColor" format="color|reference" />
+        <!--右侧按钮文字大小-->
+        <attr name="met_rBtn_textSize" format="dimension" />
+        <!--右侧按钮文字是否加粗-->
+        <attr name="met_rBtn_bold" format="boolean" />
+        <!--右侧按钮背景-->
+        <attr name="met_rBtn_bg" format="color|reference" />
+        <!--右侧按钮与输入框的间距-->
+        <attr name="met_rBtn_marginLeft" format="dimension" />
+        <!--右侧按钮的左内间距-->
+        <attr name="met_rBtn_paddingLeft" format="dimension" />
+        <!--右侧按钮的上内间距-->
+        <attr name="met_rBtn_paddingTop" format="dimension" />
+        <!--右侧按钮的右内间距-->
+        <attr name="met_rBtn_paddingRight" format="dimension" />
+        <!--右侧按钮的下内间距-->
+        <attr name="met_rBtn_paddingBottom" format="dimension" />
+        <!--是否保留错误提示的高度空间-->
+        <attr name="met_reserve_errorHeight" format="boolean" />
+        <!--错误提示文本-->
+        <attr name="met_error" format="string|reference" />
+        <!--错误提示文字大小-->
+        <attr name="met_error_textSize" format="dimension" />
+        <!--错误提示文字颜色-->
+        <attr name="met_error_textColor" format="dimension" />
+        <!--错误提示文字外边距-->
+        <attr name="met_error_marginLeft" format="dimension" />
+        <attr name="met_error_marginTop" format="dimension" />
+        <attr name="met_error_marginRight" format="dimension" />
+        <!--错误提示的高度-->
+        <attr name="met_error_height" format="dimension" />
+    </declare-styleable>
 </resources>

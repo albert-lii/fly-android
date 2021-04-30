@@ -152,6 +152,13 @@
         <attr name="met_title_focusTextColor" format="color|reference" />
         <!--输入框的内容-->
         <attr name="met_input" format="string|reference" />
+        <!--输入框的ellipsize-->
+        <attr name="met_input_ellipsize" format="string">
+            <enum name="start" value="1" />
+            <enum name="end" value="2" />
+            <enum name="middle" value="3" />
+            <enum name="marquee" value="4" />
+        </attr>
         <!--输入内容的长度-->
         <attr name="met_input_maxLength" format="integer" />
         <!--输入框内容最多显示几行，当 met_input_type=textMultiLine 有效-->
@@ -166,22 +173,31 @@
         <attr name="met_input_textSize" format="dimension" />
         <!--输入框左内边距-->
         <attr name="met_input_paddingLeft" format="dimension" />
-        <!--输入框右内边距-->
+        <!--输入框右右内边距-->
         <attr name="met_input_paddingRight" format="dimension" />
-        <!--输入框上内边距-->
+        <!--输入框上上内边距-->
         <attr name="met_input_paddingTop" format="dimension" />
-        <!--输入框下内边距-->
+        <!--输入框下下内边距-->
         <attr name="met_input_paddingBottom" format="dimension" />
         <!--输入框的右外边距-->
         <attr name="met_input_marginRight" format="dimension" />
         <!--输入框的高度-->
         <attr name="met_input_height" format="dimension" />
         <!--输入框的背景-->
-        <attr name="met_input_bg" format="color|reference" />
+        <attr name="met_input_focusBg" format="color|reference" />
+        <attr name="met_input_unFocusBg" format="color|reference" />
         <!--输入框所在行的容器背景-->
-        <attr name="met_input_rowBg" format="color|reference" />
+        <attr name="met_input_rowFocusBg" format="color|reference" />
+        <attr name="met_input_rowUnFocusBg" format="color|reference" />
+        <!--输入框所在行的容器内边距-->
+        <attr name="met_input_rowPaddingLeft" format="dimension" />
+        <attr name="met_input_rowPaddingRight" format="dimension" />
+        <attr name="met_input_rowPaddingTop" format="dimension" />
+        <attr name="met_input_rowPaddingBottom" format="dimension" />
         <!--输入框的输入类型-->
         <attr name="met_input_type" format="string">
+            <!--不设置-->
+            <enum name="none" value="0" />
             <!--文本输入-->
             <enum name="text" value="1" />
             <!--文本密码-->
@@ -253,6 +269,8 @@
         <attr name="met_rBtn_paddingRight" format="dimension" />
         <!--右侧按钮的下内间距-->
         <attr name="met_rBtn_paddingBottom" format="dimension" />
+        <!--右侧按钮的下内间距-->
+        <attr name="met_rBtn_marginBottom" format="dimension" />
         <!--是否保留错误提示的高度空间-->
         <attr name="met_reserve_errorHeight" format="boolean" />
         <!--错误提示文本-->

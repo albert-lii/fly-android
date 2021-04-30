@@ -1,5 +1,6 @@
 package org.we.fly.widget
 
+import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -37,6 +38,7 @@ class MultiEditText : LinearLayout {
     /**
      * 输入类型
      */
+    private val INPUT_TYPE_NONE = 0
     private val INPUT_TYPE_TEXT = 1
     private val INPUT_TYPE_TEXT_PASSWORD = 2
     private val INPUT_TYPE_NUMBER = 3
@@ -44,6 +46,14 @@ class MultiEditText : LinearLayout {
     private val INPUT_TYPE_NUMBER_PASSWORD = 5
     private val INPUT_TYPE_NUMBER_SIGNED = 6
     private val INPUT_TYPE_TEXT_MULTI_LINE = 7
+
+    /**
+     * ellipsize
+     */
+    private val INPUT_ELLIPSIZE_START = 1
+    private val INPUT_ELLIPSIZE_END = 2
+    private val INPUT_ELLIPSIZE_MIDDLE = 3
+    private val INPUT_ELLIPSIZE_MARQUEE = 4
 
 
     private lateinit var tv_title: TextView // 标题
@@ -62,10 +72,10 @@ class MultiEditText : LinearLayout {
     // 标题
     private var showTitle = true
     private var title = "" // 标题
-    private var titleTextSize = 14.dpToPx // 标题文字大小
+    private var titleTextSize = 14.dpToPx.toFloat() // 标题文字大小
     private var titleTextColor = Color.BLACK // 标题颜色
     private var titleFocusTextColor = Color.parseColor("#F2B90B") // 输入框获取焦点时，标题的颜色
-    private var titleMarginBottom = 8.dpToPx // 标题与输入框之间的间距
+    private var titleMarginBottom = 8.dpToPx.toFloat() // 标题与输入框之间的间距
     private var isTitleBold = false // 标题是否加粗
 
 
@@ -73,18 +83,26 @@ class MultiEditText : LinearLayout {
     private var input = "" // 输入内容
     private var inputHint = ""// 输入提示
     private var inputHintColor = Color.GRAY // 输入提示的文字颜色
-    private var inputTextSize = 14.dpToPx // 输入文字大小
+    private var inputTextSize = 14.dpToPx.toFloat() // 输入文字大小
     private var inputTextColor = Color.BLACK // 输入文字颜色
     private var inputPaddingLeft = 0f // 输入框的左内边距
     private var inputPaddingRight = 0f // 输入框的右内边距
     private var inputPaddingTop = 0f // 输入框的上内边距
     private var inputPaddingBottom = 0f // 输入框的下内边距
     private var inputMarginRight = 0f // 输入框的右外边距
+    private var inputRowPaddingLeft = 0f // 输入框所在行的左内边距
+    private var inputRowPaddingRight = 0f // 输入框所在行的右内边距
+    private var inputRowPaddingTop = 0f // 输入框所在行的上内边距
+    private var inputRowPaddingBottom = 0f // 输入框所在行的下内边距
     private var inputHeight = LayoutParams.WRAP_CONTENT // 输入框的高度
-    private var inputBg: Drawable = ColorDrawable(Color.TRANSPARENT) // 输入框背景色
+    private var inputFocusBg: Drawable = ColorDrawable(Color.TRANSPARENT) // 输入框背景
+    private var inputUnFocusBg: Drawable = ColorDrawable(Color.TRANSPARENT) // 输入框背景
+    private var inputRowFocusBg: Drawable = ColorDrawable(Color.TRANSPARENT) // 输入框所在行的背景
+    private var inputRowUnFocusBg: Drawable = ColorDrawable(Color.TRANSPARENT) // 输入框所在行的背景
     private var inputType = INPUT_TYPE_TEXT // 输入类型
     private var inputMaxLength = -1 // 输入的最大长度
     private var inputMaxLines = -1 // 输入显示的最大行数，当 inputType=INPUT_TYPE_TEXT_MULTI_LINE 有效
+    private var inputEllipsize = -1
 
     // 密码是否可见icon
     private var showEyeIcon = false // 是否显示密码可见icon
@@ -113,7 +131,7 @@ class MultiEditText : LinearLayout {
     private var rightBtnHeight = LayoutParams.MATCH_PARENT
     private var rightBtnText = "" // 右侧按钮文字
     private var rightBtnTextColor = Color.BLACK // 右侧按钮文字颜色
-    private var rightBtnTextSize = 12.dpToPx // 右侧按钮文字大小
+    private var rightBtnTextSize = 12.dpToPx.toFloat() // 右侧按钮文字大小
     private var isRightTextBold = false // 右侧按钮文字是否加粗
     private var rightBtnBg: Drawable? = null // 右侧按钮背景
     private var rightBtnMarginLeft = 5.dpToPx.toInt()
@@ -126,7 +144,7 @@ class MultiEditText : LinearLayout {
     private var reserveErrorHeight = false // 是否保留错误的高度占位空间
     private var error = "Error" // 错误文本
     private var errorTextColor = Color.parseColor("#E0294A") // 错误文字颜色
-    private var errorTextSize = 8.dpToPx // 错误文字大小
+    private var errorTextSize = 8.dpToPx.toFloat() // 错误文字大小
     private var errorMarginTop = 2.dpToPx.toInt()
     private var errorMarginLeft = 0
     private var errorMarginRight = 0
@@ -168,6 +186,7 @@ class MultiEditText : LinearLayout {
         initView(context)
         setInputType()
         setInputMonitor()
+        setInputEllipsize()
     }
 
     private fun initAttr(attrs: AttributeSet?) {
@@ -210,6 +229,8 @@ class MultiEditText : LinearLayout {
                 ta.getInt(R.styleable.fly_MultiEditText_met_input_maxLength, inputMaxLength)
             inputMaxLines =
                 ta.getInt(R.styleable.fly_MultiEditText_met_input_maxLines, inputMaxLines)
+            inputEllipsize =
+                ta.getInt(R.styleable.fly_MultiEditText_met_input_ellipsize, inputEllipsize)
             inputTextSize = ta.getDimension(
                 R.styleable.fly_MultiEditText_met_input_textSize,
                 inputTextSize
@@ -238,11 +259,35 @@ class MultiEditText : LinearLayout {
                 R.styleable.fly_MultiEditText_met_input_marginRight,
                 inputMarginRight
             )
+            inputRowPaddingLeft = ta.getDimension(
+                R.styleable.fly_MultiEditText_met_input_rowPaddingLeft,
+                inputRowPaddingLeft
+            )
+            inputRowPaddingRight = ta.getDimension(
+                R.styleable.fly_MultiEditText_met_input_rowPaddingRight,
+                inputRowPaddingRight
+            )
+            inputRowPaddingTop = ta.getDimension(
+                R.styleable.fly_MultiEditText_met_input_rowPaddingTop,
+                inputRowPaddingTop
+            )
+            inputRowPaddingBottom = ta.getDimension(
+                R.styleable.fly_MultiEditText_met_input_rowPaddingBottom,
+                inputRowPaddingBottom
+            )
             inputHeight = ta.getDimension(
                 R.styleable.fly_MultiEditText_met_input_height,
                 inputHeight.toFloat()
             ).toInt()
-            inputBg = ta.getDrawable(R.styleable.fly_MultiEditText_met_input_bg) ?: inputBg
+            inputFocusBg =
+                ta.getDrawable(R.styleable.fly_MultiEditText_met_input_focusBg) ?: inputFocusBg
+            inputUnFocusBg =
+                ta.getDrawable(R.styleable.fly_MultiEditText_met_input_unFocusBg) ?: inputUnFocusBg
+            inputRowFocusBg =
+                ta.getDrawable(R.styleable.fly_MultiEditText_met_input_rowFocusBg) ?: inputRowFocusBg
+            inputRowUnFocusBg =
+                ta.getDrawable(R.styleable.fly_MultiEditText_met_input_rowUnFocusBg)
+                    ?: inputRowUnFocusBg
             inputType = ta.getInt(R.styleable.fly_MultiEditText_met_input_type, inputType)
 
             // 密码可见icon
@@ -382,6 +427,13 @@ class MultiEditText : LinearLayout {
             val lp = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             it.layoutParams = lp
             it.orientation = HORIZONTAL
+            it.background = inputRowUnFocusBg
+            it.setPadding(
+                inputRowPaddingLeft.toInt(),
+                inputRowPaddingTop.toInt(),
+                inputRowPaddingRight.toInt(),
+                inputRowPaddingBottom.toInt()
+            )
         }
         addView(ll_inputRow)
 
@@ -420,7 +472,7 @@ class MultiEditText : LinearLayout {
             lp.weight = 1f
             it.layoutParams = lp
             it.orientation = HORIZONTAL
-            it.background = inputBg
+            it.background = inputUnFocusBg
             it.setPadding(
                 inputPaddingLeft.toInt(),
                 inputPaddingTop.toInt(),
@@ -467,8 +519,19 @@ class MultiEditText : LinearLayout {
                 if (inputMaxLength >= 0) {
                     it.setFilters(arrayOf<InputFilter>(LengthFilter(inputMaxLength)))
                 }
+                if (inputMaxLines >= 0) {
+                    it.maxLines = inputMaxLines
+                }
             }
             addView(et_input)
+            // 设置光标为null，即为字体颜色
+            try {
+                val f = TextView::class.java.getDeclaredField("mCursorDrawableRes")
+                f.isAccessible = true
+                f[et_input] = 0
+            } catch (ignored: Exception) {
+                //
+            }
 
             // 密码可见icon
             iv_pwdEye = ImageView(context).also {
@@ -513,7 +576,6 @@ class MultiEditText : LinearLayout {
             rightBtnLp.leftMargin = rightBtnMarginLeft
             it.layoutParams = rightBtnLp
             it.gravity = Gravity.CENTER
-            it.background = rightBtnBg
             it.text = rightBtnText
             it.setTextColor(rightBtnTextColor)
             it.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightBtnTextSize)
@@ -559,6 +621,10 @@ class MultiEditText : LinearLayout {
      */
     private fun setInputType() {
         when (inputType) {
+            // 不设置
+            INPUT_TYPE_NONE -> {
+                et_input.inputType = InputType.TYPE_NULL
+            }
             // 纯文本
             INPUT_TYPE_TEXT -> {
                 et_input.inputType = InputType.TYPE_CLASS_TEXT
@@ -586,10 +652,6 @@ class MultiEditText : LinearLayout {
             // 多行输入
             INPUT_TYPE_TEXT_MULTI_LINE -> {
                 et_input.inputType = InputType.TYPE_TEXT_FLAG_MULTI_LINE
-                et_input.setSingleLine(false)
-                if (inputMaxLines >= 0) {
-                    et_input.maxLines = inputMaxLines
-                }
             }
         }
         if (inputType == INPUT_TYPE_TEXT_PASSWORD || inputType == INPUT_TYPE_NUMBER_PASSWORD) {
@@ -606,11 +668,21 @@ class MultiEditText : LinearLayout {
      */
     private fun setInputMonitor() {
         et_input.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
                 beforeInputChanged?.invoke(et_input, s, start, count, after)
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(
+                s: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
                 onInputChanged?.invoke(et_input, s, start, before, count)
             }
 
@@ -639,7 +711,16 @@ class MultiEditText : LinearLayout {
                     }
                 )
             }
-            inputFocused?.invoke(et_input, hasFocus)
+            ll_input.background = if (hasFocus) {
+                inputFocusBg
+            } else {
+                inputUnFocusBg
+            }
+            ll_inputRow.background = if (hasFocus) {
+                inputRowFocusBg
+            } else {
+                inputRowUnFocusBg
+            }
         }
         iv_pwdEye.singleClick {
             togglePasswordVisible()
@@ -651,12 +732,36 @@ class MultiEditText : LinearLayout {
         }
     }
 
+
+    private fun setInputEllipsize() {
+        if (inputEllipsize > 0) {
+            when (inputEllipsize) {
+                INPUT_ELLIPSIZE_START -> {
+                    et_input.setEllipsize(TextUtils.TruncateAt.START)
+                }
+                INPUT_ELLIPSIZE_END -> {
+                    et_input.setEllipsize(TextUtils.TruncateAt.END)
+                }
+                INPUT_ELLIPSIZE_MIDDLE -> {
+                    et_input.setEllipsize(TextUtils.TruncateAt.MIDDLE)
+                }
+                INPUT_ELLIPSIZE_MARQUEE -> {
+                    et_input.setEllipsize(TextUtils.TruncateAt.MARQUEE)
+                }
+            }
+        }
+    }
+
     fun getTitleView(): TextView {
         return tv_title
     }
 
     fun getInputView(): EditText {
         return et_input
+    }
+
+    fun getInputRowView(): LinearLayout {
+        return ll_inputRow
     }
 
     fun getLeftIconView(): ImageView {
@@ -793,7 +898,7 @@ class MultiEditText : LinearLayout {
         millisInFuture: Long,
         countDownInterval: Long,
         owner: LifecycleOwner,
-        onTick: ((millisUntilFinished: Long) -> Unit)? = null
+        onTick: ((e: CountDownUtils.CountDownEvent) -> Unit)? = null
     ) {
         CountDownUtils.getInstance()
             .startCountDown(key, millisInFuture, countDownInterval, owner, onTick)
@@ -805,7 +910,7 @@ class MultiEditText : LinearLayout {
     fun restoreCountDown(
         key: Any,
         owner: LifecycleOwner,
-        onTick: ((millisUntilFinished: Long) -> Unit)? = null
+        onTick: ((e: CountDownUtils.CountDownEvent) -> Unit)? = null
     ) {
         CountDownUtils.getInstance().retoreCountDown(key, owner, onTick)
     }
@@ -815,5 +920,25 @@ class MultiEditText : LinearLayout {
      */
     fun cancelCountDown(key: Any) {
         CountDownUtils.getInstance().cancel(key)
+    }
+
+    /**
+     * 粘贴文本
+     */
+    fun paste(): String {
+        val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val pasteData = cm.text.toString()
+        return pasteData
+    }
+
+    /**
+     * 只粘贴数字
+     */
+    fun pasteNumber(): String {
+        val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val pasteData = cm.text.toString()
+        // 过滤掉所有非数字字符
+        val result = pasteData.replace("[^\\d]".toRegex(), "")
+        return result
     }
 }

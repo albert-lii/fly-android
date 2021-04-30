@@ -13,6 +13,7 @@ import org.we.fly.utils.livebus.LiveBus
  * @since: 1.0.0
  */
 class CountDownUtils {
+    private var countDownPool = HashMap<Any, MyCountDownTimer>()
 
     companion object {
         @Volatile
@@ -23,8 +24,6 @@ class CountDownUtils {
             instance ?: synchronized(this) {
                 instance ?: CountDownUtils().also { instance = it }
             }
-
-        private var countDownPool = HashMap<Any, MyCountDownTimer>()
     }
 
     /**
@@ -35,7 +34,7 @@ class CountDownUtils {
         millisInFuture: Long,
         countDownInterval: Long,
         owner: LifecycleOwner,
-        onTick: ((millisUntilFinished: Long) -> Unit)? = null
+        onTick: ((e: CountDownEvent) -> Unit)? = null
     ) {
         var timer = countDownPool.get(key)
         if (timer != null) {
@@ -43,7 +42,7 @@ class CountDownUtils {
             countDownPool.remove(key)
         }
         timer = MyCountDownTimer(key, millisInFuture, countDownInterval)
-        timer.observe(owner,onTick)
+        timer.observe(owner, onTick)
         timer.start()
         countDownPool.put(key, timer)
     }
@@ -54,7 +53,7 @@ class CountDownUtils {
     fun retoreCountDown(
         key: Any,
         owner: LifecycleOwner,
-        onTick: ((millisUntilFinished: Long) -> Unit)? = null
+        onTick: ((e: CountDownEvent) -> Unit)? = null
     ) {
         val timer = countDownPool.get(key)
         if (timer != null) {
@@ -67,7 +66,19 @@ class CountDownUtils {
      */
     fun cancel(key: Any) {
         val timer = countDownPool.get(key)
-        timer?.let { it.cancel() }
+        if (timer != null) {
+            timer.isCancel = true
+            timer.cancel()
+            LiveBus.get(key).post(
+                CountDownEvent(
+                    key = key,
+                    millisUntilFinished = 0,
+                    isFinish = false,
+                    isCancel = true
+                )
+            )
+            countDownPool.remove(key)
+        }
     }
 
     /**
@@ -76,14 +87,52 @@ class CountDownUtils {
     fun cancelAll() {
         if (countDownPool.size > 0) {
             for ((key, value) in countDownPool) {
+                value.isCancel = true
                 value.cancel()
+                LiveBus.get(key).post(
+                    CountDownEvent(
+                        key = key,
+                        millisUntilFinished = 0,
+                        isFinish = false,
+                        isCancel = true
+                    )
+                )
             }
         }
         countDownPool.clear()
     }
 
-    private class MyCountDownTimer : CountDownTimer {
+    /**
+     * 订阅倒计时取消
+     */
+    fun observeCanccel(key: Any, owner: LifecycleOwner, block: (e: CountDownEvent) -> Unit) {
+        LiveBus.get(key, CountDownEvent::class.java)
+            .observe(owner, object : Observer<CountDownEvent> {
+                override fun onChanged(e: CountDownEvent) {
+                    block.invoke(e)
+                }
+            })
+    }
+
+    /**
+     * 订阅倒计时取消
+     */
+    fun observeStickyCanccel(
+        key: Any,
+        owner: LifecycleOwner,
+        block: (e: CountDownEvent) -> Unit
+    ) {
+        LiveBus.get(key, CountDownEvent::class.java)
+            .observeSticky(owner, object : Observer<CountDownEvent> {
+                override fun onChanged(e: CountDownEvent) {
+                    block.invoke(e)
+                }
+            })
+    }
+
+    private inner class MyCountDownTimer : CountDownTimer {
         private var key: Any
+        var isCancel = false
 
         constructor(
             key: Any,
@@ -97,20 +146,44 @@ class CountDownUtils {
         }
 
         override fun onTick(millisUntilFinished: Long) {
-            LiveBus.get(key).post(millisUntilFinished)
+            if (!isCancel) {
+                LiveBus.get(key).post(
+                    CountDownEvent(
+                        key = key,
+                        millisUntilFinished = millisUntilFinished,
+                        isFinish = false,
+                        isCancel = false
+                    )
+                )
+            }
         }
 
         override fun onFinish() {
+            LiveBus.get(key).post(
+                CountDownEvent(
+                    key = key,
+                    millisUntilFinished = 0,
+                    isFinish = true,
+                    isCancel = false
+                )
+            )
             countDownPool.remove(key)
         }
 
-        fun observe(owner: LifecycleOwner, onTick: ((millisUntilFinished: Long) -> Unit)?) {
-            LiveBus.get(key, Long::class.java)
-                .observeSticky(owner, object : Observer<Long> {
-                    override fun onChanged(t: Long) {
-                        onTick?.invoke(t)
+        fun observe(owner: LifecycleOwner, onTick: ((event: CountDownEvent) -> Unit)?) {
+            LiveBus.get(key, CountDownEvent::class.java)
+                .observeSticky(owner, object : Observer<CountDownEvent> {
+                    override fun onChanged(e: CountDownEvent) {
+                        onTick?.invoke(e)
                     }
                 })
         }
     }
+
+    data class CountDownEvent(
+        val key: Any,
+        val millisUntilFinished: Long,
+        val isFinish: Boolean,
+        val isCancel: Boolean
+    )
 }

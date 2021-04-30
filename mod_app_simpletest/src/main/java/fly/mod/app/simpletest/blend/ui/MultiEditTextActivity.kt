@@ -6,6 +6,7 @@ import fly.mod.app.simpletest.R
 import fly.mod.app.simpletest.databinding.StActivityMultiEdittextBinding
 import fly.mod.lib.common.base.BaseAppBindingActivity
 import fly.mod.lib.common.router.RouteConstants
+import org.we.fly.utils.CountDownUtils
 
 /**
  * @author: Albert Li
@@ -41,8 +42,8 @@ class MultiEditTextActivity : BaseAppBindingActivity<StActivityMultiEdittextBind
             }
         }
 
-        val onTick1: (millisUntilFinished: Long) -> Unit = {
-            val sec = it / 1000
+        val onTick1: (e: CountDownUtils.CountDownEvent) -> Unit = {
+            val sec = it.millisUntilFinished / 1000
             if (sec < 1) {
                 binding.metVerify1.getRightButtonView().text = "发送验证码"
                 binding.metVerify1.getRightButtonView().isEnabled = true
@@ -59,8 +60,8 @@ class MultiEditTextActivity : BaseAppBindingActivity<StActivityMultiEdittextBind
             onTick1(it)
         })
 
-        val onTick2: (millisUntilFinished: Long) -> Unit = {
-            val sec = it / 1000
+        val onTick2: (e: CountDownUtils.CountDownEvent) -> Unit = {
+            val sec = it.millisUntilFinished / 1000
             if (sec < 1) {
                 binding.metVerify2.getRightButtonView().text = "发送验证码"
                 binding.metVerify2.getRightButtonView().isEnabled = true

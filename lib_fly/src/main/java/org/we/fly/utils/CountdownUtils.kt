@@ -12,17 +12,17 @@ import org.we.fly.utils.livebus.LiveBus
  * @description: 倒计时相关工具类
  * @since: 1.0.0
  */
-class CountDownUtils {
-    private var countDownPool = HashMap<Any, MyCountDownTimer>()
+class CountdownUtils {
+    private var countdownPool = HashMap<Any, MyCountDownTimer>()
 
     companion object {
         @Volatile
-        private var instance: CountDownUtils? = null
+        private var instance: CountdownUtils? = null
 
         @JvmStatic
         fun getInstance() =
             instance ?: synchronized(this) {
-                instance ?: CountDownUtils().also { instance = it }
+                instance ?: CountdownUtils().also { instance = it }
             }
     }
 
@@ -36,15 +36,15 @@ class CountDownUtils {
         owner: LifecycleOwner,
         onTick: ((e: CountDownEvent) -> Unit)? = null
     ) {
-        var timer = countDownPool.get(key)
+        var timer = countdownPool.get(key)
         if (timer != null) {
             timer.cancel()
-            countDownPool.remove(key)
+            countdownPool.remove(key)
         }
         timer = MyCountDownTimer(key, millisInFuture, countDownInterval)
         timer.observe(owner, onTick)
         timer.start()
-        countDownPool.put(key, timer)
+        countdownPool.put(key, timer)
     }
 
     /**
@@ -55,7 +55,7 @@ class CountDownUtils {
         owner: LifecycleOwner,
         onTick: ((e: CountDownEvent) -> Unit)? = null
     ) {
-        val timer = countDownPool.get(key)
+        val timer = countdownPool.get(key)
         if (timer != null) {
             timer.observe(owner, onTick)
         }
@@ -65,7 +65,7 @@ class CountDownUtils {
      * 取消倒计时
      */
     fun cancel(key: Any) {
-        val timer = countDownPool.get(key)
+        val timer = countdownPool.get(key)
         if (timer != null) {
             timer.isCancel = true
             timer.cancel()
@@ -77,7 +77,7 @@ class CountDownUtils {
                     isCancel = true
                 )
             )
-            countDownPool.remove(key)
+            countdownPool.remove(key)
         }
     }
 
@@ -85,8 +85,8 @@ class CountDownUtils {
      * 取消所有的倒计时
      */
     fun cancelAll() {
-        if (countDownPool.size > 0) {
-            for ((key, value) in countDownPool) {
+        if (countdownPool.size > 0) {
+            for ((key, value) in countdownPool) {
                 value.isCancel = true
                 value.cancel()
                 LiveBus.get(key).post(
@@ -99,7 +99,7 @@ class CountDownUtils {
                 )
             }
         }
-        countDownPool.clear()
+        countdownPool.clear()
     }
 
     /**
@@ -167,7 +167,7 @@ class CountDownUtils {
                     isCancel = false
                 )
             )
-            countDownPool.remove(key)
+            countdownPool.remove(key)
         }
 
         fun observe(owner: LifecycleOwner, onTick: ((event: CountDownEvent) -> Unit)?) {

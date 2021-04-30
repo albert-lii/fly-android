@@ -23,7 +23,7 @@ import androidx.lifecycle.LifecycleOwner
 import org.we.fly.R
 import org.we.fly.extensions.dpToPx
 import org.we.fly.extensions.singleClick
-import org.we.fly.utils.CountDownUtils
+import org.we.fly.utils.CountdownUtils
 
 
 /**
@@ -898,9 +898,9 @@ class MultiEditText : LinearLayout {
         millisInFuture: Long,
         countDownInterval: Long,
         owner: LifecycleOwner,
-        onTick: ((e: CountDownUtils.CountDownEvent) -> Unit)? = null
+        onTick: ((e: CountdownUtils.CountDownEvent) -> Unit)? = null
     ) {
-        CountDownUtils.getInstance()
+        CountdownUtils.getInstance()
             .startCountDown(key, millisInFuture, countDownInterval, owner, onTick)
     }
 
@@ -910,16 +910,16 @@ class MultiEditText : LinearLayout {
     fun restoreCountDown(
         key: Any,
         owner: LifecycleOwner,
-        onTick: ((e: CountDownUtils.CountDownEvent) -> Unit)? = null
+        onTick: ((e: CountdownUtils.CountDownEvent) -> Unit)? = null
     ) {
-        CountDownUtils.getInstance().retoreCountDown(key, owner, onTick)
+        CountdownUtils.getInstance().retoreCountDown(key, owner, onTick)
     }
 
     /**
      * 取消倒计时
      */
     fun cancelCountDown(key: Any) {
-        CountDownUtils.getInstance().cancel(key)
+        CountdownUtils.getInstance().cancel(key)
     }
 
     /**

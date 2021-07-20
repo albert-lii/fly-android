@@ -7,8 +7,8 @@ import fly.mod.app.simpletest.coroutine.viewmodel.CoroutineTest1ViewModel
 import fly.mod.app.simpletest.databinding.StActivityCoroutineTest1Binding
 import fly.mod.lib.common.base.BaseAppBVMActivity
 import fly.mod.lib.common.router.RouteConstants
-import org.we.fly.extensions.observeNonNull
-import org.we.fly.extensions.singleClick
+import org.fly.base.extensions.observeNonNull
+import org.fly.base.extensions.singleClick
 
 /**
  * @author: Albert Li

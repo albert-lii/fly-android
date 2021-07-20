@@ -3,9 +3,8 @@ package fly.mod.app.simpletest.livebus.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import fly.mod.app.simpletest.livebus.Constants
-import fly.mod.app.simpletest.livebus.ui.LiveBusTest2Activity
 import fly.mod.lib.common.base.BaseAppViewModel
-import org.we.fly.utils.livebus.LiveBus
+import org.fly.base.communication.livebus.LiveBus
 
 /**
  * @author: Albert Li

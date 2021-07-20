@@ -1,6 +1,6 @@
 package fly.mod.lib.common.api
 
-import org.we.fly.http.HttpResponse
+import org.fly.base.network.HttpResponse
 
 /**
  * @author: Albert Li

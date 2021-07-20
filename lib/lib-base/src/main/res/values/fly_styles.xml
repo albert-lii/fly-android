@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--没有标题的通用Dialog-->
+    <style name="Fly_CommonNoTitleDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item><!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item><!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item><!-- 是否有标题 -->
+        <item name="android:background">@null</item><!-- 无背景 -->
+        <item name="android:windowFullscreen">true</item><!-- 全屏 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item><!-- 去除黑色边框的关键设置项 -->
+    </style>
+</resources>

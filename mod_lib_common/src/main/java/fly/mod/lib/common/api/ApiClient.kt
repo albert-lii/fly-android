@@ -1,7 +1,7 @@
 package fly.mod.lib.common.api
 
 import okhttp3.OkHttpClient
-import org.we.fly.http.BaseHttpClient
+import org.fly.base.network.BaseHttpClient
 import retrofit2.Retrofit
 
 /**

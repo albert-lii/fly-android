@@ -6,9 +6,9 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.databinding.ViewDataBinding
 import com.blankj.utilcode.util.BarUtils
-import org.we.fly.base.FlyBaseConstants
-import org.we.fly.base.arch.BaseBVMActivity
-import org.we.fly.base.arch.BaseViewModel
+import org.fly.base.arch.mvvm.FlyBaseConstants
+import org.fly.base.arch.mvvm.BaseBVMActivity
+import org.fly.base.arch.mvvm.BaseViewModel
 
 
 /**

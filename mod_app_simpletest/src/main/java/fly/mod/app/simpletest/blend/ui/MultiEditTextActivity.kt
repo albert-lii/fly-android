@@ -6,7 +6,7 @@ import fly.mod.app.simpletest.R
 import fly.mod.app.simpletest.databinding.StActivityMultiEdittextBinding
 import fly.mod.lib.common.base.BaseAppBindingActivity
 import fly.mod.lib.common.router.RouteConstants
-import org.we.fly.utils.CountdownUtils
+import org.fly.base.utils.countdown.CountdownUtils
 
 /**
  * @author: Albert Li
@@ -43,39 +43,31 @@ class MultiEditTextActivity : BaseAppBindingActivity<StActivityMultiEdittextBind
         }
 
         val onTick1: (e: CountdownUtils.CountDownEvent) -> Unit = {
-            val sec = it.millisUntilFinished / 1000
-            if (sec < 1) {
-                binding.metVerify1.getRightButtonView().text = "发送验证码"
-                binding.metVerify1.getRightButtonView().isEnabled = true
-            } else {
-                binding.metVerify1.getRightButtonView().text = "${sec}s"
-            }
+//            val sec = it.millisUntilFinished / 1000
+//            if (sec < 1) {
+//                binding.metVerify1.getRightButtonView().text = "发送验证码"
+//                binding.metVerify1.getRightButtonView().isEnabled = true
+//            } else {
+//                binding.metVerify1.getRightButtonView().text = "${sec}s"
+//            }
         }
         binding.metVerify1.doRightButtonClick { et, btn ->
-            binding.metVerify1.startCountDown("test1", 10 * 1000, 1000, this, onTick1)
+
             btn.isEnabled = false
         }
-        binding.metVerify1.restoreCountDown("test1", this, {
-            binding.metVerify1.getRightButtonView().isEnabled = false
-            onTick1(it)
-        })
+
 
         val onTick2: (e: CountdownUtils.CountDownEvent) -> Unit = {
-            val sec = it.millisUntilFinished / 1000
-            if (sec < 1) {
-                binding.metVerify2.getRightButtonView().text = "发送验证码"
-                binding.metVerify2.getRightButtonView().isEnabled = true
-            } else {
-                binding.metVerify2.getRightButtonView().text = "${sec}s"
-            }
+//            val sec = it.millisUntilFinished / 1000
+//            if (sec < 1) {
+//                binding.metVerify2.getRightButtonView().text = "发送验证码"
+//                binding.metVerify2.getRightButtonView().isEnabled = true
+//            } else {
+//                binding.metVerify2.getRightButtonView().text = "${sec}s"
+//            }
         }
         binding.metVerify2.doRightButtonClick { et, btn ->
-            binding.metVerify2.startCountDown("test2", 15 * 1000, 1000, this, onTick2)
             btn.isEnabled = false
         }
-        binding.metVerify2.restoreCountDown("test2", this, {
-            binding.metVerify2.getRightButtonView().isEnabled = false
-            onTick2(it)
-        })
     }
 }

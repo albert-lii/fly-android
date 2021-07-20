@@ -1,10 +1,124 @@
-rootProject.name='fly'
+rootProject.name = 'fly'
 include ':app'
-include ':lib_fly'
-include ':lib_fly_dimenmaker'
 include ':mod_lib_resource'
 include ':mod_lib_common'
 include ':mod_app_main'
 include ':mod_app_simpletest'
 
+binding.workspace = file('./')
+includeModules(
+        ':lib'
+)
 
+
+// -------------------------------------------------------------------------------------------------
+// Tools (Modules)
+// -------------------------------------------------------------------------------------------------
+
+@SuppressWarnings("GroovyUnusedDeclaration")
+def includeModules(String[] paths) {
+    for (String path : paths) {
+        includeModule(path, null)
+    }
+}
+
+def includeModule(String path, Closure closure) {
+    def ModuleSpec moduleSpec = new ModuleSpec()
+    if (closure) {
+        closure.delegate = moduleSpec
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure()
+    }
+
+    def moduleDir = new File(binding.workspace, path.replace(':', '/'))
+    if (moduleDir.exists()) {
+        include(path)
+
+        def module = project(path)
+        module.projectDir = moduleDir
+
+        def settingsFile = new File(moduleDir, 'settings.gradle')
+        if (settingsFile.exists()) {
+            apply {
+                from settingsFile
+                to new SettingsProxy(settings, module, moduleSpec)
+            }
+        }
+    }
+}
+
+class ModuleSpec {
+    private final Set<String> mExcludes = []
+
+    private Spec<String> mFilter
+
+    @SuppressWarnings("GroovyUnusedDeclaration")
+    public void exclude(String[] paths) {
+        mExcludes.addAll(paths)
+    }
+
+    @SuppressWarnings("GroovyUnusedDeclaration")
+    public void exclude(Spec<String> filter) {
+        mFilter = filter
+    }
+
+    boolean accept(String path) {
+        if (mExcludes.contains(path)) {
+            return false
+        }
+
+        if (mFilter && mFilter.isSatisfiedBy(path)) {
+            return false
+        }
+
+        return true
+    }
+}
+
+// -------------------------------------------------------------------------------------------------
+// Tools (Settings)
+// -------------------------------------------------------------------------------------------------
+
+class SettingsProxy {
+    private final mSettings
+    private final mModule
+    private final mModuleSpec
+
+    SettingsProxy(settings, module, moduleSpec) {
+        mSettings = settings
+        mModule = module
+        mModuleSpec = moduleSpec
+    }
+
+    @SuppressWarnings(["GroovyUnusedDeclaration", "GrUnnecessaryPublicModifier"])
+    public getRootProject() {
+        return mModule
+    }
+
+    @SuppressWarnings("GrUnnecessaryPublicModifier")
+    public void include(String... paths) {
+        for (String path : paths) {
+            if (!mModuleSpec.accept(path)) {
+                continue
+            }
+
+            def descendantPath = generateDescendantPath(path)
+            mSettings.include(descendantPath)
+
+            def descendantProjectDir = new File(mModule.projectDir, path.replace(':', '/'))
+            mSettings.project(descendantPath).projectDir = descendantProjectDir
+        }
+    }
+
+    @SuppressWarnings("GrUnnecessaryPublicModifier")
+    public project(String path) {
+        return mSettings.project(generateChildPath(path))
+    }
+
+    private String generateDescendantPath(path) {
+        return "$mModule.path$path"
+    }
+}
+
+
+include ':lib-widget'

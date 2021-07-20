@@ -9,7 +9,7 @@
         android:background="@color/page_bg_color"
         android:orientation="vertical">
 
-        <org.we.fly.widget.TitleBar
+        <org.fly.widget.TitleBar
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

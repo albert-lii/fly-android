@@ -3,8 +3,7 @@ package fly.mod.app.main.adapter
 import fly.mod.app.main.R
 import fly.mod.app.main.data.Article
 import fly.mod.app.main.databinding.MRecyclerItemArticleBinding
-import org.we.fly.base.ui.recyclerview.BaseAddGridRecyAdapter
-import org.we.fly.base.ui.recyclerview.BaseBindingRecyclerAdapter
+import org.fly.base.arch.recyclerview.BaseBindingRecyclerAdapter
 
 /**
  * @author: Albert Li

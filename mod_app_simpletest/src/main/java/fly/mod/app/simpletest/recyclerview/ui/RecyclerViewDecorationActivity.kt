@@ -10,8 +10,8 @@ import fly.mod.app.simpletest.databinding.StActivityRecyclerviewDecorationBindin
 import fly.mod.app.simpletest.databinding.StRecyclerItemItemdecorationBinding
 import fly.mod.lib.common.base.BaseAppBindingActivity
 import fly.mod.lib.common.router.RouteConstants
-import org.we.fly.base.ui.recyclerview.BaseBindingRecyclerAdapter
-import org.we.fly.widget.recyclerview.SpaceItemDecoration
+import org.fly.base.arch.recyclerview.BaseBindingRecyclerAdapter
+import org.fly.widget.recyclerview.SpaceItemDecoration
 
 /**
  * @author: Albert Li

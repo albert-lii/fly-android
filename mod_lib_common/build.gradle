@@ -46,6 +46,7 @@ dependencies {
     api rootProject.ext.dependencies["kotlin-stdlib"]
     api rootProject.ext.dependencies["core-ktx"]
     implementation rootProject.ext.dependencies["arouter-api"]
-    api project(":lib_fly")
+    api project(':lib:lib-base')
+    api project(':lib:lib-widget')
     api project(":mod_lib_resource")
 }

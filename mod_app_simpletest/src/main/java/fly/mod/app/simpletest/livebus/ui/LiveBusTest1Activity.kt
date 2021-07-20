@@ -10,8 +10,8 @@ import fly.mod.app.simpletest.livebus.viewmodel.LiveBusTest1ViewModel
 import fly.mod.lib.common.base.BaseAppBVMActivity
 import fly.mod.lib.common.router.RouteConstants
 import fly.mod.lib.common.router.RouterUtils
-import org.we.fly.extensions.singleClick
-import org.we.fly.utils.livebus.LiveBus
+import org.fly.base.extensions.singleClick
+import org.fly.base.communication.livebus.LiveBus
 
 
 /**

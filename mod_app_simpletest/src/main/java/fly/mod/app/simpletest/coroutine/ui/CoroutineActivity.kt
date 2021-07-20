@@ -7,7 +7,7 @@ import fly.mod.app.simpletest.databinding.StActivityCoroutineBinding
 import fly.mod.lib.common.base.BaseAppBindingActivity
 import fly.mod.lib.common.router.RouteConstants
 import fly.mod.lib.common.router.RouterUtils
-import org.we.fly.extensions.singleClick
+import org.fly.base.extensions.singleClick
 
 /**
  * @author: Albert Li

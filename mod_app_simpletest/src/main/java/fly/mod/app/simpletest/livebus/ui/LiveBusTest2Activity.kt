@@ -9,8 +9,8 @@ import fly.mod.app.simpletest.databinding.StActivityLivebusTest2Binding
 import fly.mod.app.simpletest.livebus.viewmodel.LiveBusTest2ViewModel
 import fly.mod.lib.common.base.BaseAppBVMActivity
 import fly.mod.lib.common.router.RouteConstants
-import org.we.fly.extensions.singleClick
-import org.we.fly.utils.livebus.LiveBus
+import org.fly.base.extensions.singleClick
+import org.fly.base.communication.livebus.LiveBus
 
 
 /**

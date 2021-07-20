@@ -10,7 +10,7 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <org.we.fly.widget.TitleBar
+        <org.fly.widget.TitleBar
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
                 android:layout_marginRight="@dimen/btn_space_lr"
                 android:orientation="vertical">
 
-                <org.we.fly.widget.ProgressCellView
+                <org.fly.widget.ProgressCellView
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/px_40"
                     android:layout_gravity="center"
@@ -46,7 +46,7 @@
                     app:pc_totalCount="5" />
 
 
-                <org.we.fly.widget.ProgressCellView
+                <org.fly.widget.ProgressCellView
                     android:id="@+id/pc_t"
                     android:layout_width="@dimen/px_40"
                     android:layout_height="wrap_content"

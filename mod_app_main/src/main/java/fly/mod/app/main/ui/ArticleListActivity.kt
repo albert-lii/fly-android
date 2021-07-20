@@ -12,9 +12,8 @@ import fly.mod.app.main.databinding.MActivityArticleListBinding
 import fly.mod.app.main.viewmodel.ArticleListViewModel
 import fly.mod.lib.common.base.BaseAppBVMActivity
 import fly.mod.lib.common.router.RouteConstants
-import org.we.fly.base.arch.BaseBVMActivity
-import org.we.fly.base.ui.recyclerview.BaseRecyclerAdapter
-import org.we.fly.extensions.observeNonNull
+import org.fly.base.arch.recyclerview.BaseRecyclerAdapter
+import org.fly.base.extensions.observeNonNull
 
 /**
  * @author: Albert Li

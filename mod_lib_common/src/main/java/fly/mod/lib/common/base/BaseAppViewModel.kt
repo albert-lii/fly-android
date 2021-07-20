@@ -1,7 +1,7 @@
 package fly.mod.lib.common.base
 
-import org.we.fly.base.arch.BaseViewModel
-import org.we.fly.http.HttpHelper
+import org.fly.base.arch.mvvm.BaseViewModel
+import org.fly.base.network.HttpHelper
 
 /**
  * @author: Albert Li

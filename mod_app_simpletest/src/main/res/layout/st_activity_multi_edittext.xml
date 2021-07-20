@@ -13,7 +13,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <org.we.fly.widget.TitleBar
+            <org.fly.widget.TitleBar
                 android:id="@+id/titlebar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <org.we.fly.widget.MultiEditText
+                    <org.fly.widget.MultiEditText
                         android:id="@+id/met_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                         app:met_title_textColor="@color/textcolor_black"
                         app:met_title_textSize="@dimen/px_14" />
 
-                    <org.we.fly.widget.MultiEditText
+                    <org.fly.widget.MultiEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/px_24"
@@ -85,7 +85,7 @@
                         app:met_show_clear="true"
                         app:met_show_title="false" />
 
-                    <org.we.fly.widget.MultiEditText
+                    <org.fly.widget.MultiEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/px_24"
@@ -108,7 +108,7 @@
                         app:met_title_textColor="@color/textcolor_black"
                         app:met_title_textSize="@dimen/px_14" />
 
-                    <org.we.fly.widget.MultiEditText
+                    <org.fly.widget.MultiEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/px_24"
@@ -134,7 +134,7 @@
                         app:met_title_textColor="@color/textcolor_black"
                         app:met_title_textSize="@dimen/px_14" />
 
-                    <org.we.fly.widget.MultiEditText
+                    <org.fly.widget.MultiEditText
                         android:id="@+id/met_verify1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
                         app:met_title_textColor="@color/textcolor_black"
                         app:met_title_textSize="@dimen/px_14" />
 
-                    <org.we.fly.widget.MultiEditText
+                    <org.fly.widget.MultiEditText
                         android:id="@+id/met_verify2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -198,7 +198,7 @@
                         app:met_title_textColor="@color/textcolor_black"
                         app:met_title_textSize="@dimen/px_14" />
 
-                    <org.we.fly.widget.MultiEditText
+                    <org.fly.widget.MultiEditText
                         android:id="@+id/met_search"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

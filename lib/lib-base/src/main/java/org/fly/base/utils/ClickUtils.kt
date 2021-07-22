@@ -9,7 +9,6 @@ package org.fly.base.utils
  */
 class ClickUtils private constructor() {
     private val SINGLE_INTERVAL = 400L
-    private val DOUBLE_INTERVAL = 1000L
     private var lastClickTime: Long
 
     companion object {

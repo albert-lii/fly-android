@@ -57,7 +57,7 @@ object ImageLoader {
      * 加载圆角图
      */
     @JvmStatic
-    fun loadCorners(
+    fun loadCorner(
         context: Context, imageView: ImageView, url: String,
         radius: Int,
         loadingDrawable: Int,

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="fly.mod.app.test.livebus.viewmodel.LiveBusTest1ViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/page_bg_color"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <org.fly.widget.TitleBar
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/btn_height"
+            android:background="@color/titlebar_bg_color"
+            app:tb_addStatusBarHeight="true"
+            app:tb_barHeight="@dimen/titlebar_height"
+            app:tb_leftIcon="@drawable/back_arrow"
+            app:tb_leftIconHight="@dimen/titlebar_lefticon_size"
+            app:tb_title="LiveBus简单测试（一）"
+            app:tb_titleSize="@dimen/titlebar_title_size" />
+
+        <Button
+            android:id="@+id/btn_post"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="Post一个消息"
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_btn" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_15"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_observe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.normalObserveData}"
+                android:textColor="@color/textcolor_black"
+                android:textSize="@dimen/textsize_m" />
+
+            <TextView
+                android:id="@+id/tv_observe_sticky"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_2"
+                android:text="@{viewModel.stickyObserveData}"
+                android:textColor="@color/textcolor_black"
+                android:textSize="@dimen/textsize_m" />
+
+            <TextView
+                android:id="@+id/tv_observe_forever"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_2"
+                android:text="@{viewModel.foreverObserveData}"
+                android:textColor="@color/textcolor_black"
+                android:textSize="@dimen/textsize_m" />
+
+            <TextView
+                android:id="@+id/tv_observe_sticky_forever"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_2"
+                android:text="@{viewModel.stickyForeverObserveData}"
+                android:textColor="@color/textcolor_black"
+                android:textSize="@dimen/textsize_m" />
+
+            <TextView
+                android:id="@+id/tv_receive_created"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_2"
+                android:text="@{viewModel.receiveCountOnCreatedData}"
+                android:textColor="@color/textcolor_black"
+                android:textSize="@dimen/textsize_m" />
+
+            <TextView
+                android:id="@+id/tv_receive_started"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_2"
+                android:text="@{viewModel.receiveCountOnStartedData}"
+                android:textColor="@color/textcolor_black"
+                android:textSize="@dimen/textsize_m" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

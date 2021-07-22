@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11">
+    <bytecodeTargetLevel target="1.7">
+      <module name="fly.app" target="11" />
+      <module name="fly.lib-biz.lib-common" target="11" />
+      <module name="fly.lib-biz.lib-resource" target="11" />
+      <module name="fly.lib-common" target="11" />
+      <module name="fly.lib.lib-base" target="11" />
+      <module name="fly.lib.lib-resource" target="11" />
+      <module name="fly.lib.lib-widget" target="11" />
       <module name="fly.mod_app_simpleTest" target="1.8" />
+      <module name="fly.module-startup" target="11" />
+      <module name="fly.module-test" target="11" />
       <module name="lib_fly_dimenmaker" target="1.7" />
     </bytecodeTargetLevel>
   </component>

@@ -19,14 +19,14 @@ class LocalCache private constructor() {
         @Volatile
         private var instance: LocalCache? = null
 
-        @JvmField
-        var cryptKey = "fly-android"
-
         @JvmStatic
         fun getInstance() =
             instance ?: synchronized(this) {
                 instance ?: LocalCache().also { instance = it }
             }
+
+        @JvmField
+        var cryptKey = "fly-android"
 
         @JvmStatic
         fun initialize(context: Context) {

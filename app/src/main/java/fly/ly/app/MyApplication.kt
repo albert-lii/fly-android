@@ -2,6 +2,7 @@ package fly.ly.app
 
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
+import fly.mod.lib.common.api.ApiClient
 
 /**
  * @author: Albert Li
@@ -10,14 +11,15 @@ import com.alibaba.android.arouter.launcher.ARouter
  * @description: -
  * @since: 1.0.0
  */
-class MyApplication:Application() {
+class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             ARouter.openLog()
             ARouter.openDebug()
         }
         ARouter.init(this)
+        ApiClient.getInstance().initialize()
     }
 }

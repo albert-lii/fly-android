@@ -20,6 +20,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import org.fly.base.extensions.dpToPx
+import org.fly.base.extensions.dpToPxF
 import org.fly.base.extensions.singleClick
 
 
@@ -69,10 +70,10 @@ class MultiEditText : LinearLayout {
     // 标题
     private var showTitle = true
     private var title = "" // 标题
-    private var titleTextSize = 14.dpToPx.toFloat() // 标题文字大小
+    private var titleTextSize = 14.dpToPxF // 标题文字大小
     private var titleTextColor = Color.BLACK // 标题颜色
     private var titleFocusTextColor = Color.parseColor("#F2B90B") // 输入框获取焦点时，标题的颜色
-    private var titleMarginBottom = 8.dpToPx.toFloat() // 标题与输入框之间的间距
+    private var titleMarginBottom = 8.dpToPxF // 标题与输入框之间的间距
     private var isTitleBold = false // 标题是否加粗
 
 
@@ -80,7 +81,7 @@ class MultiEditText : LinearLayout {
     private var input = "" // 输入内容
     private var inputHint = ""// 输入提示
     private var inputHintColor = Color.GRAY // 输入提示的文字颜色
-    private var inputTextSize = 14.dpToPx.toFloat() // 输入文字大小
+    private var inputTextSize = 14.dpToPxF // 输入文字大小
     private var inputTextColor = Color.BLACK // 输入文字颜色
     private var inputPaddingLeft = 0f // 输入框的左内边距
     private var inputPaddingRight = 0f // 输入框的右内边距
@@ -120,7 +121,7 @@ class MultiEditText : LinearLayout {
     private var leftIcon: Drawable? = null // 输入框左侧icon
     private var leftIconWidth = LayoutParams.WRAP_CONTENT // 左侧icon宽度
     private var leftIconHeight = LayoutParams.WRAP_CONTENT // 左侧icon高度
-    private var leftIconMarginRight = 5.dpToPx.toInt() // 左侧icon与输入框之间的间距
+    private var leftIconMarginRight = 5.dpToPx // 左侧icon与输入框之间的间距
 
     // 右侧按钮
     private var showRightBtn = false
@@ -128,10 +129,10 @@ class MultiEditText : LinearLayout {
     private var rightBtnHeight = LayoutParams.MATCH_PARENT
     private var rightBtnText = "" // 右侧按钮文字
     private var rightBtnTextColor = Color.BLACK // 右侧按钮文字颜色
-    private var rightBtnTextSize = 12.dpToPx.toFloat() // 右侧按钮文字大小
+    private var rightBtnTextSize = 12.dpToPxF // 右侧按钮文字大小
     private var isRightTextBold = false // 右侧按钮文字是否加粗
     private var rightBtnBg: Drawable? = null // 右侧按钮背景
-    private var rightBtnMarginLeft = 5.dpToPx.toInt()
+    private var rightBtnMarginLeft = 5.dpToPx
     private var rightBtnPaddingLeft = 0
     private var rightBtnPaddingRight = 0
     private var rightBtnPaddingTop = 0
@@ -141,8 +142,8 @@ class MultiEditText : LinearLayout {
     private var reserveErrorHeight = false // 是否保留错误的高度占位空间
     private var error = "Error" // 错误文本
     private var errorTextColor = Color.parseColor("#E0294A") // 错误文字颜色
-    private var errorTextSize = 8.dpToPx.toFloat() // 错误文字大小
-    private var errorMarginTop = 2.dpToPx.toInt()
+    private var errorTextSize = 8.dpToPxF // 错误文字大小
+    private var errorMarginTop = 2.dpToPx
     private var errorMarginLeft = 0
     private var errorMarginRight = 0
     private var errorHeight = LayoutParams.WRAP_CONTENT

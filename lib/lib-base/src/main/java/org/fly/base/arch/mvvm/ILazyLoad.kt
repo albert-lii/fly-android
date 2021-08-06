@@ -8,6 +8,7 @@ package org.fly.base.arch.mvvm
  * @since: 1.0.0
  */
 interface ILazyLoad {
+
     companion object {
         const val ON_ATTACH = 1
         const val ON_CREATE = 2

@@ -11,12 +11,12 @@ interface ViewBehavior {
     /**
      * 是否显示Loading视图
      */
-    fun showLoadingUI(isShow: Boolean)
+    fun showLoadingView(isShow: Boolean)
 
     /**
      * 是否显示空白视图
      */
-    fun showEmptyUI(isShow: Boolean)
+    fun showEmptyView(isShow: Boolean)
 
     /**
      * 弹出Toast提示

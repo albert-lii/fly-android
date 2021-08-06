@@ -6,8 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import org.fly.widget.R
-import org.fly.base.extensions.dpToPx
+import org.fly.base.extensions.dpToPxF
 
 /**
  * @author: Albert Li
@@ -21,8 +20,8 @@ class ProgressCellView : View {
     private var accentColor = Color.RED // 进度格点亮后的颜色
     private var accentCount = 0  // 被点亮的进度格数
     private var totalCount = 4 // 进度格总数
-    private var cellSpace = 8.dpToPx // 进度格之间的间隔距离
-    private var cellWidth = 10.dpToPx // 进度格的宽度
+    private var cellSpace = 8.dpToPxF // 进度格之间的间隔距离
+    private var cellWidth = 10.dpToPxF // 进度格的宽度
     private var reverse = false // 是否反向绘制
     private var oritenation: Int = 0 // 0-横向 1-纵向
 
@@ -57,9 +56,9 @@ class ProgressCellView : View {
             accentCount =
                 ta.getInteger(R.styleable.fly_ProgressCellView_pc_accentCount, accentCount)
             cellWidth =
-                ta.getDimension(R.styleable.fly_ProgressCellView_pc_cellWidth, cellWidth.toFloat())
+                ta.getDimension(R.styleable.fly_ProgressCellView_pc_cellWidth, cellWidth)
             cellSpace =
-                ta.getDimension(R.styleable.fly_ProgressCellView_pc_cellSpace, cellSpace.toFloat())
+                ta.getDimension(R.styleable.fly_ProgressCellView_pc_cellSpace, cellSpace)
             reverse = ta.getBoolean(R.styleable.fly_ProgressCellView_pc_reverse, reverse)
             oritenation =
                 ta.getInteger(R.styleable.fly_ProgressCellView_pc_oritenation, oritenation)

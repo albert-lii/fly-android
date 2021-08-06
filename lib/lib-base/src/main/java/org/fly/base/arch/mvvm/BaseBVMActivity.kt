@@ -40,10 +40,10 @@ abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
 
     protected fun initInternalObserver() {
         viewModel._loadingEvent.observeNonNull(this) {
-            showLoadingUI(it)
+            showLoadingView(it)
         }
         viewModel._emptyPageEvent.observeNonNull(this) {
-            showEmptyUI(it)
+            showEmptyView(it)
         }
         viewModel._toastEvent.observeNonNull(this) {
             showToast(it)

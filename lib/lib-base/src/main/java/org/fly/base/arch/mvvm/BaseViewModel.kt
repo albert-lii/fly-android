@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import org.fly.base.arch.FlyArchCsts
 
 /**
  * @author: Albert Li
@@ -89,11 +90,11 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
 
     }
 
-    override fun showLoadingUI(isShow: Boolean) {
+    override fun showLoadingView(isShow: Boolean) {
         _loadingEvent.postValue(isShow)
     }
 
-    override fun showEmptyUI(isShow: Boolean) {
+    override fun showEmptyView(isShow: Boolean) {
         _emptyPageEvent.postValue(isShow)
     }
 
@@ -116,12 +117,12 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     protected fun showToast(msg: String, duration: Int? = null) {
         val map = HashMap<String, Any>().apply {
             put(
-                FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
-                FlyBaseConstants.FLY_TOAST_CONTENT_TYPE_STR
+                FlyArchCsts.FLY_TOAST_KEY_CTYPE,
+                FlyArchCsts.FLY_TOAST_VAL_CTYPE_STR
             )
-            put(FlyBaseConstants.FLY_TOAST_KEY_CONTENT, msg)
+            put(FlyArchCsts.FLY_TOAST_KEY_CONTENT, msg)
             if (duration != null) {
-                put(FlyBaseConstants.FLY_TOAST_KEY_DURATION, duration)
+                put(FlyArchCsts.FLY_TOAST_KEY_DURATION, duration)
             }
         }
         showToast(map)
@@ -130,12 +131,12 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
     protected fun showToast(@StringRes resId: Int, duration: Int? = null) {
         val map = HashMap<String, Any>().apply {
             put(
-                FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
-                FlyBaseConstants.FLY_TOAST_CONTENT_TYPE_RESID
+                FlyArchCsts.FLY_TOAST_KEY_CTYPE,
+                FlyArchCsts.FLY_TOAST_VAL_CTYPE_RESID
             )
-            put(FlyBaseConstants.FLY_TOAST_KEY_CONTENT, resId)
+            put(FlyArchCsts.FLY_TOAST_KEY_CONTENT, resId)
             if (duration != null) {
-                put(FlyBaseConstants.FLY_TOAST_KEY_DURATION, duration)
+                put(FlyArchCsts.FLY_TOAST_KEY_DURATION, duration)
             }
         }
         showToast(map)

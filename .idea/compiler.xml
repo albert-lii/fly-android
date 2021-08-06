@@ -6,10 +6,13 @@
       <module name="fly.lib-biz.lib-common" target="11" />
       <module name="fly.lib-biz.lib-resource" target="11" />
       <module name="fly.lib-common" target="11" />
+      <module name="fly.lib-qrcode" target="11" />
       <module name="fly.lib.lib-base" target="11" />
       <module name="fly.lib.lib-resource" target="11" />
+      <module name="fly.lib.lib-scan" target="11" />
       <module name="fly.lib.lib-widget" target="11" />
       <module name="fly.mod_app_simpleTest" target="1.8" />
+      <module name="fly.module-launcher" target="11" />
       <module name="fly.module-startup" target="11" />
       <module name="fly.module-test" target="11" />
       <module name="lib_fly_dimenmaker" target="1.7" />

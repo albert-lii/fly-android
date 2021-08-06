@@ -1,10 +1,12 @@
 package org.fly.base.utils
 
+import android.Manifest
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import androidx.annotation.RequiresPermission
 import java.util.*
 
 /**
@@ -30,13 +32,14 @@ class NetworkChangedReceiver : BroadcastReceiver() {
     private var currentType: NetworkUtils.NetworkType? = null
     private val listeners: HashSet<OnNetworkStatusChangedListener> = HashSet()
 
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     fun registerListener(listener: OnNetworkStatusChangedListener) {
         val preSize: Int = listeners.size
         listeners.add(listener)
         if (preSize == 0 && listeners.size == 1) {
-            currentType = NetworkUtils.getNetworkType(ContextUtils.getContext())
+            currentType = NetworkUtils.getNetworkType(AppUtils.getContext())
             val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-            ContextUtils.getApplication().registerReceiver(getInstance(), intentFilter)
+            AppUtils.getContext().registerReceiver(getInstance(), intentFilter)
         }
     }
 
@@ -45,7 +48,7 @@ class NetworkChangedReceiver : BroadcastReceiver() {
         listeners.remove(listener)
         if (preSize == 1 && listeners.size == 0) {
             currentType = null
-            ContextUtils.getApplication().unregisterReceiver(getInstance())
+            AppUtils.getContext().unregisterReceiver(getInstance())
         }
     }
 
@@ -53,6 +56,7 @@ class NetworkChangedReceiver : BroadcastReceiver() {
         return listeners.contains(listener)
     }
 
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     override fun onReceive(context: Context?, intent: Intent?) {
         if (ConnectivityManager.CONNECTIVITY_ACTION == intent!!.action) {
             val networkType = NetworkUtils.getNetworkType(context!!)

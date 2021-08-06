@@ -16,8 +16,8 @@ ext {
             "test-ext:junit"               : "androidx.test.ext:junit:1.1.1",
             "espresso-core"                : "androidx.test.espresso:espresso-core:3.2.0",
             "kotlin-stdlib"                : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            "core-ktx"                     : "androidx.core:core-ktx:1.3.2",
-            "appcompat"                    : "androidx.appcompat:appcompat:1.2.0",
+            "core-ktx"                     : "androidx.core:core-ktx:1.6.0",
+            "appcompat"                    : "androidx.appcompat:appcompat:1.3.1",
             "multidex"                     : "androidx.multidex:multidex:2.0.1",
 
             /*=============================ARouter================================================*/
@@ -88,6 +88,7 @@ ext {
             /*=============================图片选择=================================================*/
 
             /*=============================zxing扫码===============================================*/
+            "zxing"                        : "com.google.zxing:core:3.4.1",
             "bga-qrcode-zxing"             : "cn.bingoogolapple:bga-qrcode-zxing:1.3.7",
             /*=============================zxing扫码===============================================*/
     ]

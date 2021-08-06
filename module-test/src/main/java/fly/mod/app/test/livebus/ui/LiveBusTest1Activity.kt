@@ -11,6 +11,7 @@ import fly.mod.lib.common.base.BaseAppBVMActivity
 import fly.mod.lib.common.router.RouteConstants
 import fly.mod.lib.common.router.RouterUtils
 import org.fly.base.communication.livebus.LiveBus
+import org.fly.base.extensions.singleClick
 
 
 /**

@@ -18,12 +18,12 @@ public class XDialogFragment extends DialogFragment {
 
     @Override
     public void show(FragmentManager manager, String tag) {
-        mDismissed = false;
-        mShownByMe = true;
-        if (manager != null) {
-            FragmentTransaction ft = manager.beginTransaction();
-            ft.add(this, tag);
-            ft.commitAllowingStateLoss();
-        }
+//        mDismissed = false;
+//        mShownByMe = true;
+//        if (manager != null) {
+//            FragmentTransaction ft = manager.beginTransaction();
+//            ft.add(this, tag);
+//            ft.commitAllowingStateLoss();
+//        }
     }
 }

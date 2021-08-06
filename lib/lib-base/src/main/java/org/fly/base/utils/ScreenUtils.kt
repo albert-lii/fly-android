@@ -1,9 +1,13 @@
 package org.fly.base.utils
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Point
 import android.os.Build
+import android.view.View
 import android.view.WindowManager
 import com.blankj.utilcode.util.Utils
 
@@ -78,7 +82,7 @@ object ScreenUtils {
      * 获取状态栏高度
      */
     @JvmStatic
-    fun getStatuesBarHeight(context: Context): Int {
+    fun getStatuesBarHeight(): Int {
         val res = Resources.getSystem()
         val resourceId = res.getIdentifier("status_bar_height", "dimen", "android")
         return if (resourceId != 0) res.getDimensionPixelSize(resourceId) else 0

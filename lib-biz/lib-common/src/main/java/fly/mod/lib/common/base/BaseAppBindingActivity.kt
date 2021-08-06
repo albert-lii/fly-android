@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.databinding.ViewDataBinding
-import com.blankj.utilcode.util.BarUtils
-import org.fly.base.arch.mvvm.FlyBaseConstants
 import org.fly.base.arch.mvvm.BaseBindingActivity
+import org.fly.base.arch.FlyArchCsts
+import org.fly.base.utils.SystemUIUtils
 
 /**
  * @author: Albert Li
@@ -20,15 +20,14 @@ abstract class BaseAppBindingActivity<B : ViewDataBinding> : BaseBindingActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        BarUtils.setStatusBarLightMode(this, true)
-        BarUtils.transparentStatusBar(this)
+        SystemUIUtils.transparentStatusBar(this)
     }
 
-    override fun showLoadingUI(isShow: Boolean) {
+    override fun showLoadingView(isShow: Boolean) {
 
     }
 
-    override fun showEmptyUI(isShow: Boolean) {
+    override fun showEmptyView(isShow: Boolean) {
 
     }
 
@@ -38,32 +37,32 @@ abstract class BaseAppBindingActivity<B : ViewDataBinding> : BaseBindingActivity
     }
 
     override fun showToast(map: Map<String, *>) {
-        if (map[FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE] == FlyBaseConstants.FLY_TOAST_CONTENT_TYPE_STR) {
-            if (map[FlyBaseConstants.FLY_TOAST_KEY_DURATION] == null) {
+        if (map[FlyArchCsts.FLY_TOAST_KEY_CTYPE] == FlyArchCsts.FLY_TOAST_VAL_CTYPE_STR) {
+            if (map[FlyArchCsts.FLY_TOAST_KEY_DURATION] == null) {
                 Toast.makeText(
                     this,
-                    map[FlyBaseConstants.FLY_TOAST_KEY_CONTENT] as String,
+                    map[FlyArchCsts.FLY_TOAST_KEY_CONTENT] as String,
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
                 Toast.makeText(
                     this,
-                    map[FlyBaseConstants.FLY_TOAST_KEY_CONTENT] as String,
-                    map[FlyBaseConstants.FLY_TOAST_KEY_DURATION] as Int
+                    map[FlyArchCsts.FLY_TOAST_KEY_CONTENT] as String,
+                    map[FlyArchCsts.FLY_TOAST_KEY_DURATION] as Int
                 ).show()
             }
-        } else if (map[FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE] == FlyBaseConstants.FLY_TOAST_CONTENT_TYPE_RESID) {
-            if (map[FlyBaseConstants.FLY_TOAST_KEY_DURATION] == null) {
+        } else if (map[FlyArchCsts.FLY_TOAST_KEY_CTYPE] == FlyArchCsts.FLY_TOAST_VAL_CTYPE_RESID) {
+            if (map[FlyArchCsts.FLY_TOAST_KEY_DURATION] == null) {
                 Toast.makeText(
                     this,
-                    map[FlyBaseConstants.FLY_TOAST_KEY_CONTENT] as Int,
+                    map[FlyArchCsts.FLY_TOAST_KEY_CONTENT] as Int,
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
                 Toast.makeText(
                     this,
-                    map[FlyBaseConstants.FLY_TOAST_KEY_CONTENT] as Int,
-                    map[FlyBaseConstants.FLY_TOAST_KEY_DURATION] as Int
+                    map[FlyArchCsts.FLY_TOAST_KEY_CONTENT] as Int,
+                    map[FlyArchCsts.FLY_TOAST_KEY_DURATION] as Int
                 ).show()
             }
         }
@@ -76,12 +75,12 @@ abstract class BaseAppBindingActivity<B : ViewDataBinding> : BaseBindingActivity
     protected fun showToast(str: String, duration: Int?) {
         val map = HashMap<String, Any>().apply {
             put(
-                FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
-                FlyBaseConstants.FLY_TOAST_CONTENT_TYPE_STR
+                FlyArchCsts.FLY_TOAST_KEY_CTYPE,
+                FlyArchCsts.FLY_TOAST_VAL_CTYPE_STR
             )
-            put(FlyBaseConstants.FLY_TOAST_KEY_CONTENT, str)
+            put(FlyArchCsts.FLY_TOAST_KEY_CONTENT, str)
             if (duration != null) {
-                put(FlyBaseConstants.FLY_TOAST_KEY_DURATION, duration)
+                put(FlyArchCsts.FLY_TOAST_KEY_DURATION, duration)
             }
         }
         showToast(map)
@@ -94,12 +93,12 @@ abstract class BaseAppBindingActivity<B : ViewDataBinding> : BaseBindingActivity
     protected fun showToast(@StringRes resId: Int, duration: Int?) {
         val map = HashMap<String, Any>().apply {
             put(
-                FlyBaseConstants.FLY_TOAST_KEY_CONTENT_TYPE,
-                FlyBaseConstants.FLY_TOAST_CONTENT_TYPE_RESID
+                FlyArchCsts.FLY_TOAST_KEY_CTYPE,
+                FlyArchCsts.FLY_TOAST_VAL_CTYPE_RESID
             )
-            put(FlyBaseConstants.FLY_TOAST_KEY_CONTENT, resId)
+            put(FlyArchCsts.FLY_TOAST_KEY_CONTENT, resId)
             if (duration != null) {
-                put(FlyBaseConstants.FLY_TOAST_KEY_DURATION, duration)
+                put(FlyArchCsts.FLY_TOAST_KEY_DURATION, duration)
             }
         }
         showToast(map)

@@ -5,7 +5,7 @@ include ':app'
 includeModules(
         ':lib',
         ':lib-biz',
-        ':module-startup',
+        ':module-launcher',
         ':module-test',
 )
 
@@ -118,4 +118,3 @@ class SettingsProxy {
         return "$mModule.path$path"
     }
 }
-

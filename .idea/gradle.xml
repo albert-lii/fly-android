@@ -17,8 +17,9 @@
             <option value="$PROJECT_DIR$/lib-biz/lib-resource" />
             <option value="$PROJECT_DIR$/lib-dimen" />
             <option value="$PROJECT_DIR$/lib/lib-base" />
+            <option value="$PROJECT_DIR$/lib/lib-scan" />
             <option value="$PROJECT_DIR$/lib/lib-widget" />
-            <option value="$PROJECT_DIR$/module-startup" />
+            <option value="$PROJECT_DIR$/module-launcher" />
             <option value="$PROJECT_DIR$/module-test" />
           </set>
         </option>

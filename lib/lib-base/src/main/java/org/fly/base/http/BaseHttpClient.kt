@@ -8,7 +8,7 @@ import kotlinx.coroutines.CancellationException
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.fly.base.utils.ContextUtils
+import org.fly.base.utils.AppUtils
 import org.fly.base.utils.LogUtils
 import org.json.JSONException
 import retrofit2.HttpException
@@ -72,7 +72,7 @@ abstract class BaseHttpClient {
             .retryOnConnectionFailure(true)
             .cache(
                 Cache(
-                    File(ContextUtils.getApplication().cacheDir.toString() + "FlyHttpCache"),
+                    File(AppUtils.getContext().cacheDir.toString() + "FlyHttpCache"),
                     1024L * 1024 * 100
                 )
             )

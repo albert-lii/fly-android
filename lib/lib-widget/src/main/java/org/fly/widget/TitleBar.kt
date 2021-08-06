@@ -1,5 +1,6 @@
 package org.fly.widget
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
@@ -13,7 +14,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import org.fly.base.extensions.dpToPx
+import org.fly.base.extensions.dpToPxF
 import org.fly.base.extensions.singleClick
 
 /**
@@ -33,13 +34,13 @@ class TitleBar : LinearLayout {
     private val DEF_TITLE_COLOR = Color.BLACK
     private val DEF_TEXT_COLOR = Color.BLACK
     private val DEF_DEVIDER_COLOR = Color.LTGRAY
-    private val DEF_LEFT_PADDING = 14.dpToPx
-    private val DEF_RIGHT_PADDING = 14.dpToPx
-    private val DEF_TITLE_SIZE = 18.dpToPx
-    private val DEF_TEXT_SIZE = 15.dpToPx
-    private val DEF_TEXT_LEFT_MARGIN = 15.dpToPx
-    private val DEF_ICON_HEIGHT = 24.dpToPx
-    private val DEF_DIVIDER_HEIGHT = 1.dpToPx
+    private val DEF_LEFT_PADDING = 14.dpToPxF
+    private val DEF_RIGHT_PADDING = 14.dpToPxF
+    private val DEF_TITLE_SIZE = 18.dpToPxF
+    private val DEF_TEXT_SIZE = 15.dpToPxF
+    private val DEF_TEXT_LEFT_MARGIN = 15.dpToPxF
+    private val DEF_ICON_HEIGHT = 24.dpToPxF
+    private val DEF_DIVIDER_HEIGHT = 1.dpToPxF
 
     private var addStatusBarHeight = false
 
@@ -101,6 +102,7 @@ class TitleBar : LinearLayout {
         }
     }
 
+    @SuppressLint("CustomViewStyleable")
     private fun initAttr(attrs: AttributeSet?) {
         if (attrs != null) {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.fly_TitleBar)
@@ -109,7 +111,7 @@ class TitleBar : LinearLayout {
             titleView.setText(title)
 
             val titleSize =
-                ta.getDimension(R.styleable.fly_TitleBar_tb_titleSize, DEF_TITLE_SIZE.toFloat())
+                ta.getDimension(R.styleable.fly_TitleBar_tb_titleSize, DEF_TITLE_SIZE)
             titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
 
             val titleColor = ta.getColor(R.styleable.fly_TitleBar_tb_titleColor, DEF_TITLE_COLOR)
@@ -121,14 +123,14 @@ class TitleBar : LinearLayout {
             }
 
             val leftPadding =
-                ta.getDimension(R.styleable.fly_TitleBar_tb_leftPadding, DEF_LEFT_PADDING.toFloat())
+                ta.getDimension(R.styleable.fly_TitleBar_tb_leftPadding, DEF_LEFT_PADDING)
             leftFuncView.setPadding(leftPadding.toInt(), 0, 0, 0)
 
             val leftIcon = ta.getDrawable(R.styleable.fly_TitleBar_tb_leftIcon)
             leftFuncView.setIcon(leftIcon)
 
             val leftIconHeight =
-                ta.getDimension(R.styleable.fly_TitleBar_tb_leftIconHight, DEF_ICON_HEIGHT.toFloat())
+                ta.getDimension(R.styleable.fly_TitleBar_tb_leftIconHight, DEF_ICON_HEIGHT)
             leftFuncView.setIconHeight(leftIconHeight)
 
             val showLeftIcon = ta.getBoolean(R.styleable.fly_TitleBar_tb_showLeftIcon, true)
@@ -138,7 +140,7 @@ class TitleBar : LinearLayout {
             leftFuncView.setText(leftText)
 
             val leftTextSize =
-                ta.getDimension(R.styleable.fly_TitleBar_tb_leftTextSize, DEF_TEXT_SIZE.toFloat())
+                ta.getDimension(R.styleable.fly_TitleBar_tb_leftTextSize, DEF_TEXT_SIZE)
             leftFuncView.setTextSize(leftTextSize)
 
             val leftTextColor = ta.getColor(R.styleable.fly_TitleBar_tb_leftTextColor, DEF_TEXT_COLOR)

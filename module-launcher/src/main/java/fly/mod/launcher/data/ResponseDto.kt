@@ -21,6 +21,5 @@ data class CommonListDto<T>(
  */
 data class Article(
     var id: Int,
-    var title: String, // 文章标题
-    var link: String //文章链接
+    var title: String // 文章标题
 )

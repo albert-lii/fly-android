@@ -1,5 +1,6 @@
 include(
         ':lib-base',
+        ':lib-http',
         ':lib-widget',
         ':lib-scan',
 )

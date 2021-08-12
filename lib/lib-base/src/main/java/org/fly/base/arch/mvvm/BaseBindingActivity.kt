@@ -29,14 +29,6 @@ abstract class BaseBindingActivity<B : ViewDataBinding> : BaseActivity(),
     protected fun injectDataBinding() {
         binding = DataBindingUtil.setContentView(this,getLayoutId())
         binding.lifecycleOwner = this
-
-//        val binding = DataBindingUtil.inflate(
-//            layoutInflater,
-//            getLayoutId(),
-//            getContentFrame(),
-//            false
-//        )
-//        setContentView(binding.getRoot())
     }
 
     override fun onDestroy() {

@@ -76,4 +76,5 @@ dependencies {
     api rootProject.ext.dependencies["ucrop"]
     api rootProject.ext.dependencies["matisse"]
     api rootProject.ext.dependencies["bga-qrcode-zxing"]
+    api rootProject.ext.dependencies["retrofit-converter-scalars"]
 }

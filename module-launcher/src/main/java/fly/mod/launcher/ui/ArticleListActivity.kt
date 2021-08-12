@@ -56,10 +56,10 @@ class ArticleListActivity :
     private fun addListener() {
         adapter.setOnItemClickListener(object : BaseRecyclerAdapter.OnItemClickListener<Article> {
             override fun onItemClick(holder: Any, item: Article, position: Int) {
-                val intent = Intent()
-                intent.setAction(Intent.ACTION_VIEW)
-                intent.setData(Uri.parse(item.link))
-                startActivity(intent)
+//                val intent = Intent()
+//                intent.setAction(Intent.ACTION_VIEW)
+//                intent.setData(Uri.parse(item.link))
+//                startActivity(intent)
             }
         })
     }

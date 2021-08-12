@@ -3,6 +3,8 @@ package fly.ly.app
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
 import fly.mod.lib.common.api.ApiClient
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.fly.base.utils.AppUtils
 
 /**
  * @author: Albert Li
@@ -20,6 +22,7 @@ class MyApplication : Application() {
             ARouter.openDebug()
         }
         ARouter.init(this)
-        ApiClient.getInstance().initialize()
+        AppUtils.init(this)
+        ApiClient.getInstance().init(this)
     }
 }

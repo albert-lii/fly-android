@@ -33,12 +33,9 @@ class MainActivity : BaseAppBindingActivity<MActivityMainBinding>() {
 
     private fun addListener() {
         binding.btnMicroApp.singleClick {
-            val bundle = Bundle()
-            bundle.putString(FirebaseAnalytics.Param.METHOD, "btnMicroApp")
-
 //            RouterUtils.getInstance()
 //                .navigateBySingleTask(this@MainActivity, RouteConstants.PAGE_M_ARTICLE_LIST)
-            startActivity(Intent(this, ScanActivity::class.java))
+            startActivity(Intent(this, DownloadActivity::class.java))
         }
         binding.btnTestApp.singleClick {
             RouterUtils.getInstance()

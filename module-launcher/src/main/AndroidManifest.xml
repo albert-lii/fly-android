@@ -23,5 +23,10 @@
             android:name="fly.mod.launcher.ui.ScanActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="" />
+
+        <activity
+            android:name="fly.mod.launcher.ui.DownloadActivity"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
     </application>
 </manifest>

@@ -46,7 +46,7 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('../app/keystore/fly.jks')
+            storeFile file('../keystore/fly.jks')
             storePassword 'fly1234'
             keyAlias = 'Fly'
             keyPassword 'fly1234'

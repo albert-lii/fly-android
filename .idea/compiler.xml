@@ -6,8 +6,10 @@
       <module name="fly.lib-biz.lib-common" target="11" />
       <module name="fly.lib-biz.lib-resource" target="11" />
       <module name="fly.lib-common" target="11" />
+      <module name="fly.lib-http" target="11" />
       <module name="fly.lib-qrcode" target="11" />
       <module name="fly.lib.lib-base" target="11" />
+      <module name="fly.lib.lib-http" target="11" />
       <module name="fly.lib.lib-resource" target="11" />
       <module name="fly.lib.lib-scan" target="11" />
       <module name="fly.lib.lib-widget" target="11" />

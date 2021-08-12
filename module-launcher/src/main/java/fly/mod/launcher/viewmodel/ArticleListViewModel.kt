@@ -1,11 +1,16 @@
 package fly.mod.launcher.viewmodel
 
-import android.util.Log
+import android.os.Environment
 import androidx.lifecycle.MutableLiveData
-import fly.mod.launcher.api.FlyInterface
+
+import com.google.gson.reflect.TypeToken
 import fly.mod.launcher.data.Article
+import fly.mod.launcher.data.CommonListDto
 import fly.mod.lib.common.api.ApiClient
 import fly.mod.lib.common.base.BaseAppViewModel
+import org.fly.base.utils.AppUtils
+import org.fly.http.response.InfoResponse
+import java.io.File
 
 
 /**
@@ -16,7 +21,6 @@ import fly.mod.lib.common.base.BaseAppViewModel
  * @since: 1.0.0
  */
 class ArticleListViewModel : BaseAppViewModel() {
-
     val articleList = MutableLiveData<ArrayList<Article>>()
 
     init {
@@ -27,31 +31,38 @@ class ArticleListViewModel : BaseAppViewModel() {
      * 获取文章列表
      */
     fun get_article_list() {
+
         launchOnUI {
-            var isFirstSuccess = false
+            // 使用Flow进行请求
+//            ApiClient.getInstance().requestFlow<CommonListDto<Article>>(object :
+//                TypeToken<InfoResponse<CommonListDto<Article>>>() {}.type) {
+//                it.get(url = "blog/article", mapOf(), mapOf())
+//            }.collect {
+//                it.onSuccess {
+//                    articleList.value = it!!.results
+//                }.onFailure { code, msg ->
+//                    showToast(msg ?: "获取文章列表失败")
+//                }.onCatch { error ->
+//                    showToast(error.errorMsg)
+//                }
+//            }
+
+            // 使用普通协程进行请求
             ApiClient.getInstance()
-                .requestSafely(FlyInterface::class.java) {
-                    it.get_article_list(20)
-                }.doSuccess {
+                .get<CommonListDto<Article>>(
+                    url = "blog/article",
+                    type = object : TypeToken<InfoResponse<CommonListDto<Article>>>() {}.type
+                )
+                .onSuccess {
                     articleList.value = it!!.results
-                    Log.e("XXX", ">>>>>>>第一次完毕")
-                    isFirstSuccess = true
                 }
-                .doFailure { code, msg -> showToast(msg ?: "获取文章列表失败") }
-                .doError { ex, error -> showToast(error.message) }
-                .procceed()
-            if (isFirstSuccess) {
-                Log.e("XXX", ">>>>>>>第二次请求")
-                ApiClient.getInstance()
-                    .requestSafely(FlyInterface::class.java) {
-                        it.get_article_list(20)
-                    }.doSuccess {
-                        articleList.value = it!!.results
-                    }
-                    .doFailure { code, msg -> showToast(msg ?: "获取文章列表失败") }
-                    .doError { ex, error -> showToast(error.message) }
-                    .procceed()
-            }
+                .onFailure { code, msg ->
+                    showToast(msg ?: "获取文章列表失败")
+                }
+                .onCatch { error ->
+                    showToast(error.errorMsg)
+                }
+
         }
     }
 }

@@ -1,5 +1,7 @@
 package androidx.fragment.app;
 
+import java.lang.reflect.Field;
+
 /**
  * @author: Albert Li
  * @contact: albertlii@163.com
@@ -25,5 +27,26 @@ public class XDialogFragment extends DialogFragment {
 //            ft.add(this, tag);
 //            ft.commitAllowingStateLoss();
 //        }
+        boolean isNormal = true;
+        try {
+            Field mDismissed = DialogFragment.class.getDeclaredField("mDismissed");
+            mDismissed.setAccessible(true);
+            mDismissed.set(this, false);
+            Field mShownByMe = DialogFragment.class.getDeclaredField("mShownByMe");
+            mShownByMe.setAccessible(true);
+            mShownByMe.set(this, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            isNormal = false;
+        }
+        if (isNormal) {
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.add(this, tag);
+            ft.commitAllowingStateLoss();
+        } else {
+            if (!manager.isDestroyed() && !manager.isStateSaved()) {
+                super.show(manager, tag);
+            }
+        }
     }
 }

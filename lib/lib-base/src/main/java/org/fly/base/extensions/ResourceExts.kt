@@ -47,6 +47,6 @@ fun @receiver:DimenRes Int.toDimenPx(context: Context): Int {
 /**
  * 根据资源id获取drawable
  */
-fun @receiver:DrawableRes Int.getDrawable(context: Context): Drawable? {
+fun @receiver:DrawableRes Int.toDrawable(context: Context): Drawable? {
     return ContextCompat.getDrawable(context, this)
 }

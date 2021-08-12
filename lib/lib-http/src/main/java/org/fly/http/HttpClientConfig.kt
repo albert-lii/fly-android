@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import okhttp3.Cache
 import okhttp3.Dns
 import okhttp3.Interceptor
+import org.fly.http.interceptor.HttpLoggingInterceptor
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -53,6 +54,8 @@ data class HttpClientConfig(
     var retryOnConnectionFailure: Boolean = true,
     // 是否打开日志
     var openLog: Boolean = false,
+    // 自定义日志打印
+    var logger: HttpLoggingInterceptor.Logger? = null,
     // Gson
     var gson: Gson = GsonBuilder().create(),
 ) {
@@ -86,7 +89,7 @@ class HttpClientConfigBuilder {
         return this
     }
 
-    fun setHeaders(headers: HashMap<String, String>): HttpClientConfigBuilder {
+    fun setHeaders(headers: Map<String, String>): HttpClientConfigBuilder {
         config.headers = headers
         return this
     }
@@ -117,9 +120,12 @@ class HttpClientConfigBuilder {
     }
 
     fun openLog(open: Boolean): HttpClientConfigBuilder {
-        config.apply {
-            this.openLog = open
-        }
+        config.openLog = open
+        return this
+    }
+
+    fun setLogger(logger: HttpLoggingInterceptor.Logger): HttpClientConfigBuilder {
+        config.logger = logger
         return this
     }
 

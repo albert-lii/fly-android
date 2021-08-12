@@ -52,7 +52,11 @@ open class HttpClientFactory {
                     builder.addNetworkInterceptor(it)
                 }
                 if (config.openLog) {
-                    val logInterceptor = HttpLoggingInterceptor()
+                    val logInterceptor = if (config.logger == null) {
+                        HttpLoggingInterceptor()
+                    } else {
+                        HttpLoggingInterceptor(config.logger!!)
+                    }
                     logInterceptor.level = HttpLoggingInterceptor.Level.BODY
                     builder.addNetworkInterceptor(logInterceptor)
                 }

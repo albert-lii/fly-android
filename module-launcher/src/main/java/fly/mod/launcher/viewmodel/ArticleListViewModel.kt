@@ -51,7 +51,7 @@ class ArticleListViewModel : BaseAppViewModel() {
             ApiClient.getInstance()
                 .get<CommonListDto<Article>>(
                     url = "blog/article",
-                    type = object : TypeToken<InfoResponse<CommonListDto<Article>>>() {}.type
+                    type = object : TypeToken<InfoResponse<CommonListDto<Article>>>() {}.type,
                 )
                 .onSuccess {
                     articleList.value = it!!.results

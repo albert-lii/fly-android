@@ -44,5 +44,17 @@
             android:text="Lib测试"
             android:textAllCaps="false"
             android:textColor="@color/textcolor_black" />
+
+        <Button
+            android:id="@+id/btn_download"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/px_12"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="下载测试"
+            android:textAllCaps="false"
+            android:textColor="@color/textcolor_black" />
     </LinearLayout>
 </layout>

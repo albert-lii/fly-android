@@ -33,13 +33,16 @@ class MainActivity : BaseAppBindingActivity<MActivityMainBinding>() {
 
     private fun addListener() {
         binding.btnMicroApp.singleClick {
-//            RouterUtils.getInstance()
-//                .navigateBySingleTask(this@MainActivity, RouteConstants.PAGE_M_ARTICLE_LIST)
-            startActivity(Intent(this, DownloadActivity::class.java))
+            RouterUtils.getInstance()
+                .navigateBySingleTask(this@MainActivity, RouteConstants.PAGE_M_ARTICLE_LIST)
+//            startActivity(Intent(this, DownloadActivity::class.java))
         }
         binding.btnTestApp.singleClick {
             RouterUtils.getInstance()
                 .navigateBySingleTask(this@MainActivity, RouteConstants.PAGE_ST_TEST_HOME)
+        }
+        binding.btnDownload.singleClick {
+            startActivity(Intent(this, DownloadActivity::class.java))
         }
     }
 }

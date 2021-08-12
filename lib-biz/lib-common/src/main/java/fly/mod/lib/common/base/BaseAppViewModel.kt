@@ -1,7 +1,6 @@
 package fly.mod.lib.common.base
 
 import org.fly.base.arch.mvvm.BaseViewModel
-import org.fly.base.http.HttpTool
 
 /**
  * @author: Albert Li
@@ -10,6 +9,6 @@ import org.fly.base.http.HttpTool
  * @description: --
  * @since: 1.0.0
  */
-abstract class BaseAppViewModel : BaseViewModel(), HttpTool {
+abstract class BaseAppViewModel : BaseViewModel() {
 
 }

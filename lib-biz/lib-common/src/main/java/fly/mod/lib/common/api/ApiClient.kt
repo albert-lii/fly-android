@@ -3,9 +3,11 @@ package fly.mod.lib.common.api
 import android.content.Context
 import kotlinx.coroutines.flow.Flow
 import okhttp3.Cache
+import org.fly.base.utils.LogUtils
 import org.fly.http.HttpClient
 import org.fly.http.HttpClientConfig
 import org.fly.http.download.SingleDownloader
+import org.fly.http.interceptor.HttpLoggingInterceptor
 import org.fly.http.request.RequestService
 import org.fly.http.response.ResponseHolder
 import retrofit2.Response
@@ -20,9 +22,7 @@ import java.lang.reflect.Type
  * @since: 1.0.0
  */
 class ApiClient {
-
     private val httClient by lazy { HttpClient() }
-    private var downloader: SingleDownloader? = null
 
     companion object {
 
@@ -46,6 +46,12 @@ class ApiClient {
                     1024L * 1024 * 100
                 )
             )
+            .openLog(true)
+            .setLogger(object : HttpLoggingInterceptor.Logger {
+                override fun log(message: String) {
+                    LogUtils.e("FlyHttp===>", message)
+                }
+            })
             .build()
         httClient.init(context, config)
     }

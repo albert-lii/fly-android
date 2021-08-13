@@ -286,4 +286,16 @@
         <!--错误提示的高度-->
         <attr name="met_error_height" format="dimension" />
     </declare-styleable>
+
+    <!--Banner指示器-->
+    <declare-styleable name="fly_Indicator">
+        <!--活动指示器的颜色-->
+        <attr name="indicator_activeColor" format="color" />
+        <!--非活动指示器的颜色-->
+        <attr name="indicator_inactiveColor" format="color" />
+        <!--非活动指示器的缩放因子，相对于活动指示器尺寸而言，范围0f-1f-->
+        <attr name="indicator_inactiveScale" format="float" />
+        <!--指示器之间的间隔-->
+        <attr name="indicator_gap" format="dimension" />
+    </declare-styleable>
 </resources>

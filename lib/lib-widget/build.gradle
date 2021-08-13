@@ -35,5 +35,8 @@ android {
 
 dependencies {
     implementation rootProject.ext.dependencies["kotlin-stdlib"]
+    implementation rootProject.ext.dependencies["kotlinx-coroutines-core"]
+    implementation rootProject.ext.dependencies["kotlinx-coroutines-android"]
+    implementation rootProject.ext.dependencies["lifecycle-runtime-ktx"]
     implementation project(':lib:lib-base')
 }

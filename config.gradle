@@ -20,6 +20,18 @@ ext {
             "appcompat"                    : "androidx.appcompat:appcompat:1.3.1",
             "multidex"                     : "androidx.multidex:multidex:2.0.1",
 
+            /*=============================协程====================================================*/
+            "kotlinx-coroutines-core"      : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_version",
+            "kotlinx-coroutines-android"   : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_version",
+            /*=============================协程====================================================*/
+
+            /*=============================Lifecycle==============================================*/
+            "lifecycle-extensions"         : "androidx.lifecycle:lifecycle-extensions:2.2.0",
+            "lifecycle-viewmodel-ktx"      : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0",
+            "lifecycle-runtime-ktx"      : "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1",
+            /*=============================Lifecycle==============================================*/
+
+
             /*=============================ARouter================================================*/
             "arouter-api"                  : 'com.alibaba:arouter-api:1.5.0',
             "arouter-compiler"             : 'com.alibaba:arouter-compiler:1.2.2',
@@ -31,20 +43,11 @@ ext {
             "flexbox"                      : "com.google.android:flexbox:2.0.1",
             /*=============================Google UI==============================================*/
 
-            /*=============================Lifecycle==============================================*/
-            "lifecycle-extensions"         : "androidx.lifecycle:lifecycle-extensions:2.2.0",
-            "lifecycle-viewmodel-ktx"      : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0",
-            /*=============================Lifecycle==============================================*/
-
-            /*=============================协程====================================================*/
-            "kotlinx-coroutines-core"      : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5",
-            "kotlinx-coroutines-android"   : "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5",
-            /*=============================协程====================================================*/
 
             /*=============================网络请求=================================================*/
             "retrofit"                     : "com.squareup.retrofit2:retrofit:2.9.0",
             "retrofit-converter-gson"      : "com.squareup.retrofit2:converter-gson:2.9.0",
-            "retrofit-converter-scalars"      : "com.squareup.retrofit2:converter-scalars:2.9.0",
+            "retrofit-converter-scalars"   : "com.squareup.retrofit2:converter-scalars:2.9.0",
             "retrofit-adapter-rxjava"      : "com.squareup.retrofit2:adapter-rxjava:2.9.0",
             "okhttp"                       : "com.squareup.okhttp3:okhttp:4.7.2",
             "okhttp-logging-interceptor"   : "com.squareup.okhttp3:logging-interceptor:4.7.2",

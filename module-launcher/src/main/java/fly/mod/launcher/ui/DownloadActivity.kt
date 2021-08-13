@@ -1,15 +1,10 @@
 package fly.mod.launcher.ui
 
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import fly.mod.launcher.R
-import fly.mod.launcher.adapter.ArticleListAdapter
-import fly.mod.launcher.data.Article
 import fly.mod.launcher.databinding.MActivityDownloadBinding
-import fly.mod.launcher.viewmodel.ArticleListViewModel
 import fly.mod.launcher.viewmodel.DownloadViewModel
 import fly.mod.lib.common.base.BaseAppBVMActivity
-import org.fly.base.arch.recyclerview.BaseRecyclerAdapter
 import org.fly.base.extensions.observeNonNull
 import org.fly.base.extensions.singleClick
 

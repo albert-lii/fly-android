@@ -6,7 +6,6 @@ import okhttp3.Cache
 import org.fly.base.utils.LogUtils
 import org.fly.http.HttpClient
 import org.fly.http.HttpClientConfig
-import org.fly.http.download.SingleDownloader
 import org.fly.http.interceptor.HttpLoggingInterceptor
 import org.fly.http.request.RequestService
 import org.fly.http.response.ResponseHolder
@@ -23,6 +22,8 @@ import java.lang.reflect.Type
  */
 class ApiClient {
     private val httClient by lazy { HttpClient() }
+    private val LOG_TAG = "FlyHttp>>>"
+    private val LOG_DIVIDER = "||================================================================="
 
     companion object {
 
@@ -49,9 +50,18 @@ class ApiClient {
             .openLog(true)
             .setLogger(object : HttpLoggingInterceptor.Logger {
                 override fun log(message: String) {
-                    LogUtils.e("FlyHttp===>", message)
+                    if (message.contains("--> END") || message.contains("<-- END")) {
+                        LogUtils.e(LOG_TAG, "||  " + message)
+                        LogUtils.e(LOG_TAG, LOG_DIVIDER)
+                    } else if (message.contains("-->") || message.contains("<--")) {
+                        LogUtils.e(LOG_TAG, LOG_DIVIDER)
+                        LogUtils.e(LOG_TAG, "||  " + message)
+                    } else {
+                        LogUtils.e(LOG_TAG, "||  " + message)
+                    }
                 }
             })
+            .setHeaders(mapOf(Pair("MyDevice", "1")))
             .build()
         httClient.init(context, config)
     }

@@ -12,11 +12,19 @@
       <module name="fly.lib.lib-banner" target="11" />
       <module name="fly.lib.lib-base" target="11" />
       <module name="fly.lib.lib-http" target="11" />
+      <module name="fly.lib.lib-imageloader" target="11" />
       <module name="fly.lib.lib-resource" target="11" />
+      <module name="fly.lib.lib-router" target="11" />
       <module name="fly.lib.lib-scan" target="11" />
+      <module name="fly.lib.lib-socket" target="11" />
+      <module name="fly.lib.lib-uikit" target="11" />
       <module name="fly.lib.lib-widget" target="11" />
       <module name="fly.mod_app_simpleTest" target="1.8" />
-      <module name="fly.module-launcher" target="11" />
+      <module name="fly.module-launcher.launcher-api" target="11" />
+      <module name="fly.module-launcher.launcher-impl" target="11" />
+      <module name="fly.module-launcher.launcher-internal" target="11" />
+      <module name="fly.module-sample.sample-api" target="11" />
+      <module name="fly.module-sample.sample-internal" target="11" />
       <module name="fly.module-startup" target="11" />
       <module name="fly.module-test" target="11" />
       <module name="lib_fly_dimenmaker" target="1.7" />

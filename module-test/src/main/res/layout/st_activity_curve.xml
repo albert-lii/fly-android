@@ -6,21 +6,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/page_bg_color"
+        android:background="@color/bgColor_page"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <org.fly.widget.TitleBar
+        <org.fly.uikit.TitleToolbar
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/titlebar_bg_color"
-            app:tb_addStatusBarHeight="true"
-            app:tb_barHeight="@dimen/titlebar_height"
-            app:tb_leftIcon="@drawable/back_arrow"
-            app:tb_leftIconHight="@dimen/titlebar_lefticon_size"
-            app:tb_title="曲线图"
-            app:tb_titleSize="@dimen/titlebar_title_size" />
+            android:background="@color/bgColor_titlebar"
+            app:ftb_addStatusBarHeight="true"
+            app:ftb_barHeight="@dimen/titlebar_height"
+            app:ftb_leftIcon="@drawable/back_arrow"
+            app:ftb_leftIconHeight="@dimen/titlebar_leftIconHeight"
+            app:ftb_title="曲线图"
+            app:ftb_titleSize="@dimen/textSize_title" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -34,11 +34,11 @@
                 android:layout_marginRight="@dimen/btn_space_lr"
                 android:orientation="vertical">
 
-                <org.fly.widget.chart.CurveChart
+                <org.fly.uikit.chart.CurveChart
                     android:id="@+id/curveChart"
                     android:background="#eee"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_200" />
+                    android:layout_height="@dimen/p200" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

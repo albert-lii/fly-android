@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion rootProject.ext.versions.compileSdkVersion
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.versions.minSdkVersion
-        targetSdkVersion rootProject.ext.versions.targetSdkVersion
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
 
@@ -37,5 +37,5 @@ dependencies {
     implementation rootProject.ext.dependencies["kotlin-stdlib"]
     implementation rootProject.ext.dependencies["core-ktx"]
     implementation rootProject.ext.dependencies["appcompat"]
-    implementation rootProject.ext.dependencies["zxing"]
+    api rootProject.ext.dependencies["zxing"]
 }

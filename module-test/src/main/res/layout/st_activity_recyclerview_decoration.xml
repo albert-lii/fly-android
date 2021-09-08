@@ -6,20 +6,20 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/page_bg_color"
+        android:background="@color/bgColor_page"
         android:orientation="vertical">
 
-        <org.fly.widget.TitleBar
+        <org.fly.uikit.TitleToolbar
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/titlebar_bg_color"
-            app:tb_addStatusBarHeight="true"
-            app:tb_barHeight="@dimen/titlebar_height"
-            app:tb_leftIcon="@drawable/back_arrow"
-            app:tb_leftIconHight="@dimen/titlebar_lefticon_size"
-            app:tb_title="ItemDecoration测试"
-            app:tb_titleSize="@dimen/titlebar_title_size" />
+            android:background="@color/bgColor_titlebar"
+            app:ftb_addStatusBarHeight="true"
+            app:ftb_barHeight="@dimen/titlebar_height"
+            app:ftb_leftIcon="@drawable/back_arrow"
+            app:ftb_leftIconHeight="@dimen/titlebar_leftIconHeight"
+            app:ftb_title="ItemDecoration测试"
+            app:ftb_titleSize="@dimen/textSize_title" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -35,8 +35,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Linear"
-                    android:textColor="@color/textcolor_black"
-                    android:textSize="@dimen/textsize_l"
+                    android:textColor="@color/textColor_black"
+                    android:textSize="@dimen/textSize_16"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -50,8 +50,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Grid"
-                    android:textColor="@color/textcolor_black"
-                    android:textSize="@dimen/textsize_l"
+                    android:textColor="@color/textColor_black"
+                    android:textSize="@dimen/textSize_16"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -65,8 +65,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Stagger"
-                    android:textColor="@color/textcolor_black"
-                    android:textSize="@dimen/textsize_l"
+                    android:textColor="@color/textColor_black"
+                    android:textSize="@dimen/textSize_16"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView

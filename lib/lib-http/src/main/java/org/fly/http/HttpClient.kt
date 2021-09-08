@@ -13,8 +13,8 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.ResponseBody
 import org.fly.http.request.RequestService
 import org.fly.http.response.HttpError
-import org.fly.http.response.ResponseHolder
 import org.fly.http.response.InfoResponse
+import org.fly.http.response.ResponseHolder
 import org.json.JSONException
 import retrofit2.HttpException
 import retrofit2.Response
@@ -23,7 +23,7 @@ import java.io.InterruptedIOException
 import java.lang.reflect.Type
 import java.net.ConnectException
 import java.net.UnknownHostException
-import kotlin.coroutines.cancellation.CancellationException
+import java.util.concurrent.CancellationException
 
 /**
  * @author: Albert Li
@@ -32,7 +32,7 @@ import kotlin.coroutines.cancellation.CancellationException
  * @description: Http客户端
  * @since: 1.0.0
  */
-open class HttpClient : HttpClientFactory() {
+open class HttpClient : HttpClientBase() {
 
     fun init(context: Context, httpClientConfig: HttpClientConfig) {
         initialize(context, httpClientConfig)
@@ -47,8 +47,9 @@ open class HttpClient : HttpClientFactory() {
         headers: Map<String, String>? = null,
         params: Map<String, String>? = null,
         type: Type,
+        isInfoResponse: Boolean = true
     ): ResponseHolder<T> =
-        request(type) { it.get(url, headers ?: mapOf(), params ?: mapOf()) }
+        request(type, isInfoResponse) { it.get(url, headers ?: mapOf(), params ?: mapOf()) }
 
 
     /**
@@ -61,8 +62,9 @@ open class HttpClient : HttpClientFactory() {
         headers: Map<String, String>? = null,
         params: Map<String, String>? = null,
         type: Type,
+        isInfoResponse: Boolean = true
     ): ResponseHolder<T> =
-        request(type) { it.postForm(url, headers ?: mapOf(), params ?: mapOf()) }
+        request(type, isInfoResponse) { it.postForm(url, headers ?: mapOf(), params ?: mapOf()) }
 
     /**
      * Http Post
@@ -74,12 +76,13 @@ open class HttpClient : HttpClientFactory() {
         headers: Map<String, String>? = null,
         content: Map<String, Any>? = null,
         type: Type,
+        isInfoResponse: Boolean = true
     ): ResponseHolder<T> {
         var ct = ""
         if (!content.isNullOrEmpty()) {
             ct = getGson().toJson(content)
         }
-        return postJsonString(url, headers, ct, type)
+        return postJsonString(url, headers, ct, type, isInfoResponse)
     }
 
     @JvmOverloads
@@ -88,8 +91,9 @@ open class HttpClient : HttpClientFactory() {
         headers: Map<String, String>? = null,
         content: String? = null,
         type: Type,
+        isInfoResponse: Boolean = true
     ): ResponseHolder<T> =
-        request(type) { it.postJson(url, headers ?: mapOf(), content ?: "") }
+        request(type, isInfoResponse) { it.postJson(url, headers ?: mapOf(), content ?: "") }
 
     /**
      * Support Multipart body for POST
@@ -99,8 +103,9 @@ open class HttpClient : HttpClientFactory() {
         url: String,
         headers: Map<String, String>? = null,
         params: Map<String, Any>? = null,
-        type: Type
-    ): ResponseHolder<T> = request(type) {
+        type: Type,
+        isInfoResponse: Boolean = true
+    ): ResponseHolder<T> = request(type, isInfoResponse) {
         val mb = MultipartBody.Builder().setType(MultipartBody.FORM)
         params?.forEach {
             if (it.value is File) {
@@ -127,29 +132,33 @@ open class HttpClient : HttpClientFactory() {
     suspend fun <T> put(
         url: String,
         headers: Map<String, String>? = null,
-        type: Type
-    ): ResponseHolder<T> = request(type) { it.put(url, headers ?: mapOf()) }
+        type: Type,
+        isInfoResponse: Boolean = true
+    ): ResponseHolder<T> = request(type, isInfoResponse) { it.put(url, headers ?: mapOf()) }
 
     @JvmOverloads
     suspend fun <T> delete(
         url: String,
         headers: Map<String, String>? = null,
-        type: Type
-    ): ResponseHolder<T> = request(type) { it.delete(url, headers ?: mapOf()) }
+        type: Type,
+        isInfoResponse: Boolean = true
+    ): ResponseHolder<T> = request(type, isInfoResponse) { it.delete(url, headers ?: mapOf()) }
 
     @JvmOverloads
     suspend fun <T> head(
         url: String,
         headers: Map<String, String>? = null,
-        type: Type
-    ): ResponseHolder<T> = request(type) { it.head(url, headers ?: mapOf()) }
+        type: Type,
+        isInfoResponse: Boolean = true
+    ): ResponseHolder<T> = request(type, isInfoResponse) { it.head(url, headers ?: mapOf()) }
 
     @JvmOverloads
     suspend fun <T> options(
         url: String,
         headers: Map<String, String>? = null,
-        type: Type
-    ): ResponseHolder<T> = request(type) { it.options(url, headers ?: mapOf()) }
+        type: Type,
+        isInfoResponse: Boolean = true
+    ): ResponseHolder<T> = request(type, isInfoResponse) { it.options(url, headers ?: mapOf()) }
 
     suspend fun downloadFile(url: String): Response<ResponseBody>? {
         try {
@@ -165,11 +174,12 @@ open class HttpClient : HttpClientFactory() {
      */
     open suspend fun <T> request(
         type: Type,
+        isInfoResponse: Boolean = true,
         call: suspend (service: RequestService) -> Response<String>
     ): ResponseHolder<T> {
         try {
             val response = call.invoke(getRequestService())
-            return parseResponse(response, type)
+            return parseResponse(response, type, isInfoResponse)
         } catch (cause: Throwable) {
             val httpError = catchException(cause)
             return ResponseHolder.Error(httpError)
@@ -184,12 +194,13 @@ open class HttpClient : HttpClientFactory() {
     @ExperimentalCoroutinesApi
     open fun <T> requestFlow(
         type: Type,
+        isInfoResponse: Boolean = true,
         call: suspend (service: RequestService) -> Response<String>
     ): Flow<ResponseHolder<T>> {
         try {
             return flow {
                 val response = call.invoke(getRequestService())
-                emit(parseResponse(response, type))
+                emit(parseResponse(response, type, isInfoResponse))
             }
         } catch (cause: Throwable) {
             return flow {
@@ -202,11 +213,19 @@ open class HttpClient : HttpClientFactory() {
     /**
      * 解析请求返回的Response
      */
-    open fun <T> parseResponse(response: Response<String>, type: Type): ResponseHolder<T> {
+    open fun <T> parseResponse(
+        response: Response<String>,
+        type: Type,
+        isInfoResponse: Boolean = true
+    ): ResponseHolder<T> {
         try {
             if (response.isSuccessful && response.body() != null) {
                 // 请求成功
-                return resolveSuccessfulResponse(response, type)
+                if (isInfoResponse) {
+                    return resolveInfoResponse(response, type)
+                } else {
+                    return resolveNoInfoResponse(response, type)
+                }
             } else {
                 // 请求失败
                 return resolveFailedResponse(response)
@@ -219,9 +238,9 @@ open class HttpClient : HttpClientFactory() {
     }
 
     /**
-     * 解析成功的网络请求返回的响应
+     * 解析成功的网络请求返回的响应，InfoResponse形式
      */
-    open fun <T> resolveSuccessfulResponse(
+    open fun <T> resolveInfoResponse(
         response: Response<String>,
         type: Type
     ): ResponseHolder<T> {
@@ -233,6 +252,17 @@ open class HttpClient : HttpClientFactory() {
             // 请求成功，返回失败响应
             return ResponseHolder.Failure(resp.code, resp.message)
         }
+    }
+
+    /**
+     * 解析成功的网络请求返回的响应，非InfoResponse形式
+     */
+    open fun <T> resolveNoInfoResponse(
+        response: Response<String>,
+        type: Type
+    ): ResponseHolder<T> {
+        val resp = getGson().fromJson<T>(response.body(), type)
+        return ResponseHolder.Success(resp)
     }
 
     /**

@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.Matrix
+import androidx.exifinterface.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -39,7 +41,7 @@ object ImageUtils {
      * 保存图片到相册
      */
     @JvmStatic
-    fun savePic(bitmap: Bitmap, fileName: String? = null) {
+    fun savePicToGallery(bitmap: Bitmap, fileName: String? = null) {
         val fname = if (fileName.isNullOrEmpty()) {
             "Pic_" + System.currentTimeMillis() + ".jpg"
         } else {
@@ -139,5 +141,51 @@ object ImageUtils {
             return fileStr
         }
         return null
+    }
+
+    /**
+     * 获取图片旋转角度
+     */
+    @JvmStatic
+    fun getBitmapDegree(path: String): Int {
+        var degree = 0
+        try {
+            val exifInterface = ExifInterface(path)
+            val orientation = exifInterface.getAttributeInt(
+                ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_NORMAL
+            )
+            when (orientation) {
+                ExifInterface.ORIENTATION_ROTATE_90 -> degree = 90
+                ExifInterface.ORIENTATION_ROTATE_180 -> degree = 180
+                ExifInterface.ORIENTATION_ROTATE_270 -> degree = 270
+                else -> degree = 0
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return degree
+    }
+
+    /**
+     * 旋转图片
+     */
+    fun rotateBitmapByDegree(bm: Bitmap, degree: Int): Bitmap {
+        var returnBm: Bitmap? = null
+        val matrix = Matrix()
+        matrix.postRotate(degree.toFloat())
+        try {
+            returnBm = Bitmap.createBitmap(bm, 0, 0, bm.width, bm.height, matrix, true)
+        } catch (e: OutOfMemoryError) {
+            e.printStackTrace()
+        }
+
+        if (returnBm == null) {
+            returnBm = bm
+        }
+        if (bm != returnBm) {
+            bm.recycle()
+        }
+        return returnBm
     }
 }

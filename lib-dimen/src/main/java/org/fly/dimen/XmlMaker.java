@@ -17,8 +17,8 @@ public class XmlMaker {
     private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n";
     private static final String XML_RESOURCE_START = "<resources>\r\n";
     private static final String XML_RESOURCE_END = "</resources>\r\n";
-    private static final String XML_DIMEN_TEMPLETE = "<dimen name=\"px_%1$d\">%2$.2fdp</dimen>\r\n";
-    private static final String XML_NEGATIVE_DIMEN_TEMPLETE = "<dimen name=\"px_n%1$d\">%2$.2fdp</dimen>\r\n";
+    private static final String XML_DIMEN_TEMPLETE = "<dimen name=\"p%1$d\">%2$.2fdp</dimen>\r\n";
+    private static final String XML_NEGATIVE_DIMEN_TEMPLETE = "<dimen name=\"_p%1$d\">%2$.2fdp</dimen>\r\n";
 
     private static final int MAX_SIZE = 2 * Executor.SMALLEST_WIDTH;
 

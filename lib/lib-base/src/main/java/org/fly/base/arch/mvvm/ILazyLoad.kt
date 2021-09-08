@@ -22,5 +22,5 @@ interface ILazyLoad {
     /**
      * 延迟加载
      */
-    fun lazyLoad()
+    fun lazyInit()
 }

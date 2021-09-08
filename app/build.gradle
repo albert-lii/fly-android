@@ -3,18 +3,19 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id "dagger.hilt.android.plugin"
 }
 
 android {
-    compileSdkVersion rootProject.ext.versions.compileSdkVersion
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "fly.ly.app"
-        minSdkVersion rootProject.ext.versions.minSdkVersion
-        targetSdkVersion rootProject.ext.versions.targetSdkVersion
-        versionCode rootProject.ext.versions.versionCode
-        versionName rootProject.ext.versions.versionName
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -52,11 +53,11 @@ android {
             keyPassword 'fly1234'
         }
     }
-}
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
     }
 }
 
@@ -65,9 +66,12 @@ dependencies {
     testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["test-ext:junit"]
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
+    implementation rootProject.ext.dependencies["multidex"]
     implementation rootProject.ext.dependencies["arouter-api"]
     kapt rootProject.ext.dependencies["arouter-compiler"]
+    implementation rootProject.ext.dependencies["hilt"]
+    kapt rootProject.ext.dependencies["hilt-compiler"]
     implementation project(':lib-biz:lib-common')
-    implementation project(':module-launcher')
-    implementation project(':module-test')
+    implementation project(':module-launcher:launcher-internal')
+//    implementation project(':module-test')
 }

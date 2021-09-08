@@ -2,7 +2,7 @@ package org.fly.base.utils.countdown
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import org.fly.base.communication.livebus.LiveBus
+import org.fly.base.signal.livebus.LiveBus
 
 /**
  * @author: Albert Li

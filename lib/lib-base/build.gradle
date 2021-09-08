@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion rootProject.ext.versions.compileSdkVersion
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.versions.minSdkVersion
-        targetSdkVersion rootProject.ext.versions.targetSdkVersion
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
 
@@ -45,36 +45,17 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api rootProject.ext.dependencies["kotlin-stdlib"]
-    api rootProject.ext.dependencies["core-ktx"]
-    api rootProject.ext.dependencies["kotlinx-coroutines-core"]
-    api rootProject.ext.dependencies["kotlinx-coroutines-android"]
-    api rootProject.ext.dependencies["appcompat"]
-    api rootProject.ext.dependencies["multidex"]
-    api rootProject.ext.dependencies["recyclerview"]
-    api rootProject.ext.dependencies["constraint-layout"]
-    api rootProject.ext.dependencies["flexbox"]
-    api rootProject.ext.dependencies["lifecycle-extensions"]
-    api rootProject.ext.dependencies["lifecycle-viewmodel-ktx"]
-    api rootProject.ext.dependencies["retrofit"]
-    api rootProject.ext.dependencies["retrofit-converter-gson"]
-    api rootProject.ext.dependencies["retrofit-adapter-rxjava"]
-    api rootProject.ext.dependencies["okhttp"]
-    api rootProject.ext.dependencies["okhttp-logging-interceptor"]
-    api rootProject.ext.dependencies["rxjava"]
-    api rootProject.ext.dependencies["rxandroid"]
-    api rootProject.ext.dependencies["mmkv"]
-    api rootProject.ext.dependencies["relinker"]
-    api rootProject.ext.dependencies["glide"]
-    api rootProject.ext.dependencies["glide-annotations"]
+    implementation rootProject.ext.dependencies["core-ktx"]
+    implementation rootProject.ext.dependencies["kotlin-stdlib"]
+    implementation rootProject.ext.dependencies["kotlinx-coroutines-android"]
+    implementation rootProject.ext.dependencies["lifecycle-extensions"]
+    implementation rootProject.ext.dependencies["lifecycle-viewmodel-ktx"]
+    implementation rootProject.ext.dependencies["hilt"]
+    kapt rootProject.ext.dependencies["hilt-compiler"]
+    implementation rootProject.ext.dependencies["recyclerview"]
+    implementation rootProject.ext.dependencies["gson"]
+    implementation rootProject.ext.dependencies["exifinterface"]
+    implementation rootProject.ext.dependencies["mmkv"]
+    implementation rootProject.ext.dependencies["relinker"]
     api rootProject.ext.dependencies["easypermissions"]
-    api rootProject.ext.dependencies["utilcodex"]
-    api rootProject.ext.dependencies["smart-refresh-layout-kernel"]
-    api rootProject.ext.dependencies["smart-refresh-header-classics"]
-    api rootProject.ext.dependencies["smart-refresh-footer-classics"]
-    api rootProject.ext.dependencies["banner"]
-    api rootProject.ext.dependencies["ucrop"]
-    api rootProject.ext.dependencies["matisse"]
-    api rootProject.ext.dependencies["bga-qrcode-zxing"]
-    api rootProject.ext.dependencies["retrofit-converter-scalars"]
 }

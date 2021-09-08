@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion rootProject.ext.versions.compileSdkVersion
-    buildToolsVersion rootProject.ext.versions.buildToolsVersion
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.versions.minSdkVersion
-        targetSdkVersion rootProject.ext.versions.targetSdkVersion
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
 
@@ -38,16 +38,21 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
     }
 }
 
 dependencies {
+    implementation rootProject.ext.dependencies["core-ktx"]
+    implementation rootProject.ext.dependencies["kotlin-stdlib"]
     implementation rootProject.ext.dependencies["arouter-api"]
     kapt rootProject.ext.dependencies["arouter-compiler"]
+    implementation rootProject.ext.dependencies["appcompat"]
+    implementation rootProject.ext.dependencies["recyclerview"]
+    implementation project(':lib:lib-uikit')
     implementation project(':lib-biz:lib-common')
 }

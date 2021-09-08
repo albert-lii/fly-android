@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--标题栏高度-->
-    <dimen name="titlebar_height">@dimen/px_44</dimen>
+    <dimen name="titlebar_height">@dimen/p44</dimen>
+    <!--标题栏左侧icon高度-->
+    <dimen name="titlebar_leftIconHeight">@dimen/p19</dimen>
     <!--标题栏标题大小-->
-    <dimen name="titlebar_title_size">@dimen/px_18</dimen>
-    <!--标题栏左侧icon大小-->
-    <dimen name="titlebar_lefticon_size">@dimen/px_19</dimen>
+    <dimen name="titlebar_titleSize">@dimen/p18</dimen>
 
     <!--页面左/右间距-->
-    <dimen name="page_space_lr">@dimen/px_12</dimen>
+    <dimen name="page_space_lr">@dimen/p14</dimen>
     <!--页面上间距-->
-    <dimen name="page_space_top">@dimen/px_8</dimen>
+    <dimen name="page_space_top">@dimen/p8</dimen>
 
     <!--按钮高度-->
-    <dimen name="btn_height">@dimen/px_40</dimen>
+    <dimen name="btn_height">@dimen/p40</dimen>
     <!--按钮左/右间距-->
-    <dimen name="btn_space_lr">@dimen/px_24</dimen>
+    <dimen name="btn_space_lr">@dimen/p24</dimen>
+    <!--按钮文字大小-->
+    <dimen name="btn_textSize">@dimen/p15</dimen>
+
+
+    <!--item的左右间距-->
+    <dimen name="item_space_lr">@dimen/p12</dimen>
+    <!--item的文字大小-->
+    <dimen name="item_textSize">@dimen/p14</dimen>
+
 
     <!--文字大小-->
-    <dimen name="textsize_btn">@dimen/px_15</dimen>
-    <dimen name="textsize_xl">@dimen/px_18</dimen>
-    <dimen name="textsize_l">@dimen/px_16</dimen>
-    <dimen name="textsize_m">@dimen/px_14</dimen>
-    <dimen name="textsize_s">@dimen/px_13</dimen>
-    <dimen name="textsize_xs">@dimen/px_12</dimen>
+    <dimen name="textSize_18">@dimen/p18</dimen>
+    <dimen name="textSize_16">@dimen/p16</dimen>
+    <dimen name="textSize_14">@dimen/p14</dimen>
+    <dimen name="textSize_13">@dimen/p13</dimen>
+    <dimen name="textSize_12">@dimen/p12</dimen>
 </resources>

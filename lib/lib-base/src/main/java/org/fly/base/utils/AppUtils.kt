@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Build
 
 /**
@@ -124,5 +126,21 @@ object AppUtils {
         } catch (throwable: Throwable) {
         }
         return result
+    }
+
+    /**
+     * 检查App是否安装
+     */
+    fun checkAppInstalled(context: Context, packageName: String?): Boolean {
+        val packageManager = context.packageManager
+        var applicationInfo: ApplicationInfo? = null
+        try {
+            applicationInfo = packageManager.getApplicationInfo(packageName!!, 0)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        } catch (ep: Exception) {
+            ep.printStackTrace()
+        }
+        return applicationInfo != null
     }
 }

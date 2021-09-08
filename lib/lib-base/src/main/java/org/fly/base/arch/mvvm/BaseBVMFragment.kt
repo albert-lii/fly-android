@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import org.fly.base.extensions.observeNonNull
+import org.fly.base.exts.observeNonNull
 
 /**
  * @author: Albert Li
@@ -15,8 +15,7 @@ import org.fly.base.extensions.observeNonNull
  * @description: 基于MVVM模式的Fragment的基类
  * @since: 1.0.0
  */
-abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBindingFragment<B>(),
-    ViewBehavior {
+abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBindFragment<B>(){
 
     protected lateinit var viewModel: VM
         private set
@@ -34,7 +33,7 @@ abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
         injectViewModel()
         initialize(savedInstanceState)
         initInternalObserver()
-        doLazyLoad(false)
+        excuteLazyInit(false)
         return getRootView()
     }
 
@@ -42,65 +41,7 @@ abstract class BaseBVMFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBi
         val vm = createViewModel()
         viewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(vm))
             .get(vm::class.java)
-        viewModel.application = activity!!.application
-        lifecycle.addObserver(viewModel)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        lifecycle.removeObserver(viewModel)
-    }
-
-    protected fun initInternalObserver() {
-        viewModel._loadingEvent.observeNonNull(this) {
-            showLoadingView(it)
-        }
-        viewModel._emptyPageEvent.observeNonNull(this) {
-            showEmptyView(it)
-        }
-        viewModel._toastEvent.observeNonNull(this) {
-            showToast(it)
-        }
-        viewModel._pageNavigationEvent.observeNonNull(this) {
-            navigate(it)
-        }
-        viewModel._backPressEvent.observeNonNull(this) {
-            backPress(it)
-        }
-        viewModel._finishPageEvent.observeNonNull(this) {
-            finishPage(it)
-        }
-    }
-
-    protected abstract fun createViewModel(): VM;
-}
-
-abstract class BaseBVM2Fragment<B : ViewDataBinding, VM : BaseViewModel> : BaseBinding2Fragment<B>(),
-    ViewBehavior {
-
-    protected lateinit var viewModel: VM
-        private set
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        if (rootView != null) {
-            return rootView
-        }
-        injectDataBinding(inflater, container)
-        injectViewModel()
-        initialize(savedInstanceState)
-        initInternalObserver()
-        return rootView
-    }
-
-    protected fun injectViewModel() {
-        val vm = createViewModel()
-        viewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(vm))
-            .get(vm::class.java)
-        viewModel.application = activity!!.application
+        viewModel.application = requireActivity().application
         lifecycle.addObserver(viewModel)
     }
 

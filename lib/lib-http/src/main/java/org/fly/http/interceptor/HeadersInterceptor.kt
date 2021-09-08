@@ -16,7 +16,7 @@ class HeadersInterceptor(private val headers: Map<String, String>) : Interceptor
         val requestBuilder = chain.request().newBuilder()
         // Request customization: add request headers
         headers.forEach {
-            requestBuilder.header(it.key, it.value)
+            requestBuilder.addHeader(it.key, it.value)
         }
         return chain.proceed(requestBuilder.build())
     }

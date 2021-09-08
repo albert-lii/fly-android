@@ -6,7 +6,8 @@ includeModules(
         ':lib',
         ':lib-biz',
         ':module-launcher',
-        ':module-test',
+        ':module-sample',
+//        ':module-test',
 )
 
 
@@ -118,3 +119,6 @@ class SettingsProxy {
         return "$mModule.path$path"
     }
 }
+
+include ':module-sample:sample-api'
+include ':module-sample:sample-internal'

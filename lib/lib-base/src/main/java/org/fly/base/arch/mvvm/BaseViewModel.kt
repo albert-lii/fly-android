@@ -8,7 +8,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import org.fly.base.arch.FlyArchCsts
 
 /**
  * @author: Albert Li
@@ -28,7 +27,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         private set
 
     // toast提示Event
-    var _toastEvent = MutableLiveData<Map<String, *>>()
+    var _toastEvent = MutableLiveData<ToastEvent>()
         private set
 
     // 不带参数的页面跳转Event
@@ -98,8 +97,16 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         _emptyPageEvent.postValue(isShow)
     }
 
-    override fun showToast(map: Map<String, *>) {
-        _toastEvent.postValue(map)
+    override fun showToast(event: ToastEvent) {
+        _toastEvent.postValue(event)
+    }
+
+    protected fun showToast(text: String, showLong: Boolean = false) {
+        showToast(ToastEvent(content = text, showLong = showLong))
+    }
+
+    protected fun showToast(@StringRes resId: Int, showLong: Boolean = false) {
+        showToast(ToastEvent(contentResId = resId, showLong = showLong))
     }
 
     override fun navigate(page: Any) {
@@ -110,40 +117,12 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle, ViewBehavior {
         _backPressEvent.postValue(arg)
     }
 
-    override fun finishPage(arg: Any?) {
-        _finishPageEvent.postValue(arg)
-    }
-
-    protected fun showToast(msg: String, duration: Int? = null) {
-        val map = HashMap<String, Any>().apply {
-            put(
-                FlyArchCsts.FLY_TOAST_KEY_CTYPE,
-                FlyArchCsts.FLY_TOAST_VAL_CTYPE_STR
-            )
-            put(FlyArchCsts.FLY_TOAST_KEY_CONTENT, msg)
-            if (duration != null) {
-                put(FlyArchCsts.FLY_TOAST_KEY_DURATION, duration)
-            }
-        }
-        showToast(map)
-    }
-
-    protected fun showToast(@StringRes resId: Int, duration: Int? = null) {
-        val map = HashMap<String, Any>().apply {
-            put(
-                FlyArchCsts.FLY_TOAST_KEY_CTYPE,
-                FlyArchCsts.FLY_TOAST_VAL_CTYPE_RESID
-            )
-            put(FlyArchCsts.FLY_TOAST_KEY_CONTENT, resId)
-            if (duration != null) {
-                put(FlyArchCsts.FLY_TOAST_KEY_DURATION, duration)
-            }
-        }
-        showToast(map)
-    }
-
     protected fun backPress() {
         backPress(null)
+    }
+
+    override fun finishPage(arg: Any?) {
+        _finishPageEvent.postValue(arg)
     }
 
     protected fun finishPage() {

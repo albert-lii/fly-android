@@ -21,7 +21,7 @@ interface ViewBehavior {
     /**
      * 弹出Toast提示
      */
-    fun showToast(map: Map<String, *>)
+    fun showToast(event:ToastEvent)
 
     /**
      * 不带参数的页面跳转

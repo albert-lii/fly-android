@@ -18,7 +18,7 @@ class PermissionUtils {
     companion object {
 
         /**
-         * 检查权限
+         * 是否具有指定权限
          */
         @JvmStatic
         fun hasPermissions(context: Context, vararg perms: String): Boolean {
@@ -29,35 +29,53 @@ class PermissionUtils {
          * 是否选择了Never Ask
          */
         @JvmStatic
-        fun permissionNeverAsk(host: Activity, perm: String): Boolean {
+        fun isPermissionNeverAsk(host: Activity, perm: String): Boolean {
             return EasyPermissions.permissionPermanentlyDenied(host, perm)
         }
 
+        /**
+         * 是否选择了Never Ask
+         */
         @JvmStatic
-        fun permissionNeverAsk(host: Fragment, perm: String): Boolean {
+        fun isPermissionNeverAsk(host: Fragment, perm: String): Boolean {
             return EasyPermissions.permissionPermanentlyDenied(host, perm)
         }
 
+        /**
+         * 是否选择了Never Ask
+         */
         @JvmStatic
-        fun permissionsNeverAsk(host: Activity, perms: MutableList<String>): Boolean {
+        fun isPermissionsNeverAsk(host: Activity, perms: List<String>): Boolean {
             return EasyPermissions.somePermissionPermanentlyDenied(host, perms)
         }
 
+        /**
+         * 是否选择了Never Ask
+         */
         @JvmStatic
-        fun permissionsNeverAsk(host: Fragment, perms: MutableList<String>): Boolean {
+        fun isPermissionsNeverAsk(host: Fragment, perms: List<String>): Boolean {
             return EasyPermissions.somePermissionPermanentlyDenied(host, perms)
         }
 
+        /**
+         * 是否申请权限失败
+         */
         @JvmStatic
-        fun permissionsDenied(host: Activity, vararg perms: String): Boolean {
+        fun isPermissionsDenied(host: Activity, vararg perms: String): Boolean {
             return EasyPermissions.somePermissionDenied(host, *perms)
         }
 
+        /**
+         * 是否申请权限失败
+         */
         @JvmStatic
-        fun permissionsDenied(host: Fragment, vararg perms: String): Boolean {
+        fun isPermissionsDenied(host: Fragment, vararg perms: String): Boolean {
             return EasyPermissions.somePermissionDenied(host, *perms)
         }
 
+        /**
+         * 申请权限
+         */
         @JvmStatic
         fun applyPermissions(
             host: Activity,
@@ -98,15 +116,70 @@ class PermissionUtils {
             EasyPermissions.requestPermissions(builder.build())
         }
 
+        /**
+         * 申请权限的回调
+         */
         fun onRequestPermissionsResult(
             requestCode: Int,
             perms: Array<out String>,
             grantResults: IntArray,
-            vararg receivers: Any
+            host: Activity,
+            callback: PermissionCallbacks? = null,
         ) {
-            EasyPermissions.onRequestPermissionsResult(requestCode, perms, grantResults, receivers)
+            EasyPermissions.onRequestPermissionsResult(
+                requestCode,
+                perms,
+                grantResults,
+                object : EasyPermissions.PermissionCallbacks {
+                    override fun onRequestPermissionsResult(
+                        requestCode: Int,
+                        permissions: Array<out String>,
+                        grantResults: IntArray
+                    ) {
+                        // do nothing
+                    }
+
+                    override fun onPermissionsGranted(
+                        requestCode: Int,
+                        perms: MutableList<String>
+                    ) {
+                        callback?.onPermissionsGranted(requestCode, perms)
+                    }
+
+                    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+                        if (!perms.isNullOrEmpty()) {
+                            val refusedPerms = ArrayList<String>()
+                            val neverAskPerms = ArrayList<String>()
+                            for (item in perms) {
+                                if (isPermissionNeverAsk(host, item)) {
+                                    neverAskPerms.add(item)
+                                } else {
+                                    refusedPerms.add(item)
+                                }
+                            }
+                            callback?.onPermissonRefused(requestCode, refusedPerms)
+                            callback?.onPermissonNeverAsk(requestCode, neverAskPerms)
+                        }
+                    }
+                }
+            )
         }
     }
 
-    interface PermissionCallbacks : EasyPermissions.PermissionCallbacks
+    interface PermissionCallbacks {
+        /**
+         * 申请权限成功
+         */
+        fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>)
+
+        /**
+         * 申请权限失败
+         */
+        fun onPermissonRefused(requestCode: Int, perms: MutableList<String>)
+
+        /**
+         * 申请权限失败，并且用户选择了不再询问
+         */
+        fun onPermissonNeverAsk(requestCode: Int, perms: MutableList<String>)
+    }
 }

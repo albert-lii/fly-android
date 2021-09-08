@@ -18,10 +18,17 @@
             <option value="$PROJECT_DIR$/lib-dimen" />
             <option value="$PROJECT_DIR$/lib/lib-base" />
             <option value="$PROJECT_DIR$/lib/lib-http" />
+            <option value="$PROJECT_DIR$/lib/lib-imageloader" />
+            <option value="$PROJECT_DIR$/lib/lib-router" />
             <option value="$PROJECT_DIR$/lib/lib-scan" />
-            <option value="$PROJECT_DIR$/lib/lib-widget" />
+            <option value="$PROJECT_DIR$/lib/lib-socket" />
+            <option value="$PROJECT_DIR$/lib/lib-uikit" />
             <option value="$PROJECT_DIR$/module-launcher" />
-            <option value="$PROJECT_DIR$/module-test" />
+            <option value="$PROJECT_DIR$/module-launcher/launcher-api" />
+            <option value="$PROJECT_DIR$/module-launcher/launcher-internal" />
+            <option value="$PROJECT_DIR$/module-sample" />
+            <option value="$PROJECT_DIR$/module-sample/sample-api" />
+            <option value="$PROJECT_DIR$/module-sample/sample-internal" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

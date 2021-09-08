@@ -2,8 +2,8 @@ package org.fly.base.arch.mvvm
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import org.fly.base.extensions.observeNonNull
-import org.fly.base.extensions.observeNullable
+import org.fly.base.exts.observeNonNull
+import org.fly.base.exts.observeNullable
 
 /**
  * @author: Albert Li
@@ -12,7 +12,7 @@ import org.fly.base.extensions.observeNullable
  * @description: 基于MVVM模式的Activity的基类
  * @since: 1.0.0
  */
-abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBindingActivity<B>(),
+abstract class BaseBVMActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseBindActivity<B>(),
     ViewBehavior {
 
     protected lateinit var viewModel: VM

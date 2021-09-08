@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bgColor_page"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <org.fly.uikit.TitleToolbar
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            app:ftb_addStatusBarHeight="true"
+            app:ftb_barHeight="@dimen/titlebar_height"
+            app:ftb_title="Let's Fly"
+            app:ftb_titleBold="true"
+            app:ftb_titleColor="@color/textColor_black"
+            app:ftb_titleSize="@dimen/p20" />
+
+        <Button
+            android:id="@+id/btn_micro_app"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/p50"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="微应用"
+            android:textAllCaps="false"
+            android:textColor="@color/textColor_black" />
+
+        <Button
+            android:id="@+id/btn_test_app"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/p12"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="Lib测试"
+            android:textAllCaps="false"
+            android:textColor="@color/textColor_black" />
+
+        <Button
+            android:id="@+id/btn_download"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_space_lr"
+            android:layout_marginTop="@dimen/p12"
+            android:layout_marginRight="@dimen/btn_space_lr"
+            android:background="@drawable/base_btn_bg"
+            android:text="下载测试"
+            android:textAllCaps="false"
+            android:textColor="@color/textColor_black" />
+    </LinearLayout>
+</layout>

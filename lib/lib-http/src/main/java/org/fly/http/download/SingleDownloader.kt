@@ -4,7 +4,7 @@ import kotlinx.coroutines.*
 import org.fly.http.HttpClient
 import java.io.File
 import java.io.FileOutputStream
-import kotlin.coroutines.cancellation.CancellationException
+import java.util.concurrent.CancellationException
 
 /**
  * @author: Albert Li

@@ -1,15 +1,10 @@
 package org.fly.base.utils
 
-import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.Point
 import android.os.Build
-import android.view.View
 import android.view.WindowManager
-import com.blankj.utilcode.util.Utils
 
 /**
  * @author: Albert Li
@@ -70,7 +65,7 @@ object ScreenUtils {
      */
     @JvmStatic
     fun getAppScreenHeight(): Int {
-        val wm = Utils.getApp().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val wm = AppUtils.getApplication().getSystemService(Context.WINDOW_SERVICE) as WindowManager
             ?: return -1
         val point = Point()
         wm.defaultDisplay.getSize(point)

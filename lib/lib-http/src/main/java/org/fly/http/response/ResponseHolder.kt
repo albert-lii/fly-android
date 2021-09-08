@@ -32,7 +32,7 @@ sealed class ResponseHolder<out T> {
         return this is Error && this.error.errorCode != HttpError.CANCEL_REQUEST
     }
 
-    fun getData(){
+    fun getData() {
 
     }
 
@@ -78,12 +78,13 @@ sealed class ResponseHolder<out T> {
     }
 
     /**
-     * 处理网络请求取消
+     * 处理网络请求取消，是根据CancellationException来判断的，
+     * 此种判断并不稳定，不是所有的取消都会抛出CancellationException，建议还是在调用用Job.cancel()时手动进行取消处理
      */
-    suspend fun onCancel(action: (suspend () -> Unit)): ResponseHolder<T> {
-        if (this is Error && error.errorCode == HttpError.CANCEL_REQUEST) {
-            action.invoke()
-        }
-        return this
-    }
+//    suspend fun onCancel(action: (suspend () -> Unit)): ResponseHolder<T> {
+//        if (this is Error && error.errorCode == HttpError.CANCEL_REQUEST) {
+//            action.invoke()
+//        }
+//        return this
+//    }
 }

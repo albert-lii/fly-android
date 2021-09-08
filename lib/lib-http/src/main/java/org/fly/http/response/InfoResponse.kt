@@ -12,7 +12,9 @@ data class InfoResponse<T>(
     val message: String,
     val data: T?
 ) {
-    // 此方法一定要实现
+    /**
+     * 判断本次请求返回的响应是否为成功响应，此方法一定要实现
+     */
     fun isSuccessful(): Boolean {
         return code == 0
     }

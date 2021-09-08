@@ -1,14 +1,5 @@
 package org.fly.http.response
 
-import android.net.ParseException
-import com.google.gson.JsonParseException
-import org.json.JSONException
-import retrofit2.HttpException
-import java.io.InterruptedIOException
-import java.net.ConnectException
-import java.net.UnknownHostException
-import kotlin.coroutines.cancellation.CancellationException
-
 /**
  * @author: Albert Li
  * @contact: albertlii@163.com

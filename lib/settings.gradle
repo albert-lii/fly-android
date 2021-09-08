@@ -1,6 +1,9 @@
 include(
         ':lib-base',
         ':lib-http',
-        ':lib-widget',
+        ':lib-imageloader',
+        ':lib-uikit',
         ':lib-scan',
+        ':lib-router',
+        ':lib-socket',
 )

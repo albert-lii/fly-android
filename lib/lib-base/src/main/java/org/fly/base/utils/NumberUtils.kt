@@ -1,7 +1,6 @@
 package org.fly.base.utils
 
 import android.widget.EditText
-import com.blankj.utilcode.util.NumberUtils
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode

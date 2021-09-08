@@ -40,7 +40,6 @@ public enum DimenType {
      */
     private int swWidthDp;
 
-
     DimenType(int swWidthDp) {
         this.swWidthDp = swWidthDp;
     }

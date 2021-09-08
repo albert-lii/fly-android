@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--白色-->
-    <color name="main_white">#FFFFFF</color>
-
     <!--主题色-->
-    <color name="theme_color">#3989F7</color>
-    <!--页面背景色-->
-    <color name="page_bg_color">#F3F4F5</color>
-    <!--状态栏背景色-->
-    <color name="statusbar_bg_color">#FFFFFF</color>
-    <!--标题栏背景色-->
-    <color name="titlebar_bg_color">#FFFFFF</color>
-    <!--标题栏标题颜色-->
-    <color name="titlebar_title_color">#222222</color>
+    <color name="primary_color">#00965E</color>
+    <!--白色-->
+    <color name="base_white">#FFFFFF</color>
+    <!--黑色-->
+    <color name="base_black">#000000</color>
+    <color name="base_yellow">#F0B90B</color>
     <!--分割线颜色-->
     <color name="divider_color">#EAECEF</color>
 
+
+    <!--页面背景色-->
+    <color name="bgColor_page">#F4F5F6</color>
+    <!--状态栏背景色-->
+    <color name="bgColor_statusbar">#FFFFFF</color>
+    <!--标题栏背景色-->
+    <color name="bgColor_titlebar">#FFFFFF</color>
+
+
     <!--文字颜色-->
-    <color name="textcolor_black">#222222</color>
-    <color name="textcolor_grey">#848E9C</color>
-    <color name="textcolor_white">#FEFEFE</color>
+    <!--标题栏标题颜色-->
+    <color name="textColor_titlebar">#222222</color>
+    <!--文字黑色-->
+    <color name="textColor_black">#222222</color>
+    <!--文字灰色-->
+    <color name="textColor_grey">#848E9C</color>
+    <!--文字白色-->
+    <color name="textColor_white">#FEFEFE</color>
 </resources>

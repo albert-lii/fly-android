@@ -265,4 +265,11 @@
         <attr name="frv_borderDisabledColor" format="color|reference" />
         <attr name="frv_borderNormalColor" format="color|reference" />
     </declare-styleable>
+
+    <!--Radio ImageView-->
+    <declare-styleable name="fly_uikit_RadioImageView">
+        <attr name="friv_checked" format="boolean" />
+        <attr name="friv_checkSrc" format="reference" />
+        <attr name="friv_uncheckSrc" format="reference" />
+    </declare-styleable>
 </resources>

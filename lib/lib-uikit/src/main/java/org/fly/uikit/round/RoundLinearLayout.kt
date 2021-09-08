@@ -13,7 +13,7 @@ import org.fly.uikit.R
  * @description: 圆角LinearLayout
  * @since: 1.0.0
  */
-class RoundLinearLayout : LinearLayout, IRoundImpl {
+open class RoundLinearLayout : LinearLayout, IRoundImpl {
     override var helper: RHelper = RHelper(this)
 
     constructor(context: Context) : super(context) {

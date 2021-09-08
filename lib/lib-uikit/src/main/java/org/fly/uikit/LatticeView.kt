@@ -15,7 +15,7 @@ import android.view.View
  * @description: 格子控件
  * @since: 1.0.0
  */
-class LatticeView : View {
+open class LatticeView : View {
     private var primaryColor = Color.GRAY // 进度格的基础颜色
     private var accentColor = Color.RED // 进度格点亮后的颜色
     private var accentCount = 0  // 被点亮的进度格数
@@ -50,19 +50,19 @@ class LatticeView : View {
         if (attrs != null) {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.fly_uikit_LatticeView)
             primaryColor =
-                ta.getColor(R.styleable.fly_uikit_LatticeView_flv_primaryColor, primaryColor)
+                ta.getColor(R.styleable.fly_uikit_LatticeView_fu_primaryColor, primaryColor)
             accentColor =
-                ta.getInteger(R.styleable.fly_uikit_LatticeView_flv_accentColor, accentColor)
-            totalCount = ta.getColor(R.styleable.fly_uikit_LatticeView_flv_totalCount, totalCount)
+                ta.getInteger(R.styleable.fly_uikit_LatticeView_fu_accentColor, accentColor)
+            totalCount = ta.getColor(R.styleable.fly_uikit_LatticeView_fu_totalCount, totalCount)
             accentCount =
-                ta.getInteger(R.styleable.fly_uikit_LatticeView_flv_accentCount, accentCount)
+                ta.getInteger(R.styleable.fly_uikit_LatticeView_fu_accentCount, accentCount)
             cellWidth =
-                ta.getDimension(R.styleable.fly_uikit_LatticeView_flv_cellWidth, cellWidth)
+                ta.getDimension(R.styleable.fly_uikit_LatticeView_fu_cellWidth, cellWidth)
             cellSpace =
-                ta.getDimension(R.styleable.fly_uikit_LatticeView_flv_cellSpace, cellSpace)
-            reverse = ta.getBoolean(R.styleable.fly_uikit_LatticeView_flv_reverse, reverse)
+                ta.getDimension(R.styleable.fly_uikit_LatticeView_fu_cellSpace, cellSpace)
+            reverse = ta.getBoolean(R.styleable.fly_uikit_LatticeView_fu_reverse, reverse)
             oritenation =
-                ta.getInteger(R.styleable.fly_uikit_LatticeView_flv_oritenation, oritenation)
+                ta.getInteger(R.styleable.fly_uikit_LatticeView_fu_oritenation, oritenation)
             ta.recycle()
         }
     }

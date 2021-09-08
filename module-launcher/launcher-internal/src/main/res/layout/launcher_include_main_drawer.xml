@@ -41,8 +41,8 @@
                 android:layout_width="@dimen/p10"
                 android:layout_height="@dimen/p10"
                 android:layout_marginTop="@dimen/p30"
-                app:frv_normalColor="@color/primary_color"
-                app:frv_radius="@dimen/p10"
+                app:fu_normalColor="@color/primary_color"
+                app:fu_radius="@dimen/p10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,8 +63,8 @@
                 android:layout_width="@dimen/p10"
                 android:layout_height="@dimen/p10"
                 android:layout_marginTop="@dimen/p30"
-                app:frv_normalColor="@color/primary_color"
-                app:frv_radius="@dimen/p10"
+                app:fu_normalColor="@color/primary_color"
+                app:fu_radius="@dimen/p10"
                 app:layout_constraintStart_toStartOf="@+id/roundview_point1"
                 app:layout_constraintTop_toBottomOf="@+id/roundview_point1" />
 
@@ -85,8 +85,8 @@
                 android:layout_width="@dimen/p10"
                 android:layout_height="@dimen/p10"
                 android:layout_marginTop="@dimen/p30"
-                app:frv_normalColor="@color/primary_color"
-                app:frv_radius="@dimen/p10"
+                app:fu_normalColor="@color/primary_color"
+                app:fu_radius="@dimen/p10"
                 app:layout_constraintStart_toStartOf="@+id/roundview_point2"
                 app:layout_constraintTop_toBottomOf="@+id/roundview_point2" />
 

@@ -21,12 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/bgColor_titlebar"
-            app:ftb_addStatusBarHeight="true"
-            app:ftb_barHeight="@dimen/titlebar_height"
-            app:ftb_leftIcon="@drawable/back_arrow"
-            app:ftb_leftIconHeight="@dimen/titlebar_leftIconHeight"
-            app:ftb_title="协程简单测试（二）"
-            app:ftb_titleSize="@dimen/textSize_title" />
+            app:fu_addStatusBarHeight="true"
+            app:fu_barHeight="@dimen/titlebar_height"
+            app:fu_leftIcon="@drawable/back_arrow"
+            app:fu_leftIconHeight="@dimen/titlebar_leftIconHeight"
+            app:fu_title="协程简单测试（二）"
+            app:fu_titleSize="@dimen/textSize_title" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

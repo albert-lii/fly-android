@@ -15,7 +15,7 @@ import androidx.appcompat.widget.AppCompatTextView
  *               一般情况下，AppCompatTextView已经足够使用
  * @since: 1.0.0
  */
-class AutoAdjustTextView @JvmOverloads constructor(
+open class AutoAdjustTextView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 

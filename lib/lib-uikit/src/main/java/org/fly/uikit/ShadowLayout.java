@@ -61,11 +61,11 @@ public class ShadowLayout extends FrameLayout {
             return;
         }
         try {
-            mShadowColor = attr.getColor(R.styleable.fly_uikit_ShadowLayout_fsl_shadowColor, Color.parseColor(SHADOW_COLOR));
-            mShadowRadius = attr.getDimension(R.styleable.fly_uikit_ShadowLayout_fsl_shadowRadius, CORNER_RADIUS);
-            mCornerRadius = attr.getDimension(R.styleable.fly_uikit_ShadowLayout_fsl_cornerRadius, SHADOW_RADIUS);
-            mDx = attr.getDimension(R.styleable.fly_uikit_ShadowLayout_fsl_dx, 0);
-            mDy = attr.getDimension(R.styleable.fly_uikit_ShadowLayout_fsl_dy, 0);
+            mShadowColor = attr.getColor(R.styleable.fly_uikit_ShadowLayout_fu_shadowColor, Color.parseColor(SHADOW_COLOR));
+            mShadowRadius = attr.getDimension(R.styleable.fly_uikit_ShadowLayout_fu_shadowRadius, CORNER_RADIUS);
+            mCornerRadius = attr.getDimension(R.styleable.fly_uikit_ShadowLayout_fu_cornerRadius, SHADOW_RADIUS);
+            mDx = attr.getDimension(R.styleable.fly_uikit_ShadowLayout_fu_dx, 0);
+            mDy = attr.getDimension(R.styleable.fly_uikit_ShadowLayout_fu_dy, 0);
         } catch (Exception e) {
             // do nothing
         } finally {

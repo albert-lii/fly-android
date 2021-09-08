@@ -13,7 +13,7 @@ import org.fly.uikit.R
  * @description: 圆角FrameLayout
  * @since: 1.0.0
  */
-class RoundFrameLayout : FrameLayout, IRoundImpl {
+open class RoundFrameLayout : FrameLayout, IRoundImpl {
     override var helper: RHelper = RHelper(this)
 
     constructor(context: Context) : super(context) {

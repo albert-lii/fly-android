@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
  * @description: RecyclerView分割线
  * @since: 1.0.0
  */
-class SpaceItemDecoration(
+open class SpaceItemDecoration(
     private val space: Int? = null, // Linear形态时，item之间的间距
     private val gridH: Int? = null, // Grid形态时，列与列之间的间距
     private val gridV: Int? = null // Grid形态时，行与行之间的间距

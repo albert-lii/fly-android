@@ -13,7 +13,7 @@ import org.fly.uikit.R
  * @description: 圆角RelativeLayout
  * @since: 1.0.0
  */
-class RoundRelativeLayout : RelativeLayout, IRoundImpl {
+open class RoundRelativeLayout : RelativeLayout, IRoundImpl {
     override var helper: RHelper = RHelper(this)
 
     constructor(context: Context) : super(context) {

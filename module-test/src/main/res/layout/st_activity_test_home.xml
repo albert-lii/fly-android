@@ -14,13 +14,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/btn_space_lr"
             android:background="@color/bgColor_titlebar"
-            app:ftb_addStatusBarHeight="true"
-            app:ftb_barHeight="@dimen/titlebar_height"
-            app:ftb_leftIcon="@drawable/back_arrow"
-            app:ftb_leftIconHeight="@dimen/titlebar_leftIconHeight"
-            app:ftb_title="Lib测试"
-            app:ftb_titleColor="@color/textColor_black"
-            app:ftb_titleSize="@dimen/textSize_title" />
+            app:fu_addStatusBarHeight="true"
+            app:fu_barHeight="@dimen/titlebar_height"
+            app:fu_leftIcon="@drawable/back_arrow"
+            app:fu_leftIconHeight="@dimen/titlebar_leftIconHeight"
+            app:fu_title="Lib测试"
+            app:fu_titleColor="@color/textColor_black"
+            app:fu_titleSize="@dimen/textSize_title" />
 
         <Button
             android:id="@+id/btn_livebus"

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
  * @description: 无限滚动View，可以用来做Banner、公告等类似视图
  * @since: 1.0.0
  */
-class AutoLoopView : RecyclerView {
+open class AutoLoopView : RecyclerView {
 
     constructor(context: Context) : super(context)
 

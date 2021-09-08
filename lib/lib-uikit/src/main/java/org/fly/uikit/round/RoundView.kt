@@ -13,7 +13,7 @@ import org.fly.uikit.R
  * @description: 圆角View
  * @since: 1.0.0
  */
-class RoundView : View, IRoundImpl {
+open class RoundView : View, IRoundImpl {
 
     override var helper: RHelper = RHelper(this)
 

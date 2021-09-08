@@ -14,7 +14,7 @@ import org.fly.uikit.R
  * @description: 圆角TextView
  * @since: 1.0.0
  */
-class RoundTextView : AppCompatTextView, IRoundImpl {
+open class RoundTextView : AppCompatTextView, IRoundImpl {
 
     override var helper: RHelper = RHelper(this)
 
@@ -50,11 +50,11 @@ class RoundTextView : AppCompatTextView, IRoundImpl {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.fly_uikit_RoundView)
             initRoundAttrs(ta)
             normalTextColor = ta.getColor(
-                R.styleable.fly_uikit_RoundView_frv_disabledColor,
+                R.styleable.fly_uikit_RoundView_fu_disabledColor,
                 normalTextColor
             )
             disabledTextColor = ta.getColor(
-                R.styleable.fly_uikit_RoundView_frv_disabledColor,
+                R.styleable.fly_uikit_RoundView_fu_disabledColor,
                 RHelper.INVALID_COLOR
             )
             if (disabledTextColor == RHelper.INVALID_COLOR) {

@@ -1,178 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--=========================================================================================-->
+    <!--公用属性-->
+    <!--=========================================================================================-->
+
+    <!--标题相关-->
+    <attr name="fu_title" format="string" />
+    <attr name="fu_titleSize" format="dimension" />
+    <attr name="fu_titleColor" format="color|reference" />
+
+    <!--Radius相关-->
+    <attr name="fu_radius" format="dimension" />
+    <attr name="fu_topLeftRadius" format="dimension" />
+    <attr name="fu_topRightRadius" format="dimension" />
+    <attr name="fu_bottomLeftRadius" format="dimension" />
+    <attr name="fu_bottomRightRadius" format="dimension" />
+
+    <!--Border相关-->
+    <attr name="fu_borderWidth" format="dimension" />
+    <attr name="fu_borderPressedColor" format="color|reference" />
+    <attr name="fu_borderDisabledColor" format="color|reference" />
+    <attr name="fu_borderNormalColor" format="color|reference" />
+
+    <!--方向-->
+    <attr name="fu_oritenation" format="enum">
+        <enum name="horizontal" value="0" />
+        <enum name="vertical" value="1" />
+    </attr>
+
+
+    <attr name="fu_checked" format="boolean" />
+
+
+    <!--左侧ICON相关-->
+    <attr name="fu_leftIcon" format="reference" />
+    <attr name="fu_leftIconWidth" format="dimension" />
+    <attr name="fu_leftIconHeight" format="dimension" />
+
+    <!--=========================================================================================-->
+    <!--自定义控件属性-->
+    <!--=========================================================================================-->
+
     <!-- 自定义标题栏 -->
     <declare-styleable name="fly_uikit_TitleBar">
         <!--标题栏文字描述-->
-        <attr name="ftb_title" format="string" />
+        <attr name="fu_title" />
         <!--标题栏文字大小-->
-        <attr name="ftb_titleSize" format="dimension" />
+        <attr name="fu_titleSize" />
         <!--标题栏文字颜色-->
-        <attr name="ftb_titleColor" format="color|reference" />
+        <attr name="fu_titleColor" />
         <!--标题栏文字是否加粗-->
-        <attr name="ftb_titleBold" format="boolean" />
+        <attr name="fu_titleBold" format="boolean" />
         <!--左侧功能区Padding Left-->
-        <attr name="ftb_leftPaddingL" format="dimension" />
+        <attr name="fu_leftPaddingL" format="dimension" />
         <!--左侧功能区Padding Right-->
-        <attr name="ftb_leftPaddingR" format="dimension" />
+        <attr name="fu_leftPaddingR" format="dimension" />
         <!--左侧ICON-->
-        <attr name="ftb_leftIcon" format="reference" />
+        <attr name="fu_leftIcon" />
         <!--左侧ICON宽度-->
-        <attr name="ftb_leftIconWidth" format="dimension" />
+        <attr name="fu_leftIconWidth" />
         <!--左侧ICON高度-->
-        <attr name="ftb_leftIconHeight" format="dimension" />
+        <attr name="fu_leftIconHeight" />
         <!--左侧文字描述-->
-        <attr name="ftb_leftText" format="string" />
+        <attr name="fu_leftText" format="string" />
         <!--左侧文字大小-->
-        <attr name="ftb_leftTextSize" format="dimension" />
+        <attr name="fu_leftTextSize" format="dimension" />
         <!--左侧文字颜色-->
-        <attr name="ftb_leftTextColor" format="color|reference" />
+        <attr name="fu_leftTextColor" format="color|reference" />
         <!--左侧ICON距离文字的间距-->
-        <attr name="ftb_leftTextLeftMargin" format="dimension" />
+        <attr name="fu_leftTextLeftMargin" format="dimension" />
         <!--右侧功能区Padding Left-->
-        <attr name="ftb_rightPaddingL" format="dimension" />
+        <attr name="fu_rightPaddingL" format="dimension" />
         <!--右侧功能区Padding Right-->
-        <attr name="ftb_rightPaddingR" format="dimension" />
+        <attr name="fu_rightPaddingR" format="dimension" />
         <!--右侧ICON-->
-        <attr name="ftb_rightIcon" format="reference" />
+        <attr name="fu_rightIcon" format="reference" />
         <!--右侧ICON宽度-->
-        <attr name="ftb_rightIconWidth" format="dimension" />
+        <attr name="fu_rightIconWidth" format="dimension" />
         <!--右侧ICON高度-->
-        <attr name="ftb_rightIconHight" format="dimension" />
+        <attr name="fu_rightIconHight" format="dimension" />
         <!--右侧文字描述-->
-        <attr name="ftb_rightText" format="string" />
+        <attr name="fu_rightText" format="string" />
         <!--右侧文字大小-->
-        <attr name="ftb_rightTextSize" format="dimension" />
+        <attr name="fu_rightTextSize" format="dimension" />
         <!--右侧文字颜色-->
-        <attr name="ftb_rightTextColor" format="color|reference" />
+        <attr name="fu_rightTextColor" format="color|reference" />
         <!--右侧ICON距离文字的间距-->
-        <attr name="ftb_rightTextLeftMargin" format="dimension" />
+        <attr name="fu_rightTextLeftMargin" format="dimension" />
         <!--底部分割线的高度-->
-        <attr name="ftb_dividerHeight" format="dimension" />
+        <attr name="fu_dividerHeight" format="dimension" />
         <!--底部分割线的颜色-->
-        <attr name="ftb_dividerColor" format="color|reference" />
+        <attr name="fu_dividerColor" format="color|reference" />
         <!--标题栏高度，不包含分割线和状态栏高度-->
-        <attr name="ftb_barHeight" format="dimension" />
+        <attr name="fu_barHeight" format="dimension" />
         <!--是否添加状态栏的高度-->
-        <attr name="ftb_addStatusBarHeight" format="boolean" />
+        <attr name="fu_addStatusBarHeight" format="boolean" />
     </declare-styleable>
 
     <!-- 自定义进度格控件 -->
     <declare-styleable name="fly_uikit_LatticeView">
-        <attr name="flv_totalCount" format="integer" />
-        <attr name="flv_accentCount" format="integer" />
-        <attr name="flv_primaryColor" format="color|reference" />
-        <attr name="flv_accentColor" format="color|reference" />
-        <attr name="flv_cellWidth" format="dimension" />
-        <attr name="flv_cellSpace" format="dimension" />
-        <attr name="flv_reverse" format="boolean" />
-        <attr name="flv_oritenation" format="enum">
-            <enum name="horizontal" value="0" />
-            <enum name="vertical" value="1" />
-        </attr>
+        <attr name="fu_totalCount" format="integer" />
+        <attr name="fu_accentCount" format="integer" />
+        <attr name="fu_primaryColor" format="color|reference" />
+        <attr name="fu_accentColor" format="color|reference" />
+        <attr name="fu_cellWidth" format="dimension" />
+        <attr name="fu_cellSpace" format="dimension" />
+        <attr name="fu_reverse" format="boolean" />
+        <attr name="fu_oritenation" />
     </declare-styleable>
 
     <!-- 带阴影的Layout -->
     <declare-styleable name="fly_uikit_ShadowLayout">
         <!--阴影的圆角弧度-->
-        <attr name="fsl_cornerRadius" format="dimension" />
+        <attr name="fu_cornerRadius" format="dimension" />
         <!--阴影的半径-->
-        <attr name="fsl_shadowRadius" format="dimension" />
+        <attr name="fu_shadowRadius" format="dimension" />
         <!--阴影的颜色，注意：颜色必须带有透明度的值-->
-        <attr name="fsl_shadowColor" format="color" />
+        <attr name="fu_shadowColor" format="color" />
         <!--阴影X轴的偏移量-->
-        <attr name="fsl_dx" format="dimension" />
+        <attr name="fu_dx" format="dimension" />
         <!--阴影Y轴的偏移量-->
-        <attr name="fsl_dy" format="dimension" />
+        <attr name="fu_dy" format="dimension" />
     </declare-styleable>
 
     <!-- 曲线图 -->
     <declare-styleable name="fly_uikit_CurveChart">
         <!--X轴的宽-->
-        <attr name="fcc_xAxisWidth" format="dimension" />
+        <attr name="fu_xAxisWidth" format="dimension" />
         <!--X轴的颜色-->
-        <attr name="fcc_xAxisColor" format="color|reference" />
+        <attr name="fu_xAxisColor" format="color|reference" />
         <!--X轴的文字大小-->
-        <attr name="fcc_xAxisTextSize" format="dimension" />
+        <attr name="fu_xAxisTextSize" format="dimension" />
         <!--X轴的文字颜色-->
-        <attr name="fcc_xAxisTextColor" format="color|reference" />
+        <attr name="fu_xAxisTextColor" format="color|reference" />
         <!--X轴的整行刻度文字距离X轴尾端的右间距-->
-        <attr name="fcc_xAxisTextRowRightMargin" format="dimension" />
+        <attr name="fu_xAxisTextRowRightMargin" format="dimension" />
         <!--X轴的整行刻度文字距离原点的左间距-->
-        <attr name="fcc_xAxisTextRowLeftMargin" format="dimension" />
+        <attr name="fu_xAxisTextRowLeftMargin" format="dimension" />
         <!--X轴的整行刻度文字距离原点的上间距-->
-        <attr name="fcc_xAxisTextRowTopMargin" format="dimension" />
+        <attr name="fu_xAxisTextRowTopMargin" format="dimension" />
         <!--Y轴的宽-->
-        <attr name="fcc_yAxisWidth" format="dimension" />
+        <attr name="fu_yAxisWidth" format="dimension" />
         <!--Y轴的颜色-->
-        <attr name="fcc_yAxisColor" format="color|reference" />
+        <attr name="fu_yAxisColor" format="color|reference" />
         <!--Y轴的文字大小-->
-        <attr name="fcc_yAxisTextSize" format="dimension" />
+        <attr name="fu_yAxisTextSize" format="dimension" />
         <!--Y轴的文字颜色-->
-        <attr name="fcc_yAxisTextColor" format="color|reference" />
+        <attr name="fu_yAxisTextColor" format="color|reference" />
         <!--Y轴的整列刻度文字距离Y轴顶点的上间距-->
-        <attr name="fcc_yAxisTextColTopMargin" format="dimension" />
+        <attr name="fu_yAxisTextColTopMargin" format="dimension" />
         <!--Y轴的整列刻度文字距离原点的右间距-->
-        <attr name="fcc_yAxisTextColRightMargin" format="dimension" />
+        <attr name="fu_yAxisTextColRightMargin" format="dimension" />
         <!--是否显示Y轴线-->
-        <attr name="fcc_showYLine" format="boolean" />
+        <attr name="fu_showYLine" format="boolean" />
         <!--X轴刻度线的宽-->
-        <attr name="fcc_xMarkLineWidth" format="dimension" />
+        <attr name="fu_xMarkLineWidth" format="dimension" />
         <!--X轴刻度线的颜色-->
-        <attr name="fcc_xMarkLineColor" format="color|reference" />
+        <attr name="fu_xMarkLineColor" format="color|reference" />
         <!--Y轴刻度线的宽-->
-        <attr name="fcc_yMarkLineWidth" format="dimension" />
+        <attr name="fu_yMarkLineWidth" format="dimension" />
         <!--Y轴刻度线的颜色-->
-        <attr name="fcc_yMarkLineColor" format="color|reference" />
+        <attr name="fu_yMarkLineColor" format="color|reference" />
         <!--是否显示X轴刻度线-->
-        <attr name="fcc_showXMarkLine" format="boolean" />
+        <attr name="fu_showXMarkLine" format="boolean" />
         <!--是否显示Y轴刻度线-->
-        <attr name="fcc_showYMarkLine" format="boolean" />
+        <attr name="fu_showYMarkLine" format="boolean" />
         <!--曲线的粗细-->
-        <attr name="fcc_curveWidth" format="dimension" />
+        <attr name="fu_curveWidth" format="dimension" />
         <!--曲线的颜色-->
-        <attr name="fcc_curveColor" format="color|reference" />
+        <attr name="fu_curveColor" format="color|reference" />
     </declare-styleable>
 
     <!--多功能输入框-->
     <declare-styleable name="fly_uikit_MultiEditText">
         <!--输入框的内容-->
-        <attr name="fmet_input" format="string|reference" />
+        <attr name="fu_input" format="string|reference" />
         <!--输入框的ellipsize-->
-        <attr name="fmet_input_ellipsize" format="string">
+        <attr name="fu_inputEllipsize" format="string">
             <enum name="start" value="1" />
             <enum name="end" value="2" />
             <enum name="middle" value="3" />
             <enum name="marquee" value="4" />
         </attr>
         <!--输入内容的长度-->
-        <attr name="fmet_input_maxLength" format="integer" />
+        <attr name="fu_inputMaxLength" format="integer" />
         <!--输入框内容最多显示几行，当 met_input_type=textMultiLine 有效-->
-        <attr name="fmet_input_maxLines" format="integer" />
+        <attr name="fu_inputMaxLines" format="integer" />
         <!--输入框的提示内容-->
-        <attr name="fmet_input_hint" format="string|reference" />
+        <attr name="fu_inputHint" format="string|reference" />
         <!--输入框的提示文字颜色-->
-        <attr name="fmet_input_hintColor" format="color|reference" />
+        <attr name="fu_inputHintColor" format="color|reference" />
         <!--输入框文字颜色-->
-        <attr name="fmet_input_textColor" format="color|reference" />
+        <attr name="fu_inputTextColor" format="color|reference" />
         <!--输入框文字大小-->
-        <attr name="fmet_input_textSize" format="dimension" />
+        <attr name="fu_inputTextSize" format="dimension" />
         <!--输入框左内边距-->
-        <attr name="fmet_input_paddingLeft" format="dimension" />
+        <attr name="fu_inputPaddingL" format="dimension" />
         <!--输入框右右内边距-->
-        <attr name="fmet_input_paddingRight" format="dimension" />
+        <attr name="fu_inputPaddingR" format="dimension" />
         <!--输入框上上内边距-->
-        <attr name="fmet_input_paddingTop" format="dimension" />
+        <attr name="fu_inputPaddingT" format="dimension" />
         <!--输入框下下内边距-->
-        <attr name="fmet_input_paddingBottom" format="dimension" />
+        <attr name="fu_inputPaddingB" format="dimension" />
         <!--输入框的右外边距-->
-        <attr name="fmet_input_marginRight" format="dimension" />
+        <attr name="fu_inputMarginR" format="dimension" />
         <!--输入框的高度-->
-        <attr name="fmet_input_height" format="dimension" />
+        <attr name="fu_inputHeight" format="dimension" />
         <!--输入框的背景-->
-        <attr name="fmet_input_focusBg" format="color|reference" />
-        <attr name="fmet_input_unFocusBg" format="color|reference" />
+        <attr name="fu_inputFocusBg" format="color|reference" />
+        <attr name="fu_inputUnFocusBg" format="color|reference" />
         <!--输入框的输入类型-->
-        <attr name="fmet_input_type" format="string">
+        <attr name="fu_inputType" format="string">
             <!--不设置-->
             <enum name="none" value="0" />
             <!--文本输入-->
@@ -191,85 +229,85 @@
             <enum name="textMultiLine" value="7" />
         </attr>
         <!--密码是否可见-->
-        <attr name="fmet_password_visible" format="boolean" />
+        <attr name="fu_pwdVisible" format="boolean" />
         <!--是否显示密码可见icon-->
-        <attr name="fmet_show_eye" format="boolean" />
+        <attr name="fu_showPwdIcon" format="boolean" />
         <!--密码可见icon-->
-        <attr name="fmet_eye_openIcon" format="reference" />
+        <attr name="fu_pwdIcon_open" format="reference" />
         <!--密码不可见icon-->
-        <attr name="fmet_eye_closeIcon" format="reference" />
+        <attr name="fu_pwdIcon_close" format="reference" />
         <!--密码可见icon的宽度-->
-        <attr name="fmet_eye_width" format="dimension" />
+        <attr name="fu_pwdIconWidth" format="dimension" />
         <!--密码可见icon的高度-->
-        <attr name="fmet_eye_height" format="dimension" />
+        <attr name="fu_pwdIconHeight" format="dimension" />
         <!--是否显示文本清除icon-->
-        <attr name="fmet_show_clear" format="boolean" />
+        <attr name="fu_showClearIcon" format="boolean" />
         <!--文本清除icon-->
-        <attr name="fmet_clear_icon" format="reference" />
+        <attr name="fu_clearIcon" format="reference" />
         <!--文本清除icon的宽度-->
-        <attr name="fmet_clear_width" format="dimension" />
+        <attr name="fu_clearIconWidth" format="dimension" />
         <!--文本清除icon的高度-->
-        <attr name="fmet_clear_height" format="dimension" />
+        <attr name="fu_clearIconHeight" format="dimension" />
         <!--是否显示左侧icon-->
-        <attr name="fmet_show_leftIcon" format="boolean" />
+        <attr name="fu_showLeftIcon" format="boolean" />
         <!--左侧icon-->
-        <attr name="fmet_leftIcon" format="reference" />
+        <attr name="fu_leftIcon" />
         <!--左侧icon宽度-->
-        <attr name="fmet_leftIcon_width" format="dimension" />
+        <attr name="fu_leftIconWidth" />
         <!--左侧icon高度-->
-        <attr name="fmet_leftIcon_height" format="dimension" />
+        <attr name="fu_leftIconHeight" />
         <!--左侧icon的右外间距-->
-        <attr name="fmet_leftIcon_marginRight" format="dimension" />
+        <attr name="fu_leftIconMarginR" format="dimension" />
         <!--是否保留错误提示的高度空间-->
-        <attr name="fmet_reserve_errorHeight" format="boolean" />
+        <attr name="fu_reserve_errorHeight" format="boolean" />
         <!--错误提示文本-->
-        <attr name="fmet_error" format="string|reference" />
+        <attr name="fu_error" format="string|reference" />
         <!--错误提示文字大小-->
-        <attr name="fmet_error_textSize" format="dimension" />
+        <attr name="fu_errorTextSize" format="dimension" />
         <!--错误提示文字颜色-->
-        <attr name="fmet_error_textColor" format="dimension" />
+        <attr name="fu_errorTextColor" format="dimension" />
         <!--错误提示文字外边距-->
-        <attr name="fmet_error_marginLeft" format="dimension" />
-        <attr name="fmet_error_marginTop" format="dimension" />
-        <attr name="fmet_error_marginRight" format="dimension" />
+        <attr name="fu_errorMarginL" format="dimension" />
+        <attr name="fu_errorMarginT" format="dimension" />
+        <attr name="fu_errorMarginR" format="dimension" />
         <!--错误提示的高度-->
-        <attr name="fmet_error_height" format="dimension" />
+        <attr name="fu_errorHeight" format="dimension" />
     </declare-styleable>
 
     <!--Banner指示器-->
     <declare-styleable name="fly_uikit_Indicator">
         <!--活动指示器的颜色-->
-        <attr name="fic_activeColor" format="color|reference" />
+        <attr name="fu_activeColor" format="color|reference" />
         <!--非活动指示器的颜色-->
-        <attr name="fic_inactiveColor" format="color|reference" />
+        <attr name="fu_inactiveColor" format="color|reference" />
         <!--非活动指示器的缩放因子，相对于活动指示器尺寸而言，范围0f-1f-->
-        <attr name="fic_inactiveScale" format="float" />
+        <attr name="fu_inactiveScale" format="float" />
         <!--指示器之间的间隔-->
-        <attr name="fic_gap" format="dimension" />
+        <attr name="fu_gap" format="dimension" />
     </declare-styleable>
 
     <!--圆角View-->
     <declare-styleable name="fly_uikit_RoundView">
-        <attr name="frv_radius" format="dimension" />
-        <attr name="frv_topLeftRadius" format="dimension" />
-        <attr name="frv_topRightRadius" format="dimension" />
-        <attr name="frv_bottomLeftRadius" format="dimension" />
-        <attr name="frv_bottomRightRadius" format="dimension" />
-        <attr name="frv_normalColor" format="color|reference" />
-        <attr name="frv_pressedColor" format="color|reference" />
-        <attr name="frv_disabledColor" format="color|reference" />
-        <attr name="frv_textNormalColor" format="color|reference" />
-        <attr name="frv_textDisabledColor" format="color|reference" />
-        <attr name="frv_borderWidth" format="dimension" />
-        <attr name="frv_borderPressedColor" format="color|reference" />
-        <attr name="frv_borderDisabledColor" format="color|reference" />
-        <attr name="frv_borderNormalColor" format="color|reference" />
+        <attr name="fu_radius" />
+        <attr name="fu_topLeftRadius" />
+        <attr name="fu_topRightRadius" />
+        <attr name="fu_bottomLeftRadius" />
+        <attr name="fu_bottomRightRadius" />
+        <attr name="fu_normalColor" format="color|reference" />
+        <attr name="fu_pressedColor" format="color|reference" />
+        <attr name="fu_disabledColor" format="color|reference" />
+        <attr name="fu_textNormalColor" format="color|reference" />
+        <attr name="fu_textDisabledColor" format="color|reference" />
+        <attr name="fu_borderWidth" />
+        <attr name="fu_borderPressedColor" />
+        <attr name="fu_borderDisabledColor" />
+        <attr name="fu_borderNormalColor" />
     </declare-styleable>
 
     <!--Radio ImageView-->
     <declare-styleable name="fly_uikit_RadioImageView">
-        <attr name="friv_checked" format="boolean" />
-        <attr name="friv_checkSrc" format="reference" />
-        <attr name="friv_uncheckSrc" format="reference" />
+        <attr name="fu_checked" />
+        <attr name="fu_checkSrc" format="reference" />
+        <attr name="fu_uncheckSrc" format="reference" />
     </declare-styleable>
 </resources>

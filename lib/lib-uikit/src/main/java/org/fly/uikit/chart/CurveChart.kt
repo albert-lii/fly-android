@@ -14,7 +14,7 @@ import org.fly.uikit.R
  * @description: 曲线图
  * @since: 1.0.0
  */
-class CurveChart : View {
+open class CurveChart : View {
     /**
      * X轴相关
      */
@@ -105,53 +105,53 @@ class CurveChart : View {
     private fun initAttr(context: Context, attrs: AttributeSet?) {
         if (attrs != null) {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.fly_uikit_CurveChart)
-            xAxisColor = ta.getColor(R.styleable.fly_uikit_CurveChart_fcc_xAxisColor, xAxisColor)
-            xAxisWidth = ta.getDimension(R.styleable.fly_uikit_CurveChart_fcc_xAxisWidth, xAxisWidth)
+            xAxisColor = ta.getColor(R.styleable.fly_uikit_CurveChart_fu_xAxisColor, xAxisColor)
+            xAxisWidth = ta.getDimension(R.styleable.fly_uikit_CurveChart_fu_xAxisWidth, xAxisWidth)
             xAxisTextColor =
-                ta.getColor(R.styleable.fly_uikit_CurveChart_fcc_xAxisTextColor, xAxisTextColor)
+                ta.getColor(R.styleable.fly_uikit_CurveChart_fu_xAxisTextColor, xAxisTextColor)
             xAxisTextSize =
-                ta.getDimension(R.styleable.fly_uikit_CurveChart_fcc_xAxisTextSize, xAxisTextSize)
+                ta.getDimension(R.styleable.fly_uikit_CurveChart_fu_xAxisTextSize, xAxisTextSize)
             xAxisTextRowLeftMargin = ta.getDimension(
-                R.styleable.fly_uikit_CurveChart_fcc_xAxisTextRowLeftMargin,
+                R.styleable.fly_uikit_CurveChart_fu_xAxisTextRowLeftMargin,
                 xAxisTextRowLeftMargin
             )
             xAxisTextRowRightMargin = ta.getDimension(
-                R.styleable.fly_uikit_CurveChart_fcc_xAxisTextRowRightMargin,
+                R.styleable.fly_uikit_CurveChart_fu_xAxisTextRowRightMargin,
                 xAxisTextRowRightMargin
             )
             xAxisTextRowTopMargin = ta.getDimension(
-                R.styleable.fly_uikit_CurveChart_fcc_xAxisTextRowTopMargin,
+                R.styleable.fly_uikit_CurveChart_fu_xAxisTextRowTopMargin,
                 xAxisTextRowTopMargin
             )
-            yAxisColor = ta.getColor(R.styleable.fly_uikit_CurveChart_fcc_yAxisColor, yAxisColor)
-            yAxisWidth = ta.getDimension(R.styleable.fly_uikit_CurveChart_fcc_yAxisWidth, yAxisWidth)
+            yAxisColor = ta.getColor(R.styleable.fly_uikit_CurveChart_fu_yAxisColor, yAxisColor)
+            yAxisWidth = ta.getDimension(R.styleable.fly_uikit_CurveChart_fu_yAxisWidth, yAxisWidth)
             yAxisTextColor =
-                ta.getColor(R.styleable.fly_uikit_CurveChart_fcc_yAxisTextColor, yAxisTextColor)
+                ta.getColor(R.styleable.fly_uikit_CurveChart_fu_yAxisTextColor, yAxisTextColor)
             yAxisTextSize =
-                ta.getDimension(R.styleable.fly_uikit_CurveChart_fcc_yAxisTextSize, yAxisTextSize)
+                ta.getDimension(R.styleable.fly_uikit_CurveChart_fu_yAxisTextSize, yAxisTextSize)
             yAxisTextColRightMargin = ta.getDimension(
-                R.styleable.fly_uikit_CurveChart_fcc_yAxisTextColRightMargin,
+                R.styleable.fly_uikit_CurveChart_fu_yAxisTextColRightMargin,
                 yAxisTextColRightMargin
             )
             yAxisTextColTopMargin = ta.getDimension(
-                R.styleable.fly_uikit_CurveChart_fcc_yAxisTextColTopMargin,
+                R.styleable.fly_uikit_CurveChart_fu_yAxisTextColTopMargin,
                 yAxisTextColTopMargin
             )
-            showYAxisLine = ta.getBoolean(R.styleable.fly_uikit_CurveChart_fcc_showYLine, showYAxisLine)
+            showYAxisLine = ta.getBoolean(R.styleable.fly_uikit_CurveChart_fu_showYLine, showYAxisLine)
             xMarkLineColor =
-                ta.getColor(R.styleable.fly_uikit_CurveChart_fcc_xMarkLineColor, xMarkLineColor)
+                ta.getColor(R.styleable.fly_uikit_CurveChart_fu_xMarkLineColor, xMarkLineColor)
             xMarkLineWidth =
-                ta.getDimension(R.styleable.fly_uikit_CurveChart_fcc_xMarkLineWidth, xMarkLineWidth)
+                ta.getDimension(R.styleable.fly_uikit_CurveChart_fu_xMarkLineWidth, xMarkLineWidth)
             yMarkLineColor =
-                ta.getColor(R.styleable.fly_uikit_CurveChart_fcc_yMarkLineColor, yMarkLineColor)
+                ta.getColor(R.styleable.fly_uikit_CurveChart_fu_yMarkLineColor, yMarkLineColor)
             yMarkLineWidth =
-                ta.getDimension(R.styleable.fly_uikit_CurveChart_fcc_yMarkLineWidth, yMarkLineWidth)
+                ta.getDimension(R.styleable.fly_uikit_CurveChart_fu_yMarkLineWidth, yMarkLineWidth)
             showXMarkLine =
-                ta.getBoolean(R.styleable.fly_uikit_CurveChart_fcc_showXMarkLine, showXMarkLine)
+                ta.getBoolean(R.styleable.fly_uikit_CurveChart_fu_showXMarkLine, showXMarkLine)
             showYMarkLine =
-                ta.getBoolean(R.styleable.fly_uikit_CurveChart_fcc_showYMarkLine, showYMarkLine)
-            curveColor = ta.getColor(R.styleable.fly_uikit_CurveChart_fcc_curveColor, curveColor)
-            curveWidth = ta.getDimension(R.styleable.fly_uikit_CurveChart_fcc_curveWidth, curveWidth)
+                ta.getBoolean(R.styleable.fly_uikit_CurveChart_fu_showYMarkLine, showYMarkLine)
+            curveColor = ta.getColor(R.styleable.fly_uikit_CurveChart_fu_curveColor, curveColor)
+            curveWidth = ta.getDimension(R.styleable.fly_uikit_CurveChart_fu_curveWidth, curveWidth)
             ta.recycle()
         }
     }

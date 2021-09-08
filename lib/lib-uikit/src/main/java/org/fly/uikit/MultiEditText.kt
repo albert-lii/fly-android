@@ -28,7 +28,7 @@ import android.widget.TextView
  * @description: 多功能输入框
  * @since: 1.0.0
  */
-class MultiEditText : LinearLayout {
+open class MultiEditText : LinearLayout {
 
     /**
      * 输入类型
@@ -54,7 +54,7 @@ class MultiEditText : LinearLayout {
     private lateinit var inputContainer: LinearLayout // 输入框所在容器
     private lateinit var inputView: EditText // 输入框
     private lateinit var leftIconView: ImageView // 输入框左侧icon
-    private lateinit var pwdEyeView: ImageView // 密码可见icon
+    private lateinit var pwdVisView: ImageView // 密码可见icon
     private lateinit var clearView: ImageView // 文本清除icon
     private lateinit var errorView: TextView // 错误提示
 
@@ -162,142 +162,142 @@ class MultiEditText : LinearLayout {
         if (attrs != null) {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.fly_uikit_MultiEditText)
             // 输入框
-            input = ta.getString(R.styleable.fly_uikit_MultiEditText_fmet_input) ?: ""
-            inputHint = ta.getString(R.styleable.fly_uikit_MultiEditText_fmet_input_hint) ?: ""
+            input = ta.getString(R.styleable.fly_uikit_MultiEditText_fu_input) ?: ""
+            inputHint = ta.getString(R.styleable.fly_uikit_MultiEditText_fu_inputHint) ?: ""
             inputHintColor = ta.getColor(
-                R.styleable.fly_uikit_MultiEditText_fmet_input_hintColor,
+                R.styleable.fly_uikit_MultiEditText_fu_inputHintColor,
                 inputHintColor
             )
             inputMaxLength =
-                ta.getInt(R.styleable.fly_uikit_MultiEditText_fmet_input_maxLength, inputMaxLength)
+                ta.getInt(R.styleable.fly_uikit_MultiEditText_fu_inputMaxLength, inputMaxLength)
             inputMaxLines =
-                ta.getInt(R.styleable.fly_uikit_MultiEditText_fmet_input_maxLines, inputMaxLines)
+                ta.getInt(R.styleable.fly_uikit_MultiEditText_fu_inputMaxLines, inputMaxLines)
             inputEllipsize =
-                ta.getInt(R.styleable.fly_uikit_MultiEditText_fmet_input_ellipsize, inputEllipsize)
+                ta.getInt(R.styleable.fly_uikit_MultiEditText_fu_inputEllipsize, inputEllipsize)
             inputTextSize = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_input_textSize,
+                R.styleable.fly_uikit_MultiEditText_fu_inputTextSize,
                 inputTextSize
             )
             inputTextColor = ta.getColor(
-                R.styleable.fly_uikit_MultiEditText_fmet_input_textColor,
+                R.styleable.fly_uikit_MultiEditText_fu_inputTextColor,
                 inputTextColor
             )
             inputPaddingLeft = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_input_paddingLeft,
+                R.styleable.fly_uikit_MultiEditText_fu_inputPaddingL,
                 inputPaddingLeft
             )
             inputPaddingTop = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_input_paddingTop,
+                R.styleable.fly_uikit_MultiEditText_fu_inputPaddingT,
                 inputPaddingTop
             )
             inputPaddingRight = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_input_paddingRight,
+                R.styleable.fly_uikit_MultiEditText_fu_inputPaddingR,
                 inputPaddingRight
             )
             inputPaddingBottom = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_input_paddingBottom,
+                R.styleable.fly_uikit_MultiEditText_fu_inputPaddingB,
                 inputPaddingBottom
             )
             inputMarginRight = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_input_marginRight,
+                R.styleable.fly_uikit_MultiEditText_fu_inputMarginR,
                 inputMarginRight
             )
             inputHeight = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_input_height,
+                R.styleable.fly_uikit_MultiEditText_fu_inputHeight,
                 inputHeight.toFloat()
             ).toInt()
             inputFocusBg =
-                ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fmet_input_focusBg)
+                ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fu_inputFocusBg)
                     ?: inputFocusBg
             inputUnFocusBg =
-                ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fmet_input_unFocusBg)
+                ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fu_inputUnFocusBg)
                     ?: inputUnFocusBg
-            inputType = ta.getInt(R.styleable.fly_uikit_MultiEditText_fmet_input_type, inputType)
+            inputType = ta.getInt(R.styleable.fly_uikit_MultiEditText_fu_inputType, inputType)
 
             // 密码可见icon
             showEyeIcon =
-                ta.getBoolean(R.styleable.fly_uikit_MultiEditText_fmet_show_eye, showEyeIcon)
-            openEyeIcon = ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fmet_eye_openIcon)
+                ta.getBoolean(R.styleable.fly_uikit_MultiEditText_fu_showPwdIcon, showEyeIcon)
+            openEyeIcon = ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fu_pwdIcon_open)
                 ?: openEyeIcon
-            closeEyeIcon = ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fmet_eye_closeIcon)
+            closeEyeIcon = ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fu_pwdIcon_close)
                 ?: closeEyeIcon
             pwdEyeWidth = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_eye_width,
+                R.styleable.fly_uikit_MultiEditText_fu_pwdIconWidth,
                 pwdEyeWidth.toFloat()
             ).toInt()
             pwdEyeHeight = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_eye_height,
+                R.styleable.fly_uikit_MultiEditText_fu_pwdIconHeight,
                 pwdEyeHeight.toFloat()
             ).toInt()
             isPwdVisible = ta.getBoolean(
-                R.styleable.fly_uikit_MultiEditText_fmet_password_visible,
+                R.styleable.fly_uikit_MultiEditText_fu_pwdVisible,
                 isPwdVisible
             )
 
             // 清除icon
             showClearIcon =
-                ta.getBoolean(R.styleable.fly_uikit_MultiEditText_fmet_show_clear, showClearIcon)
+                ta.getBoolean(R.styleable.fly_uikit_MultiEditText_fu_showClearIcon, showClearIcon)
             clearIcon =
-                ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fmet_clear_icon) ?: clearIcon
+                ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fu_clearIcon) ?: clearIcon
             clearWidth = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_clear_width,
+                R.styleable.fly_uikit_MultiEditText_fu_clearIconWidth,
                 clearWidth.toFloat()
             ).toInt()
             clearHeight = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_clear_height,
+                R.styleable.fly_uikit_MultiEditText_fu_clearIconHeight,
                 clearHeight.toFloat()
             ).toInt()
 
             // 左侧icon
             showLeftIcon =
-                ta.getBoolean(R.styleable.fly_uikit_MultiEditText_fmet_show_leftIcon, showLeftIcon)
-            leftIcon = ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fmet_leftIcon)
+                ta.getBoolean(R.styleable.fly_uikit_MultiEditText_fu_showLeftIcon, showLeftIcon)
+            leftIcon = ta.getDrawable(R.styleable.fly_uikit_MultiEditText_fu_leftIcon)
             leftIconWidth = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_leftIcon_width,
+                R.styleable.fly_uikit_MultiEditText_fu_leftIconWidth,
                 leftIconWidth.toFloat()
             ).toInt()
             leftIconHeight = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_leftIcon_height,
+                R.styleable.fly_uikit_MultiEditText_fu_leftIconHeight,
                 leftIconHeight.toFloat()
             ).toInt()
             leftIconMarginRight = ta.getDimension(
-                R.styleable.fly_uikit_MultiEditText_fmet_leftIcon_marginRight,
+                R.styleable.fly_uikit_MultiEditText_fu_leftIconMarginR,
                 leftIconMarginRight.toFloat()
             ).toInt()
 
             // 错误提示
             reserveErrorHeight =
                 ta.getBoolean(
-                    R.styleable.fly_uikit_MultiEditText_fmet_reserve_errorHeight,
+                    R.styleable.fly_uikit_MultiEditText_fu_reserve_errorHeight,
                     reserveErrorHeight
                 )
-            error = ta.getString(R.styleable.fly_uikit_MultiEditText_fmet_error) ?: "Error"
+            error = ta.getString(R.styleable.fly_uikit_MultiEditText_fu_error) ?: "Error"
             errorTextSize =
                 ta.getDimension(
-                    R.styleable.fly_uikit_MultiEditText_fmet_error_textSize,
+                    R.styleable.fly_uikit_MultiEditText_fu_errorTextSize,
                     errorTextSize
                 )
             errorTextColor =
-                ta.getColor(R.styleable.fly_uikit_MultiEditText_fmet_error_textColor, errorTextColor)
+                ta.getColor(R.styleable.fly_uikit_MultiEditText_fu_errorTextColor, errorTextColor)
             errorMarginTop =
                 ta.getDimension(
-                    R.styleable.fly_uikit_MultiEditText_fmet_error_marginTop,
+                    R.styleable.fly_uikit_MultiEditText_fu_errorMarginT,
                     errorMarginTop.toFloat()
                 )
                     .toInt()
             errorMarginLeft =
                 ta.getDimension(
-                    R.styleable.fly_uikit_MultiEditText_fmet_error_marginLeft,
+                    R.styleable.fly_uikit_MultiEditText_fu_errorMarginL,
                     errorMarginLeft.toFloat()
                 ).toInt()
             errorMarginRight =
                 ta.getDimension(
-                    R.styleable.fly_uikit_MultiEditText_fmet_error_marginRight,
+                    R.styleable.fly_uikit_MultiEditText_fu_errorMarginR,
                     errorMarginRight.toFloat()
                 ).toInt()
             errorHeight =
                 ta.getDimension(
-                    R.styleable.fly_uikit_MultiEditText_fmet_error_height,
+                    R.styleable.fly_uikit_MultiEditText_fu_errorHeight,
                     errorHeight.toFloat()
                 ).toInt()
             ta.recycle()
@@ -382,10 +382,10 @@ class MultiEditText : LinearLayout {
             }
 
             // 密码可见icon
-            pwdEyeView = ImageView(context).also {
-                val eyeLp = LayoutParams(pwdEyeWidth, pwdEyeHeight)
-                eyeLp.gravity = (Gravity.CENTER_VERTICAL)
-                it.layoutParams = eyeLp
+            pwdVisView = ImageView(context).also {
+                val pwdLp = LayoutParams(pwdEyeWidth, pwdEyeHeight)
+                pwdLp.gravity = (Gravity.CENTER_VERTICAL)
+                it.layoutParams = pwdLp
                 it.adjustViewBounds = true
                 if (isPwdVisible) {
                     it.setImageDrawable(openEyeIcon)
@@ -393,8 +393,8 @@ class MultiEditText : LinearLayout {
                     it.setImageDrawable(closeEyeIcon)
                 }
             }
-            addView(pwdEyeView)
-            pwdEyeView.visibility = if (showEyeIcon) {
+            addView(pwdVisView)
+            pwdVisView.visibility = if (showEyeIcon) {
                 View.VISIBLE
             } else {
                 View.GONE
@@ -528,7 +528,7 @@ class MultiEditText : LinearLayout {
                 inputUnFocusBg
             }
         }
-        pwdEyeView.setOnClickListener {
+        pwdVisView.setOnClickListener {
             togglePasswordVisible()
             passwordVisibleClick?.invoke(inputView, isPwdVisible)
         }
@@ -567,7 +567,7 @@ class MultiEditText : LinearLayout {
     }
 
     fun getPasswordVisibleView(): ImageView {
-        return pwdEyeView
+        return pwdVisView
     }
 
     fun getClearView(): ImageView {
@@ -595,13 +595,13 @@ class MultiEditText : LinearLayout {
     private fun setPasswordVisibale() {
         inputView.setTransformationMethod(HideReturnsTransformationMethod.getInstance())
         inputView.setSelection(inputView.getText().length)
-        pwdEyeView.setImageDrawable(openEyeIcon)
+        pwdVisView.setImageDrawable(openEyeIcon)
     }
 
     private fun setPasswordNotVisibale() {
         inputView.setTransformationMethod(PasswordTransformationMethod.getInstance())
         inputView.setSelection(inputView.getText().length)
-        pwdEyeView.setImageDrawable(closeEyeIcon)
+        pwdVisView.setImageDrawable(closeEyeIcon)
     }
 
     /**

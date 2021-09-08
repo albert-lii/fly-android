@@ -15,7 +15,7 @@ import org.fly.uikit.R
  * @description: Radio形式的ImageView
  * @since: 1.0.0
  */
-class RadioImageView : AppCompatImageView, Checkable {
+open class RadioImageView : AppCompatImageView, Checkable {
     private var isChecked = false
     private var checkedDrawable: Drawable? = null
     private var uncheckedDrawable: Drawable? = null
@@ -42,11 +42,11 @@ class RadioImageView : AppCompatImageView, Checkable {
         attrs?.let {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.fly_uikit_RadioImageView)
             isChecked = ta.getBoolean(
-                R.styleable.fly_uikit_RadioImageView_friv_checked,
+                R.styleable.fly_uikit_RadioImageView_fu_checked,
                 isChecked
             )
-            checkedDrawable = ta.getDrawable(R.styleable.fly_uikit_RadioImageView_friv_checkSrc)
-            uncheckedDrawable = ta.getDrawable(R.styleable.fly_uikit_RadioImageView_friv_uncheckSrc)
+            checkedDrawable = ta.getDrawable(R.styleable.fly_uikit_RadioImageView_fu_checkSrc)
+            uncheckedDrawable = ta.getDrawable(R.styleable.fly_uikit_RadioImageView_fu_uncheckSrc)
             ta.recycle()
         }
     }

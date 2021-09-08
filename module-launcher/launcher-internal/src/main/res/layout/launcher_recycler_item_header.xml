@@ -19,6 +19,6 @@
             android:layout_gravity="center|bottom"
             android:layout_marginTop="@dimen/p8"
             android:layout_marginBottom="@dimen/p8"
-            app:fic_gap="@dimen/p5" />
+            app:fu_gap="@dimen/p5" />
     </LinearLayout>
 </layout>

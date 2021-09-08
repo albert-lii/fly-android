@@ -38,63 +38,63 @@ class RHelper(private val view: View) : IRound {
 
     fun initAttrs(ta: TypedArray) {
         topLeftRadius = ta.getDimension(
-            R.styleable.fly_uikit_RoundView_frv_topLeftRadius,
+            R.styleable.fly_uikit_RoundView_fu_topLeftRadius,
             NO_CORNER
         )
 
         topRightRadius = ta.getDimension(
-            R.styleable.fly_uikit_RoundView_frv_topRightRadius,
+            R.styleable.fly_uikit_RoundView_fu_topRightRadius,
             NO_CORNER
         )
 
         bottomLeftRadius = ta.getDimension(
-            R.styleable.fly_uikit_RoundView_frv_bottomLeftRadius,
+            R.styleable.fly_uikit_RoundView_fu_bottomLeftRadius,
             NO_CORNER
         )
 
         bottomRightRadius = ta.getDimension(
-            R.styleable.fly_uikit_RoundView_frv_bottomRightRadius,
+            R.styleable.fly_uikit_RoundView_fu_bottomRightRadius,
             NO_CORNER
         )
 
         val radius = ta.getDimension(
-            R.styleable.fly_uikit_RoundView_frv_radius,
+            R.styleable.fly_uikit_RoundView_fu_radius,
             NO_CORNER
         )
         setRadius(radius)
 
         normalColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_frv_normalColor,
+            R.styleable.fly_uikit_RoundView_fu_normalColor,
             Color.GRAY
         )
 
         disabledColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_frv_disabledColor,
+            R.styleable.fly_uikit_RoundView_fu_disabledColor,
             INVALID_COLOR
         )
 
         pressedColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_frv_pressedColor,
+            R.styleable.fly_uikit_RoundView_fu_pressedColor,
             INVALID_COLOR
         )
 
         borderWidth = ta.getDimension(
-            R.styleable.fly_uikit_RoundView_frv_borderWidth,
+            R.styleable.fly_uikit_RoundView_fu_borderWidth,
             0f
         ).toInt()
 
         borderNormalColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_frv_borderNormalColor,
+            R.styleable.fly_uikit_RoundView_fu_borderNormalColor,
             Color.TRANSPARENT
         )
 
         borderPressedColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_frv_borderPressedColor,
+            R.styleable.fly_uikit_RoundView_fu_borderPressedColor,
             Color.TRANSPARENT
         )
 
         borderDisabledColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_frv_borderDisabledColor,
+            R.styleable.fly_uikit_RoundView_fu_borderDisabledColor,
             Color.TRANSPARENT
         )
     }

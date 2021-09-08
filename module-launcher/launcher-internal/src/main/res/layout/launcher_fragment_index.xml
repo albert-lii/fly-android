@@ -49,11 +49,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|center_vertical"
                     android:layout_marginLeft="@dimen/page_space_lr"
-                    app:flv_cellSpace="@dimen/p3"
-                    app:flv_cellWidth="@dimen/p3"
-                    app:flv_oritenation="vertical"
-                    app:flv_primaryColor="@color/base_black"
-                    app:flv_totalCount="3" />
+                    app:fu_cellSpace="@dimen/p3"
+                    app:fu_cellWidth="@dimen/p3"
+                    app:fu_oritenation="vertical"
+                    app:fu_primaryColor="@color/base_black"
+                    app:fu_totalCount="3" />
             </FrameLayout>
         </LinearLayout>
 

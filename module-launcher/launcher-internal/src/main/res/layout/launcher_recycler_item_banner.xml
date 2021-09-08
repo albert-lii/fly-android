@@ -14,7 +14,7 @@
             android:layout_marginRight="@dimen/p8"
             app:frv_borderNormalColor="@color/base_black"
             app:frv_borderWidth="@dimen/p10"
-            app:frv_radius="@dimen/p3">
+            app:frv_radius="@dimen/p10">
 
             <TextView
                 android:id="@+id/tv_info"

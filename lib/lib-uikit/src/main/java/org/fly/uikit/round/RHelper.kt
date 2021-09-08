@@ -164,6 +164,7 @@ class RHelper(private val view: View) : IRound {
         radiusArray[5] = bottomRightRadius
         radiusArray[6] = bottomLeftRadius
         radiusArray[7] = bottomLeftRadius
+
         val stateListDrawable = StateListDrawable()
         if (pressedColor != INVALID_COLOR || borderWidth > 0) {
             val pressedDrawable = GradientDrawable()

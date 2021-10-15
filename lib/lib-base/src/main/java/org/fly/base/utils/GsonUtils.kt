@@ -11,6 +11,7 @@ import java.lang.reflect.Type
  * @since: 1.0.0
  */
 object GsonUtils {
+
     private val gson = GsonBuilder().serializeNulls().disableHtmlEscaping().create()
 
     fun <T> fromJson(json: String?, type: Class<T>): T {

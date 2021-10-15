@@ -34,7 +34,7 @@ open class RoundLinearLayout : LinearLayout, IRoundImpl {
 
     private fun init(attrs: AttributeSet?) {
         initAttrs(attrs)
-        processRoundBackground()
+        buildRoundBackground()
     }
 
     @SuppressLint("CustomViewStyleable")

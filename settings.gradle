@@ -122,3 +122,4 @@ class SettingsProxy {
 
 include ':module-sample:sample-api'
 include ':module-sample:sample-internal'
+include ':lib:lib-datacenter'

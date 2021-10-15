@@ -8,14 +8,14 @@ import java.math.RoundingMode
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2020/10/27 3:26 PM
- * @description: -
+ * @description: BigDeciaml相关扩展
  * @since: 1.0.0
  */
 
 /**
  * 加法运算
  */
-fun BigDecimal.plus(
+fun BigDecimal.numPlus(
     v: String?,
     precision: Int? = null,
     mode: RoundingMode = RoundingMode.FLOOR
@@ -26,7 +26,7 @@ fun BigDecimal.plus(
 /**
  * 减法运算
  */
-fun BigDecimal.minus(
+fun BigDecimal.numMinus(
     v: String?,
     precision: Int? = null,
     mode: RoundingMode = RoundingMode.FLOOR
@@ -37,7 +37,7 @@ fun BigDecimal.minus(
 /**
  * 乘法运算
  */
-fun BigDecimal.multiply(
+fun BigDecimal.numMultiply(
     v: String?,
     precision: Int? = null,
     mode: RoundingMode = RoundingMode.FLOOR
@@ -48,7 +48,7 @@ fun BigDecimal.multiply(
 /**
  * 除法运算
  */
-fun BigDecimal.divide(
+fun BigDecimal.numDivide(
     v: String?,
     precision: Int? = null,
     mode: RoundingMode = RoundingMode.HALF_EVEN

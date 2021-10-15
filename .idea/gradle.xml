@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/lib-biz/lib-resource" />
             <option value="$PROJECT_DIR$/lib-dimen" />
             <option value="$PROJECT_DIR$/lib/lib-base" />
+            <option value="$PROJECT_DIR$/lib/lib-datacenter" />
             <option value="$PROJECT_DIR$/lib/lib-http" />
             <option value="$PROJECT_DIR$/lib/lib-imageloader" />
             <option value="$PROJECT_DIR$/lib/lib-router" />

@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import okhttp3.Cache
 import okhttp3.Dns
 import okhttp3.Interceptor
+import org.fly.http.gson.GsonParser
 import org.fly.http.interceptor.HttpLoggingInterceptor
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -57,7 +58,7 @@ data class HttpClientConfig(
     // 自定义日志打印
     var logger: HttpLoggingInterceptor.Logger? = null,
     // Gson
-    var gson: Gson = GsonBuilder().create(),
+    var gson: Gson = GsonParser.optimize(),
 ) {
     companion object {
         @JvmStatic

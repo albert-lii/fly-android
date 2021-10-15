@@ -1,6 +1,7 @@
 package org.fly.base.utils
 
 import android.widget.EditText
+import org.fly.base.exts.multiply
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode
@@ -18,41 +19,41 @@ import java.util.*
 object NumberUtils {
 
     /**=============================================================================================
-     * 对输入框中的数字进行处理
+     * 对数字的处理
      **===========================================================================================*/
 
     @JvmStatic
-    fun formatToIN(
+    fun formatINT(
         digit: Double?,
-        maxDecimalPlaces: Int = 2,
-        minDecimalPlaces: Int = 2,
+        maxPrecision: Int = 2,
+        minPrecision: Int = 2,
         mode: RoundingMode = RoundingMode.DOWN
     ): String {
-        return formatToIN(
+        return formatINT(
             digit = if (digit == null) {
                 null
             } else {
                 digit.toString()
             },
-            maxDecimalPlaces = maxDecimalPlaces,
-            minDecimalPlaces = minDecimalPlaces,
+            maxPrecision = maxPrecision,
+            minPrecision = minPrecision,
             mode = mode
         )
     }
 
     /**
-     * 将数字格式化为国际化数字格式
+     * 将数字格式化为国际数字格式
      *
      * @param digit 数字
-     * @param maxDecimalPlaces 最大保留小数位
-     * @param minDecimalPlaces 最小保留小数位
+     * @param maxPrecision 最大保留小数位
+     * @param minPrecision 最小保留小数位
      * @param mode 数字截取格式，默认向下取整
      */
     @JvmStatic
-    fun formatToIN(
+    fun formatINT(
         digit: String?,
-        maxDecimalPlaces: Int = 2,
-        minDecimalPlaces: Int = 2,
+        maxPrecision: Int = 2,
+        minPrecision: Int = 2,
         mode: RoundingMode = RoundingMode.DOWN
     ): String {
         return format(
@@ -61,27 +62,27 @@ object NumberUtils {
             } else {
                 digit.toString()
             },
-            maxDecimalPlaces = maxDecimalPlaces,
-            minDecimalPlaces = minDecimalPlaces,
+            maxPrecision = maxPrecision,
+            minPrecision = minPrecision,
             mode = mode
         )
     }
 
     @JvmStatic
-    fun formatByDecimalPlaces(
+    fun formatPrecision(
         digit: Double?,
         maxDecimalPlaces: Int = 2,
         minDecimalPlaces: Int = 2,
         mode: RoundingMode = RoundingMode.HALF_UP
     ): String {
-        return formatByDecimalPlaces(
+        return formatPrecision(
             digit = if (digit == null) {
                 null
             } else {
                 digit.toString()
             },
-            maxDecimalPlaces = maxDecimalPlaces,
-            minDecimalPlaces = minDecimalPlaces,
+            maxPrecision = maxDecimalPlaces,
+            minPrecision = minDecimalPlaces,
             mode = mode
         )
     }
@@ -90,22 +91,21 @@ object NumberUtils {
      * 根据保留的小数位来处理数字
      *
      * @param digit 数字
-     * @param maxFractionDigits 最大保留的小数位
-     * @param minFractionDigits 最小保留的小数位
+     * @param maxPrecision 最大保留的小数位
+     * @param minPrecision 最小保留的小数位
      * @param mode 小数部分截取规则，默认四舍五入
-     * @param minIntegerDigits 最少的有效整数位，默认整数位最少有1位数字
      */
     @JvmStatic
-    fun formatByDecimalPlaces(
+    fun formatPrecision(
         digit: String?,
-        maxDecimalPlaces: Int = 2,
-        minDecimalPlaces: Int = 2,
+        maxPrecision: Int = 2,
+        minPrecision: Int = 2,
         mode: RoundingMode = RoundingMode.HALF_UP
     ): String {
         return format(
             digit = digit,
-            maxDecimalPlaces = maxDecimalPlaces,
-            minDecimalPlaces = minDecimalPlaces,
+            maxPrecision = maxPrecision,
+            minPrecision = minPrecision,
             mode = mode,
             integerFormat = "0"
         )
@@ -115,17 +115,17 @@ object NumberUtils {
      * 将数字格式化为指定的数字格式
      *
      * @param digit 数字
-     * @param maxDecimalPlaces 最大保留的小数位
-     * @param minDecimalPlaces 最小的保留的小数位
+     * @param maxPrecision 最大保留的小数位
+     * @param minPrecision 最小的保留的小数位
      * @param mode 数字截取模式
      * @param minIntegerBits 最少的有效整数位，默认整数位最少有1位数字
-     * @param integerPattern 整数部分规则
+     * @param integerPattern 整数部分规则，默认使用国际数字规则
      */
     @JvmStatic
     fun format(
         digit: String?,
-        maxDecimalPlaces: Int = 2,
-        minDecimalPlaces: Int = 2,
+        maxPrecision: Int = 2,
+        minPrecision: Int = 2,
         mode: RoundingMode = RoundingMode.HALF_UP,
         minIntegerBits: Int = 1,
         integerFormat: String = ""
@@ -138,11 +138,11 @@ object NumberUtils {
         }
         // 小数部分的规则
         var fractionPattern = ""
-        var minFraction = minDecimalPlaces
-        if (minDecimalPlaces > maxDecimalPlaces) {
-            minFraction = maxDecimalPlaces
+        var minFraction = minPrecision
+        if (minPrecision > maxPrecision) {
+            minFraction = maxPrecision
         }
-        for (i in 0 until maxDecimalPlaces) {
+        for (i in 0 until maxPrecision) {
             if (i < minFraction) {
                 fractionPattern += "0"
             } else {
@@ -179,7 +179,7 @@ object NumberUtils {
             pattern += ".${fractionPattern}"
         }
         val df = DecimalFormat(pattern)
-        df.currency = Currency.getInstance(Locale.CHINA)
+//        df.currency = Currency.getInstance(Locale.ENGLISH)
         df.roundingMode = mode
         val symbols = DecimalFormatSymbols(Locale.ENGLISH)
         // 防止因为语言环境切换，导致小数点变成其他符号，例如印尼、葡萄牙等语言环境下，小数点会变成逗号
@@ -198,7 +198,7 @@ object NumberUtils {
      * @param mode 有效小数位的舍入规则，默认四舍五入
      */
     @JvmStatic
-    fun formatByValidDecimalPlaces(
+    fun formatValidPrecision(
         digit: String?,
         precision: Int,
         precisionMode: RoundingMode = RoundingMode.HALF_UP
@@ -214,19 +214,19 @@ object NumberUtils {
      * 将EditText中输入的数字转为指定格式，此方法建议放在onTextChanged方法中
      *
      * @param et 输入框控件
-     * @param decimalPlaces 数字的最大小数位
+     * @param precision 数字的最大小数位
      * @param negative 是否允许输入负数
      */
     @JvmStatic
     fun formatInput(
         et: EditText,
-        decimalPlaces: Int? = null,
+        precision: Int? = null,
         negative: Boolean = true
     ) {
         val text = et.text.toString()
         if (text.startsWith(".")) {
             // 输入的的一个字符是"."，自动补全
-            val s = if (decimalPlaces == 0) {
+            val s = if (precision == 0) {
                 "0"
             } else {
                 "0" + text
@@ -245,15 +245,15 @@ object NumberUtils {
                 et.setText("")
             }
         }
-        if (decimalPlaces != null) {
+        if (precision != null) {
             if (text.contains(".")) {
                 // 超过最大小数位
-                if (decimalPlaces <= 0) {
+                if (precision <= 0) {
                     val s = text.substring(0, text.indexOf("."))
                     et.setText(s)
                     et.setSelection(s.length)
-                } else if (text.length - text.indexOf(".") > (decimalPlaces + 1)) {
-                    val s = text.substring(0, text.indexOf(".") + (decimalPlaces + 1))
+                } else if (text.length - text.indexOf(".") > (precision + 1)) {
+                    val s = text.substring(0, text.indexOf(".") + (precision + 1))
                     et.setText(s)
                     et.setSelection(s.length)
                 }
@@ -268,13 +268,16 @@ object NumberUtils {
 
     /**
      * 加法运算
+     *
+     * @param precision 小数精度
+     * @param mode 小数舍入模式
      */
     @JvmStatic
     fun plus(
         v1: String?,
         v2: String?,
-        precision: Int? = null, // 小数精度
-        mode: RoundingMode = RoundingMode.FLOOR // 小数舍入模式
+        precision: Int? = null,
+        mode: RoundingMode = RoundingMode.FLOOR
     ): BigDecimal {
         val t1 = if (v1.isNullOrEmpty()) "0" else v1
         val t2 = if (v2.isNullOrEmpty()) "0" else v2
@@ -289,13 +292,16 @@ object NumberUtils {
 
     /**
      * 减法运算
+     *
+     * @param precision 小数精度
+     * @param mode 小数舍入模式
      */
     @JvmStatic
     fun minus(
         v1: String?,
         v2: String?,
-        precision: Int? = null, // 小数精度
-        mode: RoundingMode = RoundingMode.FLOOR // 小数舍入模式
+        precision: Int? = null,
+        mode: RoundingMode = RoundingMode.FLOOR
     ): BigDecimal {
         val t1 = if (v1.isNullOrEmpty()) "0" else v1
         val t2 = if (v2.isNullOrEmpty()) "0" else v2
@@ -310,13 +316,16 @@ object NumberUtils {
 
     /**
      * 乘法运算
+     *
+     * @param precision 小数精度
+     * @param mode 小数舍入模式
      */
     @JvmStatic
     fun multiply(
         v1: String?,
         v2: String?,
-        precision: Int? = null, // 小数精度
-        mode: RoundingMode = RoundingMode.FLOOR // 小数舍入模式
+        precision: Int? = null,
+        mode: RoundingMode = RoundingMode.FLOOR
     ): BigDecimal {
         if (v1.isNullOrEmpty() || v2.isNullOrEmpty()) {
             return BigDecimal("0")
@@ -352,3 +361,4 @@ object NumberUtils {
         }
     }
 }
+

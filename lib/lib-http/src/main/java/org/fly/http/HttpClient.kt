@@ -74,13 +74,13 @@ open class HttpClient : HttpClientBase() {
     suspend fun <T> postJson(
         url: String,
         headers: Map<String, String>? = null,
-        content: Map<String, Any>? = null,
+        params: Map<String, Any>? = null,
         type: Type,
         isInfoResponse: Boolean = true
     ): ResponseHolder<T> {
         var ct = ""
-        if (!content.isNullOrEmpty()) {
-            ct = getGson().toJson(content)
+        if (!params.isNullOrEmpty()) {
+            ct = getGson().toJson(params)
         }
         return postJsonString(url, headers, ct, type, isInfoResponse)
     }
@@ -224,7 +224,7 @@ open class HttpClient : HttpClientBase() {
                 if (isInfoResponse) {
                     return resolveInfoResponse(response, type)
                 } else {
-                    return resolveNoInfoResponse(response, type)
+                    return resolveUnInfoResponse(response, type)
                 }
             } else {
                 // 请求失败
@@ -257,7 +257,7 @@ open class HttpClient : HttpClientBase() {
     /**
      * 解析成功的网络请求返回的响应，非InfoResponse形式
      */
-    open fun <T> resolveNoInfoResponse(
+    open fun <T> resolveUnInfoResponse(
         response: Response<String>,
         type: Type
     ): ResponseHolder<T> {

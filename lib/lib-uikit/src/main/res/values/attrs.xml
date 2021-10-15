@@ -18,9 +18,9 @@
 
     <!--Border相关-->
     <attr name="fu_borderWidth" format="dimension" />
-    <attr name="fu_borderPressedColor" format="color|reference" />
-    <attr name="fu_borderDisabledColor" format="color|reference" />
-    <attr name="fu_borderNormalColor" format="color|reference" />
+    <attr name="fu_pressedBorderColor" format="color|reference" />
+    <attr name="fu_disabledBorderColor" format="color|reference" />
+    <attr name="fu_normalBorderColor" format="color|reference" />
 
     <!--方向-->
     <attr name="fu_oritenation" format="enum">
@@ -293,15 +293,15 @@
         <attr name="fu_topRightRadius" />
         <attr name="fu_bottomLeftRadius" />
         <attr name="fu_bottomRightRadius" />
-        <attr name="fu_normalColor" format="color|reference" />
-        <attr name="fu_pressedColor" format="color|reference" />
-        <attr name="fu_disabledColor" format="color|reference" />
-        <attr name="fu_textNormalColor" format="color|reference" />
-        <attr name="fu_textDisabledColor" format="color|reference" />
+        <attr name="fu_normalBgColor" format="color|reference" />
+        <attr name="fu_normalTextColor" format="color|reference" />
+        <attr name="fu_normalBorderColor" />
+        <attr name="fu_pressedBgColor" format="color|reference" />
+        <attr name="fu_pressedBorderColor" />
+        <attr name="fu_disabledBgColor" format="color|reference" />
+        <attr name="fu_disabledTextColor" format="color|reference" />
+        <attr name="fu_disabledBorderColor" />
         <attr name="fu_borderWidth" />
-        <attr name="fu_borderPressedColor" />
-        <attr name="fu_borderDisabledColor" />
-        <attr name="fu_borderNormalColor" />
     </declare-styleable>
 
     <!--Radio ImageView-->

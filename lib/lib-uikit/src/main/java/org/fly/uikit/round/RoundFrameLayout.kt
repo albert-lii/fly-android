@@ -34,7 +34,7 @@ open class RoundFrameLayout : FrameLayout, IRoundImpl {
 
     private fun init(attrs: AttributeSet?) {
         initAttrs(attrs)
-        processRoundBackground()
+        buildRoundBackground()
     }
 
     @SuppressLint("CustomViewStyleable")

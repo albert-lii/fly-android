@@ -28,13 +28,14 @@ class RHelper(private val view: View) : IRound {
     private var topRightRadius: Float = 0f
     private var bottomLeftRadius: Float = 0f
     private var bottomRightRadius: Float = 0f
-    private var normalColor: Int = Color.GRAY
-    private var disabledColor: Int = Color.DKGRAY
-    private var pressedColor: Int = INVALID_COLOR
+    private var normalBgColor: Int = Color.TRANSPARENT
+    private var normalBorderColor: Int = Color.TRANSPARENT
+    private var disabledBgColor: Int = Color.DKGRAY
+    private var disabledBorderColor: Int = Color.TRANSPARENT
+    private var pressedBgColor: Int = INVALID_COLOR
+    private var pressedBorderColor: Int = Color.TRANSPARENT
     private var borderWidth: Int = 0
-    private var borderNormalColor: Int = Color.TRANSPARENT
-    private var borderDisabledColor: Int = Color.TRANSPARENT
-    private var borderPressedColor: Int = Color.TRANSPARENT
+
 
     fun initAttrs(ta: TypedArray) {
         topLeftRadius = ta.getDimension(
@@ -59,22 +60,24 @@ class RHelper(private val view: View) : IRound {
 
         val radius = ta.getDimension(
             R.styleable.fly_uikit_RoundView_fu_radius,
-            NO_CORNER
+            -1f
         )
-        setRadius(radius)
+        if (radius != -1f) {
+            setRadius(radius)
+        }
 
-        normalColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_fu_normalColor,
+        normalBgColor = ta.getColor(
+            R.styleable.fly_uikit_RoundView_fu_normalBgColor,
             Color.GRAY
         )
 
-        disabledColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_fu_disabledColor,
+        disabledBgColor = ta.getColor(
+            R.styleable.fly_uikit_RoundView_fu_disabledBgColor,
             INVALID_COLOR
         )
 
-        pressedColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_fu_pressedColor,
+        pressedBgColor = ta.getColor(
+            R.styleable.fly_uikit_RoundView_fu_pressedBgColor,
             INVALID_COLOR
         )
 
@@ -83,120 +86,139 @@ class RHelper(private val view: View) : IRound {
             0f
         ).toInt()
 
-        borderNormalColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_fu_borderNormalColor,
+        normalBorderColor = ta.getColor(
+            R.styleable.fly_uikit_RoundView_fu_normalBorderColor,
             Color.TRANSPARENT
         )
 
-        borderPressedColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_fu_borderPressedColor,
+        pressedBorderColor = ta.getColor(
+            R.styleable.fly_uikit_RoundView_fu_pressedBorderColor,
             Color.TRANSPARENT
         )
 
-        borderDisabledColor = ta.getColor(
-            R.styleable.fly_uikit_RoundView_fu_borderDisabledColor,
+        disabledBorderColor = ta.getColor(
+            R.styleable.fly_uikit_RoundView_fu_disabledBorderColor,
             Color.TRANSPARENT
         )
     }
 
-
     override fun setTopLeftRadius(radius: Float) {
         this.topLeftRadius = radius
+        buildRoundBackground()
     }
 
     override fun setTopRightRadius(radius: Float) {
         this.topRightRadius = radius
+        buildRoundBackground()
     }
 
     override fun setBottomLeftRadius(radius: Float) {
         this.bottomLeftRadius = radius
+        buildRoundBackground()
     }
 
     override fun setBottomRightRadius(radius: Float) {
         this.bottomRightRadius = radius
+        buildRoundBackground()
     }
 
     override fun setRadius(radius: Float) {
         this.topLeftRadius = radius
         this.topRightRadius = radius
-        this.bottomLeftRadius = radius
         this.bottomRightRadius = radius
+        this.bottomLeftRadius = radius
+        buildRoundBackground()
     }
 
-    override fun setNormalColor(color: Int) {
-        this.normalColor = color
+    override fun setRadii(radii: Array<Float>) {
+        this.topLeftRadius = radii[0]
+        this.topRightRadius = radii[1]
+        this.bottomRightRadius = radii[2]
+        this.bottomLeftRadius = radii[3]
+        buildRoundBackground()
     }
 
-    override fun setDisabledColor(color: Int) {
-        this.disabledColor = color
+    override fun setNormalBgColor(color: Int) {
+        this.normalBgColor = color
+        buildRoundBackground()
     }
 
-    override fun setPressedColor(color: Int) {
-        this.pressedColor = color
+    override fun setNormalBorderColor(color: Int) {
+        this.normalBorderColor = color
+        buildRoundBackground()
+    }
+
+    override fun setDisabledBgColor(color: Int) {
+        this.disabledBgColor = color
+        buildRoundBackground()
+    }
+
+    override fun setDisabledBorderColor(color: Int) {
+        this.disabledBorderColor = color
+        buildRoundBackground()
+    }
+
+    override fun setPressedBgColor(color: Int) {
+        this.pressedBgColor = color
+        buildRoundBackground()
+    }
+
+    override fun setPressedBorderColor(color: Int) {
+        this.pressedBorderColor = color
+        buildRoundBackground()
     }
 
     override fun setBorderWidth(size: Int) {
         this.borderWidth = size
-    }
-
-    override fun setNormalBorderColor(color: Int) {
-        this.borderNormalColor = color
-    }
-
-    override fun setDisabledBorderColor(color: Int) {
-        this.borderDisabledColor = color
-    }
-
-    override fun setPressedBorderColor(color: Int) {
-        this.borderPressedColor = color
+        buildRoundBackground()
     }
 
     /**
      * 处理圆角背景
      */
-    override fun processRoundBackground() {
-        val radiusArray = FloatArray(8)
-        radiusArray[0] = topLeftRadius
-        radiusArray[1] = topLeftRadius
-        radiusArray[2] = topRightRadius
-        radiusArray[3] = topRightRadius
-        radiusArray[4] = bottomRightRadius
-        radiusArray[5] = bottomRightRadius
-        radiusArray[6] = bottomLeftRadius
-        radiusArray[7] = bottomLeftRadius
+    override fun buildRoundBackground() {
+        val radii = FloatArray(8)
+        radii[0] = topLeftRadius
+        radii[1] = topLeftRadius
+        radii[2] = topRightRadius
+        radii[3] = topRightRadius
+        radii[4] = bottomRightRadius
+        radii[5] = bottomRightRadius
+        radii[6] = bottomLeftRadius
+        radii[7] = bottomLeftRadius
 
         val stateListDrawable = StateListDrawable()
-        if (pressedColor != INVALID_COLOR || borderWidth > 0) {
+        if (pressedBgColor != INVALID_COLOR || borderWidth > 0) {
             val pressedDrawable = GradientDrawable()
             pressedDrawable.shape = GradientDrawable.RECTANGLE
-            pressedDrawable.cornerRadii = radiusArray
-            if (pressedColor != INVALID_COLOR) {
-                pressedDrawable.setColor(pressedColor)
+            pressedDrawable.cornerRadii = radii
+            if (pressedBgColor != INVALID_COLOR) {
+                pressedDrawable.setColor(pressedBgColor)
             }
             if (borderWidth > 0) {
-                pressedDrawable.setStroke(borderWidth, borderPressedColor)
+                pressedDrawable.setStroke(borderWidth, pressedBorderColor)
             }
             stateListDrawable.addState(intArrayOf(android.R.attr.state_pressed), pressedDrawable)
         }
-        if (disabledColor != INVALID_COLOR || borderWidth > 0) {
+        if (disabledBgColor != INVALID_COLOR || borderWidth > 0) {
             val disabledDrawable = GradientDrawable()
             disabledDrawable.shape = GradientDrawable.RECTANGLE
-            disabledDrawable.cornerRadii = radiusArray
-            if (pressedColor != INVALID_COLOR) {
-                disabledDrawable.setColor(pressedColor)
+            disabledDrawable.cornerRadii = radii
+            if (pressedBgColor != INVALID_COLOR) {
+                disabledDrawable.setColor(pressedBgColor)
             }
             if (borderWidth > 0) {
-                disabledDrawable.setStroke(borderWidth, borderDisabledColor)
+                disabledDrawable.setStroke(borderWidth, disabledBorderColor)
             }
-            disabledDrawable.setStroke(borderWidth, borderDisabledColor)
+            disabledDrawable.setStroke(borderWidth, disabledBorderColor)
             stateListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), disabledDrawable)
         }
         val normalDrawable = GradientDrawable()
         normalDrawable.shape = GradientDrawable.RECTANGLE
-        normalDrawable.cornerRadii = radiusArray
-        normalDrawable.setColor(normalColor)
+        normalDrawable.cornerRadii = radii
+        normalDrawable.setColor(normalBgColor)
         if (borderWidth > 0) {
-            normalDrawable.setStroke(borderWidth, borderNormalColor)
+            normalDrawable.setStroke(borderWidth, normalBorderColor)
         }
         stateListDrawable.addState(intArrayOf(), normalDrawable)
         view.background = stateListDrawable

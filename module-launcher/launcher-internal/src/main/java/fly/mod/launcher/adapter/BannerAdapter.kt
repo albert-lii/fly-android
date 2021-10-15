@@ -23,14 +23,14 @@ class BannerAdapter : BaseBindRecyclerAdapter<LauncherRecyclerItemBannerBinding,
         item: String,
         position: Int
     ) {
-        binding.flFrame.setNormalColor(
+        binding.flFrame.setNormalBgColor(
             if (position % 2 == 0) {
                 R.color.primary_color.toColor(binding.flFrame.context)
             } else {
                 R.color.base_yellow.toColor(binding.flFrame.context)
             }
         )
-        binding.flFrame.processRoundBackground()
+        binding.flFrame.buildRoundBackground()
         binding.tvInfo.text = item
     }
 }

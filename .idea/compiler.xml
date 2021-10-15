@@ -11,6 +11,7 @@
       <module name="fly.lib-qrcode" target="11" />
       <module name="fly.lib.lib-banner" target="11" />
       <module name="fly.lib.lib-base" target="11" />
+      <module name="fly.lib.lib-datacenter" target="11" />
       <module name="fly.lib.lib-http" target="11" />
       <module name="fly.lib.lib-imageloader" target="11" />
       <module name="fly.lib.lib-resource" target="11" />

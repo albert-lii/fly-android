@@ -102,4 +102,9 @@ open class HttpClientBase {
      * 获取Gson实例
      */
     fun getGson() = config.gson
+
+    /**
+     * 获取配置
+     */
+    fun getConfig() = config
 }

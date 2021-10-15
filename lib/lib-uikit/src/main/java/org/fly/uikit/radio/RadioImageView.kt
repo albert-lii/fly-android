@@ -8,6 +8,7 @@ import android.widget.Checkable
 import androidx.appcompat.widget.AppCompatImageView
 import org.fly.uikit.R
 
+
 /**
  * @author: Albert Li
  * @contact: albertlii@163.com
@@ -16,9 +17,11 @@ import org.fly.uikit.R
  * @since: 1.0.0
  */
 open class RadioImageView : AppCompatImageView, Checkable {
+    private val CHECK_STATE_SET = intArrayOf(android.R.attr.state_checked)
+
     private var isChecked = false
-    private var checkedDrawable: Drawable? = null
-    private var uncheckedDrawable: Drawable? = null
+    var checkedDrawable: Drawable? = null
+    var uncheckedDrawable: Drawable? = null
     private var checkedChangeListener: OnCheckedChangeListener? = null
 
     constructor(context: Context) : super(context) {
@@ -49,16 +52,29 @@ open class RadioImageView : AppCompatImageView, Checkable {
             uncheckedDrawable = ta.getDrawable(R.styleable.fly_uikit_RadioImageView_fu_uncheckSrc)
             ta.recycle()
         }
+        setOnClickListener {
+            toggle()
+        }
     }
 
-    override fun performClick(): Boolean {
-        toggle()
-        return super.performClick()
+    /**
+     * Imageview默认不支持state_checked状态，需要重写此方法
+     */
+    override fun onCreateDrawableState(extraSpace: Int): IntArray? {
+        val drawableState = super.onCreateDrawableState(extraSpace + 1)
+        if (isChecked()) {
+            mergeDrawableStates(drawableState, CHECK_STATE_SET)
+        }
+        return drawableState
     }
 
     override fun setChecked(checked: Boolean) {
         this.isChecked = checked
-        setImageDrawable(if (checked) checkedDrawable else uncheckedDrawable)
+        if (uncheckedDrawable == null) {
+            refreshDrawableState()
+        } else {
+            setImageDrawable(if (checked) checkedDrawable else uncheckedDrawable)
+        }
         checkedChangeListener?.onCheckedChanged(this, checked)
     }
 

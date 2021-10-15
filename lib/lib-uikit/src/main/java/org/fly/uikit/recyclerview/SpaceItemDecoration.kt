@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
  */
 open class SpaceItemDecoration(
     private val space: Int? = null, // Linear形态时，item之间的间距
-    private val gridH: Int? = null, // Grid形态时，列与列之间的间距
-    private val gridV: Int? = null // Grid形态时，行与行之间的间距
+    private val spaceH: Int? = null, // Grid形态时，横向间距
+    private val spaceV: Int? = null // Grid形态时，纵向间距
 ) : RecyclerView.ItemDecoration() {
     private var fullPosition = -1
 
@@ -52,8 +52,8 @@ open class SpaceItemDecoration(
         childCount: Int
     ) {
         val sc = layoutMgr.spanCount
-        val h = gridH ?: (space ?: 0) // 列与列之间的间距
-        val v = gridV ?: (space ?: 0) // 行与行之间的间距
+        val h = spaceH ?: (space ?: 0) // 列与列之间的间距
+        val v = spaceV ?: (space ?: 0) // 行与行之间的间距
         if (layoutMgr.orientation == GridLayoutManager.VERTICAL) {
             // 纵向网格
             val totalRow = childCount / sc + 1 // 总行数
@@ -112,8 +112,8 @@ open class SpaceItemDecoration(
         childCount: Int
     ) {
         val sc = layoutMgr.spanCount
-        val h = gridH ?: (space ?: 0) // 列与列之间的间距
-        val v = gridV ?: (space ?: 0) // 行与行之间的间距
+        val h = spaceH ?: (space ?: 0) // 列与列之间的间距
+        val v = spaceV ?: (space ?: 0) // 行与行之间的间距
         val params = view.getLayoutParams() as StaggeredGridLayoutManager.LayoutParams
         val spanIndex = params.spanIndex // 当前item在第几列（从0计算）
         if (layoutMgr.orientation == StaggeredGridLayoutManager.VERTICAL) {

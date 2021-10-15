@@ -6,7 +6,9 @@
         <activity
             android:name="fly.mod.launcher.ui.MainActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:taskAffinity="">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -14,10 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="fly.mod.launcher.ui.ArticleListActivity"
-            android:screenOrientation="portrait"
-            android:taskAffinity="" />
+
+<!--        <activity-->
+<!--            android:name="fly.mod.launcher.ui.ArticleListActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:taskAffinity="" />-->
 
         <activity
             android:name="fly.mod.launcher.ui.ScanActivity"

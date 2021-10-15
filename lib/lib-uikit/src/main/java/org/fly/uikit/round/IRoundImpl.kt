@@ -36,35 +36,39 @@ interface IRoundImpl : IRound {
         helper.setRadius(radius)
     }
 
-    override fun setNormalColor(color: Int) {
-        helper.setNormalColor(color)
+    override fun setRadii(radii: Array<Float>) {
+        helper.setRadii(radii)
     }
 
-    override fun setDisabledColor(color: Int) {
-        helper.setDisabledColor(color)
-    }
-
-    override fun setPressedColor(color: Int) {
-        helper.setPressedColor(color)
-    }
-
-    override fun setBorderWidth(size: Int) {
-        helper.setBorderWidth(size)
+    override fun setNormalBgColor(color: Int) {
+        helper.setNormalBgColor(color)
     }
 
     override fun setNormalBorderColor(color: Int) {
         helper.setNormalBorderColor(color)
     }
 
+    override fun setDisabledBgColor(color: Int) {
+        helper.setDisabledBgColor(color)
+    }
+
     override fun setDisabledBorderColor(color: Int) {
         helper.setDisabledBorderColor(color)
+    }
+
+    override fun setPressedBgColor(color: Int) {
+        helper.setPressedBgColor(color)
     }
 
     override fun setPressedBorderColor(color: Int) {
         helper.setPressedBorderColor(color)
     }
 
-    override fun processRoundBackground() {
-        helper.processRoundBackground()
+    override fun setBorderWidth(size: Int) {
+        helper.setBorderWidth(size)
+    }
+
+    override fun buildRoundBackground() {
+        helper.buildRoundBackground()
     }
 }

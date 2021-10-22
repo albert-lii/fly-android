@@ -1,4 +1,4 @@
-package org.fly.uikit.radio
+package org.fly.uikit.check
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -13,10 +13,10 @@ import org.fly.uikit.R
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2021/9/8 2:04 下午
- * @description: Radio形式的ImageView
+ * @description: Checkbox形式的ImageView
  * @since: 1.0.0
  */
-open class RadioImageView : AppCompatImageView, Checkable {
+open class CheckImageView : AppCompatImageView, Checkable {
     private val CHECK_STATE_SET = intArrayOf(android.R.attr.state_checked)
 
     private var isChecked = false
@@ -52,8 +52,10 @@ open class RadioImageView : AppCompatImageView, Checkable {
             uncheckedDrawable = ta.getDrawable(R.styleable.fly_uikit_RadioImageView_fu_uncheckSrc)
             ta.recycle()
         }
+        changeCheckUI(isChecked)
         setOnClickListener {
             toggle()
+            checkedChangeListener?.onCheckedChanged(this, isChecked)
         }
     }
 
@@ -69,13 +71,18 @@ open class RadioImageView : AppCompatImageView, Checkable {
     }
 
     override fun setChecked(checked: Boolean) {
-        this.isChecked = checked
+        if (isChecked != checked) {
+            this.isChecked = checked
+            changeCheckUI(checked)
+        }
+    }
+
+    private fun changeCheckUI(checked: Boolean) {
         if (uncheckedDrawable == null) {
             refreshDrawableState()
         } else {
             setImageDrawable(if (checked) checkedDrawable else uncheckedDrawable)
         }
-        checkedChangeListener?.onCheckedChanged(this, checked)
     }
 
     override fun isChecked(): Boolean {
@@ -97,6 +104,6 @@ open class RadioImageView : AppCompatImageView, Checkable {
          * @param view The compound button view whose state has changed.
          * @param isChecked  The new checked state of buttonView.
          */
-        fun onCheckedChanged(view: RadioImageView?, isChecked: Boolean)
+        fun onCheckedChanged(view: CheckImageView?, isChecked: Boolean)
     }
 }

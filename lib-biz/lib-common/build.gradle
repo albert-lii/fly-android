@@ -50,7 +50,7 @@ dependencies {
     implementation rootProject.ext.dependencies["arouter-api"]
     api rootProject.ext.dependencies["utilcodex"]
     api project(':lib:lib-base')
-    api project(':lib:lib-http')
+    api project(':lib:http')
     api project(':lib:lib-uikit')
     api project(':lib-biz:lib-resource')
 }

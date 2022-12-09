@@ -3,10 +3,11 @@ package org.fly.dimen;
 import java.io.File;
 
 /**
+ * 生成values-sw<N>dp文件夹的启动类
+ *
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2020/6/23 12:05 PM
- * @description: 生成values-sw<N>dp文件夹的启动类
  * @since: 1.0.0
  */
 public class Executor {
@@ -17,11 +18,10 @@ public class Executor {
     public static final int SMALLEST_WIDTH = 375;
 
     public static void main(String[] args) {
-        final int smallest = SMALLEST_WIDTH;
         DimenType[] values = DimenType.values();
         for (DimenType value : values) {
             File file = new File("");
-            XmlMaker.makeAll(smallest, value, file.getAbsolutePath());
+            XmlMaker.makeAll(SMALLEST_WIDTH, value, file.getAbsolutePath() + File.separator + "dimenOutput");
         }
     }
 }

@@ -4,35 +4,34 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="testRunner" value="PLATFORM" />
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/buildPlugin" name="buildPlugin">
+                <projects>
+                  <project path="$PROJECT_DIR$/buildPlugin" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="Embedded JDK" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/lib" />
-            <option value="$PROJECT_DIR$/lib-biz" />
-            <option value="$PROJECT_DIR$/lib-biz/lib-common" />
-            <option value="$PROJECT_DIR$/lib-biz/lib-resource" />
+            <option value="$PROJECT_DIR$/buildPlugin" />
             <option value="$PROJECT_DIR$/lib-dimen" />
-            <option value="$PROJECT_DIR$/lib/lib-base" />
-            <option value="$PROJECT_DIR$/lib/lib-datacenter" />
-            <option value="$PROJECT_DIR$/lib/lib-http" />
-            <option value="$PROJECT_DIR$/lib/lib-imageloader" />
-            <option value="$PROJECT_DIR$/lib/lib-router" />
-            <option value="$PROJECT_DIR$/lib/lib-scan" />
-            <option value="$PROJECT_DIR$/lib/lib-socket" />
-            <option value="$PROJECT_DIR$/lib/lib-uikit" />
-            <option value="$PROJECT_DIR$/module-launcher" />
-            <option value="$PROJECT_DIR$/module-launcher/launcher-api" />
-            <option value="$PROJECT_DIR$/module-launcher/launcher-internal" />
-            <option value="$PROJECT_DIR$/module-sample" />
-            <option value="$PROJECT_DIR$/module-sample/sample-api" />
-            <option value="$PROJECT_DIR$/module-sample/sample-internal" />
+            <option value="$PROJECT_DIR$/lib-eventbus" />
+            <option value="$PROJECT_DIR$/lib-eventbus/eventbus" />
+            <option value="$PROJECT_DIR$/lib-eventbus/sample" />
+            <option value="$PROJECT_DIR$/lib-http" />
+            <option value="$PROJECT_DIR$/lib-http/http" />
+            <option value="$PROJECT_DIR$/lib-http/sample" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

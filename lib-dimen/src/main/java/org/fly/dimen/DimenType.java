@@ -1,10 +1,11 @@
 package org.fly.dimen;
 
 /**
+ * 屏幕最小宽度的类型，适配Android 3.2以上
+ *
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2020/6/23 11:51 AM
- * @description: 屏幕最小宽度的类型，适配Android 3.2以上
  * @since: 1.0.0
  */
 public enum DimenType {

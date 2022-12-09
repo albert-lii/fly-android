@@ -7,18 +7,19 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 /**
+ * 本地生成values适配文件的工具类
+ *
  * @author: Albert Li
  * @contact: albertlii@163.com
  * @time: 2020/6/23 12:06 PM
- * @description: 本地生成values适配文件的工具类
  * @since: 1.0.0
  */
 public class XmlMaker {
     private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n";
     private static final String XML_RESOURCE_START = "<resources>\r\n";
     private static final String XML_RESOURCE_END = "</resources>\r\n";
-    private static final String XML_DIMEN_TEMPLETE = "<dimen name=\"p%1$d\">%2$.2fdp</dimen>\r\n";
-    private static final String XML_NEGATIVE_DIMEN_TEMPLETE = "<dimen name=\"_p%1$d\">%2$.2fdp</dimen>\r\n";
+    private static final String XML_DIMEN_TEMPLETE = "<dimen name=\"dp_%1$d\">%2$.2fdp</dimen>\r\n";
+    private static final String XML_NEGATIVE_DIMEN_TEMPLETE = "<dimen name=\"ndp_%1$d\">%2$.2fdp</dimen>\r\n";
 
     private static final int MAX_SIZE = 2 * Executor.SMALLEST_WIDTH;
 
@@ -35,9 +36,6 @@ public class XmlMaker {
 
     /**
      * 生成所有的尺寸数据
-     *
-     * @param type
-     * @return
      */
     private static String makeAllDimens(DimenType type, int designWidth) {
         float dpValue;

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.7">
+    <bytecodeTargetLevel target="11">
+      <module name="buildPlugin" target="1.8" />
+      <module name="buildPlugin.main" target="1.8" />
+      <module name="buildPlugin.test" target="1.8" />
       <module name="fly.app" target="11" />
+      <module name="fly.buildPlugin" target="11" />
       <module name="fly.lib-banner" target="11" />
       <module name="fly.lib-biz.lib-common" target="11" />
       <module name="fly.lib-biz.lib-resource" target="11" />

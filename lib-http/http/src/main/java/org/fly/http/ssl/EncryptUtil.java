@@ -37,7 +37,7 @@ public class EncryptUtil {
     /**
      * AES解密
      */
-    public static String decryptWithAES(String key, String ivs,String enData) {
+    public static String decryptWithAES(String key, String ivs, String enData) {
         try {
             String encodingFormat = "UTF8";
             String algorithm = "AES/CBC/PKCS5Padding";

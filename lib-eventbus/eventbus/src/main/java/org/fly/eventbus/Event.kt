@@ -24,6 +24,9 @@ open class Event<T>(
         onBufferOverflow = bufferOverflow
     )
 
+    /**
+     * 获取执行线程
+     */
     private fun getDispatcher(scheduler: Scheduler?): CoroutineDispatcher {
         return when (scheduler) {
             Scheduler.MAIN -> Dispatchers.Main
@@ -31,6 +34,27 @@ open class Event<T>(
             Scheduler.DEFAULT -> Dispatchers.Default
             else -> Dispatchers.Default
         }
+    }
+
+    /**
+     * 获取Lifecycle状态
+     */
+    private fun getLifecycleState(state: ActiveState?): Lifecycle.State {
+        return when (state) {
+            ActiveState.CREATED -> Lifecycle.State.CREATED
+            ActiveState.STARTED -> Lifecycle.State.STARTED
+            ActiveState.RESUMED -> Lifecycle.State.RESUMED
+            ActiveState.DESTROYED -> Lifecycle.State.DESTROYED
+            else -> Lifecycle.State.CREATED
+        }
+    }
+
+    /**
+     * 清空缓存数据
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun empty() {
+        source.resetReplayCache()
     }
 
     /**
@@ -112,8 +136,8 @@ open class Event<T>(
      */
     fun observeInLifecycle(
         owner: LifecycleOwner,
-        minActiveState: ActiveState? = null,
-        scheduler: Scheduler? = null,
+        minActiveState: ActiveState? = ActiveState.CREATED,
+        scheduler: Scheduler? = Scheduler.MAIN,
         isAutoClear: Boolean = true,
         onReceived: suspend (value: T?) -> Unit
     ): Job {
@@ -121,9 +145,18 @@ open class Event<T>(
             autoClearInLifecycle(owner)
         }
         val dispatcher = getDispatcher(scheduler)
-        return owner.lifecycleScope.launch(dispatcher) {
+        /**
+         * repeatOnLifecycle: 在指定生命周期中执行代码块，不在指定状态，会取消协程，下次重新进入指定状态后，会重
+         * 开协程来执行，即代码块会被多次执行，推荐使用。
+         *
+         * whenStateAtLeast: 在指定生命周期中执行代码块，不在指定状态，会挂起协程，不会取消，下次重新进入指定状态后，
+         * 继续执行挂起的协程，代码块只被执行一次，挂起时上游数据流仍然处于活跃状态，会产生资源消耗。
+         */
+        return owner.lifecycleScope.launch {
             owner.lifecycle.repeatOnLifecycle(getLifecycleState(minActiveState)) {
-                observeInternal(onReceived = onReceived)
+                withContext(dispatcher) {
+                    observeInternal(onReceived = onReceived)
+                }
             }
         }
     }
@@ -141,18 +174,5 @@ open class Event<T>(
                 }
             }
         })
-    }
-
-    /**
-     * 获取Lifecycle状态
-     */
-    private fun getLifecycleState(state: ActiveState?): Lifecycle.State {
-        return when (state) {
-            ActiveState.CREATED -> Lifecycle.State.CREATED
-            ActiveState.STARTED -> Lifecycle.State.STARTED
-            ActiveState.RESUMED -> Lifecycle.State.RESUMED
-            ActiveState.DESTROYED -> Lifecycle.State.DESTROYED
-            else -> Lifecycle.State.CREATED
-        }
     }
 }

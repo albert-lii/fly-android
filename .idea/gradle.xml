@@ -30,6 +30,11 @@
             <option value="$PROJECT_DIR$/lib-http" />
             <option value="$PROJECT_DIR$/lib-http/http" />
             <option value="$PROJECT_DIR$/lib-http/sample" />
+            <option value="$PROJECT_DIR$/lib-scan" />
+            <option value="$PROJECT_DIR$/lib-scan/sample" />
+            <option value="$PROJECT_DIR$/lib-scan/scan" />
+            <option value="$PROJECT_DIR$/lib-screenadapter" />
+            <option value="$PROJECT_DIR$/lib-utils" />
           </set>
         </option>
       </GradleProjectSettings>

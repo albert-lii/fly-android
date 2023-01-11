@@ -5,6 +5,8 @@
       <map>
         <entry key="lib-eventbus/sample/src/main/res/layout/activity_first.xml" value="0.14791666666666667" />
         <entry key="lib-eventbus/sample/src/main/res/layout/activity_second.xml" value="0.146875" />
+        <entry key="lib-scan/sample/src/main/res/drawable/ic_launcher_background.xml" value="0.224" />
+        <entry key="lib-scan/sample/src/main/res/layout/activity_scan.xml" value="0.3307291666666667" />
       </map>
     </option>
   </component>

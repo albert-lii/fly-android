@@ -4,7 +4,8 @@ include(":lib-dimen")
 
 includeContainerModules(
     ":lib-eventbus",
-    ":lib-http"
+    ":lib-http",
+    ":lib-scan"
 )
 
 /**=================================================================================================
@@ -133,4 +134,5 @@ class SettingsProxy(
         return "${parentModule.path}${path}"
     }
 }
-include(":lib-http:sample")
+include(":lib-screenadapter")
+include(":lib-utils")

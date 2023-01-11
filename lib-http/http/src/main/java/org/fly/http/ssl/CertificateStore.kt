@@ -71,8 +71,8 @@ class CertificateStore {
      * 保存DomainInfo
      */
     fun saveDomain(hostname: String, encryptedHash: String, certCN: String) {
-        val realHash = EncryptUtil.decryptWithAES(encryptedHash) ?: ""
-        saveCert(hostname, realHash, certCN)
+//        val realHash = EncryptUtil.decryptWithAES(encryptedHash,) ?: ""
+        saveCert(hostname, encryptedHash, certCN)
     }
 
     /**

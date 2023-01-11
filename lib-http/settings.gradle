@@ -1,1 +1,1 @@
-include(":http")
+include(":http", ":sample")

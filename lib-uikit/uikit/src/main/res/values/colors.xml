@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="Color_PrimaryText">#202630</color>
+    <color name="Color_ToastBg">#707A8A</color>
+</resources>

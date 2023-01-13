@@ -1,11 +1,18 @@
 includeBuild("./buildPlugin")
 
-include(":lib-dimen")
+include(
+    ":lib-dimen",
+    ":lib-utils",
+    ":lib-screenadapter",
+)
 
-includeContainerModules(
+includeModules(
     ":lib-eventbus",
     ":lib-http",
-    ":lib-scan"
+    ":lib-imageloader",
+    ":lib-scan",
+    ":lib-uikit",
+    ":lib-router",
 )
 
 /**=================================================================================================
@@ -19,34 +26,39 @@ includeContainerModules(
  * </code>
  * 使用上述代码，可将指定的module导入项目中，例如导入项目外部的module到本项目中
  *================================================================================================*/
-fun includeContainerModules(vararg paths: String, with: (ParentModuleSpec.() -> Unit)? = null) {
+
+fun includeModules(vararg paths: String, with: (ModuleSpec.() -> Unit)? = null) {
+    if (the<ExtraPropertiesExtension>().properties["mavenDep"] == "true" && paths.contains(":module-dynamic")
+            .not()
+    ) return
+
     paths.forEach {
         includeModule(it, with)
     }
 }
 
-fun includeModule(path: String, with: (ParentModuleSpec.() -> Unit)? = null) {
-    val parentModuleSpec = ParentModuleSpec()
-    with?.invoke(parentModuleSpec)
+fun includeModule(path: String, with: (ModuleSpec.() -> Unit)? = null) {
+    val moduleSpec = ModuleSpec()
+    with?.invoke(moduleSpec)
     // 容器module的目录路径
-    val parentModuleDir = File(rootDir, path.replace(":", "/"))
-    if (parentModuleDir.exists()) {
+    val moduleDir = File(rootDir, path.replace(':', '/'))
+    if (moduleDir.exists()) {
         include(path)
-        val parentModule = project(path)
+        val containerModule = project(path)
         // 设置容器module的目录路径，这一步一定要有
-        parentModule.projectDir = parentModuleDir
+        containerModule.projectDir = moduleDir
         // 获取settings.gradle文件，此文件中配置了哪些module需要被include
         // 注意：此处设置文件名为settings.gradle，必须module中的文件名必须与其一致，不能使用其Kotlin格式的settings.gradle.kts
-        val settingsFile = File(parentModuleDir, "settings.gradle")
+        val settingsFile = File(moduleDir, "settings.gradle")
         if (settingsFile.exists()) {
             // 从settingsFile中提取include()方法信息，转到SettingsProxy中处理
-            // parentModule只是一个容器，parentModule内部的子module才是真正有用的module
+            // containerModule只是一个容器，containerModule内部的子module才是真正有用的module
             apply {
                 from(settingsFile)
-                to(SettingsProxy(settings, parentModule, parentModuleSpec))
+                to(SettingsProxy(settings, containerModule, moduleSpec))
             }
         }
-        parentModuleDir.walk().maxDepth(1).filter { it.isDirectory && it != parentModuleDir }.forEach {
+        moduleDir.walk().maxDepth(1).filter { it.isDirectory && it != moduleDir }.forEach {
             val settingsFileInternal = File(it, "settings.gradle")
             if (settingsFileInternal.exists()) {
                 val moduleInternal = settings.findProject("$path:${it.name}")
@@ -54,61 +66,50 @@ fun includeModule(path: String, with: (ParentModuleSpec.() -> Unit)? = null) {
                     moduleInternal.projectDir = it
                     apply {
                         from(settingsFileInternal)
-                        to(SettingsProxy(settings, moduleInternal, parentModuleSpec))
+                        to(SettingsProxy(settings, moduleInternal, moduleSpec))
                     }
                 }
             }
         }
-
     }
 }
 
 /**
  * 容器module的配置类，例如哪些子module需要被过滤或排除
  */
-class ParentModuleSpec {
-    private val excludes = mutableSetOf<String>()
+class ModuleSpec {
+    private val mExcludes = mutableSetOf<String>()
 
-    private var filter: ((String) -> Boolean)? = null
+    private var mFilter: ((String) -> Boolean)? = null
 
     fun exclude(vararg paths: String) {
-        excludes.addAll(paths)
+        mExcludes.addAll(paths)
     }
 
     fun filter(predicate: (String) -> Boolean) {
-        filter = predicate
+        mFilter = predicate
     }
 
     fun accept(path: String): Boolean {
-        if (excludes.contains(path)) {
+        if (mExcludes.contains(path)) {
             return false
         }
-        if (filter?.invoke(path) == true) {
+        if (mFilter?.invoke(path) == true) {
             return false
         }
+
         return true
     }
 }
 
-/**
- * 子module导入代理
- *
- * @property settingsObj settings对象
- * @property parentModule 容器module
- * @property parentModuleSpec 容器module的配置
- */
 class SettingsProxy(
-    private var settingsObj: Settings,
-    private var parentModule: ProjectDescriptor,
-    private var parentModuleSpec: ParentModuleSpec
+    private var mSettings: Settings, // Settings对象
+    private var mModule: ProjectDescriptor, // 容器module
+    private var mModuleSpec: ModuleSpec // 容器module的配置
 ) {
 
     fun getRootProject(): ProjectDescriptor {
-        return parentModule
-    }
-
-    fun project(path: String): ProjectDescriptor {
-        return settingsObj.project("${parentModule.path}$path")
+        return mModule
     }
 
     /**
@@ -116,23 +117,24 @@ class SettingsProxy(
      */
     fun include(vararg paths: String) {
         paths.forEach {
-            if (parentModuleSpec.accept(it.replace(":", ""))) {
+            if (mModuleSpec.accept(it.replace(":", ""))) {
                 val descendantPath = generateDescendantPath(it)
-                settingsObj.include(descendantPath)
-                val descendantProjectDir = File(parentModule.projectDir, it.replace(":", "/"))
-                settingsObj.project(descendantPath).projectDir = descendantProjectDir
+                mSettings.include(descendantPath)
+                val descendantProjectDir = File(mModule.projectDir, it.replace(':', '/'))
+                mSettings.project(descendantPath).projectDir = descendantProjectDir
             }
+
         }
     }
 
-    /**
-     * 生成子module的路径
-     */
+    fun project(path: String): ProjectDescriptor {
+        return mSettings.project("${mModule.path}$path")
+    }
+
     private fun generateDescendantPath(path: String): String {
         // 此处使用"${parentModule.path}${path}"而不是"${path}"是因为如果有很多子module时，直接导入短时间内会分不清它来自哪个容器module，
         // 在前面加上容器module的path，则可以让我们清晰知道当前子module从属于哪个容器module，如[:libs:lib-data]
-        return "${parentModule.path}${path}"
+        return "${mModule.path}$path"
     }
 }
-include(":lib-screenadapter")
-include(":lib-utils")
+include(":lib-router:sample")

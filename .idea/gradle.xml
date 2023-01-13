@@ -30,10 +30,19 @@
             <option value="$PROJECT_DIR$/lib-http" />
             <option value="$PROJECT_DIR$/lib-http/http" />
             <option value="$PROJECT_DIR$/lib-http/sample" />
+            <option value="$PROJECT_DIR$/lib-imageloader" />
+            <option value="$PROJECT_DIR$/lib-imageloader/imageloader" />
+            <option value="$PROJECT_DIR$/lib-imageloader/sample" />
+            <option value="$PROJECT_DIR$/lib-router" />
+            <option value="$PROJECT_DIR$/lib-router/router" />
+            <option value="$PROJECT_DIR$/lib-router/sample" />
             <option value="$PROJECT_DIR$/lib-scan" />
             <option value="$PROJECT_DIR$/lib-scan/sample" />
             <option value="$PROJECT_DIR$/lib-scan/scan" />
             <option value="$PROJECT_DIR$/lib-screenadapter" />
+            <option value="$PROJECT_DIR$/lib-uikit" />
+            <option value="$PROJECT_DIR$/lib-uikit/sample" />
+            <option value="$PROJECT_DIR$/lib-uikit/uikit" />
             <option value="$PROJECT_DIR$/lib-utils" />
           </set>
         </option>

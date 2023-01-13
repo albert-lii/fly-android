@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/uikit_toast_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/fuikit_toast_bg_r4"
+    android:minHeight="34dp"
+    android:paddingStart="5dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="5dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fuikit_toast_left_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fuikit_toast_top_icon"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fuikit_toast_top_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/fuikit_toast_show_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="start|center_vertical"
+        android:maxWidth="246dp"
+        android:minHeight="24dp"
+        android:textColor="@color/Color_PrimaryText"
+        android:textDirection="locale"
+        app:layout_constraintStart_toEndOf="@id/fuikit_toast_left_icon"
+        app:layout_constraintTop_toBottomOf="@id/fuikit_toast_top_icon"
+        tools:text="This is a toast tips !This is a toast tips !This is a toast tips !" />
+
+    <Space
+        android:id="@+id/fuikit_toast_space"
+        android:layout_width="3dp"
+        android:layout_height="9dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fuikit_toast_show_text"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

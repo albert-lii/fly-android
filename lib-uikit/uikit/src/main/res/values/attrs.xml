@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="fu_color" format="color" />
+    <attr name="fu_width" format="dimension" />
+    <attr name="fu_textColor" format="color" />
+    <attr name="fu_textSize" format="dimension" />
+    <attr name="fu_checked" format="boolean" />
+
+    <!-- 曲线图 -->
+    <declare-styleable name="fly_uikit_CurveChart">
+        <!--X轴的宽-->
+        <attr name="fu_xAxisWidth" format="dimension" />
+        <!--X轴的颜色-->
+        <attr name="fu_xAxisColor" format="color|reference" />
+        <!--X轴的文字大小-->
+        <attr name="fu_xAxisTextSize" format="dimension" />
+        <!--X轴的文字颜色-->
+        <attr name="fu_xAxisTextColor" format="color|reference" />
+        <!--X轴的整行刻度文字距离X轴尾端的右间距-->
+        <attr name="fu_xAxisTextRowRightMargin" format="dimension" />
+        <!--X轴的整行刻度文字距离原点的左间距-->
+        <attr name="fu_xAxisTextRowLeftMargin" format="dimension" />
+        <!--X轴的整行刻度文字距离原点的上间距-->
+        <attr name="fu_xAxisTextRowTopMargin" format="dimension" />
+        <!--Y轴的宽-->
+        <attr name="fu_yAxisWidth" format="dimension" />
+        <!--Y轴的颜色-->
+        <attr name="fu_yAxisColor" format="color|reference" />
+        <!--Y轴的文字大小-->
+        <attr name="fu_yAxisTextSize" format="dimension" />
+        <!--Y轴的文字颜色-->
+        <attr name="fu_yAxisTextColor" format="color|reference" />
+        <!--Y轴的整列刻度文字距离Y轴顶点的上间距-->
+        <attr name="fu_yAxisTextColTopMargin" format="dimension" />
+        <!--Y轴的整列刻度文字距离原点的右间距-->
+        <attr name="fu_yAxisTextColRightMargin" format="dimension" />
+        <!--是否显示Y轴线-->
+        <attr name="fu_showYLine" format="boolean" />
+        <!--X轴刻度线的宽-->
+        <attr name="fu_xMarkLineWidth" format="dimension" />
+        <!--X轴刻度线的颜色-->
+        <attr name="fu_xMarkLineColor" format="color|reference" />
+        <!--Y轴刻度线的宽-->
+        <attr name="fu_yMarkLineWidth" format="dimension" />
+        <!--Y轴刻度线的颜色-->
+        <attr name="fu_yMarkLineColor" format="color|reference" />
+        <!--是否显示X轴刻度线-->
+        <attr name="fu_showXMarkLine" format="boolean" />
+        <!--是否显示Y轴刻度线-->
+        <attr name="fu_showYMarkLine" format="boolean" />
+        <!--曲线的粗细-->
+        <attr name="fu_curveWidth" format="dimension" />
+        <!--曲线的颜色-->
+        <attr name="fu_curveColor" format="color|reference" />
+    </declare-styleable>
+
+    <!-- LoopView的指示器 -->
+    <declare-styleable name="fly_uikit_Indicator">
+        <!--活动指示器的颜色-->
+        <attr name="fu_activeColor" format="color|reference" />
+        <!--非活动指示器的颜色-->
+        <attr name="fu_inactiveColor" format="color|reference" />
+        <!--非活动指示器的缩放因子，相对于活动指示器尺寸而言，范围0f-1f-->
+        <attr name="fu_inactiveScale" format="float" />
+        <!--指示器之间的间隔-->
+        <attr name="fu_gap" format="dimension" />
+    </declare-styleable>
+
+    <!-- 带阴影的Layout -->
+    <declare-styleable name="fly_uikit_ShadowLayout">
+        <!--阴影的圆角弧度-->
+        <attr name="fu_cornerRadius" format="dimension" />
+        <!--阴影的半径-->
+        <attr name="fu_shadowRadius" format="dimension" />
+        <!--阴影的颜色，注意：颜色必须带有透明度的值-->
+        <attr name="fu_shadowColor" format="color" />
+        <!--阴影X轴的偏移量-->
+        <attr name="fu_dx" format="dimension" />
+        <!--阴影Y轴的偏移量-->
+        <attr name="fu_dy" format="dimension" />
+    </declare-styleable>
+
+    <!--圆形进度条-->
+    <declare-styleable name="fly_uikit_CircleProgressBar">
+        <attr name="fu_color" />
+        <attr name="fu_width" />
+        <attr name="fu_progressColor" format="color" />
+        <attr name="fu_textColor" />
+        <attr name="fu_textSize" />
+        <attr name="fu_max" format="float" />
+        <attr name="fu_showProgressText" format="boolean" />
+        <attr name="fu_style">
+            <enum name="STROKE" value="0" />
+            <enum name="FILL" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <!--Radio ImageView-->
+    <declare-styleable name="fly_uikit_RadioImageView">
+        <attr name="fu_checked" />
+        <attr name="fu_checkedSrc" format="reference" />
+        <attr name="fu_uncheckedSrc" format="reference" />
+    </declare-styleable>
+</resources>

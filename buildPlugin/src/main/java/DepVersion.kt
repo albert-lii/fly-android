@@ -55,6 +55,8 @@ object DepVersion {
      * Image
      */
     const val glide = "4.12.0"
+    const val glideOkhttpIntegration = "4.11.0"
+    const val androidsvg = "1.3"
 
     /**
      * Widget
@@ -76,16 +78,20 @@ object DepVersion {
     const val bncUikit = "4.3.34"
     const val bncOpenSdk = "0.3.2"
     const val bncApmPolaris = "1.0.31"
+
     //    const val bncApmPolaris = "1.0.18"
     const val bncApmReportApi = "1.0.11"
     const val bncApmReportPolaris = "1.0.11"
+
     //    const val bncApmReportPolaris = "1.0.7"
     const val bncApmLcp = "1.0.9"
     const val bncApmLcpApi = "1.0.1"
     const val bncApmLcpDebug = "1.0.8"
+
     //    const val bncApmLcpDebug = "1.0.1"
     const val bncApmUiBlock = "1.0.9"
     const val bncApmUiBlockDebug = "1.0.7"
+
     //    const val bncApmUiBlockDebug = "1.0.5"
     const val bncApmUiBlockTrace = "1.0.18"
     const val bncJPush = "10.1.0"

@@ -1,9 +1,0 @@
-include(
-        ':lib-base',
-        ':http',
-        ':lib-imageloader',
-        ':lib-uikit',
-        ':lib-scan',
-        ':lib-router',
-        ':lib-socket',
-)

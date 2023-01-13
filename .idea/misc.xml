@@ -7,6 +7,8 @@
         <entry key="lib-eventbus/sample/src/main/res/layout/activity_second.xml" value="0.146875" />
         <entry key="lib-scan/sample/src/main/res/drawable/ic_launcher_background.xml" value="0.224" />
         <entry key="lib-scan/sample/src/main/res/layout/activity_scan.xml" value="0.3307291666666667" />
+        <entry key="lib-uikit/uikit/src/main/res/drawable/fuikit_toast_bg_r4.xml" value="0.169" />
+        <entry key="lib-uikit/uikit/src/main/res/layout/fuikit_toast_layout.xml" value="0.15989583333333332" />
       </map>
     </option>
   </component>

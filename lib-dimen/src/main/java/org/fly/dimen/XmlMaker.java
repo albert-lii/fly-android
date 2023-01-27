@@ -28,7 +28,7 @@ public class XmlMaker {
      */
     private static final String XML_NAME = "dimens.xml";
 
-    public static float px2dip(float pxValue, int sw, int designWidth) {
+    public static float px2dp(float pxValue, int sw, int designWidth) {
         float dpValue = (pxValue / (float) designWidth) * sw;
         BigDecimal bigDecimal = new BigDecimal(dpValue);
         return bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
@@ -44,15 +44,18 @@ public class XmlMaker {
         try {
             sb.append(XML_HEADER);
             sb.append(XML_RESOURCE_START);
+            sb.append("<!-- 正尺寸 -->\n");
             // 正尺寸
             for (int i = 0; i <= MAX_SIZE; i++) {
-                dpValue = px2dip((float) i, type.getSwWidthDp(), designWidth);
+                dpValue = px2dp((float) i, type.getSwWidthDp(), designWidth);
                 temp = String.format(XML_DIMEN_TEMPLETE, i, dpValue);
                 sb.append(temp);
             }
+            sb.append("\n\n");
             // 负尺寸
+            sb.append("<!-- 负尺寸 -->\n");
             for (int i = 0; i <= MAX_SIZE; i++) {
-                dpValue = px2dip((float) i, type.getSwWidthDp(), designWidth);
+                dpValue = px2dp((float) i, type.getSwWidthDp(), designWidth);
                 temp = String.format(XML_NEGATIVE_DIMEN_TEMPLETE, i, dpValue * -1);
                 sb.append(temp);
             }

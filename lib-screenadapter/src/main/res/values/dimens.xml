@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!-- 正尺寸 -->
 <dimen name="dp_0">0.00dp</dimen>
 <dimen name="dp_1">0.96dp</dimen>
 <dimen name="dp_2">1.92dp</dimen>
@@ -751,6 +752,9 @@
 <dimen name="dp_748">718.08dp</dimen>
 <dimen name="dp_749">719.04dp</dimen>
 <dimen name="dp_750">720.00dp</dimen>
+
+
+<!-- 负尺寸 -->
 <dimen name="ndp_0">-0.00dp</dimen>
 <dimen name="ndp_1">-0.96dp</dimen>
 <dimen name="ndp_2">-1.92dp</dimen>

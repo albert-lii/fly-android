@@ -1,7 +1,5 @@
 package org.fly.uikit.recyclerview
 
-import com.cloud.lib.common.base.recyclerview.BaseViewHolder
-
 /**
  * 快捷使用的Adapter
  */

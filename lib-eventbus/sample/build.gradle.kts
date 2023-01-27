@@ -51,4 +51,5 @@ dependencies {
     implementation(Dep.appcompat)
     implementation(Dep.material)
     implementation(project(":lib-eventbus:eventbus"))
+    implementation(project(":lib-screenadapter"))
 }

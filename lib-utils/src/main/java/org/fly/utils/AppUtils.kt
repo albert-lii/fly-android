@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Process
 
 /**
  * App工具类
@@ -133,16 +134,26 @@ object AppUtils {
     }
 
     /**
-     * 获取当前进程名
+     * 判断当前进程是否是主进程
+     */
+    @JvmStatic
+    fun isMainProcess(context: Context): Boolean {
+        val processName = getProcessName(context)
+        return context.packageName == processName
+    }
+
+    /**
+     * 获取进程名
      */
     @JvmStatic
     fun getProcessName(context: Context): String {
-        val pid = android.os.Process.myPid()
-        val activityManager: ActivityManager =
-            context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        for (process in activityManager.runningAppProcesses) {
-            if (process.pid == pid) {
-                return process.processName
+        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val runningApps = am.runningAppProcesses ?: return ""
+        for (proInfo in runningApps) {
+            if (proInfo.pid == Process.myPid()) {
+                if (proInfo.processName != null) {
+                    return proInfo.processName
+                }
             }
         }
         return ""

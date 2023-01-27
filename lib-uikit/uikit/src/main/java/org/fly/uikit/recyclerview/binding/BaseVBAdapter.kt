@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.cloud.lib.common.base.recyclerview.BaseDataAdapter
+import org.fly.uikit.recyclerview.BaseDataAdapter
 import java.lang.reflect.ParameterizedType
 
 /**

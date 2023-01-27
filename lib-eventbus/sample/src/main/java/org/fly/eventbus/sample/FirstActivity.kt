@@ -32,16 +32,7 @@ class FirstActivity : AppCompatActivity() {
             binding.tvEventCount.text = "事件个数：${EventBus.count()}"
         }
         binding.btnNext.setOnClickListener {
-//            startActivity(Intent(this, SecondActivity::class.java))
-
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("cloud-tr://page/home"))
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            val stackBuilder: TaskStackBuilder = TaskStackBuilder.create(this)
-            // 合并回退栈，不然会后台会出现多个app
-            stackBuilder.addNextIntentWithParentStack(intent).startActivities()
-//            startActivity(intent)
+            startActivity(Intent(this, SecondActivity::class.java))
         }
     }
 

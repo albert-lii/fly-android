@@ -15,9 +15,6 @@
 
 ## 微信公众号
 有兴趣的同学可以关注微信公众号「**码途有道**」。
-<div>
-<img src="wxgzh-qrcode.jpg" width="20%">
-</div>
 
 ## 其他平台
 - **简书**：[码途有道](https://www.jianshu.com/u/fe3e28b3a55d)
